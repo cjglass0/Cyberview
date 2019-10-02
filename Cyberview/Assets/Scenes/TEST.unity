@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 164318674}
   - component: {fileID: 164318673}
   - component: {fileID: 164318672}
+  - component: {fileID: 164318675}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -164,7 +165,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1000
+  orthographic size: 1200
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -194,6 +195,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &164318675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164318671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0d1c68d6091e7946910d4335755bb0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  innerWidth: 500
+  innerHeight: 100
+  cameraSpeedScale: 10
+  playerBody: {fileID: 1442347237}
+  facing: {fileID: 1442347243}
 --- !u!1 &548062650
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,6 +251,14 @@ MonoBehaviour:
     button: 1
     condition: 1
   - axisName: Fire1
+    offValue: 0
+    button: 2
+    condition: 0
+  - axisName: Fire2
+    offValue: 0
+    button: 3
+    condition: 0
+  - axisName: Jump
     offValue: 0
     button: 4
     condition: 0
@@ -374,6 +400,8 @@ GameObject:
   - component: {fileID: 1442347242}
   - component: {fileID: 1442347241}
   - component: {fileID: 1442347240}
+  - component: {fileID: 1442347245}
+  - component: {fileID: 1442347246}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -474,7 +502,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 100
+  m_GravityScale: 500
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -496,8 +524,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   standing: 0
-  bottomPosition: {x: 0, y: -400}
-  collisionRadius: 100
+  bottomPosition: {x: 0, y: -440}
+  collisionRadius: 75
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1442347241
 MonoBehaviour:
@@ -523,8 +551,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c76b08d2c058e6459e502f4db4983ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputButtons: 000000000100000004000000
-  speed: 1000
+  inputButtons: 000000000100000002000000
+  speed: 1500
   runMultiplier: 2
   friction: 0.9
   running: 0
@@ -556,6 +584,37 @@ MonoBehaviour:
   direction: 1
   absVelX: 0
   absVelY: 0
+--- !u!114 &1442347245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442347235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d470dcccca3387643ba88544c0941cac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputButtons: 0000000001000000020000000300000004000000
+  jumpSpeed: 2500
+  standing: 0
+--- !u!114 &1442347246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442347235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10d35e26651f872428086abdd89299b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputButtons: 0000000001000000
+  airSpeedAccel: 50
+  airSpeedMax: 1500
+  airFriction: 0.99
 --- !u!1 &1953783717
 GameObject:
   m_ObjectHideFlags: 0

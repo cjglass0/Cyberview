@@ -18,8 +18,8 @@ public class SimpleMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var right = inputState.getButtonValue(input[0]);
-        var left = inputState.getButtonValue(input[1]);
+        var right = inputState.GetButtonValue(input[0]);
+        var left = inputState.GetButtonValue(input[1]);
 
         var velX = speed;
 

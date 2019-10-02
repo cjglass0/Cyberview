@@ -5,10 +5,10 @@ using UnityEngine;
 public enum Buttons{
     Right,
     Left,
-    Up,
-    Down,
-    A,
-    B
+    ArmOne,
+    ArmTwo,
+    Legs,
+    Action
 }
 
 public enum Condition{

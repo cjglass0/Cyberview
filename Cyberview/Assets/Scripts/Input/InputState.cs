@@ -42,7 +42,7 @@ public class InputState : MonoBehaviour
 
     }
 
-    public bool getButtonValue(Buttons key){
+    public bool GetButtonValue(Buttons key){
         if(buttonStates.ContainsKey(key)){
             return buttonStates[key].value;
         }

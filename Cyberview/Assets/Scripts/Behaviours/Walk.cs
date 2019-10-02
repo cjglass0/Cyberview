@@ -19,10 +19,13 @@ public class Walk : AbstractBehaviour
     {
         running = false;
 
-        var right = inputState.getButtonValue(inputButtons[0]);
-        var left = inputState.getButtonValue(inputButtons[1]);
-        var run = inputState.getButtonValue(inputButtons[2]);
+        var right = inputState.GetButtonValue(inputButtons[0]);
+        var left = inputState.GetButtonValue(inputButtons[1]);
+        var run = inputState.GetButtonValue(inputButtons[2]);
 
+        if(!collisionState.standing){
+            return;
+        }
         if(right || left){
             var tmpSpeed = speed;
 

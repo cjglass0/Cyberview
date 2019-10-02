@@ -13,8 +13,13 @@ public class FaceDirection : AbstractBehaviour
     // Update is called once per frame
     void Update()
     {
-        var right = inputState.getButtonValue(inputButtons[0]);
-        var left = inputState.getButtonValue(inputButtons[1]);
+        var right = inputState.GetButtonValue(inputButtons[0]);
+        var left = inputState.GetButtonValue(inputButtons[1]);
+
+        var standing = GetComponent<CollisionState>().standing;
+        if(!standing){
+            return;
+        }
 
         if(right){
             inputState.direction = Directions.Right;
