@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class FaceDirection : AbstractBehaviour
 {
+    private Vector3 origScale;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        origScale = transform.localScale;
     }
 
     // Update is called once per frame
@@ -28,6 +30,6 @@ public class FaceDirection : AbstractBehaviour
             inputState.direction = Directions.Left;
         }
         
-        transform.localScale = new Vector3((float)inputState.direction, 1, 1);
+        transform.localScale = new Vector3((float)inputState.direction* origScale.x, 1* origScale.y, 1* origScale.z);
     }
 }
