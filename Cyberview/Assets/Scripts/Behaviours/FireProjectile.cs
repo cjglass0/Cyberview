@@ -25,10 +25,10 @@ public class FireProjectile : AbstractBehaviour
 
     void CreateProjectile(Vector2 pos){
         if(inputState.direction == Directions.Right){
-            var clone = Instantiate(projectilePrefab, new Vector2(pos.x + 200, pos.y), Quaternion.identity) as GameObject;
+            var clone = Instantiate(projectilePrefab, new Vector2(pos.x, pos.y), Quaternion.identity) as GameObject;
         }
         else{
-            var clone = Instantiate(projectilePrefab, new Vector2(pos.x - 200, pos.y), Quaternion.identity) as GameObject;
+            var clone = Instantiate(projectilePrefab, new Vector2(pos.x, pos.y), Quaternion.identity) as GameObject;
             var missileScript = clone.GetComponent<Missile>();
             missileScript.right = false;
         }
