@@ -9,8 +9,6 @@ public class Walk : AbstractBehaviour
     public float friction = 0.9f;
     public bool running;
 
-    public Animator animator;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +42,5 @@ public class Walk : AbstractBehaviour
         else{
             body2d.velocity = new Vector2(body2d.velocity.x * friction, body2d.velocity.y);
         }
-
-        animator.SetFloat("speed", System.Math.Abs(body2d.velocity.x));
     }
 }
