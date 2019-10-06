@@ -36,6 +36,13 @@ public class Missile : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D target){
+        if(target.gameObject.layer == 12){
+            //do something to the enemy
+            var script = target.gameObject.GetComponent<BasicEnemy>();
+            if(script != null){
+                script.HitBy(gameObject);
+            }
+        }
         Destroy(gameObject);
     }
 }

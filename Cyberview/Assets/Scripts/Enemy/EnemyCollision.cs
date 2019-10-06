@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollisionState : MonoBehaviour
+public class EnemyCollision : MonoBehaviour
 {
-    //this class can be repurposed into a general collisionlayer class
-    //I just need to change the wording a little bit
-    //Since I will still need specific collision state scripts to handle multiple different collisions,
-    //  I will just subclass this class
+    //this class is kind of unnecessary, at least as a standalone
+    //see CollisionState.cs for explanation
     public LayerMask collisionLayer;
-    public bool standing;   //this variable can be renamed to "colliding"
+    public Collider2D collider;
     public Vector2 bottomPosition = Vector2.zero;
     public float collisionRadius = 10f;
     public Color debugCollisionColor = Color.red;
@@ -26,13 +24,15 @@ public class CollisionState : MonoBehaviour
         
     }
 
-    //how this works can be modified in each subclass
     void FixedUpdate(){
         var pos = bottomPosition;
         pos.x += transform.position.x;
         pos.y += transform.position.y;
         
-        standing = Physics2D.OverlapCircle(pos, collisionRadius, collisionLayer);
+        collider = Physics2D.OverlapCircle(pos, collisionRadius, collisionLayer);
+        if(collider){
+            collider.gameObject.GetComponent<PlayerManager>().HitByEnemy(gameObject);
+        }
     }
 
     void OnDrawGizmos(){
