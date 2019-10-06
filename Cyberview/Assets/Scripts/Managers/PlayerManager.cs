@@ -40,7 +40,6 @@ public class PlayerManager : MonoBehaviour
         if(inputState.absVelX > 0){
             //ChangeAnimationState(1);
         }
-        Debug.Log(GetComponent<Rigidbody2D>().velocity);
 
         //animator.speed = walkBehaviour.running ? walkBehaviour.runMultiplier : 1;
         
