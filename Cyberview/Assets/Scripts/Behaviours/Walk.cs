@@ -8,6 +8,7 @@ public class Walk : AbstractBehaviour
     public float runMultiplier = 2f;
     public float friction = 0.9f;
     public bool running;
+
     // Start is called before the first frame update
     void Start()
     {
