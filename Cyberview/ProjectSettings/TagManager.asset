@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: onTopOfTiles
+    uniqueID: 4150183675
+    locked: 0
