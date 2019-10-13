@@ -17,7 +17,7 @@ public class WalkAir : AbstractBehaviour
     void Update()
     {
 
-        if(collisionState.standing){
+        if(GetComponent<PlayerManager>().isGrounded){
             return;
         }
 

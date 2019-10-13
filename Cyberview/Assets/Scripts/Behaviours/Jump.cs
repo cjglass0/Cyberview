@@ -5,7 +5,6 @@ using UnityEngine;
 public class Jump : AbstractBehaviour
 {
     public float jumpSpeed = 10000f;
-    public bool standing;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +16,7 @@ public class Jump : AbstractBehaviour
     {
         var jump = inputState.GetButtonValue(inputButtons[4]);
 
-        if(jump && collisionState.standing){
+        if(jump && GetComponent<PlayerManager>().isGrounded){
             body2d.velocity = new Vector2(body2d.velocity.x, jumpSpeed);
         }
 

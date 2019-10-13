@@ -113,7 +113,7 @@ MonoBehaviour:
   collisionLayer:
     serializedVersion: 2
     m_Bits: 2048
-  colliding: 0
+  collider: {fileID: 0}
   bottomPosition: {x: 0, y: 0}
   collisionRadius: 1.2
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
@@ -124,7 +124,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 384317505897539157}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0

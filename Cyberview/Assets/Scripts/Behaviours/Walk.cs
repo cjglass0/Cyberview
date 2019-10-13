@@ -24,7 +24,7 @@ public class Walk : AbstractBehaviour
         var left = inputState.GetButtonValue(inputButtons[1]);
         var run = inputState.GetButtonValue(inputButtons[2]);
 
-        if(!collisionState.standing){
+        if(!GetComponent<PlayerManager>().isGrounded){
             return;
         }
         if(right || left){

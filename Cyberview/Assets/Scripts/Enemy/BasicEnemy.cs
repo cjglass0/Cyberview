@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicEnemy : MonoBehaviour
+public class BasicEnemy : AbstractCharacter
 {
-    public int health = 3;
-    public bool right = true;
+    public Collider2D leftFloorDetector;
+    public Collider2D rightFloorDetector;
+    
     public float speed = 10f;
     // Start is called before the first frame update
     void Start()
@@ -21,12 +22,12 @@ public class BasicEnemy : MonoBehaviour
         var body2d = GetComponent<Rigidbody2D>();
         //if hitting something that stops movement (like a wall) then the object will turn around
         if(Mathf.Abs(body2d.velocity.x) < 1){
-            right = !right;
+            isFacingRight = !isFacingRight;
         }
 
         
 
-        if(right){
+        if(isFacingRight){
             body2d.velocity = new Vector2(speed,0);
         }
         else{
@@ -40,6 +41,22 @@ public class BasicEnemy : MonoBehaviour
 
     public void HitBy(GameObject projectile){
         health--;
+    }
+
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.layer == 8){
+            groundContactPoints++;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other){
+        
+    }
+
+    void OnTriggerExit2D(Collider2D other){
+        if(other.gameObject.layer == 8){
+            groundContactPoints--;
+        }
     }
 
 }

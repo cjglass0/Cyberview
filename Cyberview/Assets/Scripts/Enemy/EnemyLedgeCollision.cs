@@ -41,8 +41,8 @@ public class EnemyLedgeCollision : MonoBehaviour
         
         colliderLeft = Physics2D.OverlapCircle(leftPos, leftCollisionRadius, collisionLayer);
         colliderRight = Physics2D.OverlapCircle(rightPos, rightCollisionRadius, collisionLayer);
-        if( (enemyScript.right && !colliderRight) || (!enemyScript.right && !colliderLeft) ){
-            enemyScript.right = !enemyScript.right;
+        if( (enemyScript.isFacingRight && !colliderRight) || (!enemyScript.isFacingRight && !colliderLeft) ){
+            enemyScript.isFacingRight = !enemyScript.isFacingRight;
         }
     }
 

@@ -17,7 +17,7 @@ public class PlayerAnim : AbstractBehaviour
     {
         var right = inputState.GetButtonValue(inputButtons[0]);
         var left = inputState.GetButtonValue(inputButtons[1]);
-        var standing = collisionState.standing;
+        var standing = GetComponent<PlayerManager>().isGrounded;
 
         if ((left || right) && standing) {
             animator.SetBool("walking", true);

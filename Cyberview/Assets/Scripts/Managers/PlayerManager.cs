@@ -3,23 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : AbstractCharacter
 {
-    private InputState inputState;
     private Walk walkBehaviour;
     private Animator animator;
-    private CollisionState collisionState;
 
-    public int health = 5;
     private float invincMax = 3f;
     private float currInvinc = 3f;
     private bool invincible = false;
 
-    private void Awake(){
-        inputState = GetComponent<InputState>();
+    void Awake(){
+        base.Awake();
         walkBehaviour = GetComponent<Walk>();
         //animator = GetComponent<Animator>();
-        collisionState = GetComponent<CollisionState>();
     }
 
     // Start is called before the first frame update
@@ -31,14 +27,20 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(groundContactPoints < 0){
+            Debug.LogWarning("WARNING!  Player groundContactPoints negative!");
+            groundContactPoints = 0;
+        }
+        if(groundContactPoints == 0){
+            isGrounded = false;
+        }
+        else{
+            isGrounded = true;
+        }
+
+
         if(health <= 0){
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-        if(collisionState.standing){
-            //ChangeAnimationState(0);
-        }
-        if(inputState.absVelX > 0){
-            //ChangeAnimationState(1);
         }
 
         //animator.speed = walkBehaviour.running ? walkBehaviour.runMultiplier : 1;
@@ -64,4 +66,21 @@ public class PlayerManager : MonoBehaviour
             currInvinc = invincMax;
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.layer == 8){
+            groundContactPoints++;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other){
+        
+    }
+
+    void OnTriggerExit2D(Collider2D other){
+        if(other.gameObject.layer == 8){
+            groundContactPoints--;
+        }
+    }
+
 }
