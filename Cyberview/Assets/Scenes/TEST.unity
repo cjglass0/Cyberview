@@ -8909,12 +8909,12 @@ GameObject:
   - component: {fileID: 1442347236}
   - component: {fileID: 1442347238}
   - component: {fileID: 1442347249}
+  - component: {fileID: 1442347251}
   - component: {fileID: 1442347239}
   - component: {fileID: 1442347244}
   - component: {fileID: 1442347243}
   - component: {fileID: 1442347242}
   - component: {fileID: 1442347241}
-  - component: {fileID: 1442347240}
   - component: {fileID: 1442347245}
   - component: {fileID: 1442347246}
   - component: {fileID: 1442347247}
@@ -8990,8 +8990,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &1442347238
-CapsuleCollider2D:
+--- !u!61 &1442347238
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9003,6 +9003,19 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.7}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 10.24}
+    newSize: {x: 5.12, y: 10.24}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.9, y: 8.5}
+  m_EdgeRadius: 0
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2.6, y: 9.58}
   m_Direction: 0
@@ -9027,25 +9040,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1442347240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1442347235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31b9e9541511ac643ac5475d939b13bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  standing: 0
-  bottomPosition: {x: 0, y: -4.8}
-  collisionRadius: 0.5
-  debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1442347241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9059,6 +9053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
+  isGrounded: 0
 --- !u!114 &1442347242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9118,7 +9113,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputButtons: 0000000001000000020000000300000004000000
   jumpSpeed: 50
-  standing: 0
 --- !u!114 &1442347246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9198,6 +9192,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputButtons: 0000000001000000
+--- !u!61 &1442347251
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442347235}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 10.24}
+    newSize: {x: 5.12, y: 10.24}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.7, y: 0.2}
+  m_EdgeRadius: 0
 --- !u!1001 &1489492908
 PrefabInstance:
   m_ObjectHideFlags: 0
