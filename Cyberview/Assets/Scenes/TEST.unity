@@ -8581,8 +8581,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 122eca832ab4ac94392e7d3e93d3d868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
   isGrounded: 0
+  isFacingRight: 1
+  health: 5
 --- !u!114 &1442347242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9372,6 +9373,11 @@ PrefabInstance:
         type: 3}
       propertyPath: collisionLayer.m_Bits
       value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106573307024434530, guid: e4b438460b6b61e4db8c807d3a05b312,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4b438460b6b61e4db8c807d3a05b312, type: 3}
