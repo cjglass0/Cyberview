@@ -16,7 +16,7 @@ public class AbstractCharacter : MonoBehaviour
     //Keeps track of the character's "inputs"
     //Even enemies can use this, which can be used to guide their AI
     //  while reusing code and keeping them more easily understood conceptually
-    protected InputState inputState;
+    public InputState inputState;
 
     protected void Awake(){
         inputState = GetComponent<InputState>();

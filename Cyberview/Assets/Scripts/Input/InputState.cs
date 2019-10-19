@@ -12,6 +12,10 @@ public enum Directions{
     Left = -1
 }
 
+public class InputObject : MonoBehaviour {
+    
+}
+
 public class InputState : MonoBehaviour
 {
     public Directions direction = Directions.Right;
@@ -68,5 +72,9 @@ public class InputState : MonoBehaviour
 
 
         state.value = value;
+    }
+
+    public bool IsFacingRight(){
+        return direction == Directions.Right;
     }
 }

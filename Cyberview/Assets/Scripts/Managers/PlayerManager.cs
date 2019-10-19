@@ -12,6 +12,10 @@ public class PlayerManager : AbstractCharacter
     public float currInvinc = 3f;
     private bool invincible = false;
 
+    public AbstractBodyMod armOneMod;
+    public AbstractBodyMod armTwoMod;
+    public AbstractBodyMod legs;
+
     void Awake(){
         base.Awake();
         walkBehaviour = GetComponent<Walk>();
@@ -21,12 +25,27 @@ public class PlayerManager : AbstractCharacter
     // Start is called before the first frame update
     void Start()
     {
-       
+       if(armOneMod != null){
+           armOneMod.SetOwner(this);
+       }
+       if(armTwoMod != null){
+           armTwoMod.SetOwner(this);
+       }
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Get all inputs
+        var rightPressed = inputState.GetButtonValue(Buttons.Right);
+        var leftPressed = inputState.GetButtonValue(Buttons.Left);
+        var armOnePressed = inputState.GetButtonValue(Buttons.ArmOne);
+        var armTwoPressed = inputState.GetButtonValue(Buttons.ArmTwo);
+        var legsPressed = inputState.GetButtonValue(Buttons.Legs);
+        var actionPressed = inputState.GetButtonValue(Buttons.Action);
+        var crouchPressed = inputState.GetButtonValue(Buttons.Crouch);
+        var pausePressed = inputState.GetButtonValue(Buttons.Pause);
+    
         if(groundContactPoints < 0){
             Debug.LogWarning("WARNING!  Player groundContactPoints negative!");
             groundContactPoints = 0;
@@ -46,6 +65,30 @@ public class PlayerManager : AbstractCharacter
             invincible = false;
             currInvinc = invincMax;
         }
+
+        //TODO: if (in state that allows body mod usage) {...}
+        if(armOnePressed){
+            if(armOneMod != null){
+                armOneMod.EnableBodyMod();
+            }
+        }
+        else{
+            if(armOneMod != null){
+                armOneMod.DisableBodyMod();
+            }
+        }
+
+        if(armTwoPressed){
+            if(armTwoMod != null){
+                armTwoMod.EnableBodyMod();
+            }
+        }
+        else{
+            if(armTwoMod != null){
+                armTwoMod.DisableBodyMod();
+            }
+        }
+
 
 
         if(health <= 0){

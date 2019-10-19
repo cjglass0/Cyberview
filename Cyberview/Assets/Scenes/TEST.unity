@@ -381,7 +381,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164318671}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.24900898, y: -1.1272819, z: -10.003019}
+  m_LocalPosition: {x: -0.24900874, y: -1.1272819, z: -10.003019}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 275385156}
@@ -626,7 +626,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419877767}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.24900898, y: -1.1272819, z: -10.003019}
+  m_LocalPosition: {x: -0.24900874, y: -1.1272819, z: -10.003019}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1329229700}
@@ -871,6 +871,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &623858337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 623858339}
+  - component: {fileID: 623858338}
+  m_Layer: 0
+  m_Name: BodyModGO
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &623858338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623858337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8ae3c0ef68abd44931994726fdbe99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 1442347241}
+  macroState: 0
+  microState: 0
+  timePerTick: 1
+  energyCostPerTick: 0
+  drillProjectilePrefab: {fileID: 384317505897539157, guid: ad5715fa51553a842965f624c857f977,
+    type: 3}
+  projectileOffset: {x: 3, y: 0}
+--- !u!4 &623858339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623858337}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1442347237}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &744431343
 PrefabInstance:
@@ -8918,7 +8969,6 @@ GameObject:
   - component: {fileID: 1442347245}
   - component: {fileID: 1442347246}
   - component: {fileID: 1442347247}
-  - component: {fileID: 1442347248}
   - component: {fileID: 1442347250}
   m_Layer: 9
   m_Name: Character
@@ -8987,6 +9037,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 194817914}
+  - {fileID: 623858339}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9016,9 +9067,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9, y: 8.5}
   m_EdgeRadius: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 2.6, y: 9.58}
-  m_Direction: 0
 --- !u!50 &1442347239
 Rigidbody2D:
   serializedVersion: 4
@@ -9055,6 +9103,11 @@ MonoBehaviour:
   isGrounded: 0
   isFacingRight: 1
   health: 5
+  inputState: {fileID: 1442347244}
+  currInvinc: 3
+  armOneMod: {fileID: 0}
+  armTwoMod: {fileID: 623858338}
+  legs: {fileID: 0}
 --- !u!114 &1442347242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9146,22 +9199,6 @@ MonoBehaviour:
   shootDelay: 0.5
   projectilePrefab: {fileID: 820217529861135154, guid: 6e9e679749306814c9ee19766f8434f3,
     type: 3}
---- !u!114 &1442347248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1442347235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 925b99fb276402e458f056cf91d668f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputButtons: 03000000
-  drillProjectilePrefab: {fileID: 384317505897539157, guid: ad5715fa51553a842965f624c857f977,
-    type: 3}
-  projectileRange: 3
 --- !u!68 &1442347249
 EdgeCollider2D:
   m_ObjectHideFlags: 0
