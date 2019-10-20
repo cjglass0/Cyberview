@@ -7,6 +7,7 @@ public class PlayerManager : AbstractCharacter
 {
     private Walk walkBehaviour;
     private Animator animator;
+    private GameObject playerObject;
 
     private float invincMax = 3f;
     public float currInvinc = 3f;
@@ -16,6 +17,12 @@ public class PlayerManager : AbstractCharacter
     public AbstractBodyMod armTwoMod;
     public AbstractBodyMod legs;
 
+    //Booleans
+    private bool rightPressed, leftPressed, armOnePressed, armTwoPressed, legsPressed, actionPressed, crouchPressed, pausePressed;
+
+    //Vectors
+    Vector3 originalScale;
+
     //should change this to be some kind of ground movement object
     public float walkSpeed = 15;
     public float friction = 0.9f;
@@ -24,12 +31,13 @@ public class PlayerManager : AbstractCharacter
     public float airSpeedMax = 100;
     public float airFriction = 0.99f;
 
+    //---------------------------------------------------------------- AWAKE -------------------------------------------
     void Awake(){
         base.Awake();
         body2d = GetComponent<Rigidbody2D>();
     }
 
-    // Start is called before the first frame update
+    //---------------------------------------------------------------- START -------------------------------------------
     void Start()
     {
        if(armOneMod != null){
@@ -41,32 +49,16 @@ public class PlayerManager : AbstractCharacter
        if(legs != null){
            legs.SetOwner(this);
        }
+       playerObject = gameObject;
+       originalScale = gameObject.transform.localScale;
     }
 
-    // Update is called once per frame
+    //---------------------------------------------------------------- UPDATE -------------------------------------------
     void Update()
     {
         //Get all inputs
-        var rightPressed = inputState.GetButtonValue(Buttons.Right);
-        var leftPressed = inputState.GetButtonValue(Buttons.Left);
-        var armOnePressed = inputState.GetButtonValue(Buttons.ArmOne);
-        var armTwoPressed = inputState.GetButtonValue(Buttons.ArmTwo);
-        var legsPressed = inputState.GetButtonValue(Buttons.Legs);
-        var actionPressed = inputState.GetButtonValue(Buttons.Action);
-        var crouchPressed = inputState.GetButtonValue(Buttons.Crouch);
-        var pausePressed = inputState.GetButtonValue(Buttons.Pause);
+        InputsUpdate();
     
-        if(groundContactPoints < 0){
-            Debug.LogWarning("WARNING!  Player groundContactPoints negative!");
-            groundContactPoints = 0;
-        }
-        if(groundContactPoints == 0){
-            isGrounded = false;
-        }
-        else{
-            isGrounded = true;
-        }
-
         if(invincible){
             currInvinc -= Time.deltaTime;
         }
@@ -107,60 +99,97 @@ public class PlayerManager : AbstractCharacter
             if(legs != null){
                 legs.EnableBodyMod();
             }
-            else{
+        } else {
+            if (legs != null)
+            {
                 legs.DisableBodyMod();
             }
         }
-        
-        //horizontal movement, grounded then aerial
-        if(isGrounded){
-            if(leftPressed || rightPressed){
-                body2d.velocity = new Vector2(walkSpeed * (float)inputState.direction, body2d.velocity.y);
-            }
-            else{
-                body2d.velocity = new Vector2(body2d.velocity.x * friction, body2d.velocity.y);
-            }
-        }
-        else{
-            if(leftPressed || rightPressed){
-                int accelMultiplier = 1;
-                if(leftPressed){
-                    accelMultiplier = -1;
-                }
-                var tmpSpeed = body2d.velocity.x + (airSpeedAccel * accelMultiplier);
-                if(Mathf.Abs(tmpSpeed) > airSpeedMax){
-                    tmpSpeed = airSpeedMax * accelMultiplier;
-                }
-                body2d.velocity = new Vector2(tmpSpeed, body2d.velocity.y);
-            }
-            else{
-                body2d.velocity = new Vector2(body2d.velocity.x * airFriction, body2d.velocity.y);
-            }
-        }
+
+        MovementUpdate();
 
         if(health <= 0){
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
+    //---------------------------------------------------------------- CUSTOM METHODS -------------------------------------------
+
     void ChangeAnimationState(int value){
         animator.SetInteger("AnimState", value);
     }
 
-    public void HitByEnemy(GameObject enemy){
-        if(!invincible){
-            health--;
-            invincible = true;
-        }
+    private void InputsUpdate()
+    {
+        rightPressed = inputState.GetButtonValue(Buttons.Right);
+        leftPressed = inputState.GetButtonValue(Buttons.Left);
+        armOnePressed = inputState.GetButtonValue(Buttons.ArmOne);
+        armTwoPressed = inputState.GetButtonValue(Buttons.ArmTwo);
+        legsPressed = inputState.GetButtonValue(Buttons.Legs);
+        actionPressed = inputState.GetButtonValue(Buttons.Action);
+        crouchPressed = inputState.GetButtonValue(Buttons.Crouch);
+        pausePressed = inputState.GetButtonValue(Buttons.Pause);
     }
 
-    void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.layer == 8){
-            groundContactPoints++;
+    private void MovementUpdate()
+    {
+        //horizontal movement, grounded then aerial
+        if (isGrounded)
+        {
+            if (leftPressed || rightPressed)
+            {
+                if (leftPressed)
+                { //(left)
+                    body2d.velocity = new Vector2(-walkSpeed * (float)inputState.direction, body2d.velocity.y);
+                }
+                else
+                { //(right)
+                    body2d.velocity = new Vector2(walkSpeed * (float)inputState.direction, body2d.velocity.y);
+                }
+            }
+            else
+            {
+                body2d.velocity = new Vector2(body2d.velocity.x * friction, body2d.velocity.y);
+            }
         }
-        else if(other.gameObject.layer == 12){
+        else
+        {
+            if (leftPressed || rightPressed)
+            {
+                int accelMultiplier = 1;
+                if (leftPressed)
+                {
+                    accelMultiplier = -1;
+                }
+                var tmpSpeed = body2d.velocity.x + (airSpeedAccel * accelMultiplier);
+                if (Mathf.Abs(tmpSpeed) > airSpeedMax)
+                {
+                    tmpSpeed = airSpeedMax * accelMultiplier;
+                }
+                body2d.velocity = new Vector2(tmpSpeed, body2d.velocity.y);
+            }
+            else
+            {
+                body2d.velocity = new Vector2(body2d.velocity.x * airFriction, body2d.velocity.y);
+            }
+        }
+
+        //flip visually
+        if (body2d.velocity.x > .1f) playerObject.transform.localScale = originalScale;
+        if (body2d.velocity.x < -.1f) playerObject.transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
+    }
+
+    //--------------------------------------------- Triggers
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.layer == 12){
             HitByEnemy(other.gameObject);
         }
+        /*
+        //set strong arm's heavy box
+        if (other.gameObject.tag == "HeavyBlock" && armOneMod)
+        {
+
+        }*/
     }
 
     void OnTriggerStay2D(Collider2D other){
@@ -170,8 +199,25 @@ public class PlayerManager : AbstractCharacter
     }
 
     void OnTriggerExit2D(Collider2D other){
-        if(other.gameObject.layer == 8){
-            groundContactPoints--;
+
+        //remove strong arm's heavy box
+    }
+
+    //--------------------------------------------- Colliders (solid)
+
+
+    //------------------------------------------------------------- PUBLIC INTERFACE ----------------------------------------
+    public void setIsGrounded(bool newGroundedState)
+    {
+        isGrounded = newGroundedState;
+    }
+
+    public void HitByEnemy(GameObject enemy)
+    {
+        if (!invincible)
+        {
+            health--;
+            invincible = true;
         }
     }
 

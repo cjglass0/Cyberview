@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HeavyBlock : MonoBehaviour
 {
-    public AbstractCharacter attached;
+    private AbstractCharacter attached;
     private bool attachedFlag = false;
     public Vector3 distanceBetween;
     private Rigidbody2D body2d;

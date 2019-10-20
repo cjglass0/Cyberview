@@ -30,7 +30,7 @@ public class HitBox : MonoBehaviour
     void OnTriggerExit2D(Collider2D other){
         if(layer == (layer | (1 << other.gameObject.layer))){
             touchPoints--;
-            Debug.Log("sub");
+            //Debug.Log("sub");
         }
     }
 }
