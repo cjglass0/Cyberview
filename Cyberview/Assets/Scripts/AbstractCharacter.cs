@@ -18,6 +18,9 @@ public class AbstractCharacter : MonoBehaviour
     //  while reusing code and keeping them more easily understood conceptually
     public InputState inputState;
 
+    //Convenient access to the rigidbody
+    public Rigidbody2D body2d;
+
     protected void Awake(){
         inputState = GetComponent<InputState>();
     }

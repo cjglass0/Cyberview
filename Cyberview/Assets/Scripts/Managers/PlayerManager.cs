@@ -16,10 +16,17 @@ public class PlayerManager : AbstractCharacter
     public AbstractBodyMod armTwoMod;
     public AbstractBodyMod legs;
 
+    //should change this to be some kind of ground movement object
+    public float walkSpeed = 15;
+    public float friction = 0.9f;
+    //should change this to be some kind of air movement object
+    public float airSpeedAccel = 50f;
+    public float airSpeedMax = 100;
+    public float airFriction = 0.99f;
+
     void Awake(){
         base.Awake();
-        walkBehaviour = GetComponent<Walk>();
-        //animator = GetComponent<Animator>();
+        body2d = GetComponent<Rigidbody2D>();
     }
 
     // Start is called before the first frame update
@@ -30,6 +37,9 @@ public class PlayerManager : AbstractCharacter
        }
        if(armTwoMod != null){
            armTwoMod.SetOwner(this);
+       }
+       if(legs != null){
+           legs.SetOwner(this);
        }
     }
 
@@ -67,6 +77,11 @@ public class PlayerManager : AbstractCharacter
         }
 
         //TODO: if (in state that allows body mod usage) {...}
+        if(actionPressed){
+            //do attack thing
+        }
+
+        //TODO: if (in state that allows body mod usage) {...}
         if(armOnePressed){
             if(armOneMod != null){
                 armOneMod.EnableBodyMod();
@@ -88,15 +103,44 @@ public class PlayerManager : AbstractCharacter
                 armTwoMod.DisableBodyMod();
             }
         }
-
-
+        if(legsPressed){
+            if(legs != null){
+                legs.EnableBodyMod();
+            }
+            else{
+                legs.DisableBodyMod();
+            }
+        }
+        
+        //horizontal movement, grounded then aerial
+        if(isGrounded){
+            if(leftPressed || rightPressed){
+                body2d.velocity = new Vector2(walkSpeed * (float)inputState.direction, body2d.velocity.y);
+            }
+            else{
+                body2d.velocity = new Vector2(body2d.velocity.x * friction, body2d.velocity.y);
+            }
+        }
+        else{
+            if(leftPressed || rightPressed){
+                int accelMultiplier = 1;
+                if(leftPressed){
+                    accelMultiplier = -1;
+                }
+                var tmpSpeed = body2d.velocity.x + (airSpeedAccel * accelMultiplier);
+                if(Mathf.Abs(tmpSpeed) > airSpeedMax){
+                    tmpSpeed = airSpeedMax * accelMultiplier;
+                }
+                body2d.velocity = new Vector2(tmpSpeed, body2d.velocity.y);
+            }
+            else{
+                body2d.velocity = new Vector2(body2d.velocity.x * airFriction, body2d.velocity.y);
+            }
+        }
 
         if(health <= 0){
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-
-        //animator.speed = walkBehaviour.running ? walkBehaviour.runMultiplier : 1;
-        
     }
 
     void ChangeAnimationState(int value){
