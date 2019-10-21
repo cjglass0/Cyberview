@@ -31,6 +31,8 @@ public class BM_StrongArm : AbstractBodyMod
             //heavyBox.GetComponent<BoxCollider2D>().enabled = true;
             heavyBox.GetComponent<Rigidbody2D>().simulated = true;
             heavyBox = null;
+            owner.GetComponentInChildren<Animator>().SetBool("grab", false);
+
         } else if (!heavyBox && !droppingBox)
         {
                                                             //Pick up box
@@ -82,6 +84,8 @@ public class BM_StrongArm : AbstractBodyMod
 
         GotoState(BodyModState.ACTIVE);
         holdingBox = true;
+
+        owner.GetComponentInChildren<Animator>().SetBool("grab", true);
     }
 
 

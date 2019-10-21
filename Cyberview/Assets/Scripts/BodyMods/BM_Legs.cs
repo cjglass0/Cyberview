@@ -12,7 +12,6 @@ public class BM_Legs : AbstractBodyMod
     private float fallMultiplier = 2f; //sets factor of speed at which player falls back down
     private float lowJumpMultiplier = 1.5f; //sets factor of how hard low jumps break while going up (should be >1)(1 = low and high jumps are same)
 
-
     void Update()
     {
         //(sloppy) set references if not set yet
@@ -27,6 +26,7 @@ public class BM_Legs : AbstractBodyMod
             if (jump && playerManager.isGrounded)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+                owner.GetComponentInChildren<Animator>().SetBool("jump", true);
             }
 
 

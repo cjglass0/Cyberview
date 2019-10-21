@@ -57,6 +57,7 @@ public class PlayerManager : AbstractCharacter
         }
         playerObject = gameObject;
         originalScale = gameObject.transform.localScale;
+        animator = GetComponentInChildren<Animator>();
 
         //init lists
         interactables = new List<GameObject>();
@@ -126,10 +127,6 @@ public class PlayerManager : AbstractCharacter
 
     //---------------------------------------------------------------- CUSTOM METHODS -------------------------------------------
 
-    void ChangeAnimationState(int value){
-        animator.SetInteger("AnimState", value);
-    }
-
     private void InputsUpdate()
     {
         rightPressed = inputState.GetButtonValue(Buttons.Right);
@@ -149,6 +146,7 @@ public class PlayerManager : AbstractCharacter
         {
             if (leftPressed || rightPressed)
             {
+                animator.SetBool("run", true);
                 if (leftPressed)
                 { //(left)
                     body2d.velocity = new Vector2(-walkSpeed * (float)inputState.direction, body2d.velocity.y);
@@ -161,6 +159,7 @@ public class PlayerManager : AbstractCharacter
             else
             {
                 body2d.velocity = new Vector2(body2d.velocity.x * friction, body2d.velocity.y);
+                animator.SetBool("run", false);
             }
         }
         else
@@ -182,6 +181,7 @@ public class PlayerManager : AbstractCharacter
             else
             {
                 body2d.velocity = new Vector2(body2d.velocity.x * airFriction, body2d.velocity.y);
+                animator.SetBool("run", false);
             }
         }
 
@@ -219,6 +219,7 @@ public class PlayerManager : AbstractCharacter
     public void setIsGrounded(bool newGroundedState)
     {
         isGrounded = newGroundedState;
+        if (isGrounded) animator.SetBool("jump", false);
     }
 
     public void HitByEnemy(GameObject enemy)
