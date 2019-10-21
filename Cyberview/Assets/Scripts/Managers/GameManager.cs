@@ -15,12 +15,11 @@ public class GameManager : MonoBehaviour
     public readonly static int _BASE = 0;
     public readonly static int MENU = 1;
     public readonly static int PAUSE = 2;
-    public readonly static int LVL_1 = 3;
-    public readonly static int LVL_2 = 4;
-    public readonly static int TEST = 5;
+    public readonly static int FIRST_LVL = 3;
+    public readonly static int LAST_LVL = 5;
 
     //Scenes
-    private int sceneToLoad = TEST; //<--- Set first Scene to load (should eventually be set by loading saved progress)
+    private int sceneToLoad = FIRST_LVL; //<--- Set first Scene to load (should eventually be set by loading saved progress)
     private Scene curScene;
     private bool sceneCurrentlyLoading = false;
 
@@ -93,5 +92,13 @@ public class GameManager : MonoBehaviour
                 //prepare GameObjects in _Base for Menu. Ex: Deactivate player.
             }
         }
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////// LoadScene (newSceneToLoad) ####################
+    public void LoadScene(int newSceneToLoad)
+    {
+        SceneManager.UnloadSceneAsync(sceneToLoad);
+        sceneToLoad = newSceneToLoad;
+        SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
     }
 }

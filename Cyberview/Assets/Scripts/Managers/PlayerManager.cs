@@ -10,6 +10,7 @@ public class PlayerManager : AbstractCharacter
     public AbstractBodyMod armOneMod;
     public AbstractBodyMod armTwoMod;
     public AbstractBodyMod legs;
+    public GameManager gameManager;
 
     public float currInvinc = 3f;
 

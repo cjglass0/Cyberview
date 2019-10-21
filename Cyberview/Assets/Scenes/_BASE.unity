@@ -222,7 +222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254932204}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.24900922, y: -1.047282, z: -10.003019}
+  m_LocalPosition: {x: -0.24900898, y: -1.047282, z: -10.003019}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 158038844}
@@ -472,6 +472,7 @@ MonoBehaviour:
   armOneMod: {fileID: 1215809494}
   armTwoMod: {fileID: 624375882}
   legs: {fileID: 1079752318}
+  gameManager: {fileID: 1824120417}
   currInvinc: 3
   walkSpeed: 15
   friction: 0.9
@@ -903,7 +904,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227865450}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.24900922, y: -1.047282, z: -10.003019}
+  m_LocalPosition: {x: -0.24900898, y: -1.047282, z: -10.003019}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1469474514}
