@@ -5,6 +5,19 @@ using UnityEngine.Assertions;
 
 public class BodyMod_Arm_Strong : AbstractBodyMod
 {
+
+    ///  @ CARTER - CAN WE DELETE THIS? I left it just in case we still need any of the code below. RN BM_StrongArm.cs handles the lifting of the box
+    ///  
+
+
+
+
+
+
+
+
+
+
     //generates a prefab with a collider right in front of the player
     //if prefab collides with one of the heavy blocks, sends a signal
     //attach the heavy block to this script
