@@ -1,62 +1,73 @@
-﻿using System.Collections;
+﻿#pragma strict
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerManager : AbstractCharacter
 {
+    ///// PUBLIC
+    public AbstractBodyMod armOneMod;
+    public AbstractBodyMod armTwoMod;
+    public AbstractBodyMod legs;
+
+    public float currInvinc = 3f;
+
+    //should change this to be some kind of ground movement object
+    public float walkSpeed = 15;
+    public float friction = 0.9f;
+    //should change this to be some kind of air movement object
+    public float airSpeedAccel = 50f;
+    public float airSpeedMax = 100;
+    public float airFriction = 0.99f;
+
+    ///// PRIVATE
     private Walk walkBehaviour;
     private Animator animator;
+    private GameObject playerObject;
+    private List <GameObject> interactables;
 
-    private float invincMax = 3f;
-    private float currInvinc = 3f;
+    //Booleans
+    private bool rightPressed, leftPressed, armOnePressed, armTwoPressed, legsPressed, actionPressed, crouchPressed, pausePressed;
     private bool invincible = false;
 
+    //Numbers
+    private float invincMax = 3f;
+
+    //Vectors
+    private Vector3 originalScale;
+
+    //---------------------------------------------------------------- AWAKE -------------------------------------------
     void Awake(){
         base.Awake();
-        walkBehaviour = GetComponent<Walk>();
-        //animator = GetComponent<Animator>();
+        body2d = GetComponent<Rigidbody2D>();
     }
 
-    // Start is called before the first frame update
+    //---------------------------------------------------------------- START -------------------------------------------
     void Start()
     {
-       
+        if(armOneMod != null){
+            armOneMod.SetOwner(this);
+        }
+        if(armTwoMod != null){
+            armTwoMod.SetOwner(this);
+        }
+        if(legs != null){
+            legs.SetOwner(this);
+        }
+        playerObject = gameObject;
+        originalScale = gameObject.transform.localScale;
+
+        //init lists
+        interactables = new List<GameObject>();
     }
 
-    // Update is called once per frame
+    //---------------------------------------------------------------- UPDATE -------------------------------------------
     void Update()
     {
-        if(groundContactPoints < 0){
-            Debug.LogWarning("WARNING!  Player groundContactPoints negative!");
-            groundContactPoints = 0;
-        }
-        if(groundContactPoints == 0){
-            isGrounded = false;
-        }
-        else{
-            isGrounded = true;
-        }
-
-
-        if(health <= 0){
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
-        //animator.speed = walkBehaviour.running ? walkBehaviour.runMultiplier : 1;
-        
-    }
-
-    void ChangeAnimationState(int value){
-        animator.SetInteger("AnimState", value);
-    }
-
-    public void HitByEnemy(GameObject enemy){
-        if(!invincible){
-            health--;
-            invincible = true;
-        }
-
+        //Get all inputs
+        InputsUpdate();
+    
         if(invincible){
             currInvinc -= Time.deltaTime;
         }
@@ -65,22 +76,164 @@ public class PlayerManager : AbstractCharacter
             invincible = false;
             currInvinc = invincMax;
         }
+
+        //TODO: if (in state that allows body mod usage) {...}
+        if(actionPressed){
+            //do attack thing
+        }
+
+        //TODO: if (in state that allows body mod usage) {...}
+        if(armOnePressed){
+            if(armOneMod != null){
+                armOneMod.EnableBodyMod();
+                Debug.Log("ArmOne");
+            }
+        }
+        else{
+            if(armOneMod != null){
+                armOneMod.DisableBodyMod();
+            }
+        }
+
+        if(armTwoPressed){
+            if(armTwoMod != null){
+                armTwoMod.EnableBodyMod();
+                Debug.Log("ArmTwo");
+            }
+        }
+        else{
+            if(armTwoMod != null){
+                armTwoMod.DisableBodyMod();
+            }
+        }
+        if(legsPressed){
+            if(legs != null){
+                legs.EnableBodyMod();
+            }
+        } else {
+            if (legs != null)
+            {
+                legs.DisableBodyMod();
+            }
+        }
+
+        MovementUpdate();
+
+        if(health <= 0){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
-    void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.layer == 8){
-            groundContactPoints++;
+    //---------------------------------------------------------------- CUSTOM METHODS -------------------------------------------
+
+    void ChangeAnimationState(int value){
+        animator.SetInteger("AnimState", value);
+    }
+
+    private void InputsUpdate()
+    {
+        rightPressed = inputState.GetButtonValue(Buttons.Right);
+        leftPressed = inputState.GetButtonValue(Buttons.Left);
+        armOnePressed = inputState.GetButtonValue(Buttons.ArmOne);
+        armTwoPressed = inputState.GetButtonValue(Buttons.ArmTwo);
+        legsPressed = inputState.GetButtonValue(Buttons.Legs);
+        actionPressed = inputState.GetButtonValue(Buttons.Action);
+        crouchPressed = inputState.GetButtonValue(Buttons.Crouch);
+        pausePressed = inputState.GetButtonValue(Buttons.Pause);
+    }
+
+    private void MovementUpdate()
+    {
+        //horizontal movement, grounded then aerial
+        if (isGrounded)
+        {
+            if (leftPressed || rightPressed)
+            {
+                if (leftPressed)
+                { //(left)
+                    body2d.velocity = new Vector2(-walkSpeed * (float)inputState.direction, body2d.velocity.y);
+                }
+                else
+                { //(right)
+                    body2d.velocity = new Vector2(walkSpeed * (float)inputState.direction, body2d.velocity.y);
+                }
+            }
+            else
+            {
+                body2d.velocity = new Vector2(body2d.velocity.x * friction, body2d.velocity.y);
+            }
         }
+        else
+        {
+            if (leftPressed || rightPressed)
+            {
+                int accelMultiplier = 1;
+                if (leftPressed)
+                {
+                    accelMultiplier = -1;
+                }
+                var tmpSpeed = body2d.velocity.x + (airSpeedAccel * accelMultiplier);
+                if (Mathf.Abs(tmpSpeed) > airSpeedMax)
+                {
+                    tmpSpeed = airSpeedMax * accelMultiplier;
+                }
+                body2d.velocity = new Vector2(tmpSpeed, body2d.velocity.y);
+            }
+            else
+            {
+                body2d.velocity = new Vector2(body2d.velocity.x * airFriction, body2d.velocity.y);
+            }
+        }
+
+        //flip visually
+        if (body2d.velocity.x > .5f) playerObject.transform.localScale = originalScale;
+        if (body2d.velocity.x < -.5f) playerObject.transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
+    }
+
+    //--------------------------------------------- Triggers
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.layer == 12){
+            HitByEnemy(other.gameObject);
+        }
+
+        interactables.Add(other.gameObject);
     }
 
     void OnTriggerStay2D(Collider2D other){
+        if(other.gameObject.layer == 12){
+            HitByEnemy(other.gameObject);
+        }
+
         
     }
 
-    void OnTriggerExit2D(Collider2D other){
-        if(other.gameObject.layer == 8){
-            groundContactPoints--;
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        interactables.Remove(other.gameObject);
+    }
+
+    //--------------------------------------------- Colliders (solid)
+
+
+    //------------------------------------------------------------- PUBLIC INTERFACE ----------------------------------------
+    public void setIsGrounded(bool newGroundedState)
+    {
+        isGrounded = newGroundedState;
+    }
+
+    public void HitByEnemy(GameObject enemy)
+    {
+        if (!invincible)
+        {
+            health--;
+            invincible = true;
         }
+    }
+
+    public List <GameObject> GetInteractables()
+    {
+        Debug.Log(interactables.Count);
+        return interactables;
     }
 
 }

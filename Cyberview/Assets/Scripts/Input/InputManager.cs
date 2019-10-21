@@ -8,7 +8,9 @@ public enum Buttons{
     ArmOne,
     ArmTwo,
     Legs,
-    Action
+    Action,
+    Crouch,
+    Pause
 }
 
 public enum Condition{

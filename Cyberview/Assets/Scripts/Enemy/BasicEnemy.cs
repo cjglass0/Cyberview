@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BasicEnemy : AbstractCharacter
 {
-    public Collider2D leftFloorDetector;
-    public Collider2D rightFloorDetector;
+    public HitBox leftFloorDetector;
+    public HitBox rightFloorDetector;
     
     public float speed = 10f;
     // Start is called before the first frame update
@@ -25,7 +25,12 @@ public class BasicEnemy : AbstractCharacter
             isFacingRight = !isFacingRight;
         }
 
-        
+        if(isFacingRight && !rightFloorDetector.touching){
+            isFacingRight = false;
+        }
+        else if(!isFacingRight && !leftFloorDetector.touching){
+            isFacingRight = true;
+        }
 
         if(isFacingRight){
             body2d.velocity = new Vector2(speed,0);
