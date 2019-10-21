@@ -10,6 +10,7 @@ public class BM_StrongArm : AbstractBodyMod
     GameObject blockColliderHelper;
     private static float offsetX = 5f;
     Vector3 blockOffset = new Vector3(offsetX, 0, 0);
+    int framesStuckOnLedge;
 
     //------------------------------------------------------ Released Hold Box Button
     public override void DisableBodyMod()
@@ -116,6 +117,14 @@ public class BM_StrongArm : AbstractBodyMod
 
             //position box
             heavyBox.transform.position = (owner.transform.position + blockOffset);
+
+            //let go of box if stuck on ledge
+            if (!owner.isGrounded && Mathf.Abs(owner.gameObject.GetComponent<Rigidbody2D>().velocity.y) < 1f)
+            {
+                framesStuckOnLedge += 5;
+            }
+            if (framesStuckOnLedge > 60) EnableBodyMod();
         }
+        if (framesStuckOnLedge > 0) framesStuckOnLedge--;
     }
 }

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameController : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     //// This Script will be used to keep everything together. ////
 
-    public static GameController instance = null;
+    public static GameManager instance = null;
+    public GameObject player;
+    public LvlManager lvlManager;
 
     //// BUILD INDEXES ////
     public readonly static int _BASE = 0;
@@ -83,6 +85,8 @@ public class GameController : MonoBehaviour
             if (thisSceneIdx > PAUSE) // -- Level Loaded --
             {
                 //prepare GameObjects in _Base for Gameplay. Ex: Activate player.
+                lvlManager = GameObject.Find("LevelManager").GetComponent<LvlManager>();
+                lvlManager.InitLevel(this);
             }
             else if (thisSceneIdx < PAUSE) // -- Menu Screen Loaded --
             {
