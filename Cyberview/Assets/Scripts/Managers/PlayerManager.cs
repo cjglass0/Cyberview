@@ -1,27 +1,17 @@
-﻿using System.Collections;
+﻿#pragma strict
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerManager : AbstractCharacter
 {
-    private Walk walkBehaviour;
-    private Animator animator;
-    private GameObject playerObject;
-
-    private float invincMax = 3f;
-    public float currInvinc = 3f;
-    private bool invincible = false;
-
+    ///// PUBLIC
     public AbstractBodyMod armOneMod;
     public AbstractBodyMod armTwoMod;
     public AbstractBodyMod legs;
 
-    //Booleans
-    private bool rightPressed, leftPressed, armOnePressed, armTwoPressed, legsPressed, actionPressed, crouchPressed, pausePressed;
-
-    //Vectors
-    Vector3 originalScale;
+    public float currInvinc = 3f;
 
     //should change this to be some kind of ground movement object
     public float walkSpeed = 15;
@@ -30,6 +20,22 @@ public class PlayerManager : AbstractCharacter
     public float airSpeedAccel = 50f;
     public float airSpeedMax = 100;
     public float airFriction = 0.99f;
+
+    ///// PRIVATE
+    private Walk walkBehaviour;
+    private Animator animator;
+    private GameObject playerObject;
+    private List <GameObject> interactables;
+
+    //Booleans
+    private bool rightPressed, leftPressed, armOnePressed, armTwoPressed, legsPressed, actionPressed, crouchPressed, pausePressed;
+    private bool invincible = false;
+
+    //Numbers
+    private float invincMax = 3f;
+
+    //Vectors
+    private Vector3 originalScale;
 
     //---------------------------------------------------------------- AWAKE -------------------------------------------
     void Awake(){
@@ -40,17 +46,20 @@ public class PlayerManager : AbstractCharacter
     //---------------------------------------------------------------- START -------------------------------------------
     void Start()
     {
-       if(armOneMod != null){
-           armOneMod.SetOwner(this);
-       }
-       if(armTwoMod != null){
-           armTwoMod.SetOwner(this);
-       }
-       if(legs != null){
-           legs.SetOwner(this);
-       }
-       playerObject = gameObject;
-       originalScale = gameObject.transform.localScale;
+        if(armOneMod != null){
+            armOneMod.SetOwner(this);
+        }
+        if(armTwoMod != null){
+            armTwoMod.SetOwner(this);
+        }
+        if(legs != null){
+            legs.SetOwner(this);
+        }
+        playerObject = gameObject;
+        originalScale = gameObject.transform.localScale;
+
+        //init lists
+        interactables = new List<GameObject>();
     }
 
     //---------------------------------------------------------------- UPDATE -------------------------------------------
@@ -77,6 +86,7 @@ public class PlayerManager : AbstractCharacter
         if(armOnePressed){
             if(armOneMod != null){
                 armOneMod.EnableBodyMod();
+                Debug.Log("ArmOne");
             }
         }
         else{
@@ -88,6 +98,7 @@ public class PlayerManager : AbstractCharacter
         if(armTwoPressed){
             if(armTwoMod != null){
                 armTwoMod.EnableBodyMod();
+                Debug.Log("ArmTwo");
             }
         }
         else{
@@ -175,8 +186,8 @@ public class PlayerManager : AbstractCharacter
         }
 
         //flip visually
-        if (body2d.velocity.x > .1f) playerObject.transform.localScale = originalScale;
-        if (body2d.velocity.x < -.1f) playerObject.transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
+        if (body2d.velocity.x > .5f) playerObject.transform.localScale = originalScale;
+        if (body2d.velocity.x < -.5f) playerObject.transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
     }
 
     //--------------------------------------------- Triggers
@@ -184,23 +195,21 @@ public class PlayerManager : AbstractCharacter
         if(other.gameObject.layer == 12){
             HitByEnemy(other.gameObject);
         }
-        /*
-        //set strong arm's heavy box
-        if (other.gameObject.tag == "HeavyBlock" && armOneMod)
-        {
 
-        }*/
+        interactables.Add(other.gameObject);
     }
 
     void OnTriggerStay2D(Collider2D other){
         if(other.gameObject.layer == 12){
             HitByEnemy(other.gameObject);
         }
+
+        
     }
 
-    void OnTriggerExit2D(Collider2D other){
-
-        //remove strong arm's heavy box
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        interactables.Remove(other.gameObject);
     }
 
     //--------------------------------------------- Colliders (solid)
@@ -219,6 +228,12 @@ public class PlayerManager : AbstractCharacter
             health--;
             invincible = true;
         }
+    }
+
+    public List <GameObject> GetInteractables()
+    {
+        Debug.Log(interactables.Count);
+        return interactables;
     }
 
 }

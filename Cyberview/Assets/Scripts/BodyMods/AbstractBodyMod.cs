@@ -18,7 +18,7 @@ public enum BodyModState {
 public abstract class AbstractBodyMod : MonoBehaviour
 {
     //A reference to the owning gameobject's character controller
-    public AbstractCharacter owner;
+    public PlayerManager owner;
     public BodyModState macroState = BodyModState.INACTIVE;
     //used to provide finer control within the macro state
     //  for example, ACTIVE might have mini-states that this can keep track of
@@ -42,7 +42,7 @@ public abstract class AbstractBodyMod : MonoBehaviour
         macroState = state;
     }
 
-    public void SetOwner(AbstractCharacter g){
+    public void SetOwner(PlayerManager g){
         owner = g;
     }
     
