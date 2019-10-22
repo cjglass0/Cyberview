@@ -238,4 +238,9 @@ public class PlayerManager : AbstractCharacter
         return interactables;
     }
 
+    public void ResetPlayer()
+    {
+        interactables.Clear();
+    }
+
 }

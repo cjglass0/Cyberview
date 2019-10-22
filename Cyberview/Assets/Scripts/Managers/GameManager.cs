@@ -10,13 +10,15 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     public GameObject player;
     public LvlManager lvlManager;
+    private PlayerManager playerManager;
 
     //// BUILD INDEXES ////
-    public readonly static int _BASE = 0;
-    public readonly static int MENU = 1;
-    public readonly static int PAUSE = 2;
-    public readonly static int FIRST_LVL = 3;
-    public readonly static int LAST_LVL = 5;
+    public readonly static int FIRST_LVL = 0;
+    public readonly static int LAST_LVL = 2;
+    public readonly static int MENU = 3;
+    public readonly static int PAUSE = 4;
+    public readonly static int CREDITS = 5;
+    public readonly static int _BASE = 6;
 
     //Scenes
     private int sceneToLoad = FIRST_LVL; //<--- Set first Scene to load (should eventually be set by loading saved progress)
@@ -46,53 +48,34 @@ public class GameManager : MonoBehaviour
 
         //Load First Scene
         SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+
+        //Listen for Scene Loads
+        SceneManager.sceneLoaded += OnSceneFinishedLoading;
+
+        playerManager = player.GetComponent<PlayerManager>();
     }
 
-    /////////////////////////////////////////////////////////////// UPDATE () ///////////////////////////////////////////////////////
-    void Update()
+    /////////////////////////////////////////////////////////////// OnSceneFinishedLoading () /////////////////////////////////////////
+    void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        UpdateScene();
-    }
+        int newSceneIdx = scene.buildIndex;
+        Debug.Log("Scene Loaded: idx=" + newSceneIdx + ", name=" + scene.name + ", loadMode=" + mode);
 
-    //Checks which Scene is currently loaded and updates curScene Variable if the Scene has changes.
-    //Maybe we can figure something better out down the line, perhaps there is a way to do it using SceneManager.
-    //Also handles deactivation / activation and placement of Player so that Menu is safe to use.
-    private void UpdateScene()
-    {
-        //check which Scene is actually loaded right now & get Index
-        int thisSceneIdx = SceneManager.GetActiveScene().buildIndex;
-        if (thisSceneIdx == _BASE)
+        if (newSceneIdx < MENU) // -- Level Loaded --
         {
-            try
-            {
-                //switch to currently active additive scene
-                SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(sceneToLoad));
-                thisSceneIdx = sceneToLoad;
-            }
-            catch (System.ArgumentException ae) { }
-
+            //prepare GameObjects in _Base for Gameplay. Ex: Activate player.
+            if (!player.activeInHierarchy) player.SetActive(true);
+            playerManager.ResetPlayer();
+            lvlManager = GameObject.Find("LevelManager").GetComponent<LvlManager>();
+            lvlManager.InitLevel(this);
         }
-
-        if (curScene.buildIndex != thisSceneIdx) /////// -- New Scene has completed loading -- ///////
+        else if (newSceneIdx == MENU || newSceneIdx == CREDITS) // -- Menu Screen Loaded --
         {
-            //(Index not the same -> new Scene has completed loading)
-            //(update curScene to match the current Scene)
-            curScene = SceneManager.GetActiveScene();
-            Debug.Log("GameController -> Scene Load Complete: Scene " + thisSceneIdx);
-            sceneCurrentlyLoading = false;
-
-            if (thisSceneIdx > PAUSE) // -- Level Loaded --
-            {
-                //prepare GameObjects in _Base for Gameplay. Ex: Activate player.
-                lvlManager = GameObject.Find("LevelManager").GetComponent<LvlManager>();
-                lvlManager.InitLevel(this);
-            }
-            else if (thisSceneIdx < PAUSE) // -- Menu Screen Loaded --
-            {
-                //prepare GameObjects in _Base for Menu. Ex: Deactivate player.
-            }
+            if (player.activeInHierarchy) player.SetActive(false);
         }
     }
+
+
 
     /////////////////////////////////////////////////////////////////////////////////////////// LoadScene (newSceneToLoad) ####################
     public void LoadScene(int newSceneToLoad)

@@ -12,7 +12,7 @@ public class GroundCheck : MonoBehaviour
         Debug.Log("grounded");
         if (collision.gameObject.layer == 8) { 
             playerManager.setIsGrounded(true);
-            Debug.Log("grounded");
+            //Debug.Log("grounded");
         }
             
     }
@@ -22,7 +22,7 @@ public class GroundCheck : MonoBehaviour
         if (collision.gameObject.layer == 8)
         {
             playerManager.setIsGrounded(false);
-            Debug.Log("not grounded");
+            //Debug.Log("not grounded");
         }
     }
 }
