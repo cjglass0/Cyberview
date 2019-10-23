@@ -12,8 +12,6 @@ public class PlayerManager : AbstractCharacter
     public AbstractBodyMod legs;
     public GameManager gameManager;
 
-    public float currInvinc = 3f;
-
     //should change this to be some kind of ground movement object
     public float walkSpeed = 15;
     public float friction = 0.9f;
@@ -30,10 +28,8 @@ public class PlayerManager : AbstractCharacter
 
     //Booleans
     private bool rightPressed, leftPressed, armOnePressed, armTwoPressed, legsPressed, actionPressed, crouchPressed, pausePressed;
+    //TODO: possibly remove invincibility if pushing away enemy works?
     private bool invincible = false;
-
-    //Numbers
-    private float invincMax = 3f;
 
     //Vectors
     private Vector3 originalScale;
@@ -69,55 +65,8 @@ public class PlayerManager : AbstractCharacter
     {
         //Get all inputs
         InputsUpdate();
-    
-        if(invincible){
-            currInvinc -= Time.deltaTime;
-        }
 
-        if(currInvinc < 0){
-            invincible = false;
-            currInvinc = invincMax;
-        }
-
-        //TODO: if (in state that allows body mod usage) {...}
-        if(actionPressed){
-            //do attack thing
-        }
-
-        //TODO: if (in state that allows body mod usage) {...}
-        if(armOnePressed){
-            if(armOneMod != null){
-                armOneMod.EnableBodyMod();
-                Debug.Log("ArmOne");
-            }
-        }
-        else{
-            if(armOneMod != null){
-                armOneMod.DisableBodyMod();
-            }
-        }
-
-        if(armTwoPressed){
-            if(armTwoMod != null){
-                armTwoMod.EnableBodyMod();
-                Debug.Log("ArmTwo");
-            }
-        }
-        else{
-            if(armTwoMod != null){
-                armTwoMod.DisableBodyMod();
-            }
-        }
-        if(legsPressed){
-            if(legs != null){
-                legs.EnableBodyMod();
-            }
-        } else {
-            if (legs != null)
-            {
-                legs.DisableBodyMod();
-            }
-        }
+        BodyModsUpdate();
 
         MovementUpdate();
 
@@ -138,6 +87,62 @@ public class PlayerManager : AbstractCharacter
         actionPressed = inputState.GetButtonValue(Buttons.Action);
         crouchPressed = inputState.GetButtonValue(Buttons.Crouch);
         pausePressed = inputState.GetButtonValue(Buttons.Pause);
+    }
+
+    private void BodyModsUpdate()
+    {
+        //TODO: if (in state that allows body mod usage) {...}
+        if (actionPressed)
+        {
+            //do attack thing
+        }
+
+        //TODO: if (in state that allows body mod usage) {...}
+        if (armOnePressed)
+        {
+            if (armOneMod != null)
+            {
+                armOneMod.EnableBodyMod();
+                Debug.Log("ArmOne");
+            }
+        }
+        else
+        {
+            if (armOneMod != null)
+            {
+                armOneMod.DisableBodyMod();
+            }
+        }
+
+        if (armTwoPressed)
+        {
+            if (armTwoMod != null)
+            {
+                armTwoMod.EnableBodyMod();
+                Debug.Log("ArmTwo");
+            }
+        }
+        else
+        {
+            if (armTwoMod != null)
+            {
+                armTwoMod.DisableBodyMod();
+            }
+        }
+        if (legsPressed)
+        {
+            if (legs != null)
+            {
+                legs.EnableBodyMod();
+            }
+        }
+        else
+        {
+            if (legs != null)
+            {
+                legs.DisableBodyMod();
+            }
+        }
     }
 
     private void MovementUpdate()
@@ -191,7 +196,7 @@ public class PlayerManager : AbstractCharacter
         if (body2d.velocity.x < -.5f) playerObject.transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
     }
 
-    //--------------------------------------------- Triggers
+    //------------------------------------------------------------------- Triggers ----------------------------------------------
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.layer == 12){
             HitByEnemy(other.gameObject);
@@ -213,7 +218,7 @@ public class PlayerManager : AbstractCharacter
         interactables.Remove(other.gameObject);
     }
 
-    //--------------------------------------------- Colliders (solid)
+    //----------------------------------------------------------------- Colliders -------------------------------------------
 
 
     //------------------------------------------------------------- PUBLIC INTERFACE ----------------------------------------
@@ -225,11 +230,12 @@ public class PlayerManager : AbstractCharacter
 
     public void HitByEnemy(GameObject enemy)
     {
-        if (!invincible)
-        {
-            health--;
-            invincible = true;
-        }
+        //decrease player health based on enemy's set damage
+        //health -= enemy.GetComponent<AbstractEnemy>().damageToPlayerPerHit;
+
+        //bump away enemy
+        enemy.GetComponent<Rigidbody2D>().AddForce((playerObject.transform.position - enemy.transform.position).normalized * 3);
+        Debug.Log("hit");
     }
 
     public List <GameObject> GetInteractables()

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbstractCharacter : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D))]
+
+public abstract class AbstractCharacter : MonoBehaviour
 {
     //Different solid terrain that this object's foot box is in contact with
     protected int groundContactPoints = 0;
@@ -19,9 +21,15 @@ public class AbstractCharacter : MonoBehaviour
     public InputState inputState;
 
     //Convenient access to the rigidbody
-    public Rigidbody2D body2d;
+    protected Rigidbody2D body2d;
 
     protected void Awake(){
-        inputState = GetComponent<InputState>();
+        try
+        {
+            inputState = GetComponent<InputState>();
+        }
+        catch (MissingReferenceException e) { }
+
+        body2d = GetComponent<Rigidbody2D>();
     }
 }
