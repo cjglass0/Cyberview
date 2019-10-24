@@ -32,4 +32,9 @@ public abstract class AbstractCharacter : MonoBehaviour
 
         body2d = GetComponent<Rigidbody2D>();
     }
+
+    public virtual void SetIsGrounded(bool newGroundedState, string colliderObjectName)
+    {
+        isGrounded = newGroundedState;
+    }
 }

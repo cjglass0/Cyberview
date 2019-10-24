@@ -1,5 +1,4 @@
-﻿#pragma strict
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,7 +20,6 @@ public class PlayerManager : AbstractCharacter
     public float airFriction = 0.99f;
 
     ///// PRIVATE
-    private Walk walkBehaviour;
     private Animator animator;
     private GameObject playerObject;
     private List <GameObject> interactables;
@@ -30,6 +28,7 @@ public class PlayerManager : AbstractCharacter
     private bool rightPressed, leftPressed, armOnePressed, armTwoPressed, legsPressed, actionPressed, crouchPressed, pausePressed;
     //TODO: possibly remove invincibility if pushing away enemy works?
     private bool invincible = false;
+    private bool pushback = false;
 
     //Vectors
     private Vector3 originalScale;
@@ -75,7 +74,7 @@ public class PlayerManager : AbstractCharacter
         }
     }
 
-    //---------------------------------------------------------------- CUSTOM METHODS -------------------------------------------
+    //---------------------------------------------------------------- UPDATE METHODS -------------------------------------------
 
     private void InputsUpdate()
     {
@@ -103,7 +102,7 @@ public class PlayerManager : AbstractCharacter
             if (armOneMod != null)
             {
                 armOneMod.EnableBodyMod();
-                Debug.Log("ArmOne");
+                //Debug.Log("ArmOne");
             }
         }
         else
@@ -119,7 +118,7 @@ public class PlayerManager : AbstractCharacter
             if (armTwoMod != null)
             {
                 armTwoMod.EnableBodyMod();
-                Debug.Log("ArmTwo");
+                //Debug.Log("ArmTwo");
             }
         }
         else
@@ -150,7 +149,7 @@ public class PlayerManager : AbstractCharacter
         //horizontal movement, grounded then aerial
         if (isGrounded)
         {
-            if (leftPressed || rightPressed)
+            if ((leftPressed || rightPressed) && !pushback)
             {
                 animator.SetBool("run", true);
                 if (leftPressed)
@@ -170,7 +169,7 @@ public class PlayerManager : AbstractCharacter
         }
         else
         {
-            if (leftPressed || rightPressed)
+            if ((leftPressed || rightPressed) && !pushback)
             {
                 int accelMultiplier = 1;
                 if (leftPressed)
@@ -192,9 +191,13 @@ public class PlayerManager : AbstractCharacter
         }
 
         //flip visually
-        if (body2d.velocity.x > .5f) playerObject.transform.localScale = originalScale;
-        if (body2d.velocity.x < -.5f) playerObject.transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
+        if (body2d.velocity.x > .5f && !pushback) { playerObject.transform.localScale = originalScale;
+            isFacingRight = true; }
+        if (body2d.velocity.x < -.5f && !pushback) { playerObject.transform.localScale = 
+                new Vector3(-originalScale.x, originalScale.y, originalScale.z); isFacingRight = false; }
     }
+
+    //----------------------------------------------------------------- OTHER METHODS -------------------------------------------
 
     //------------------------------------------------------------------- Triggers ----------------------------------------------
     void OnTriggerEnter2D(Collider2D other){
@@ -222,25 +225,38 @@ public class PlayerManager : AbstractCharacter
 
 
     //------------------------------------------------------------- PUBLIC INTERFACE ----------------------------------------
-    public void setIsGrounded(bool newGroundedState)
+    public override void SetIsGrounded(bool newGroundedState, string colliderObjectName)
     {
-        isGrounded = newGroundedState;
+        base.SetIsGrounded(newGroundedState, colliderObjectName);
         if (isGrounded) animator.SetBool("jump", false);
     }
 
     public void HitByEnemy(GameObject enemy)
     {
         //decrease player health based on enemy's set damage
-        //health -= enemy.GetComponent<AbstractEnemy>().damageToPlayerPerHit;
+        health -= enemy.GetComponent<AbstractEnemy>().damageToPlayerPerHit;
 
         //bump away enemy
-        enemy.GetComponent<Rigidbody2D>().AddForce((playerObject.transform.position - enemy.transform.position).normalized * 3);
-        Debug.Log("hit");
+        enemy.GetComponent<AbstractEnemy>().PlayerCollision(gameObject);
+        Debug.Log("PlayerManager -> HitByEnemy:" + enemy.name + ". New Player Health:" + health);
+
+        //bump player
+        StartCoroutine(PlayerHitThrowback(enemy));
+    }
+
+    IEnumerator PlayerHitThrowback(GameObject weapon)
+    {
+        pushback = true;
+        body2d.velocity = new Vector2(0, 0);
+        body2d.AddForce((gameObject.transform.position - weapon.transform.position).normalized * 4000);
+        Debug.Log("PlayerManager -> HitThrowback");
+        yield return new WaitForSeconds(0.3f);
+        pushback = false;
     }
 
     public List <GameObject> GetInteractables()
     {
-        Debug.Log(interactables.Count);
+        //Debug.Log("PlayerManager -> Interactables n = " + interactables.Count);
         return interactables;
     }
 
@@ -248,5 +264,4 @@ public class PlayerManager : AbstractCharacter
     {
         interactables.Clear();
     }
-
 }

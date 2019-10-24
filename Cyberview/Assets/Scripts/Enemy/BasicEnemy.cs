@@ -7,8 +7,10 @@ public class BasicEnemy : AbstractEnemy
     public BoxCollider2D leftFloorDetector;
     public BoxCollider2D rightFloorDetector;
     
-    public float speed = 10f;
+    public float speed = 0f;
+    private Vector2 oldPos;
     // Start is called before the first frame update
+
 
     void Start()
     {
@@ -23,55 +25,23 @@ public class BasicEnemy : AbstractEnemy
 
     public override void UpdateMovement()
     {
-        body2d.velocity = new Vector2(-8, 0);
+        //TODO: Improve logic to check whether enemy got stuck (for some reason doesn't always work)
+        if (body2d.IsSleeping()) { speed = -speed; Debug.Log("stuck"); }
 
-        /*
-        transform.rotation = Quaternion.Euler(0, 0, 0);
-        var body2d = GetComponent<Rigidbody2D>();
-        //if hitting something that stops movement (like a wall) then the object will turn around
-        if (Mathf.Abs(body2d.velocity.x) < 1)
-        {
-            isFacingRight = !isFacingRight;
-        }
-
-        if (isFacingRight && !rightFloorDetector.touching)
-        {
-            isFacingRight = false;
-        }
-        else if (!isFacingRight && !leftFloorDetector.touching)
-        {
-            isFacingRight = true;
-        }
-
-        if (isFacingRight)
-        {
-            body2d.velocity = new Vector2(speed, 0);
-        }
-        else
-        {
-            body2d.velocity = new Vector2(-speed, 0);
-        }
-        */
+        //walk
+        body2d.velocity = new Vector2(-speed, body2d.velocity.y);
+        oldPos = body2d.position;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    public override void SetIsGrounded(bool newGroundedState, string colliderObjectName)
     {
-        if (other.gameObject.layer == 8)
-        {
-            groundContactPoints++;
-        }
-    }
+        base.SetIsGrounded(newGroundedState, colliderObjectName);
 
-    void OnTriggerStay2D(Collider2D other)
-    {
+        if (colliderObjectName == "Left Floor Box" && !newGroundedState) speed = -speed;
+        if (colliderObjectName == "Right Floor Box" && !newGroundedState) speed = -speed;
+        if (colliderObjectName == "Left Wall Box" && newGroundedState) speed = -speed;
+        if (colliderObjectName == "Right Wall Box" && newGroundedState) speed = -speed;
 
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.layer == 8)
-        {
-            groundContactPoints--;
-        }
+        //Debug.Log("BasicEnemy -> SetIsGrounded(" + newGroundedState + colliderObjectName);
     }
 }

@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 820217529861135158}
   - component: {fileID: 820217529861135159}
   - component: {fileID: 820217529861135152}
-  - component: {fileID: 820217529861135153}
-  - component: {fileID: 820217529861135157}
+  - component: {fileID: 5247159811678134857}
+  - component: {fileID: 1871533396865024855}
   m_Layer: 10
-  m_Name: Missile
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +98,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
---- !u!50 &820217529861135153
+--- !u!114 &5247159811678134857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820217529861135154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffd6411b0deaba04c835ff9b129cba89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &1871533396865024855
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -113,25 +125,9 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &820217529861135157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 820217529861135154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57bcc617ee1365144883cb6103a8c3ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialVelocity: {x: 30, y: 0}
-  lifetime: 5
-  damage: 1
-  right: 1
+  m_Constraints: 0

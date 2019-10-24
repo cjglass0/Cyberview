@@ -4,25 +4,40 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
-    public PlayerManager playerManager;
-
+    public AbstractCharacter abstractCharacter;
+    public bool groundCheckIsSolid = false;
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("grounded");
-        if (collision.gameObject.layer == 8) { 
-            playerManager.setIsGrounded(true);
-            //Debug.Log("grounded");
+        if (collision.gameObject.layer == 8 && groundCheckIsSolid) {
+            abstractCharacter.SetIsGrounded(true, gameObject.name);
+            //Debug.Log("GroundCheck -> grounded");
         }
             
     }
 
     public void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 8)
+        if (collision.gameObject.layer == 8 && groundCheckIsSolid)
         {
-            playerManager.setIsGrounded(false);
-            //Debug.Log("not grounded");
+            abstractCharacter.SetIsGrounded(false, gameObject.name);
+            //Debug.Log("GroundCheck -> not grounded");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 8 && !groundCheckIsSolid)
+        {
+            abstractCharacter.SetIsGrounded(true, gameObject.name);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 8 && !groundCheckIsSolid)
+        {
+            abstractCharacter.SetIsGrounded(false, gameObject.name);
         }
     }
 }
