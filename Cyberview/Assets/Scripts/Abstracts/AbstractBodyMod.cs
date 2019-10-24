@@ -29,6 +29,9 @@ public abstract class AbstractBodyMod : MonoBehaviour
     protected float elapsedTime = 0f;
     //Quantity of energy lost
     public int energyCostPerTick = 0;
+
+    protected Animator animator;
+
     //All of the above energy-related stuff should just be replaced with an object that decides when the player
     //  should lose energy, and then the body mod simply calls EnergyComponent.loseEnergy() every frame or something
 
@@ -37,6 +40,8 @@ public abstract class AbstractBodyMod : MonoBehaviour
     //  body mod will affect properties of its owner
     public abstract void EnableBodyMod();
     public abstract void DisableBodyMod();
+    public abstract void EquipBodyMod();
+    public abstract void UnequipBodyMod();
 
     protected void GotoState(BodyModState state){
         macroState = state;
@@ -45,5 +50,10 @@ public abstract class AbstractBodyMod : MonoBehaviour
     public void SetOwner(PlayerManager g){
         owner = g;
     }
-    
+
+    public void Awake()
+    {
+        animator = owner.animator;
+    }
+
 }

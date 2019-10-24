@@ -51,4 +51,12 @@ public class BM_Legs : AbstractBodyMod
     {
         jump = true;
     }
+
+    public override void EquipBodyMod()
+    {
+    }
+
+    public override void UnequipBodyMod()
+    {
+    }
 }

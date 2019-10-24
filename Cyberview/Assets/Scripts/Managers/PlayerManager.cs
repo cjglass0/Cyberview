@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : AbstractCharacter
 {
     ///// PUBLIC
-    public AbstractBodyMod armOneMod;
-    public AbstractBodyMod armTwoMod;
-    public AbstractBodyMod legs;
+    public BM_Gun bm_Gun;
+    public BM_Legs bm_Legs;
+    public BM_StrongArm bm_StrongArm;
+    public BM_Drill bm_Drill;
     public GameManager gameManager;
 
     //should change this to be some kind of ground movement object
@@ -20,9 +21,12 @@ public class PlayerManager : AbstractCharacter
     public float airFriction = 0.99f;
 
     ///// PRIVATE
-    private Animator animator;
+    public Animator animator;
     private GameObject playerObject;
     private List <GameObject> interactables;
+    private HUD hud;
+
+    private AbstractBodyMod armOneMod, armTwoMod, legsMod;
 
     //Booleans
     private bool rightPressed, leftPressed, armOnePressed, armTwoPressed, legsPressed, actionPressed, crouchPressed, pausePressed;
@@ -48,8 +52,8 @@ public class PlayerManager : AbstractCharacter
         if(armTwoMod != null){
             armTwoMod.SetOwner(this);
         }
-        if(legs != null){
-            legs.SetOwner(this);
+        if(legsMod != null){
+            legsMod.SetOwner(this);
         }
         playerObject = gameObject;
         originalScale = gameObject.transform.localScale;
@@ -57,6 +61,13 @@ public class PlayerManager : AbstractCharacter
 
         //init lists
         interactables = new List<GameObject>();
+
+        armOneMod = bm_Drill;
+        armTwoMod = bm_StrongArm;
+        legsMod = bm_Legs;
+
+        hud = GameObject.Find("_HUD").GetComponent<HUD>();
+        hud.InitializeHUD();
     }
 
     //---------------------------------------------------------------- UPDATE -------------------------------------------
@@ -130,16 +141,16 @@ public class PlayerManager : AbstractCharacter
         }
         if (legsPressed)
         {
-            if (legs != null)
+            if (legsMod != null)
             {
-                legs.EnableBodyMod();
+                legsMod.EnableBodyMod();
             }
         }
         else
         {
-            if (legs != null)
+            if (legsMod != null)
             {
-                legs.DisableBodyMod();
+                legsMod.DisableBodyMod();
             }
         }
     }
@@ -235,6 +246,7 @@ public class PlayerManager : AbstractCharacter
     {
         //decrease player health based on enemy's set damage
         health -= enemy.GetComponent<AbstractEnemy>().damageToPlayerPerHit;
+        hud.SetHealth(health);
 
         //bump away enemy
         enemy.GetComponent<AbstractEnemy>().PlayerCollision(gameObject);
@@ -264,4 +276,9 @@ public class PlayerManager : AbstractCharacter
     {
         interactables.Clear();
     }
+
+    public AbstractBodyMod GetArmOneMod () { return armOneMod; }
+    public AbstractBodyMod GetArmTwoMod() { return armTwoMod; }
+    public AbstractBodyMod GetLegsMod() { return legsMod; }
+    public int GetHealth() { return health; }
 }

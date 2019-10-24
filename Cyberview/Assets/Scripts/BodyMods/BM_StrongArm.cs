@@ -127,4 +127,12 @@ public class BM_StrongArm : AbstractBodyMod
         }
         if (framesStuckOnLedge > 0) framesStuckOnLedge--;
     }
+
+    public override void EquipBodyMod()
+    {
+    }
+
+    public override void UnequipBodyMod()
+    {
+    }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HeavyBlock
   - SpawnPoint
+  - Boulder
   layers:
   - Default
   - TransparentFX
