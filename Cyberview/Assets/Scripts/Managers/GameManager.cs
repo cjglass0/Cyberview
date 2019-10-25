@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     private bool sceneCurrentlyLoading = false;
 
     //booleans
-    bool paused;
+    public bool paused;
 
 
 

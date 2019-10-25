@@ -30,7 +30,7 @@ public class BM_Drill : AbstractBodyMod
 
     IEnumerator DelayedBoulderCheck()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.5f);
 
         //lower Arm if no boulder in range
         ContactFilter2D contactFilter = new ContactFilter2D();

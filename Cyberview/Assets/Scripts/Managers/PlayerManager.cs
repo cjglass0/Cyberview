@@ -23,7 +23,7 @@ public class PlayerManager : AbstractCharacter
     ///// PRIVATE
     public Animator animator;
     private GameObject playerObject;
-    private List <GameObject> interactables;
+    private List<GameObject> interactables;
     private HUD hud;
 
     private AbstractBodyMod armOneMod, armTwoMod, legsMod;
@@ -38,7 +38,7 @@ public class PlayerManager : AbstractCharacter
     private Vector3 originalScale;
 
     //---------------------------------------------------------------- AWAKE -------------------------------------------
-    void Awake(){
+    void Awake() {
         base.Awake();
         body2d = GetComponent<Rigidbody2D>();
     }
@@ -46,13 +46,13 @@ public class PlayerManager : AbstractCharacter
     //---------------------------------------------------------------- START -------------------------------------------
     void Start()
     {
-        if(armOneMod != null){
+        if (armOneMod != null) {
             armOneMod.SetOwner(this);
         }
-        if(armTwoMod != null){
+        if (armTwoMod != null) {
             armTwoMod.SetOwner(this);
         }
-        if(legsMod != null){
+        if (legsMod != null) {
             legsMod.SetOwner(this);
         }
         playerObject = gameObject;
@@ -80,7 +80,7 @@ public class PlayerManager : AbstractCharacter
 
         MovementUpdate();
 
-        if(health <= 0){
+        if (health <= 0) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
@@ -204,27 +204,27 @@ public class PlayerManager : AbstractCharacter
         //flip visually
         if (body2d.velocity.x > .5f && !pushback) { playerObject.transform.localScale = originalScale;
             isFacingRight = true; }
-        if (body2d.velocity.x < -.5f && !pushback) { playerObject.transform.localScale = 
+        if (body2d.velocity.x < -.5f && !pushback) { playerObject.transform.localScale =
                 new Vector3(-originalScale.x, originalScale.y, originalScale.z); isFacingRight = false; }
     }
 
     //----------------------------------------------------------------- OTHER METHODS -------------------------------------------
 
     //------------------------------------------------------------------- Triggers ----------------------------------------------
-    void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.layer == 12){
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.layer == 12) {
             HitByEnemy(other.gameObject);
         }
 
         interactables.Add(other.gameObject);
     }
 
-    void OnTriggerStay2D(Collider2D other){
-        if(other.gameObject.layer == 12){
+    void OnTriggerStay2D(Collider2D other) {
+        if (other.gameObject.layer == 12) {
             HitByEnemy(other.gameObject);
         }
 
-        
+
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -266,7 +266,7 @@ public class PlayerManager : AbstractCharacter
         pushback = false;
     }
 
-    public List <GameObject> GetInteractables()
+    public List<GameObject> GetInteractables()
     {
         //Debug.Log("PlayerManager -> Interactables n = " + interactables.Count);
         return interactables;
@@ -277,8 +277,13 @@ public class PlayerManager : AbstractCharacter
         interactables.Clear();
     }
 
-    public AbstractBodyMod GetArmOneMod () { return armOneMod; }
+    public AbstractBodyMod GetArmOneMod() { return armOneMod; }
     public AbstractBodyMod GetArmTwoMod() { return armTwoMod; }
     public AbstractBodyMod GetLegsMod() { return legsMod; }
+    public void SetMod(int whichOne, AbstractBodyMod newMod) {
+        if (whichOne == 0) { armOneMod = newMod; Debug.Log("PlayerManager -> SetMod(): Arm One Mod, " + newMod.gameObject.name); }
+        if (whichOne == 1) { armTwoMod = newMod; Debug.Log("PlayerManager -> SetMod(): Arm Two Mod, " + newMod.gameObject.name); }
+        if (whichOne == 2) { legsMod = newMod; Debug.Log("PlayerManager -> SetMod(): Legs Mod, " + newMod.gameObject.name); }
+    }
     public int GetHealth() { return health; }
 }

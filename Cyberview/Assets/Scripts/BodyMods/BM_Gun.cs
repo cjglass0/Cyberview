@@ -58,7 +58,7 @@ public class BM_Gun : AbstractBodyMod
     public override void EnableBodyMod()
     {
         if (canShoot) Shoot();
-        if (!animator.GetBool("raiseArm")) animator.SetBool("raiseArm", true);
+        animator.SetBool("raiseArm", true);
     }
 
     public override void EquipBodyMod()
