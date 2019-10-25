@@ -27,6 +27,7 @@ public class PlayerManager : AbstractCharacter
     private HUD hud;
 
     private AbstractBodyMod armOneMod, armTwoMod, legsMod;
+    private List<AbstractBodyMod> unlockedBodyMods;
 
     //Booleans
     private bool rightPressed, leftPressed, armOnePressed, armTwoPressed, legsPressed, actionPressed, crouchPressed, pausePressed;
@@ -61,10 +62,14 @@ public class PlayerManager : AbstractCharacter
 
         //init lists
         interactables = new List<GameObject>();
+        unlockedBodyMods = new List<AbstractBodyMod>();
 
+        //setup Body Mods
         armOneMod = bm_Drill;
-        armTwoMod = bm_StrongArm;
         legsMod = bm_Legs;
+        unlockedBodyMods.Add(bm_Drill);
+        unlockedBodyMods.Add(bm_Gun);
+        unlockedBodyMods.Add(bm_Legs);
 
         hud = GameObject.Find("_HUD").GetComponent<HUD>();
         hud.InitializeHUD();
@@ -285,10 +290,18 @@ public class PlayerManager : AbstractCharacter
     public AbstractBodyMod GetArmOneMod() { return armOneMod; }
     public AbstractBodyMod GetArmTwoMod() { return armTwoMod; }
     public AbstractBodyMod GetLegsMod() { return legsMod; }
+    public List<AbstractBodyMod> GetUnlockedBodyMods() { return unlockedBodyMods; }
+    public void UnlockBodyMod(AbstractBodyMod newMod) {
+        if (!unlockedBodyMods.Contains(newMod))
+        {
+            unlockedBodyMods.Add(newMod);
+            Debug.Log("PlayerManager -> Unlocked: " + newMod);
+        }
+    }
     public void SetMod(int whichOne, AbstractBodyMod newMod) {
-        if (whichOne == 0) { armOneMod = newMod; Debug.Log("PlayerManager -> SetMod(): Arm One Mod, " + newMod.gameObject.name); }
-        if (whichOne == 1) { armTwoMod = newMod; Debug.Log("PlayerManager -> SetMod(): Arm Two Mod, " + newMod.gameObject.name); }
-        if (whichOne == 2) { legsMod = newMod; Debug.Log("PlayerManager -> SetMod(): Legs Mod, " + newMod.gameObject.name); }
+        if (whichOne == 0) { armOneMod = newMod; if (newMod != null) Debug.Log("PlayerManager -> SetMod(): Arm One Mod, " + newMod.gameObject.name); }
+        if (whichOne == 1) { armTwoMod = newMod; if (newMod != null) Debug.Log("PlayerManager -> SetMod(): Arm Two Mod, " + newMod.gameObject.name); }
+        if (whichOne == 2) { legsMod = newMod; if (newMod != null) Debug.Log("PlayerManager -> SetMod(): Legs Mod, " + newMod.gameObject.name); }
     }
     public int GetHealth() { return health; }
 }

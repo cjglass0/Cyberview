@@ -15,11 +15,17 @@ public enum BodyModState {
     ENDLAG
 }
 
+public enum BodyModType {
+    UPPERBODY,
+    LOWERBODY
+}
+
 public abstract class AbstractBodyMod : MonoBehaviour
 {
     //A reference to the owning gameobject's character controller
     public PlayerManager owner;
     public BodyModState macroState = BodyModState.INACTIVE;
+    public BodyModType bodyModType;
     //used to provide finer control within the macro state
     //  for example, ACTIVE might have mini-states that this can keep track of
     public int microState = 0;
@@ -31,6 +37,8 @@ public abstract class AbstractBodyMod : MonoBehaviour
     public int energyCostPerTick = 0;
 
     protected Animator animator;
+
+    public string name;
 
     //All of the above energy-related stuff should just be replaced with an object that decides when the player
     //  should lose energy, and then the body mod simply calls EnergyComponent.loseEnergy() every frame or something

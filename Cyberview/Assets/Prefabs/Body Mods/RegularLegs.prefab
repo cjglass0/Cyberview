@@ -45,6 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   macroState: 0
+  bodyModType: 1
   microState: 0
   timePerTick: 1
   energyCostPerTick: 0
+  name: RegularLegs
