@@ -5,7 +5,7 @@ using TMPro;
 
 public class HUD : MonoBehaviour
 {
-    public TextMeshProUGUI armLValue, armRValue, legsValue, healthValue;
+    public TextMeshProUGUI armLValue, armRValue, legsValue, healthValue, tmpMsg;
     public TMP_Dropdown armLDropdown, armRDropdown, legsDropdown;
     public PlayerManager playerManager;
     public GameManager gameManager;
@@ -39,7 +39,11 @@ public class HUD : MonoBehaviour
         pauseMenu.alpha = 0;
         pauseMenu.interactable = false;
 
-        ApplyBodyMods();
+        //Apply selected body mods
+        playerManager.SetMod(0, GetDropdownBodyMod(armLDropdown));
+        playerManager.SetMod(1, GetDropdownBodyMod(armRDropdown));
+        playerManager.SetMod(2, GetDropdownBodyMod(legsDropdown));
+
         UpdateBodyModsDisplay();
     }
 
@@ -80,7 +84,7 @@ public class HUD : MonoBehaviour
         {
             dropdown.options.Add(new TMP_Dropdown.OptionData() { text = c });
 
-            //set the currently active dropdown
+            //set the currently active dropdown (set to "none" if none is active)
             if (dropdown == armLDropdown) {
                 if (playerManager.GetArmOneMod() != null) {
                     if (playerManager.GetArmOneMod().name == c) selectedItem = counter;
@@ -121,17 +125,9 @@ public class HUD : MonoBehaviour
         dropdown.value = selectedItem;
     }
 
-    private void ApplyBodyMods()
-    {
-        //L = 0, R = 1, Legs = 2
-        playerManager.SetMod(0, GetDropdownBodyMod(armLDropdown));
-        playerManager.SetMod(1, GetDropdownBodyMod(armRDropdown));
-        playerManager.SetMod(2, GetDropdownBodyMod(legsDropdown));
-    }
-
     private AbstractBodyMod GetDropdownBodyMod(TMP_Dropdown dropdown)
     {
-        //check which option is selected int he dropdown menu
+        //check which option is selected in the dropdown menu and return the corresponding reference within the player
         AbstractBodyMod equippedBodyMod = null;
         if (dropdown.options[dropdown.value].text == "Drill") equippedBodyMod = playerManager.bm_Drill;
         if (dropdown.options[dropdown.value].text == "Gun") equippedBodyMod = playerManager.bm_Gun;
@@ -166,5 +162,18 @@ public class HUD : MonoBehaviour
     }
 
     public void SetHealth(int health) { healthValue.text = health.ToString(); }
+
+    public void ShowTmpMsg (string msg)
+    {
+        tmpMsg.text = msg;
+        tmpMsg.gameObject.SetActive(true);
+        StartCoroutine(TmpMsgDelay());
+    }
+
+    IEnumerator TmpMsgDelay()
+    {
+        yield return new WaitForSeconds(3);
+        tmpMsg.gameObject.SetActive(false);
+    }
 
 }

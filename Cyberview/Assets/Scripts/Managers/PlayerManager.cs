@@ -31,8 +31,6 @@ public class PlayerManager : AbstractCharacter
 
     //Booleans
     private bool rightPressed, leftPressed, armOnePressed, armTwoPressed, legsPressed, actionPressed, crouchPressed, pausePressed;
-    //TODO: possibly remove invincibility if pushing away enemy works?
-    private bool invincible = false;
     private bool pushback = false;
 
     //Vectors
@@ -128,7 +126,6 @@ public class PlayerManager : AbstractCharacter
                 armOneMod.DisableBodyMod();
             }
         }
-
         if (armTwoPressed)
         {
             if (armTwoMod != null)
@@ -228,8 +225,6 @@ public class PlayerManager : AbstractCharacter
         if (other.gameObject.layer == 12) {
             HitByEnemy(other.gameObject);
         }
-
-
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -274,6 +269,7 @@ public class PlayerManager : AbstractCharacter
     public List<GameObject> GetInteractables()
     {
         //Debug.Log("PlayerManager -> Interactables n = " + interactables.Count);
+        for (int i = interactables.Count - 1; i >= 0; i--) { if (interactables[i] == null) interactables.Remove(interactables[i]);  }
         return interactables;
     }
 

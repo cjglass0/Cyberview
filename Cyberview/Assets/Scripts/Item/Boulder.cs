@@ -5,6 +5,7 @@ using UnityEngine;
 public class Boulder : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
+    public Sprite solid, translucent;
     private int ticsToBreak = 3;
     private float ticLength = 1f;
     private bool delaying = false;
@@ -12,6 +13,7 @@ public class Boulder : MonoBehaviour
     void Start ()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = solid;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -34,11 +36,11 @@ public class Boulder : MonoBehaviour
     IEnumerator Dig()
     {
         Debug.Log("Boulder -> Dig");
-        
+
         //Blink
-        spriteRenderer.enabled = false;
+        spriteRenderer.sprite = translucent;
         yield return new WaitForSeconds(ticLength / 2);
-        spriteRenderer.enabled = true;
+        spriteRenderer.sprite = solid;
         yield return new WaitForSeconds(ticLength / 2);
 
         delaying = false;

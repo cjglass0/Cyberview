@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BM_Drill : AbstractBodyMod
 {
+    //Takes care mostly of animations. Boulder digging logic is in -> Boulder.cs. The activation / deactivation of the drill
+    //occurs by enabling / disabling the drill trigger collider that Boulder.cs checks for.
+
     Collider2D myCollider;
     private static float offsetX = 5f;
     bool checkingForBoulder = false;

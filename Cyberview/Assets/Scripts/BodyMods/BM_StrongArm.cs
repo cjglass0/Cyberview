@@ -111,9 +111,8 @@ public class BM_StrongArm : AbstractBodyMod
         if (macroState == BodyModState.ACTIVE && heavyBox != null)
         {
             //flip if necessary
-            float xVel = owner.gameObject.GetComponent<Rigidbody2D>().velocity.x;
-            if (xVel > 0.5f) blockOffset = new Vector3(offsetX, 0, 0);
-            else if (xVel < -0.5f) blockOffset = new Vector3(-offsetX, 0, 0);
+            if (owner.transform.localScale.x > 0) blockOffset = new Vector3(offsetX, 0, 0);
+            else if (owner.transform.localScale.x < 0) blockOffset = new Vector3(-offsetX, 0, 0);
 
             //position box
             heavyBox.transform.position = (owner.transform.position + blockOffset);

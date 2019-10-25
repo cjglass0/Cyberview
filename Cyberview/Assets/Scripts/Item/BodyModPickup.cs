@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class BodyModPickup : MonoBehaviour
 {
+    //Check if Player picks up Body Mod Collectible. If that is the case, call PlayerManager's UnlockBodyMod(). Also display Message.
+
     public GameObject bodyModPrefab;
     private AbstractBodyMod bodyMod;
 
-    // Start is called before the first frame update
     void Start()
     {
         bodyMod = bodyModPrefab.GetComponent<AbstractBodyMod>();
@@ -15,6 +16,11 @@ public class BodyModPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "_Player") collision.gameObject.GetComponent<PlayerManager>().UnlockBodyMod(bodyMod);
+        if (collision.gameObject.name == "_Player")
+        {
+            collision.gameObject.GetComponent<PlayerManager>().UnlockBodyMod(bodyMod);
+            GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("New Body Mod unlocked: " + bodyMod.name);
+            Destroy(gameObject);
+        }
     }
 }
