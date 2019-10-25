@@ -6,6 +6,7 @@ public class GroundCheck : MonoBehaviour
 {
     public AbstractCharacter abstractCharacter;
     public bool groundCheckIsSolid = false;
+    public bool isEnemyGroundCheck = false;
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -30,7 +31,11 @@ public class GroundCheck : MonoBehaviour
         if (collision.gameObject.layer == 8 && !groundCheckIsSolid)
         {
             abstractCharacter.SetIsGrounded(true, gameObject.name);
-        }
+        }/*
+        if (isEnemyGroundCheck && collision.gameObject.layer == 12)
+        {
+
+        }*/
     }
 
     private void OnTriggerExit2D(Collider2D collision)

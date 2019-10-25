@@ -40,7 +40,7 @@ public abstract class AbstractEnemy : AbstractCharacter
         //use varying force for weapon vs player hits
         if (!playerCollision) { body2d.AddForce(-(weapon.transform.position - gameObject.transform.position).normalized * 2000); }
         else { body2d.AddForce(-(weapon.transform.position - gameObject.transform.position).normalized * 1500); }
-        Debug.Log("Enemy -> HitThrowback");
+        //Debug.Log("Enemy -> HitThrowback");
         yield return new WaitForSeconds(0.5f);
         updateMovement = true;
     }

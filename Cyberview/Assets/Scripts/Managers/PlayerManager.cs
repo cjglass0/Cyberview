@@ -12,6 +12,8 @@ public class PlayerManager : AbstractCharacter
     public BM_Drill bm_Drill;
     public GameManager gameManager;
 
+    public int credit;
+
     //should change this to be some kind of ground movement object
     public float walkSpeed = 15;
     public float friction = 0.9f;
@@ -28,6 +30,9 @@ public class PlayerManager : AbstractCharacter
 
     private AbstractBodyMod armOneMod, armTwoMod, legsMod;
     private List<AbstractBodyMod> unlockedBodyMods;
+    private List<DoorKey> keyList;
+
+    private int origHealth;
 
     //Booleans
     private bool rightPressed, leftPressed, armOnePressed, armTwoPressed, legsPressed, actionPressed, crouchPressed, pausePressed;
@@ -61,16 +66,18 @@ public class PlayerManager : AbstractCharacter
         //init lists
         interactables = new List<GameObject>();
         unlockedBodyMods = new List<AbstractBodyMod>();
+        keyList = new List<DoorKey>();
 
         //setup Body Mods
         armOneMod = bm_Drill;
         legsMod = bm_Legs;
         unlockedBodyMods.Add(bm_Drill);
-        unlockedBodyMods.Add(bm_Gun);
         unlockedBodyMods.Add(bm_Legs);
 
         hud = GameObject.Find("_HUD").GetComponent<HUD>();
         hud.InitializeHUD();
+
+        origHealth = health;
     }
 
     //---------------------------------------------------------------- UPDATE -------------------------------------------
@@ -261,7 +268,7 @@ public class PlayerManager : AbstractCharacter
         pushback = true;
         body2d.velocity = new Vector2(0, 0);
         body2d.AddForce((gameObject.transform.position - weapon.transform.position).normalized * 4000);
-        Debug.Log("PlayerManager -> HitThrowback");
+        //Debug.Log("PlayerManager -> HitThrowback");
         yield return new WaitForSeconds(0.3f);
         pushback = false;
     }
@@ -299,5 +306,28 @@ public class PlayerManager : AbstractCharacter
         if (whichOne == 1) { armTwoMod = newMod; if (newMod != null) Debug.Log("PlayerManager -> SetMod(): Arm Two Mod, " + newMod.gameObject.name); }
         if (whichOne == 2) { legsMod = newMod; if (newMod != null) Debug.Log("PlayerManager -> SetMod(): Legs Mod, " + newMod.gameObject.name); }
     }
+    
+    public int GetCredit() { return credit; }
+    public void AddCredit(int addCredit) { 
+        credit += addCredit;
+        hud.SetCredit(credit);
+    }
     public int GetHealth() { return health; }
+    public void Recharge (int recharge)
+    {
+        health += recharge;
+        if (health > origHealth) health = origHealth;
+        Debug.Log("PlayerManager -> recharge: " + recharge);
+        hud.SetHealth(health);
+    }
+
+    public void AddKey(DoorKey newKey)
+    {
+        keyList.Add(newKey);
+    }
+
+    public bool HasKey(DoorKey newKey)
+    {
+        return keyList.Contains(newKey);
+    }
 }

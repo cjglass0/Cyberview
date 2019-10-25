@@ -5,7 +5,7 @@ using TMPro;
 
 public class HUD : MonoBehaviour
 {
-    public TextMeshProUGUI armLValue, armRValue, legsValue, healthValue, tmpMsg;
+    public TextMeshProUGUI armLValue, armRValue, legsValue, healthValue, creditValue, tmpMsg;
     public TMP_Dropdown armLDropdown, armRDropdown, legsDropdown;
     public PlayerManager playerManager;
     public GameManager gameManager;
@@ -159,9 +159,12 @@ public class HUD : MonoBehaviour
     {
         UpdateBodyModsDisplay();
         healthValue.text = playerManager.GetHealth().ToString();
+        creditValue.text = playerManager.GetCredit().ToString();
     }
 
     public void SetHealth(int health) { healthValue.text = health.ToString(); }
+
+    public void SetCredit(int credit) { creditValue.text = credit.ToString(); }
 
     public void ShowTmpMsg (string msg)
     {

@@ -19,7 +19,7 @@ public class BodyModPickup : MonoBehaviour
         if (collision.gameObject.name == "_Player")
         {
             collision.gameObject.GetComponent<PlayerManager>().UnlockBodyMod(bodyMod);
-            GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("New Body Mod unlocked: " + bodyMod.name);
+            GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("New Body Mod unlocked: " + bodyMod.name + ". Pause to equip.");
             Destroy(gameObject);
         }
     }
