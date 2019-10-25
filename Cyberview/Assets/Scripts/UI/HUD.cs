@@ -60,6 +60,10 @@ public class HUD : MonoBehaviour
         playerHUD.interactable = true;
         pauseMenu.alpha = 0;
         pauseMenu.interactable = false;
+
+        armLValue.text = playerManager.GetArmOneMod().gameObject.name;
+        armRValue.text = playerManager.GetArmTwoMod().gameObject.name;
+        legsValue.text = playerManager.GetLegsMod().gameObject.name;
     }
 
     public void DropdownBodyMod(TMP_Dropdown dropdown, int whichOne)

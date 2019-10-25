@@ -277,6 +277,11 @@ public class PlayerManager : AbstractCharacter
         interactables.Clear();
     }
 
+    public void RemoveInteractable(GameObject objectToRemove)
+    {
+        if (interactables.Contains(objectToRemove)) interactables.Remove(objectToRemove);
+    }
+
     public AbstractBodyMod GetArmOneMod() { return armOneMod; }
     public AbstractBodyMod GetArmTwoMod() { return armTwoMod; }
     public AbstractBodyMod GetLegsMod() { return legsMod; }

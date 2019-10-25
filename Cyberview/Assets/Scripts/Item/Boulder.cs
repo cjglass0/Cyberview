@@ -6,7 +6,7 @@ public class Boulder : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     private int ticsToBreak = 3;
-    private float ticLength = 1.2f;
+    private float ticLength = 1f;
     private bool delaying = false;
 
     void Start ()
@@ -47,6 +47,7 @@ public class Boulder : MonoBehaviour
     void DestroyBoulder()
     {
         Debug.Log("Boulder -> DestroyBoulder");
+        GameObject.Find("_Player").GetComponent<PlayerManager>().RemoveInteractable(gameObject);
         Destroy(gameObject);
     }
 }
