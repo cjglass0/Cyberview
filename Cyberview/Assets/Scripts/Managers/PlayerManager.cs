@@ -171,6 +171,8 @@ public class PlayerManager : AbstractCharacter
             }
             legsReleased = false;
         }
+
+        if (pausePressed) Debug.Log("Player Manager -> wPause Button Pressed");
     }
 
     private void MovementUpdate()
@@ -252,6 +254,8 @@ public class PlayerManager : AbstractCharacter
 
 
     //------------------------------------------------------------- PUBLIC INTERFACE ----------------------------------------
+
+    //------------------------------------------------------------- Behaviors
     public override void SetIsGrounded(bool newGroundedState, string colliderObjectName)
     {
         base.SetIsGrounded(newGroundedState, colliderObjectName);
@@ -289,61 +293,62 @@ public class PlayerManager : AbstractCharacter
         invincible = false;
     }
 
+    public void ResetPlayer()
+    {
+        interactables.Clear();
+    }
+
+    //------------------------------------------------------------- Get-Methods
     public List<GameObject> GetInteractables()
     {
         //Debug.Log("PlayerManager -> Interactables n = " + interactables.Count);
         for (int i = interactables.Count - 1; i >= 0; i--) { if (interactables[i] == null) interactables.Remove(interactables[i]);  }
         return interactables;
     }
-
-    public void ResetPlayer()
-    {
-        interactables.Clear();
-    }
-
-    public void RemoveInteractable(GameObject objectToRemove)
-    {
-        if (interactables.Contains(objectToRemove)) interactables.Remove(objectToRemove);
-    }
-
     public AbstractBodyMod GetArmOneMod() { return armOneMod; }
     public AbstractBodyMod GetArmTwoMod() { return armTwoMod; }
     public AbstractBodyMod GetLegsMod() { return legsMod; }
     public List<AbstractBodyMod> GetUnlockedBodyMods() { return unlockedBodyMods; }
-    public void UnlockBodyMod(AbstractBodyMod newMod) {
+    public int GetCredit() { return credit; }
+    public int GetHealth() { return health; }
+    public bool HasKey(DoorKey newKey)
+    {
+        return keyList.Contains(newKey);
+    }
+
+    //------------------------------------------------------------- Set-Methods
+    public void RemoveInteractable(GameObject objectToRemove)
+    {
+        if (interactables.Contains(objectToRemove)) interactables.Remove(objectToRemove);
+    }
+    public void UnlockBodyMod(AbstractBodyMod newMod)
+    {
         if (!unlockedBodyMods.Contains(newMod))
         {
             unlockedBodyMods.Add(newMod);
             Debug.Log("PlayerManager -> Unlocked: " + newMod);
         }
     }
-    public void SetMod(int whichOne, AbstractBodyMod newMod) {
+    public void SetMod(int whichOne, AbstractBodyMod newMod)
+    {
         if (whichOne == 0) { armOneMod = newMod; if (newMod != null) Debug.Log("PlayerManager -> SetMod(): Arm One Mod, " + newMod.gameObject.name); }
         if (whichOne == 1) { armTwoMod = newMod; if (newMod != null) Debug.Log("PlayerManager -> SetMod(): Arm Two Mod, " + newMod.gameObject.name); }
         if (whichOne == 2) { legsMod = newMod; if (newMod != null) Debug.Log("PlayerManager -> SetMod(): Legs Mod, " + newMod.gameObject.name); }
     }
-    
-    public int GetCredit() { return credit; }
-    public void AddCredit(int addCredit) { 
+    public void AddCredit(int addCredit)
+    {
         credit += addCredit;
         hud.SetCredit(credit);
     }
-    public int GetHealth() { return health; }
-    public void Recharge (int recharge)
+    public void Recharge(int recharge)
     {
         health += recharge;
         if (health > origHealth) health = origHealth;
         Debug.Log("PlayerManager -> recharge: " + recharge);
         hud.SetHealth(health);
     }
-
     public void AddKey(DoorKey newKey)
     {
         keyList.Add(newKey);
-    }
-
-    public bool HasKey(DoorKey newKey)
-    {
-        return keyList.Contains(newKey);
     }
 }

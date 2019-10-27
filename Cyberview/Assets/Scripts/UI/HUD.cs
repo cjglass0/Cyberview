@@ -198,21 +198,24 @@ public class HUD : MonoBehaviour
 
     public void LoadBodyModMenu()
     {
-        gameManager.paused = true;
-        Debug.Log("HUD -> Body Mod Menu");
-        Time.timeScale = 0;
-        playerHUD.alpha = 0;
-        playerHUD.interactable = false;
-        playerHUD.gameObject.SetActive(false);
-        bmMenu.alpha = 1;
-        bmMenu.interactable = true;
-        bmMenu.gameObject.SetActive(true);
+        if (!bmMenuLoaded)
+        {
+            gameManager.paused = true;
+            Debug.Log("HUD -> Body Mod Menu");
+            Time.timeScale = 0;
+            playerHUD.alpha = 0;
+            playerHUD.interactable = false;
+            playerHUD.gameObject.SetActive(false);
+            bmMenu.alpha = 1;
+            bmMenu.interactable = true;
+            bmMenu.gameObject.SetActive(true);
 
-        UpdateBodyModsDropdownOptions(armLDropdown);
-        UpdateBodyModsDropdownOptions(armRDropdown);
-        UpdateBodyModsDropdownOptions(legsDropdown);
+            UpdateBodyModsDropdownOptions(armLDropdown);
+            UpdateBodyModsDropdownOptions(armRDropdown);
+            UpdateBodyModsDropdownOptions(legsDropdown);
 
-        bmMenuLoaded = true;
+            bmMenuLoaded = true;
+        }
     }
 
     public void SetHealth(int health) { healthValue.text = health.ToString(); }
