@@ -7,8 +7,7 @@ public class BasicEnemy : AbstractEnemy
     public BoxCollider2D leftFloorDetector;
     public BoxCollider2D rightFloorDetector;
     
-    public float speed = 0f;
-    private Vector2 oldPos;
+    public float speed;
     // Start is called before the first frame update
 
 
@@ -26,11 +25,11 @@ public class BasicEnemy : AbstractEnemy
     public override void UpdateMovement()
     {
         //TODO: Improve logic to check whether enemy got stuck (for some reason doesn't always work)
-        if (body2d.IsSleeping()) { speed = -speed; Debug.Log("stuck"); }
+        //if (body2d.IsSleeping()) { speed = -speed; Debug.Log("stuck"); }
 
         //walk
-        body2d.velocity = new Vector2(-speed, body2d.velocity.y);
-        oldPos = body2d.position;
+        body2d.velocity = new Vector2(speed, body2d.velocity.y);
+        if (speed < 3 && speed > -3) Debug.Log("Basic Enemy -> speed = " + speed);
     }
 
     public override void SetIsGrounded(bool newGroundedState, string colliderObjectName)

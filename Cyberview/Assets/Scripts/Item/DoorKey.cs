@@ -13,6 +13,7 @@ public class DoorKey : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerManager>().AddKey(this);
             collected = true;
+            GameObject.Find("LevelManager").GetComponent<LvlManager>().CollectedDoorKey();
             Destroy(gameObject);
         }
     }

@@ -35,8 +35,9 @@ public class PlayerManager : AbstractCharacter
     private int origHealth;
 
     //Booleans
-    private bool rightPressed, leftPressed, armOnePressed, armTwoPressed, legsPressed, actionPressed, crouchPressed, pausePressed;
-    private bool pushback = false;
+    private bool rightPressed, leftPressed, armOnePressed, armTwoPressed, legsPressed, actionPressed, crouchPressed, pausePressed,
+        armOneReleased, armTwoReleased, legsReleased;
+    private bool pushback, invincible;
 
     //Vectors
     private Vector3 originalScale;
@@ -68,11 +69,13 @@ public class PlayerManager : AbstractCharacter
         unlockedBodyMods = new List<AbstractBodyMod>();
         keyList = new List<DoorKey>();
 
-        //setup Body Mods
-        armOneMod = bm_Drill;
+        //setup Body Mods   <----------- Set which Body Mods are loaded at game startup
         legsMod = bm_Legs;
-        unlockedBodyMods.Add(bm_Drill);
+        armOneMod = bm_Drill;
+        armTwoMod = bm_Gun;
         unlockedBodyMods.Add(bm_Legs);
+        unlockedBodyMods.Add(bm_Drill);
+        unlockedBodyMods.Add(bm_Gun);
 
         hud = GameObject.Find("_HUD").GetComponent<HUD>();
         hud.InitializeHUD();
@@ -125,13 +128,15 @@ public class PlayerManager : AbstractCharacter
                 armOneMod.EnableBodyMod();
                 //Debug.Log("ArmOne");
             }
+            armOneReleased = true;
         }
-        else
+        else if (armOneReleased)
         {
             if (armOneMod != null)
             {
                 armOneMod.DisableBodyMod();
             }
+            armOneReleased = false;
         }
         if (armTwoPressed)
         {
@@ -140,13 +145,15 @@ public class PlayerManager : AbstractCharacter
                 armTwoMod.EnableBodyMod();
                 //Debug.Log("ArmTwo");
             }
+            armTwoReleased = true;
         }
-        else
+        else if (armTwoReleased)
         {
             if (armTwoMod != null)
             {
                 armTwoMod.DisableBodyMod();
             }
+            armTwoReleased = false;
         }
         if (legsPressed)
         {
@@ -154,13 +161,15 @@ public class PlayerManager : AbstractCharacter
             {
                 legsMod.EnableBodyMod();
             }
+            legsReleased = true;
         }
-        else
+        else if (legsReleased)
         {
             if (legsMod != null)
             {
                 legsMod.DisableBodyMod();
             }
+            legsReleased = false;
         }
     }
 
@@ -251,26 +260,33 @@ public class PlayerManager : AbstractCharacter
 
     public void HitByEnemy(GameObject enemy)
     {
-        //decrease player health based on enemy's set damage
-        health -= enemy.GetComponent<AbstractEnemy>().damageToPlayerPerHit;
-        hud.SetHealth(health);
+        if (!invincible)
+        {
+            //decrease player health based on enemy's set damage
+            health -= enemy.GetComponent<AbstractEnemy>().damageToPlayerPerHit;
+            hud.SetHealth(health);
+            hud.PlayerHitFX();
 
-        //bump away enemy
-        enemy.GetComponent<AbstractEnemy>().PlayerCollision(gameObject);
-        Debug.Log("PlayerManager -> HitByEnemy:" + enemy.name + ". New Player Health:" + health);
+            //bump away enemy
+            enemy.GetComponent<AbstractEnemy>().PlayerCollision(gameObject);
+            Debug.Log("PlayerManager -> HitByEnemy:" + enemy.name + ". New Player Health:" + health);
 
-        //bump player
-        StartCoroutine(PlayerHitThrowback(enemy));
+            //bump player
+            StartCoroutine(PlayerHitThrowback(enemy));
+        }
     }
 
     IEnumerator PlayerHitThrowback(GameObject weapon)
     {
         pushback = true;
+        invincible = true;
         body2d.velocity = new Vector2(0, 0);
         body2d.AddForce((gameObject.transform.position - weapon.transform.position).normalized * 4000);
         //Debug.Log("PlayerManager -> HitThrowback");
         yield return new WaitForSeconds(0.3f);
         pushback = false;
+        yield return new WaitForSeconds(0.3f);
+        invincible = false;
     }
 
     public List<GameObject> GetInteractables()

@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         int newSceneIdx = scene.buildIndex;
         Debug.Log("Scene Loaded: idx=" + newSceneIdx + ", name=" + scene.name + ", loadMode=" + mode);
 
-        if (newSceneIdx < MENU) // -- Level Loaded --
+        if (newSceneIdx < MENU  || newSceneIdx > _BASE) // -- Level Loaded --
         {
             //prepare GameObjects in _Base for Gameplay. Ex: Activate player.
             if (!player.activeInHierarchy) player.SetActive(true);

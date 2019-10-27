@@ -52,7 +52,14 @@ public abstract class AbstractEnemy : AbstractCharacter
 
     public void EnemyDeathEnd()
     {
+        int coinflip = (int)(Random.Range(0, 2));
+        //Spawn Reward
+        if (coinflip < 1)
+        {
+            GameObject.Find("LevelManager").GetComponent<LvlManager>().SpawnRandomReward(gameObject.transform.position);
+        } 
         Destroy(gameObject);
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

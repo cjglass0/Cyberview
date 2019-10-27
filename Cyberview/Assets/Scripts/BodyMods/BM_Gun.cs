@@ -25,7 +25,7 @@ public class BM_Gun : AbstractBodyMod
         //account for direction the player is facing
         int xPosOffset;
         if (owner.isFacingRight) { xPosOffset = 1; } else { xPosOffset = -1; }
-        Vector2 spawnPos = new Vector2(playerPos.x + (5 * xPosOffset), playerPos.y);
+        Vector2 spawnPos = new Vector2(playerPos.x + (4 * xPosOffset), playerPos.y);
         Vector2 size = new Vector2(.5f, .5f);
 
         //only spawn bullets if there's space

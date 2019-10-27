@@ -9,8 +9,28 @@ public class HUD : MonoBehaviour
     public TMP_Dropdown armLDropdown, armRDropdown, legsDropdown;
     public PlayerManager playerManager;
     public GameManager gameManager;
-    public CanvasGroup playerHUD, pauseMenu;
+    public CanvasGroup playerHUD, pauseMenu, playerHitCG, bmMenu;
+    private float originalPlayerHitCGalpha;
+    private bool bmMenuLoaded;
 
+
+    public void Start()
+    {
+        originalPlayerHitCGalpha = playerHitCG.alpha;
+        playerHitCG.alpha = 0;
+    }
+
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (!bmMenuLoaded) {
+                LoadBodyModMenu();
+            } else{
+                BtnExitBMMenu();
+            }
+        }
+    }
 
     //----------------------------------------------------------- OnClick Methods -------------------------------------------------
 
@@ -21,12 +41,10 @@ public class HUD : MonoBehaviour
         Time.timeScale = 0;
         playerHUD.alpha = 0;
         playerHUD.interactable = false;
+        playerHUD.gameObject.SetActive(false);
         pauseMenu.alpha = 1;
         pauseMenu.interactable = true;
-
-        UpdateBodyModsDropdownOptions(armLDropdown);
-        UpdateBodyModsDropdownOptions(armRDropdown);
-        UpdateBodyModsDropdownOptions(legsDropdown);
+        pauseMenu.gameObject.SetActive(true);
     }
 
     public void BtnResume()
@@ -36,8 +54,23 @@ public class HUD : MonoBehaviour
         Time.timeScale = 1;
         playerHUD.alpha = 1;
         playerHUD.interactable = true;
+        playerHUD.gameObject.SetActive(true);
         pauseMenu.alpha = 0;
         pauseMenu.interactable = false;
+        pauseMenu.gameObject.SetActive(false);
+    }
+
+    public void BtnExitBMMenu()
+    {
+        gameManager.paused = false;
+        Debug.Log("HUD -> Exit BM MEnu");
+        Time.timeScale = 1;
+        playerHUD.alpha = 1;
+        playerHUD.interactable = true;
+        playerHUD.gameObject.SetActive(true);
+        bmMenu.alpha = 0;
+        bmMenu.interactable = false;
+        bmMenu.gameObject.SetActive(false);
 
         //Apply selected body mods
         playerManager.SetMod(0, GetDropdownBodyMod(armLDropdown));
@@ -45,6 +78,7 @@ public class HUD : MonoBehaviour
         playerManager.SetMod(2, GetDropdownBodyMod(legsDropdown));
 
         UpdateBodyModsDisplay();
+        bmMenuLoaded = false;
     }
 
     //----------------------------------------------------------- Dropdown Logic -------------------------------------------------
@@ -162,6 +196,25 @@ public class HUD : MonoBehaviour
         creditValue.text = playerManager.GetCredit().ToString();
     }
 
+    public void LoadBodyModMenu()
+    {
+        gameManager.paused = true;
+        Debug.Log("HUD -> Body Mod Menu");
+        Time.timeScale = 0;
+        playerHUD.alpha = 0;
+        playerHUD.interactable = false;
+        playerHUD.gameObject.SetActive(false);
+        bmMenu.alpha = 1;
+        bmMenu.interactable = true;
+        bmMenu.gameObject.SetActive(true);
+
+        UpdateBodyModsDropdownOptions(armLDropdown);
+        UpdateBodyModsDropdownOptions(armRDropdown);
+        UpdateBodyModsDropdownOptions(legsDropdown);
+
+        bmMenuLoaded = true;
+    }
+
     public void SetHealth(int health) { healthValue.text = health.ToString(); }
 
     public void SetCredit(int credit) { creditValue.text = credit.ToString(); }
@@ -177,6 +230,32 @@ public class HUD : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         tmpMsg.gameObject.SetActive(false);
+    }
+
+    public void PlayerHitFX()
+    {
+        StartCoroutine(FadeCanvasGroup(playerHitCG, originalPlayerHitCGalpha, 0, 1.5f));
+    }
+
+    private IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 1)
+    {
+        float _timeStartedLerping = Time.time;
+        float timeSinceStarted = Time.time - _timeStartedLerping;
+        float percentageComplete = timeSinceStarted / lerpTime;
+
+        while (true)
+        {
+            timeSinceStarted = Time.time - _timeStartedLerping;
+            percentageComplete = timeSinceStarted / lerpTime;
+
+            float currentValue = Mathf.Lerp(start, end, percentageComplete);
+
+            cg.alpha = currentValue;
+
+            if (percentageComplete >= 1) break;
+
+            yield return new WaitForFixedUpdate();
+        }
     }
 
 }

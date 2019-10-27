@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/LVL_0.unity
+    path: Assets/Scenes/LVL_TEST.unity
     guid: 0aa62e527608c874aa4666870be243b4
   - enabled: 1
     path: Assets/Scenes/LVL_1.unity
@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/_BASE.unity
     guid: 195731d0bb9a0f744a7128a7ec344051
+  - enabled: 1
+    path: Assets/Scenes/LVL_0_Mine.unity
+    guid: ae7542abe5e614749a146d34a21b8a69
+  - enabled: 1
+    path: Assets/Scenes/LVL_0.unity
+    guid: 28bf13550d1588d4ba05cf99c3481934
   m_configObjects: {}

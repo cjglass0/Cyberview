@@ -10,10 +10,21 @@ public class LvlManager : MonoBehaviour
     GameObject spawnPoint, player;
     GameManager gameManager;
     int curSpawnPoint = 0;
+    private HUD hud;
+
+    //for time challenge
+    float levelStartTime;
+    public int doorKeyTimeChallenge;
+    private DoorKey[] doorKeyArray;
+    int keysCollected = 0;
+    public GameObject[] rewardArray;
 
     void Start()
     {
         spawnPoint = GameObject.Find("SpawnPoint");
+        hud = GameObject.Find("_HUD").GetComponent<HUD>();
+        gameManager = GameObject.Find("_GameManager").GetComponent<GameManager>();
+        doorKeyArray = Object.FindObjectsOfType<DoorKey>();
     }
 
 
@@ -28,5 +39,28 @@ public class LvlManager : MonoBehaviour
 
         //setup camera target
         GameObject.Find("Cinemachine Controller").GetComponent<CinemachineVirtualCamera>().Follow = player.transform;
+        Debug.Log("LevelManager -> InitLevel");
+
+        levelStartTime = Time.time;
+    }
+
+    public void CollectedDoorKey()
+    {
+        keysCollected++;
+        if (keysCollected == doorKeyArray.Length && Time.time - levelStartTime < doorKeyTimeChallenge)
+        {
+            SpawnRandomReward(GameObject.Find("TimeChallengeRewardSP").transform.position);
+            hud.ShowTmpMsg("Congratulations, you won the time Challenge!");
+        }
+            
+    }
+
+    public void SpawnRandomReward(Vector2 rewardSpawnPoint)
+    {
+        int randomIdx = (int)(Random.Range(0, rewardArray.Length));
+        //(because random is inclusive for max value)
+        if (randomIdx == rewardArray.Length) randomIdx = rewardArray.Length - 1;
+        
+        Instantiate(rewardArray[randomIdx], rewardSpawnPoint, Quaternion.identity);
     }
 }
