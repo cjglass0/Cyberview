@@ -13,12 +13,12 @@ public class GameManager : MonoBehaviour
     private PlayerManager playerManager;
 
     //// BUILD INDEXES ////
-    public readonly static int FIRST_LVL = 0;
-    public readonly static int LAST_LVL = 2;
-    public readonly static int MENU = 3;
-    public readonly static int PAUSE = 4;
-    public readonly static int CREDITS = 5;
-    public readonly static int _BASE = 6;
+    public readonly static int _BASE = 0;
+    public readonly static int MENU = 1;
+    public readonly static int CREDITS = 2;
+    public readonly static int FIRST_LVL = 3;
+    public readonly static int LAST_LVL = 5;
+    
 
     //Scenes
     private int currentScene = FIRST_LVL; //<--- Set first Scene to load (should eventually be set by loading saved progress)
