@@ -82,6 +82,11 @@ public class HUD : MonoBehaviour
         bmMenuLoaded = false;
     }
 
+    public void BtnRestartLevel()
+    {
+        gameManager.ReloadLevel();
+    }
+
     //----------------------------------------------------------- Dropdown Logic -------------------------------------------------
 
     private void UpdateBodyModsDropdownOptions(TMP_Dropdown dropdown)
