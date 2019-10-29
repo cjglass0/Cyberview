@@ -122,7 +122,7 @@ public class BM_StrongArm : AbstractBodyMod
             {
                 framesStuckOnLedge += 5;
             }
-            if (framesStuckOnLedge > 60) EnableBodyMod();
+            if (framesStuckOnLedge > 80) EnableBodyMod();
         }
         if (framesStuckOnLedge > 0) framesStuckOnLedge--;
     }

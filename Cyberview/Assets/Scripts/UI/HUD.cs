@@ -10,6 +10,7 @@ public class HUD : MonoBehaviour
     public PlayerManager playerManager;
     public GameManager gameManager;
     public CanvasGroup playerHUD, pauseMenu, playerHitCG, bmMenu;
+    public GameObject blackout;
     private float originalPlayerHitCGalpha;
     private bool bmMenuLoaded;
 
@@ -231,7 +232,7 @@ public class HUD : MonoBehaviour
 
     IEnumerator TmpMsgDelay()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         tmpMsg.gameObject.SetActive(false);
     }
 
@@ -259,6 +260,18 @@ public class HUD : MonoBehaviour
 
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    public void BlackOutFX(int delay)
+    {
+        StartCoroutine(BlackoutDelay(delay));
+    }
+
+    IEnumerator BlackoutDelay(int delay)
+    {
+        blackout.gameObject.SetActive(true);
+        yield return new WaitForSeconds(delay);
+        blackout.gameObject.SetActive(false);
     }
 
 }
