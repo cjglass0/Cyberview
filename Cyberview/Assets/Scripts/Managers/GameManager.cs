@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public readonly static int _BASE = 6;
 
     //Scenes
-    private int sceneToLoad = FIRST_LVL; //<--- Set first Scene to load (should eventually be set by loading saved progress)
+    private int currentScene = FIRST_LVL; //<--- Set first Scene to load (should eventually be set by loading saved progress)
     private Scene curScene;
     private bool sceneCurrentlyLoading = false;
 
@@ -47,10 +47,11 @@ public class GameManager : MonoBehaviour
         curScene = SceneManager.GetActiveScene();
 
         //Load First Scene
-        SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+        SceneManager.LoadScene(currentScene, LoadSceneMode.Additive);
 
-        //Listen for Scene Loads
+        //Listen for Scene Loads & Unloads
         SceneManager.sceneLoaded += OnSceneFinishedLoading;
+        SceneManager.sceneUnloaded += OnSceneFinishedUnloading;
 
         playerManager = player.GetComponent<PlayerManager>();
     }
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
     void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode)
     {
         int newSceneIdx = scene.buildIndex;
+        currentScene = newSceneIdx;
         Debug.Log("Scene Loaded: idx=" + newSceneIdx + ", name=" + scene.name + ", loadMode=" + mode);
 
         if (newSceneIdx < MENU  || newSceneIdx > _BASE) // -- Level Loaded --
@@ -75,13 +77,35 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void OnSceneFinishedUnloading(Scene scene)
+    {
+        if (sceneCurrentlyLoading)
+        {
+            sceneCurrentlyLoading = false;
+            LoadScene(currentScene);
+        }
+    }
+
 
 
     /////////////////////////////////////////////////////////////////////////////////////////// LoadScene (newSceneToLoad) ####################
     public void LoadScene(int newSceneToLoad)
     {
-        SceneManager.UnloadSceneAsync(sceneToLoad);
-        sceneToLoad = newSceneToLoad;
-        SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(currentScene);
+        //sceneToLoad = newSceneToLoad;
+        SceneManager.LoadScene(newSceneToLoad, LoadSceneMode.Additive);
+    }
+
+    public void LoadScene(string newSceneToLoad)
+    {
+        SceneManager.UnloadSceneAsync(currentScene);
+        SceneManager.LoadScene(newSceneToLoad, LoadSceneMode.Additive);
+        //sceneToLoad = SceneManager.GetActiveScene().buildIndex;
+    }
+
+    public void ReloadLevel()
+    {
+        sceneCurrentlyLoading = true;
+        SceneManager.UnloadSceneAsync(currentScene);
     }
 }

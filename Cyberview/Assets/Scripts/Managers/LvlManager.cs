@@ -11,6 +11,7 @@ public class LvlManager : MonoBehaviour
     GameManager gameManager;
     int curSpawnPoint = 0;
     private HUD hud;
+    PlayerManager playerManager;
 
     //for time challenge
     float levelStartTime;
@@ -32,10 +33,13 @@ public class LvlManager : MonoBehaviour
     {
         this.gameManager = gameManager;
         player = gameManager.player;
+        playerManager = player.GetComponent<PlayerManager>();
         spawnPoint = GameObject.Find("SpawnPoint");
         // set player pos
         player.transform.position = spawnPoint.transform.position;
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        playerManager.Recharge(50);
+        playerManager.isFacingRight = true;
 
         //setup camera target
         GameObject.Find("Cinemachine Controller").GetComponent<CinemachineVirtualCamera>().Follow = player.transform;

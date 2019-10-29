@@ -71,11 +71,11 @@ public class PlayerManager : AbstractCharacter
 
         //setup Body Mods   <----------- Set which Body Mods are loaded at game startup
         legsMod = bm_Legs;
-        armOneMod = bm_Drill;
-        armTwoMod = bm_Gun;
+       // armOneMod = bm_Drill;
+       // armTwoMod = bm_Gun;
         unlockedBodyMods.Add(bm_Legs);
-        unlockedBodyMods.Add(bm_Drill);
-        unlockedBodyMods.Add(bm_Gun);
+        //unlockedBodyMods.Add(bm_Drill);
+        //unlockedBodyMods.Add(bm_Gun);
 
         hud = GameObject.Find("_HUD").GetComponent<HUD>();
         hud.InitializeHUD();
@@ -94,7 +94,7 @@ public class PlayerManager : AbstractCharacter
         MovementUpdate();
 
         if (health <= 0) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            gameManager.ReloadLevel();
         }
     }
 
@@ -202,17 +202,29 @@ public class PlayerManager : AbstractCharacter
         {
             if ((leftPressed || rightPressed) && !pushback)
             {
+                /*
                 int accelMultiplier = 1;
                 if (leftPressed)
                 {
                     accelMultiplier = -1;
                 }
                 var tmpSpeed = body2d.velocity.x + (airSpeedAccel * accelMultiplier);
+                /*
                 if (Mathf.Abs(tmpSpeed) > airSpeedMax)
                 {
                     tmpSpeed = airSpeedMax * accelMultiplier;
+                }*/
+                int tmpForce = 80;
+                bool accelerate;
+                if (leftPressed)
+                {
+                    tmpForce *= -1;
+                    accelerate = body2d.velocity.x > -airSpeedMax;
+                } else
+                {
+                    accelerate = body2d.velocity.x < airSpeedMax;
                 }
-                body2d.velocity = new Vector2(tmpSpeed, body2d.velocity.y);
+                if (accelerate) body2d.AddForce(new Vector2(tmpForce, 0));
             }
             else
             {
