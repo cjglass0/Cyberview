@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LVL_0_MineCollapse : MonoBehaviour
 {
-    public GameObject theDudeThatRunsAway;
+    public GameObject theDudeThatRunsAway, rubble, bouldersToRemove;
     private bool collected;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,6 +27,8 @@ public class LVL_0_MineCollapse : MonoBehaviour
         GameObject.Find("DialogueHandler").GetComponent<DialogueHandler>().hideDialogue();
         yield return new WaitForSeconds(1);
         hud.BlackOutFX(5);
+        bouldersToRemove.SetActive(false);
+        rubble.SetActive(true);
         GameObject.Find("_Player").GetComponent<PlayerManager>().health = 10;
         hud.SetHealth(10);
         hud.ShowTmpMsg("ERROR. ERROR. ERROR.");

@@ -7,7 +7,7 @@ public class Boulder : MonoBehaviour
     SpriteRenderer spriteRenderer;
     public Sprite solid, translucent;
     private int ticsToBreak = 3;
-    private float ticLength = 1f;
+    private float ticLength = .7f;
     private bool delaying = false;
 
     void Start ()

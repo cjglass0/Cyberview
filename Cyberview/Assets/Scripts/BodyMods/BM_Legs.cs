@@ -8,8 +8,8 @@ public class BM_Legs : AbstractBodyMod
     private Rigidbody2D rb;
     private PlayerManager playerManager;
 
-    private float jumpSpeed = 40f;
-    private float fallMultiplier = 2f; //sets factor of speed at which player falls back down
+    private float jumpSpeed = 39f;
+    private float fallMultiplier = 2.5f; //sets factor of speed at which player falls back down
     private float lowJumpMultiplier = 1.5f; //sets factor of how hard low jumps break while going up (should be >1)(1 = low and high jumps are same)
 
     void Update()

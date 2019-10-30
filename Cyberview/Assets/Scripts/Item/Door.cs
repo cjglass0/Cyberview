@@ -20,6 +20,7 @@ public class Door : MonoBehaviour
             {
                 collected = true;
                 playerManager.gameManager.LoadScene(sceneToLoad);
+
             } else if (playerManager.HasKey(doorKey))
             {
                 collected = true;

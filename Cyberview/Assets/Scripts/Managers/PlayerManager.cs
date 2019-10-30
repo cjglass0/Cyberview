@@ -22,6 +22,8 @@ public class PlayerManager : AbstractCharacter
     public float airSpeedMax = 100;
     public float airFriction = 0.99f;
 
+    public PhysicsMaterial2D myPhysicsMaterial;
+
     ///// PRIVATE
     public Animator animator;
     private GameObject playerObject;
@@ -33,6 +35,8 @@ public class PlayerManager : AbstractCharacter
     private List<DoorKey> keyList;
 
     private int origHealth;
+
+    private float originalFriction = 1f;
 
     //Booleans
     private bool rightPressed, leftPressed, armOnePressed, armTwoPressed, legsPressed, actionPressed, crouchPressed, pausePressed,
@@ -72,7 +76,7 @@ public class PlayerManager : AbstractCharacter
         //setup Body Mods   <----------- Set which Body Mods are loaded at game startup
         legsMod = bm_Legs;
        // armOneMod = bm_Drill;
-       // armTwoMod = bm_Gun;
+        //armTwoMod = bm_Gun;
         unlockedBodyMods.Add(bm_Legs);
         //unlockedBodyMods.Add(bm_Drill);
         //unlockedBodyMods.Add(bm_Gun);
@@ -81,6 +85,7 @@ public class PlayerManager : AbstractCharacter
         hud.InitializeHUD();
 
         origHealth = health;
+        myPhysicsMaterial.friction = 1f;
     }
 
     //---------------------------------------------------------------- UPDATE -------------------------------------------
@@ -214,7 +219,7 @@ public class PlayerManager : AbstractCharacter
                 {
                     tmpSpeed = airSpeedMax * accelMultiplier;
                 }*/
-                int tmpForce = 80;
+                int tmpForce = 120;
                 bool accelerate;
                 if (leftPressed)
                 {
@@ -271,7 +276,14 @@ public class PlayerManager : AbstractCharacter
     public override void SetIsGrounded(bool newGroundedState, string colliderObjectName)
     {
         base.SetIsGrounded(newGroundedState, colliderObjectName);
-        if (isGrounded) animator.SetBool("jump", false);
+        if (isGrounded)
+        {
+            animator.SetBool("jump", false);
+            myPhysicsMaterial.friction = originalFriction;
+        } else
+        {
+            myPhysicsMaterial.friction = 0f;
+        }
     }
 
     public void HitByEnemy(GameObject enemy)

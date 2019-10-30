@@ -2756,6 +2756,7 @@ MonoBehaviour:
   airSpeedAccel: 1
   airSpeedMax: 15
   airFriction: 0.99
+  myPhysicsMaterial: {fileID: 6200000, guid: 4086ec054b5156a42ab7303c4ad8f543, type: 2}
   animator: {fileID: 1329648506}
 --- !u!114 &717986517
 MonoBehaviour:
@@ -4687,6 +4688,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StrongArm
       objectReference: {fileID: 0}
+    - target: {fileID: 545633299884686913, guid: 2f17f2eebe8865d48b224e7612db4b61,
+        type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 717986515}
     - target: {fileID: 3480120015043460412, guid: 2f17f2eebe8865d48b224e7612db4b61,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4742,11 +4748,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 545633299884686913, guid: 2f17f2eebe8865d48b224e7612db4b61,
-        type: 3}
-      propertyPath: owner
-      value: 
-      objectReference: {fileID: 717986515}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f17f2eebe8865d48b224e7612db4b61, type: 3}
 --- !u!4 &1215809493 stripped
