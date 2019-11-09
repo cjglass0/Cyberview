@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BodyModSwappingStation : MonoBehaviour
 {
-    //(for some reason there's a chance the code will execute twice before destroying, that's why there's the bool)
+    //(for some reason there's a chance the code will execute twice, that's why there's the bool)
     bool collected = false;
 
     private void OnTriggerEnter2D(Collider2D collision)

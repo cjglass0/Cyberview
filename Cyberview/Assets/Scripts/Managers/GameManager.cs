@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /////////////////////////////////////////////////////////////// OnSceneFinishedUnloading () /////////////////////////////////////////
     void OnSceneFinishedUnloading(Scene scene)
     {
         if (sceneCurrentlyLoading)

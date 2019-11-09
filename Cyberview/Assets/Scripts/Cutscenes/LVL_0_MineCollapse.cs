@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LVL_0_MineCollapse : MonoBehaviour
 {
+    //Hardcoded sequence to handle the mine collapse stuff.
+
     public GameObject theDudeThatRunsAway, rubble, bouldersToRemove;
     private bool collected;
 
@@ -23,8 +25,10 @@ public class LVL_0_MineCollapse : MonoBehaviour
         yield return new WaitForSeconds(1);
         GameObject.Find("DialogueHandler").GetComponent<DialogueHandler>().showDialogue(AvatarShown.MINEMAN, "Oh no! The mine is collapsing!! I better get out of here");
         theDudeThatRunsAway.SetActive(false);
+
         yield return new WaitForSeconds(2);
         GameObject.Find("DialogueHandler").GetComponent<DialogueHandler>().hideDialogue();
+
         yield return new WaitForSeconds(1);
         hud.BlackOutFX(5);
         bouldersToRemove.SetActive(false);
@@ -33,8 +37,10 @@ public class LVL_0_MineCollapse : MonoBehaviour
         hud.SetHealth(10);
         hud.ShowTmpMsg("ERROR. ERROR. ERROR.");
         hud.PlayerHitFX();
+
         yield return new WaitForSeconds(1);
         hud.GetComponent<HUD>().PlayerHitFX();
+
         yield return new WaitForSeconds(4.1f);
         GameObject.Find("DoorToMainArea").GetComponent<Door>().isPermanentlyLocked = false;
         hud.GetComponent<HUD>().ShowTmpMsg("Error: Critical System Damage. Go to Repair Shop immediately.");

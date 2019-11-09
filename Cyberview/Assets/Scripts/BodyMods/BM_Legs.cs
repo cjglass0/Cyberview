@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BM_Legs : AbstractBodyMod
 {
+
+    //Handles jumping. Perhaps we can create a Legs abstract class and a number of subclasses for each type of leg in the feature, so that
+    //common functionality for jumps is shared.
+
     private bool jump;
     private Rigidbody2D rb;
     private PlayerManager playerManager;

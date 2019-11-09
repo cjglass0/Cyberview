@@ -5,6 +5,8 @@ using TMPro;
 
 public class HUD : MonoBehaviour
 {
+    // Handle all HUD stuff
+
     public TextMeshProUGUI armLValue, armRValue, legsValue, healthValue, creditValue, tmpMsg;
     public TMP_Dropdown armLDropdown, armRDropdown, legsDropdown;
     public PlayerManager playerManager;

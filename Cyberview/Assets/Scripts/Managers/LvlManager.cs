@@ -5,7 +5,9 @@ using Cinemachine;
 
 public class LvlManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Level Manager is placed once per level. GameManager looks for Level Manager on Level Load. It then calls InitLevel, so all initial
+    // setting up for a level should be done in InitLevel. Other functionality includes time challenge, spawning rewards (so we can possibly
+    // limit type of rewards for certain levels if we want), setting up camera.
 
     GameObject spawnPoint, player;
     GameManager gameManager;

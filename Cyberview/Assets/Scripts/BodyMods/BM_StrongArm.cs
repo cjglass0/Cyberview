@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BM_StrongArm : AbstractBodyMod
 {
+    // Strong arm body mod. Picks up box by manually setting its position to be player Pos + blockOffset. Collisions are handled by
+    // enabling the player's blockColliderHelper. Otherwise, the player could push the box into the wall, as setting the position manually
+    // overrides in-game physics (and therefore the box collider's). Script also releases hold on the box if stuck on a ledge.
+
     bool holdingBox;
     bool droppingBox;
     GameObject heavyBox;

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private Vector2 initialVelocity = new Vector2(100, 0);
     private Rigidbody2D body2d;
     private float lifetime = 10f;
     private float damage = 1;

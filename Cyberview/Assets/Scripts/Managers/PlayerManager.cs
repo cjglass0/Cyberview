@@ -182,8 +182,7 @@ public class PlayerManager : AbstractCharacter
 
     private void MovementUpdate()
     {
-        //horizontal movement, grounded then aerial
-        if (isGrounded)
+        if (isGrounded)                                         //Ground Movement
         {
             if ((leftPressed || rightPressed) && !pushback)
             {
@@ -204,7 +203,7 @@ public class PlayerManager : AbstractCharacter
             }
         }
         else
-        {
+        {                                                       //Air Movement
             if ((leftPressed || rightPressed) && !pushback)
             {
                 /*

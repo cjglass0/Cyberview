@@ -45,6 +45,7 @@ public abstract class AbstractEnemy : AbstractCharacter
         updateMovement = true;
     }
 
+    //split so that we can add vfx for enemy death. Example: EnemyDeathStart() could start a dying animation. Once the animation ends, EnemyDeathEnd() could be called
     public void EnemyDeathStart()
     {
         EnemyDeathEnd();

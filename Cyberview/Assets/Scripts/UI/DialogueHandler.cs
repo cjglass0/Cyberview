@@ -12,6 +12,8 @@ public enum AvatarShown
 }
 
 
+//This class is always present, as it is attached to the Player's HUD (_HUD -> Player HUD -> Dialogue Handler)
+
 public class DialogueHandler : MonoBehaviour
 {
     public Texture protagonistAvatar, helperBotAvatar, mineManAvatar;

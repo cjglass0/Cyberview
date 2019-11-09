@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DialogueTimer : MonoBehaviour
 {
+    // Show a Dialogue after waiting as long as showDelay specifies and display it as long as hideDelay specifies.
+
     private bool collected;
     [TextArea]
     public string message;

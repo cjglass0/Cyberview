@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    //Display a dialogue for as long as the player is within the area of the trigger
+
     private bool collected;
     [TextArea]
     public string message;
