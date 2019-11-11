@@ -21,6 +21,7 @@ public class LVL_0_MineCollapse : MonoBehaviour
     IEnumerator MySequence()
     {
         HUD hud = GameObject.Find("_HUD").GetComponent<HUD>();
+        GameObject.Find("DoorToMainArea").GetComponent<Door>().isPermanentlyLocked = true;
 
         yield return new WaitForSeconds(1);
         GameObject.Find("DialogueHandler").GetComponent<DialogueHandler>().showDialogue(AvatarShown.MINEMAN, "Oh no! The mine is collapsing!! I better get out of here");
