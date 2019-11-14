@@ -9,7 +9,7 @@ public class BM_Grapple : AbstractBodyMod
     public float shootDelay = 2f;
     public GameObject projectilePrefab;
     public float projectileLifetime = 10f;
-    public float projectileDamage = 1;
+    public float projectileDamage = 0;
     public float projectileSpeed = 8f;
     public GameObject existingProjectile;
 

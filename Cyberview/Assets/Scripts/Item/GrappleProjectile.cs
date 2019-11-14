@@ -6,7 +6,7 @@ public class GrappleProjectile : MonoBehaviour
 {
     private Rigidbody2D body2d;
     private float lifetime = 10f;
-    private float damage = 1;
+    public float damage = 0;
     private float speed = 7f;
     private bool right = true;
     private int rightFactor;
@@ -14,7 +14,6 @@ public class GrappleProjectile : MonoBehaviour
 
     public GameObject attachedTerrain;
     public PlayerManager owner;
-    float ownerGravityScale;
     public Vector2 playerVel;
     public bool grappling = false;
 
@@ -49,8 +48,7 @@ public class GrappleProjectile : MonoBehaviour
             }
 
             if(projectileDone){
-                owner.GetComponent<Rigidbody2D>().gravityScale = ownerGravityScale;
-                owner.GetComponent<PlayerManager>().disableInputs = false;
+                owner.GetComponent<Rigidbody2D>().velocity = new Vector2(0,33);
                 Destroy(gameObject);
             }
         }
@@ -76,13 +74,12 @@ public class GrappleProjectile : MonoBehaviour
             var script = target.gameObject.GetComponent<BasicEnemy>();
             if (script != null)
             {
-                script.HitBy(gameObject);
+                //script.HitBy(gameObject);
             }
             Destroy(gameObject);
         }
         else if(target.gameObject.layer == 8){
             attachedTerrain = target.gameObject;
-            ownerGravityScale = owner.GetComponent<Rigidbody2D>().gravityScale;
             float angle = Mathf.Atan2(transform.position.y-owner.transform.position.y, transform.position.x-owner.transform.position.x);
             playerVel = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
             playerVel *= 33;

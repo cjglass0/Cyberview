@@ -84,7 +84,7 @@ public class PlayerManager : AbstractCharacter
         armTwoMod = bm_Grapple;
         unlockedBodyMods.Add(bm_Legs);
         unlockedBodyMods.Add(bm_Grapple);
-        unlockedBodyMods.Add(bm_Drill);
+        //unlockedBodyMods.Add(bm_Drill);
         //unlockedBodyMods.Add(bm_Gun);
 
         hud = GameObject.Find("_HUD").GetComponent<HUD>();

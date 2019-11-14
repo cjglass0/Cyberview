@@ -10677,5 +10677,10 @@ PrefabInstance:
       propertyPath: shootDelay
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8972388180567075028, guid: b5306545ae1ca9f4fb3225afce834bb7,
+        type: 3}
+      propertyPath: projectileDamage
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5306545ae1ca9f4fb3225afce834bb7, type: 3}

@@ -175,6 +175,7 @@ public class HUD : MonoBehaviour
         if (dropdown.options[dropdown.value].text == "Gun") equippedBodyMod = playerManager.bm_Gun;
         if (dropdown.options[dropdown.value].text == "StrongArm") equippedBodyMod = playerManager.bm_StrongArm;
         if (dropdown.options[dropdown.value].text == "RegularLegs") equippedBodyMod = playerManager.bm_Legs;
+        if (dropdown.options[dropdown.value].text == "GrappleHook") equippedBodyMod = playerManager.bm_Grapple;
         return equippedBodyMod;
     }
 
