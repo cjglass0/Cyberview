@@ -45,6 +45,7 @@ public class LVL_0_MineCollapse : MonoBehaviour
         bouldersToRemove.SetActive(false);
         rubble.SetActive(true);
         GameObject.Find("_Player").GetComponent<PlayerManager>().health = 10;
+        PlayerPrefs.SetInt("PlayerHealth", 10);
         hud.SetHealth(10);
         hud.ShowTmpMsg("ERROR. ERROR. ERROR.");
         hud.PlayerHitFX();

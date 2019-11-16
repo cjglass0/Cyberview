@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class HUD : MonoBehaviour
@@ -12,15 +13,16 @@ public class HUD : MonoBehaviour
     public PlayerManager playerManager;
     public GameManager gameManager;
     public CanvasGroup playerHUD, pauseMenu, playerHitCG, bmMenu;
+    public RawImage batteryBar;
     public GameObject blackout;
-    private float originalPlayerHitCGalpha;
+    private float originalPlayerHitCGalpha, origBatterySizeX;
     private bool bmMenuLoaded;
     private AudioSource clickSound;
 
-
-    public void Start()
+    private void Awake()
     {
         originalPlayerHitCGalpha = playerHitCG.alpha;
+        origBatterySizeX = batteryBar.rectTransform.sizeDelta.x;
         playerHitCG.alpha = 0;
         clickSound = GetComponent<AudioSource>();
     }
@@ -212,7 +214,7 @@ public class HUD : MonoBehaviour
     public void InitializeHUD()
     {
         UpdateBodyModsDisplay();
-        healthValue.text = playerManager.GetHealth().ToString();
+        SetHealth(playerManager.GetHealth());
         creditValue.text = playerManager.GetCredit().ToString();
     }
 
@@ -239,7 +241,11 @@ public class HUD : MonoBehaviour
         }
     }
 
-    public void SetHealth(int health) { healthValue.text = health.ToString(); }
+    public void SetHealth(int health) { 
+        healthValue.text = health.ToString() + "%";
+        batteryBar.rectTransform.sizeDelta = new Vector2(mapNumber(health, 0, playerManager.origHealth, 0, origBatterySizeX), 51.85f);
+        batteryBar.color = new Color(mapNumber(health, 0, playerManager.origHealth, 1, 0), mapNumber(health, 0, playerManager.origHealth, 0, 1), 0);
+    }
 
     public void SetCredit(int credit) { creditValue.text = credit.ToString(); }
 
@@ -294,4 +300,8 @@ public class HUD : MonoBehaviour
         blackout.gameObject.SetActive(false);
     }
 
+    float mapNumber(float pX, float pA, float pB, float pM, float pN)
+    {
+        return (pX - pA) / (pB - pA) * (pN - pM) + pM;
+    }
 }

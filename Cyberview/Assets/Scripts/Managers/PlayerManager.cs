@@ -24,6 +24,9 @@ public class PlayerManager : AbstractCharacter
 
     public PhysicsMaterial2D myPhysicsMaterial;
 
+    [System.NonSerialized]
+    public int origHealth;
+
     ///// PRIVATE
     public Animator animator;
     private GameObject playerObject;
@@ -35,8 +38,6 @@ public class PlayerManager : AbstractCharacter
     private List<AbstractBodyMod> unlockedBodyMods, allExistingBodyMods;
     private List<DoorKey> keyList;
 
-    private int origHealth;
-
     private float originalFriction = 1f;
 
     //Booleans
@@ -47,12 +48,6 @@ public class PlayerManager : AbstractCharacter
     //Vectors
     private Vector3 originalScale;
 
-    //---------------------------------------------------------------- AWAKE -------------------------------------------
-    void Awake() {
-        base.Awake();
-        body2d = GetComponent<Rigidbody2D>();
-    }
-
     //---------------------------------------------------------------- START -------------------------------------------
     void Start()
     {
@@ -60,6 +55,7 @@ public class PlayerManager : AbstractCharacter
         originalScale = gameObject.transform.localScale;
         animator = GetComponentInChildren<Animator>();
         playerSound = GetComponentInChildren<PlayerSound>();
+        origHealth = health;
 
         //init lists
         interactables = new List<GameObject>();
@@ -101,11 +97,14 @@ public class PlayerManager : AbstractCharacter
             if (PlayerPrefs.HasKey("legsMod")) if (PlayerPrefs.GetString("legsMod") == abm.name) legsMod = abm;
         }
 
+        myPhysicsMaterial.friction = 1f;
+
+        //load health & credit from saved state
+        if (PlayerPrefs.HasKey("PlayerHealth")) health = PlayerPrefs.GetInt("PlayerHealth");
+        if (PlayerPrefs.HasKey("PlayerCredit")) credit = PlayerPrefs.GetInt("PlayerCredit");
+
         hud = GameObject.Find("_HUD").GetComponent<HUD>();
         hud.InitializeHUD();
-
-        origHealth = health;
-        myPhysicsMaterial.friction = 1f;
     }
 
     //---------------------------------------------------------------- UPDATE -------------------------------------------
@@ -315,6 +314,7 @@ public class PlayerManager : AbstractCharacter
             health -= enemy.GetComponent<AbstractEnemy>().damageToPlayerPerHit;
             hud.SetHealth(health);
             hud.PlayerHitFX();
+            PlayerPrefs.SetInt("PlayerHealth", health);
 
             //bump away enemy
             enemy.GetComponent<AbstractEnemy>().PlayerCollision(gameObject);
@@ -412,6 +412,7 @@ public class PlayerManager : AbstractCharacter
         credit += addCredit;
         hud.SetCredit(credit);
         playerSound.SoundPickup();
+        PlayerPrefs.SetInt("PlayerCredit", credit);
     }
     public void Recharge(int recharge)
     {
@@ -420,6 +421,7 @@ public class PlayerManager : AbstractCharacter
         Debug.Log("PlayerManager -> recharge: " + recharge);
         hud.SetHealth(health);
         playerSound.SoundPickup();
+        PlayerPrefs.SetInt("PlayerHealth", health);
     }
     public void AddKey(DoorKey newKey)
     {
