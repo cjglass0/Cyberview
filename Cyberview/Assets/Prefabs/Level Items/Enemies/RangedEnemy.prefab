@@ -755,7 +755,12 @@ MonoBehaviour:
   rightFloorDetector: {fileID: 6974237774653061913}
   speed: 2
   checkRight: 1
-  Bullets: {fileID: 7183765294997109306, guid: a73d5f2bf03c6f4438a08283e7ee0dfe, type: 3}
+  rangedBullets: {fileID: 7183765294997109306, guid: a73d5f2bf03c6f4438a08283e7ee0dfe,
+    type: 3}
+  shootDelay: 0.5
+  bulletLifetime: 10
+  bulletDamage: 1
+  bulletSpeed: 10
 --- !u!70 &5139636056408686027
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
