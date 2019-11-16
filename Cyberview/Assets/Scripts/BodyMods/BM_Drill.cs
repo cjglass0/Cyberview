@@ -82,4 +82,9 @@ public class BM_Drill : AbstractBodyMod
     public override void UnequipBodyMod()
     {
     }
+
+    public void StopDrillAudio()
+    {
+        drillSound.Stop();
+    }
 }

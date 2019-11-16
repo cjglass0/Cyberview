@@ -191,7 +191,7 @@ public class HUD : MonoBehaviour
     }
 
     //Update In-Game HUD Body Mod Display
-    private void UpdateBodyModsDisplay()
+    public void UpdateBodyModsDisplay()
     {
         if (playerManager.GetArmOneMod() != null)
         {

@@ -19,10 +19,10 @@ public class BodyModPickup : AbstractLvlItem
         if (collision.gameObject.name == "_Player")
         {
             collision.gameObject.GetComponent<PlayerManager>().UnlockBodyMod(bodyMod);
-            GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("New Body Mod unlocked: " + bodyMod.name + ". Press Tab to equip.");
+            GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("New Body Mod unlocked: " + bodyMod.name);
 
             //save state
-            //PlayerPrefs.SetInt(objectID, 1);
+            PlayerPrefs.SetInt(objectID, 1);
 
             Destroy(gameObject);
         }

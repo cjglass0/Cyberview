@@ -32,7 +32,7 @@ public class PlayerManager : AbstractCharacter
     private PlayerSound playerSound;
 
     private AbstractBodyMod armOneMod, armTwoMod, legsMod;
-    private List<AbstractBodyMod> unlockedBodyMods;
+    private List<AbstractBodyMod> unlockedBodyMods, allExistingBodyMods;
     private List<DoorKey> keyList;
 
     private int origHealth;
@@ -56,15 +56,6 @@ public class PlayerManager : AbstractCharacter
     //---------------------------------------------------------------- START -------------------------------------------
     void Start()
     {
-        if (armOneMod != null) {
-            armOneMod.SetOwner(this);
-        }
-        if (armTwoMod != null) {
-            armTwoMod.SetOwner(this);
-        }
-        if (legsMod != null) {
-            legsMod.SetOwner(this);
-        }
         playerObject = gameObject;
         originalScale = gameObject.transform.localScale;
         animator = GetComponentInChildren<Animator>();
@@ -72,16 +63,43 @@ public class PlayerManager : AbstractCharacter
 
         //init lists
         interactables = new List<GameObject>();
+        allExistingBodyMods = new List<AbstractBodyMod>();
         unlockedBodyMods = new List<AbstractBodyMod>();
         keyList = new List<DoorKey>();
 
-        //setup Body Mods   <----------- Set which Body Mods are loaded at game startup
+        //setup Body Mods   <----------- Set which Body Mods are loaded at game startup (Depricated, use for Debug only)
         legsMod = bm_Legs;
        // armOneMod = bm_Drill;
         //armTwoMod = bm_Gun;
         unlockedBodyMods.Add(bm_Legs);
         //unlockedBodyMods.Add(bm_Drill);
         //unlockedBodyMods.Add(bm_Gun);
+
+        //<------------------------- Make sure to add all Body Mods here
+        allExistingBodyMods.Add(bm_Gun); 
+        allExistingBodyMods.Add(bm_Legs); 
+        allExistingBodyMods.Add(bm_StrongArm);
+        allExistingBodyMods.Add(bm_Drill);
+
+        //Load unlocked body mods from saved state
+        foreach (AbstractBodyMod abm in allExistingBodyMods)
+        {
+            if (PlayerPrefs.HasKey(abm.name)) unlockedBodyMods.Add(abm);
+        }
+
+        //equip body mods last used
+        foreach (AbstractBodyMod abm in unlockedBodyMods)
+        {
+            if (PlayerPrefs.HasKey("armOneMod")) if (PlayerPrefs.GetString("armOneMod") == abm.name) armOneMod = abm;
+        }
+        foreach (AbstractBodyMod abm in unlockedBodyMods)
+        {
+            if (PlayerPrefs.HasKey("armTwoMod")) if (PlayerPrefs.GetString("armTwoMod") == abm.name) armTwoMod = abm;
+        }
+        foreach (AbstractBodyMod abm in unlockedBodyMods)
+        {
+            if (PlayerPrefs.HasKey("legsMod")) if (PlayerPrefs.GetString("legsMod") == abm.name) legsMod = abm;
+        }
 
         hud = GameObject.Find("_HUD").GetComponent<HUD>();
         hud.InitializeHUD();
@@ -357,15 +375,37 @@ public class PlayerManager : AbstractCharacter
         if (!unlockedBodyMods.Contains(newMod))
         {
             unlockedBodyMods.Add(newMod);
+            
+            //save unlocked body mods
+            foreach (AbstractBodyMod abm in unlockedBodyMods)
+            {
+                if (!PlayerPrefs.HasKey(abm.name)) PlayerPrefs.SetInt(abm.name, 1);
+            }
+
             Debug.Log("PlayerManager -> Unlocked: " + newMod);
             playerSound.SoundPickup();
+
+            if (newMod.bodyModType == BodyModType.UPPERBODY)
+            {
+                if (armOneMod == null) { armOneMod = newMod; hud.UpdateBodyModsDisplay(); }
+                else if (armTwoMod == null) { armTwoMod = newMod; hud.UpdateBodyModsDisplay(); }
+            }
         }
     }
     public void SetMod(int whichOne, AbstractBodyMod newMod)
     {
-        if (whichOne == 0) { armOneMod = newMod; if (newMod != null) Debug.Log("PlayerManager -> SetMod(): Arm One Mod, " + newMod.gameObject.name); }
-        if (whichOne == 1) { armTwoMod = newMod; if (newMod != null) Debug.Log("PlayerManager -> SetMod(): Arm Two Mod, " + newMod.gameObject.name); }
-        if (whichOne == 2) { legsMod = newMod; if (newMod != null) Debug.Log("PlayerManager -> SetMod(): Legs Mod, " + newMod.gameObject.name); }
+        if (whichOne == 0 && newMod != null) { 
+            armOneMod = newMod; Debug.Log("PlayerManager -> SetMod(): Arm One Mod, " + newMod.gameObject.name);
+            PlayerPrefs.SetString("armOneMod", newMod.name);
+        }
+        if (whichOne == 1 && newMod != null) { 
+            armTwoMod = newMod; Debug.Log("PlayerManager -> SetMod(): Arm Two Mod, " + newMod.gameObject.name);
+            PlayerPrefs.SetString("armTwoMod", newMod.name);
+        }
+        if (whichOne == 2 && newMod != null) { 
+            legsMod = newMod; Debug.Log("PlayerManager -> SetMod(): Legs Mod, " + newMod.gameObject.name);
+            PlayerPrefs.SetString("legsMod", newMod.name);
+        }
     }
     public void AddCredit(int addCredit)
     {

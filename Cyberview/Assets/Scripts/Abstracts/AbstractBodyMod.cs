@@ -55,10 +55,6 @@ public abstract class AbstractBodyMod : MonoBehaviour
         macroState = state;
     }
 
-    public void SetOwner(PlayerManager g){
-        owner = g;
-    }
-
     public void Awake()
     {
         animator = owner.animator;

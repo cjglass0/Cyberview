@@ -9,6 +9,16 @@ public class LVL_0_MineCollapse : MonoBehaviour
     public GameObject theDudeThatRunsAway, rubble, bouldersToRemove;
     private bool collected;
 
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("MineAlreadyCollapsed")){
+            theDudeThatRunsAway.SetActive(false);
+            bouldersToRemove.SetActive(false);
+            rubble.SetActive(true);
+            collected = true;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "_Player" && !collected)
@@ -45,5 +55,7 @@ public class LVL_0_MineCollapse : MonoBehaviour
         yield return new WaitForSeconds(4.1f);
         GameObject.Find("DoorToMainArea").GetComponent<Door>().isPermanentlyLocked = false;
         hud.GetComponent<HUD>().ShowTmpMsg("Error: Critical System Damage. Go to Repair Shop immediately.");
+
+        PlayerPrefs.SetInt("MineAlreadyCollapsed", 1);
     }
 }

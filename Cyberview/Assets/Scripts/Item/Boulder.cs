@@ -51,7 +51,8 @@ public class Boulder : AbstractLvlItem
         Debug.Log("Boulder -> DestroyBoulder");
         PlayerManager player = GameObject.Find("_Player").GetComponent<PlayerManager>();
         player.RemoveInteractable(gameObject);
-        player.GetPlayerSound().SoundBoulder();
+        //player.GetPlayerSound().SoundBoulder();
+        player.bm_Drill.StopDrillAudio();
 
         //save state
         PlayerPrefs.SetInt(objectID, 1);

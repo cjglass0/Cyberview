@@ -1290,7 +1290,7 @@ Transform:
   - {fileID: 87546106}
   - {fileID: 557879564}
   - {fileID: 469134646}
-  - {fileID: 8808549696856121355}
+  - {fileID: 1005698773}
   - {fileID: 1528778175}
   - {fileID: 773552490}
   - {fileID: 1365109674}
@@ -1304,6 +1304,86 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1005698772
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 942716541}
+    m_Modifications:
+    - target: {fileID: 1461359710426423547, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: m_Name
+      value: DialogueTimerTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -97.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -72.77754
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.907555
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: message
+      value: Unit 241, you are now to report to mine shaft 7. Get going already!
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ca7df5e1bc902f3419be5d08287fc9de, type: 3}
+--- !u!4 &1005698773 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
+    type: 3}
+  m_PrefabInstance: {fileID: 1005698772}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1060359042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11120,97 +11200,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26b62b6ac49b78a4cb0d1b2c6aab0846, type: 3}
---- !u!1001 &8808549696856121354
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 942716541}
-    m_Modifications:
-    - target: {fileID: 8808549698303525398, guid: f9af2b395138eda45a74a4dbbdb918eb,
-        type: 3}
-      propertyPath: m_Name
-      value: DialogueTrigger
-      objectReference: {fileID: 0}
-    - target: {fileID: 8808549698303525396, guid: f9af2b395138eda45a74a4dbbdb918eb,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -54.024727
-      objectReference: {fileID: 0}
-    - target: {fileID: 8808549698303525396, guid: f9af2b395138eda45a74a4dbbdb918eb,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -72.77754
-      objectReference: {fileID: 0}
-    - target: {fileID: 8808549698303525396, guid: f9af2b395138eda45a74a4dbbdb918eb,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 12.907555
-      objectReference: {fileID: 0}
-    - target: {fileID: 8808549698303525396, guid: f9af2b395138eda45a74a4dbbdb918eb,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8808549698303525396, guid: f9af2b395138eda45a74a4dbbdb918eb,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8808549698303525396, guid: f9af2b395138eda45a74a4dbbdb918eb,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8808549698303525396, guid: f9af2b395138eda45a74a4dbbdb918eb,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8808549698303525396, guid: f9af2b395138eda45a74a4dbbdb918eb,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8808549698303525396, guid: f9af2b395138eda45a74a4dbbdb918eb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8808549698303525396, guid: f9af2b395138eda45a74a4dbbdb918eb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8808549698303525396, guid: f9af2b395138eda45a74a4dbbdb918eb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8808549698303525396, guid: f9af2b395138eda45a74a4dbbdb918eb,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 94.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8808549698303525397, guid: f9af2b395138eda45a74a4dbbdb918eb,
-        type: 3}
-      propertyPath: message
-      value: 'Unit 241, now that you have picked up the Drill, press Tab to equip
-        it.
-
-
-        Once you equipped the Drill, you are to report to mine shaft 7.'
-      objectReference: {fileID: 0}
-    - target: {fileID: 8808549698303525397, guid: f9af2b395138eda45a74a4dbbdb918eb,
-        type: 3}
-      propertyPath: avatar
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f9af2b395138eda45a74a4dbbdb918eb, type: 3}
---- !u!4 &8808549696856121355 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8808549698303525396, guid: f9af2b395138eda45a74a4dbbdb918eb,
-    type: 3}
-  m_PrefabInstance: {fileID: 8808549696856121354}
-  m_PrefabAsset: {fileID: 0}
