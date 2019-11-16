@@ -11,6 +11,7 @@ public class GrappleProjectile : MonoBehaviour
     private bool right = true;
     private int rightFactor;
     public bool projectileDone = false;
+    public bool hitEnemyFlag = false;
 
     public GameObject attachedTerrain;
     public PlayerManager owner;
@@ -76,7 +77,7 @@ public class GrappleProjectile : MonoBehaviour
             {
                 //script.HitBy(gameObject);
             }
-            Destroy(gameObject);
+            hitEnemyFlag = true;
         }
         else if(target.gameObject.layer == 8){
             attachedTerrain = target.gameObject;

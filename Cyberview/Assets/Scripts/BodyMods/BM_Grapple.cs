@@ -19,7 +19,12 @@ public class BM_Grapple : AbstractBodyMod
     // Update is called once per frame
     void Update()
     {
-        
+        if(existingProjectile){
+            if(existingProjectile.GetComponent<GrappleProjectile>().hitEnemyFlag){
+                Destroy(existingProjectile);
+                StartCoroutine(ShootDelay());
+            }
+        }
     }
 
     private void Shoot()
