@@ -68,6 +68,8 @@ public class LvlManager : MonoBehaviour
         Debug.Log("LevelManager -> InitLevel");
 
         levelStartTime = Time.time;
+
+        //Set saved states
     }
 
     public void CollectedDoorKey()

@@ -23,7 +23,7 @@ public abstract class AbstractCharacter : MonoBehaviour
     //Convenient access to the rigidbody
     protected Rigidbody2D body2d;
 
-    protected void Awake(){
+    protected virtual void Awake(){
         try
         {
             inputState = GetComponent<InputState>();

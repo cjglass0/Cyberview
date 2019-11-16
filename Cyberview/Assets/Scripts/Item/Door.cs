@@ -37,7 +37,7 @@ public class Door : MonoBehaviour
             {
                 collected = true;
                 playerManager.gameManager.LoadScene(sceneToLoad);
-
+                playerManager.GetPlayerSound().SoundDoor();
             }
         }
     }

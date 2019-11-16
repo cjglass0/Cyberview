@@ -15,12 +15,14 @@ public class HUD : MonoBehaviour
     public GameObject blackout;
     private float originalPlayerHitCGalpha;
     private bool bmMenuLoaded;
+    private AudioSource clickSound;
 
 
     public void Start()
     {
         originalPlayerHitCGalpha = playerHitCG.alpha;
         playerHitCG.alpha = 0;
+        clickSound = GetComponent<AudioSource>();
     }
 
     public void Update()
@@ -39,6 +41,7 @@ public class HUD : MonoBehaviour
 
     public void BtnPause ()
     {
+        clickSound.Play();
         gameManager.paused = true;
         Debug.Log("HUD -> Pause");
         Time.timeScale = 0;
@@ -52,6 +55,7 @@ public class HUD : MonoBehaviour
 
     public void BtnResume()
     {
+        clickSound.Play();
         gameManager.paused = false;
         Debug.Log("HUD -> Resume");
         Time.timeScale = 1;
@@ -63,8 +67,16 @@ public class HUD : MonoBehaviour
         pauseMenu.gameObject.SetActive(false);
     }
 
+    public void BtnClearStorage()
+    {
+        clickSound.Play();
+        Debug.Log("HUD -> DEBUG: Cleared Storage");
+        PlayerPrefs.DeleteAll();
+    }
+
     public void BtnExitBMMenu()
     {
+        clickSound.Play();
         gameManager.paused = false;
         Debug.Log("HUD -> Exit BM MEnu");
         Time.timeScale = 1;
@@ -208,6 +220,7 @@ public class HUD : MonoBehaviour
     {
         if (!bmMenuLoaded)
         {
+            clickSound.Play();
             gameManager.paused = true;
             Debug.Log("HUD -> Body Mod Menu");
             Time.timeScale = 0;

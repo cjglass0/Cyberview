@@ -7,7 +7,18 @@ public abstract class AbstractEnemy : AbstractCharacter
     public int damageToPlayerPerHit;
     bool updateMovement = true;
 
+    [System.NonSerialized]
+    public string objectID;
+
     public abstract void UpdateMovement();
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        objectID = gameObject.scene.name + ", x=" + gameObject.transform.position.x + ", y=" + gameObject.transform.position.y;
+        if (PlayerPrefs.HasKey(objectID)) gameObject.SetActive(false);
+    }
 
     protected virtual void Update()
     {
@@ -58,7 +69,11 @@ public abstract class AbstractEnemy : AbstractCharacter
         if (coinflip < 1)
         {
             GameObject.Find("LevelManager").GetComponent<LvlManager>().SpawnRandomReward(gameObject.transform.position);
-        } 
+        }
+
+        //save state
+        PlayerPrefs.SetInt(objectID, 1);
+
         Destroy(gameObject);
 
     }

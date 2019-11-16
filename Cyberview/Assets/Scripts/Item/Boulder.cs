@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boulder : MonoBehaviour
+public class Boulder : AbstractLvlItem
 {
     SpriteRenderer spriteRenderer;
     public Sprite solid, translucent;
@@ -49,7 +49,13 @@ public class Boulder : MonoBehaviour
     void DestroyBoulder()
     {
         Debug.Log("Boulder -> DestroyBoulder");
-        GameObject.Find("_Player").GetComponent<PlayerManager>().RemoveInteractable(gameObject);
+        PlayerManager player = GameObject.Find("_Player").GetComponent<PlayerManager>();
+        player.RemoveInteractable(gameObject);
+        player.GetPlayerSound().SoundBoulder();
+
+        //save state
+        PlayerPrefs.SetInt(objectID, 1);
+
         Destroy(gameObject);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSound : MonoBehaviour
 {
-    public AudioSource footstep1, footstep2, pickup, jump;
+    public AudioSource footstep1, footstep2, pickup, jump, boulder, door;
 
     public void SoundFootStep1()
     {
@@ -30,5 +30,15 @@ public class PlayerSound : MonoBehaviour
         footstep2.Stop();
         jump.Stop();
         jump.Play();
+    }
+    public void SoundBoulder()
+    {
+        boulder.Stop();
+        boulder.Play();
+    }
+    public void SoundDoor()
+    {
+        door.Stop();
+        door.Play();
     }
 }

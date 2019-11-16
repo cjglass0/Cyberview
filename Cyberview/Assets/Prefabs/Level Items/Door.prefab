@@ -95,6 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: 0
   doorKey: {fileID: 0}
+  isPermanentlyLocked: 0
 --- !u!61 &3809820164273493150
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -340,7 +340,10 @@ public class PlayerManager : AbstractCharacter
     public int GetHealth() { return health; }
     public bool HasKey(DoorKey newKey)
     {
-        return keyList.Contains(newKey);
+        bool hasKey = false;
+        //TODO: key saving system has not been tested yet
+        if (keyList.Contains(newKey) || PlayerPrefs.HasKey(newKey.objectID)) hasKey = true;
+        return hasKey;
     }
     public PlayerSound GetPlayerSound() { return playerSound;  }
 
@@ -382,5 +385,8 @@ public class PlayerManager : AbstractCharacter
     {
         keyList.Add(newKey);
         playerSound.SoundPickup();
+
+        //save that the key has been collected
+        PlayerPrefs.SetInt(newKey.objectID, 1);
     }
 }
