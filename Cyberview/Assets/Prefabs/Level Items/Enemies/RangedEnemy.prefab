@@ -683,8 +683,9 @@ GameObject:
   - component: {fileID: 8580783245522544794}
   - component: {fileID: 2684749239990224406}
   - component: {fileID: 5139636056408686027}
+  - component: {fileID: 7760883444634951628}
   m_Layer: 0
-  m_Name: ranged enemy draft
+  m_Name: RangedEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -753,6 +754,8 @@ MonoBehaviour:
   leftFloorDetector: {fileID: 8670537472260271902}
   rightFloorDetector: {fileID: 6974237774653061913}
   speed: 2
+  checkRight: 1
+  Bullets: {fileID: 7183765294997109306, guid: a73d5f2bf03c6f4438a08283e7ee0dfe, type: 3}
 --- !u!70 &5139636056408686027
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -769,6 +772,25 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 3}
   m_Size: {x: 6, y: 2}
   m_Direction: 0
+--- !u!95 &7760883444634951628
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3541667119627751340}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c5c61811820b36d41b3e06e89e5664c1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3541667119627751342
 GameObject:
   m_ObjectHideFlags: 0
