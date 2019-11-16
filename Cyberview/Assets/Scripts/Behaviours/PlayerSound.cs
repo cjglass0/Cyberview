@@ -1,0 +1,34 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerSound : MonoBehaviour
+{
+    public AudioSource footstep1, footstep2, pickup, jump;
+
+    public void SoundFootStep1()
+    {
+        footstep1.Stop();
+        footstep1.Play();
+    }
+
+    public void SoundFootStep2()
+    {
+        footstep2.Stop();
+        footstep2.Play();
+    }
+
+    public void SoundPickup()
+    {
+        pickup.Stop();
+        pickup.Play();
+    }
+
+    public void SoundJump()
+    {
+        footstep1.Stop();
+        footstep2.Stop();
+        jump.Stop();
+        jump.Play();
+    }
+}

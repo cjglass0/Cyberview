@@ -31,6 +31,7 @@ public class BM_Legs : AbstractBodyMod
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
                 owner.GetComponentInChildren<Animator>().SetBool("jump", true);
+                owner.GetPlayerSound().SoundJump();
             }
 
 

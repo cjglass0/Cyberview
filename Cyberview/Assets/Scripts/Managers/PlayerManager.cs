@@ -29,6 +29,7 @@ public class PlayerManager : AbstractCharacter
     private GameObject playerObject;
     private List<GameObject> interactables;
     private HUD hud;
+    private PlayerSound playerSound;
 
     private AbstractBodyMod armOneMod, armTwoMod, legsMod;
     private List<AbstractBodyMod> unlockedBodyMods;
@@ -67,6 +68,7 @@ public class PlayerManager : AbstractCharacter
         playerObject = gameObject;
         originalScale = gameObject.transform.localScale;
         animator = GetComponentInChildren<Animator>();
+        playerSound = GetComponentInChildren<PlayerSound>();
 
         //init lists
         interactables = new List<GameObject>();
@@ -279,6 +281,8 @@ public class PlayerManager : AbstractCharacter
         {
             animator.SetBool("jump", false);
             myPhysicsMaterial.friction = originalFriction;
+            if (!leftPressed && !rightPressed) playerSound.SoundFootStep1();
+
         } else
         {
             myPhysicsMaterial.friction = 0f;
@@ -338,6 +342,7 @@ public class PlayerManager : AbstractCharacter
     {
         return keyList.Contains(newKey);
     }
+    public PlayerSound GetPlayerSound() { return playerSound;  }
 
     //------------------------------------------------------------- Set-Methods
     public void RemoveInteractable(GameObject objectToRemove)
@@ -350,6 +355,7 @@ public class PlayerManager : AbstractCharacter
         {
             unlockedBodyMods.Add(newMod);
             Debug.Log("PlayerManager -> Unlocked: " + newMod);
+            playerSound.SoundPickup();
         }
     }
     public void SetMod(int whichOne, AbstractBodyMod newMod)
@@ -362,6 +368,7 @@ public class PlayerManager : AbstractCharacter
     {
         credit += addCredit;
         hud.SetCredit(credit);
+        playerSound.SoundPickup();
     }
     public void Recharge(int recharge)
     {
@@ -369,9 +376,11 @@ public class PlayerManager : AbstractCharacter
         if (health > origHealth) health = origHealth;
         Debug.Log("PlayerManager -> recharge: " + recharge);
         hud.SetHealth(health);
+        playerSound.SoundPickup();
     }
     public void AddKey(DoorKey newKey)
     {
         keyList.Add(newKey);
+        playerSound.SoundPickup();
     }
 }

@@ -60,7 +60,7 @@ public class LvlManager : MonoBehaviour
         // set player pos
         player.transform.position = defaultSpawnPoint.transform.position;
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-        playerManager.Recharge(50);
+        //playerManager.Recharge(50);
         playerManager.isFacingRight = true;
 
         //setup camera target
