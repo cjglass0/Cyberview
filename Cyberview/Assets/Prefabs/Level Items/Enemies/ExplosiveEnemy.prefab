@@ -642,6 +642,7 @@ MonoBehaviour:
   rightFloorDetector: {fileID: 0}
   speed: 2
   checkRight: 1
+  explosionDelay: 2
 --- !u!70 &753561020910341152
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

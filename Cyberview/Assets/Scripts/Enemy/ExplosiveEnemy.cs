@@ -13,6 +13,7 @@ public class ExplosiveEnemy : AbstractEnemy
     public float speed;
     public bool checkRight = true;
     public float explosionDelay = 2f;
+    public bool selfDestruct = true;
     
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class ExplosiveEnemy : AbstractEnemy
           
 		}
 		if (Vector2.Distance(transform.position, player.position) <= 5) {
+
 			StartCoroutine(ExplosionDelay());
 		} 
 
@@ -45,8 +47,11 @@ public class ExplosiveEnemy : AbstractEnemy
 
 	IEnumerator ExplosionDelay(){
         yield return new WaitForSeconds(explosionDelay);
+        selfDestruct = true;
         Destroy(gameObject);
+        selfDestruct = false;
 	}
+ 
 
     public override void UpdateMovement()
     {
@@ -78,4 +83,16 @@ public class ExplosiveEnemy : AbstractEnemy
 
         //Debug.Log("BasicEnemy -> SetIsGrounded(" + newGroundedState + colliderObjectName);
     }
+
+     private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player"){
+        	var script = collision.gameObject.GetComponent<PlayerManager>();
+            if (script != null && selfDestruct)
+            {
+                script.HitByEnemy(gameObject);
+            }
+        }
+    }
+
 }
