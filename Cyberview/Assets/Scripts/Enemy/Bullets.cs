@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bullets : MonoBehaviour
 {
-
     private Rigidbody2D body2d;
     private float lifetime = 10f;
     private float damage = 1;
@@ -31,19 +30,29 @@ public class Bullets : MonoBehaviour
         right = pRight;
         if (!right) { rightFactor = -1; } else { rightFactor = 1; }
     }
-
-    void OnCollision(Collision2D target)
+    private void OnTriggerEnter2D(Collider2D target)
     {
-        if (target.gameObject.layer == 12)
+        Debug.Log("Bullet Collision: " + target.gameObject.name);
+
+        if (target.gameObject.tag == "Player")
         {
-            //do something to the enemy
+            //damage the player
             var script = target.gameObject.GetComponent<PlayerManager>();
             if (script != null)
             {
                 script.HitByEnemy(gameObject);
             }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        else if (target.gameObject.tag != "rangedBullet" && (target.gameObject.layer == 8))
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public int DamageToCharacter()
+    {
+        return (int) damage;
     }
 }
 

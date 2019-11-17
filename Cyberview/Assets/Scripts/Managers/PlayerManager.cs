@@ -289,13 +289,23 @@ public class PlayerManager : AbstractCharacter
     {
         if (!invincible)
         {
+            bool hitByBullet = false;
+
             //decrease player health based on enemy's set damage
-            health -= enemy.GetComponent<AbstractEnemy>().damageToPlayerPerHit;
+            if (enemy.GetComponent<AbstractEnemy>() != null) health -= enemy.GetComponent<AbstractEnemy>().damageToPlayerPerHit;
+            if (enemy.GetComponent<Bullets>() != null)
+            {
+                health -= enemy.GetComponent<Bullets>().DamageToCharacter();
+                hitByBullet = true;
+            }
             hud.SetHealth(health);
             hud.PlayerHitFX();
 
             //bump away enemy
-            enemy.GetComponent<AbstractEnemy>().PlayerCollision(gameObject);
+            if (!hitByBullet)
+            {
+                enemy.GetComponent<AbstractEnemy>().PlayerCollision(gameObject);
+            }
             Debug.Log("PlayerManager -> HitByEnemy:" + enemy.name + ". New Player Health:" + health);
 
             //bump player

@@ -42,7 +42,7 @@ public class RangedEnemy : AbstractEnemy
       //If the player is farther than 15 away and NOT farther than 30 away, follow the player. Else, don't.
         if (Vector2.Distance(transform.position, player.position) > 15 && Vector2.Distance(transform.position, player.position) < 30) {
         	animator.SetBool("walk", true);
-            StartCoroutine(ShootDelay());
+            if (canShoot)  StartCoroutine(ShootDelay());
         	transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         
         
@@ -79,8 +79,10 @@ public class RangedEnemy : AbstractEnemy
 
       IEnumerator ShootDelay()
     {
-       yield return new WaitForSeconds(shootDelay);
-       Shoot(); 
+        canShoot = false;
+        Shoot();
+        yield return new WaitForSeconds(shootDelay);
+        canShoot = true;
     }
 
      void lookAtPlayer(){
@@ -97,7 +99,7 @@ public class RangedEnemy : AbstractEnemy
         //walk
 	     if (animator.GetBool("walk")){
 	        body2d.velocity = new Vector2(speed, body2d.velocity.y);
-	        if (speed < 3 && speed > -3) Debug.Log("Ranged Enemy -> speed = " + speed);
+	        //if (speed < 3 && speed > -3) Debug.Log("Ranged Enemy -> speed = " + speed);
 	    } 
     }
 

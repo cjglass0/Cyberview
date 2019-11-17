@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7097178646851662046}
   m_Layer: 0
   m_Name: rangedBullets
-  m_TagString: Untagged
+  m_TagString: rangedBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!61 &61841845412159294
 BoxCollider2D:

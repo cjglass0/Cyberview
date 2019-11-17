@@ -7,6 +7,8 @@ TagManager:
   - HeavyBlock
   - SpawnPoint
   - Boulder
+  - rangedBullet
+  - rangedEnemy
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
-    //Kinds sloppy rn. Is used by both the player and enemies. Triggers are used for enemies, collisions are used for player (because
+    //Kinda sloppy rn. Is used by both the player and enemies. Triggers are used for enemies, collisions are used for player (because
     //the enemy uses trigger colliders, while the player uses one solid collider for ground-check)
 
     public AbstractCharacter abstractCharacter;
@@ -14,7 +14,7 @@ public class GroundCheck : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 8 && groundCheckIsSolid) {
+        if ((collision.gameObject.layer == 8 || collision.gameObject.tag == "rangedEnemy") && groundCheckIsSolid) {
             abstractCharacter.SetIsGrounded(true, gameObject.name);
             //Debug.Log("GroundCheck -> grounded");
         }
@@ -23,7 +23,7 @@ public class GroundCheck : MonoBehaviour
 
     public void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 8 && groundCheckIsSolid)
+        if ((collision.gameObject.layer == 8 || collision.gameObject.tag == "rangedEnemy") && groundCheckIsSolid)
         {
             abstractCharacter.SetIsGrounded(false, gameObject.name);
             //Debug.Log("GroundCheck -> not grounded");

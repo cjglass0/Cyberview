@@ -682,11 +682,11 @@ GameObject:
   - component: {fileID: 3541667119627260812}
   - component: {fileID: 8580783245522544794}
   - component: {fileID: 2684749239990224406}
-  - component: {fileID: 5139636056408686027}
   - component: {fileID: 7760883444634951628}
+  - component: {fileID: 2103892177031080744}
   m_Layer: 0
   m_Name: RangedEnemy
-  m_TagString: Untagged
+  m_TagString: rangedEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -761,22 +761,6 @@ MonoBehaviour:
   bulletLifetime: 10
   bulletDamage: 1
   bulletSpeed: 10
---- !u!70 &5139636056408686027
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3541667119627751340}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 3}
-  m_Size: {x: 6, y: 2}
-  m_Direction: 0
 --- !u!95 &7760883444634951628
 Animator:
   serializedVersion: 3
@@ -796,6 +780,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &2103892177031080744
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3541667119627751340}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 2.82}
+  serializedVersion: 2
+  m_Radius: 2.7
 --- !u!1 &3541667119627751342
 GameObject:
   m_ObjectHideFlags: 0
