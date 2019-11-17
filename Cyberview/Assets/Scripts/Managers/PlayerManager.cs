@@ -10,9 +10,14 @@ public class PlayerManager : AbstractCharacter
     public BM_Legs bm_Legs;
     public BM_StrongArm bm_StrongArm;
     public BM_Drill bm_Drill;
+    public BM_Grapple bm_Grapple;
     public GameManager gameManager;
 
     public int credit;
+
+    //if we want a body mod to disable user input then  we can set this to true
+    //very important to return to false after
+    public bool disableInputs = false;
 
     //should change this to be some kind of ground movement object
     public float walkSpeed = 15;
@@ -76,8 +81,9 @@ public class PlayerManager : AbstractCharacter
         //setup Body Mods   <----------- Set which Body Mods are loaded at game startup
         legsMod = bm_Legs;
        // armOneMod = bm_Drill;
-        //armTwoMod = bm_Gun;
+        //armTwoMod = bm_Grapple;
         unlockedBodyMods.Add(bm_Legs);
+        //unlockedBodyMods.Add(bm_Grapple);
         //unlockedBodyMods.Add(bm_Drill);
         //unlockedBodyMods.Add(bm_Gun);
 
@@ -107,14 +113,26 @@ public class PlayerManager : AbstractCharacter
 
     private void InputsUpdate()
     {
-        rightPressed = inputState.GetButtonValue(Buttons.Right);
-        leftPressed = inputState.GetButtonValue(Buttons.Left);
-        armOnePressed = inputState.GetButtonValue(Buttons.ArmOne);
-        armTwoPressed = inputState.GetButtonValue(Buttons.ArmTwo);
-        legsPressed = inputState.GetButtonValue(Buttons.Legs);
-        actionPressed = inputState.GetButtonValue(Buttons.Action);
-        crouchPressed = inputState.GetButtonValue(Buttons.Crouch);
-        pausePressed = inputState.GetButtonValue(Buttons.Pause);
+        if(!disableInputs){
+            rightPressed = inputState.GetButtonValue(Buttons.Right);
+            leftPressed = inputState.GetButtonValue(Buttons.Left);
+            armOnePressed = inputState.GetButtonValue(Buttons.ArmOne);
+            armTwoPressed = inputState.GetButtonValue(Buttons.ArmTwo);
+            legsPressed = inputState.GetButtonValue(Buttons.Legs);
+            actionPressed = inputState.GetButtonValue(Buttons.Action);
+            crouchPressed = inputState.GetButtonValue(Buttons.Crouch);
+            pausePressed = inputState.GetButtonValue(Buttons.Pause);
+        }
+        else{
+            rightPressed = false;
+            leftPressed = false;
+            armOnePressed = false;
+            armTwoPressed = false;
+            legsPressed = false;
+            actionPressed = false;
+            crouchPressed = false;
+            pausePressed = false;
+        }
     }
 
     private void BodyModsUpdate()

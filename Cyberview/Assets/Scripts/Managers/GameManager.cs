@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public readonly static int CREDITS = 2;
     public readonly static int FIRST_LVL = 3;
     public readonly static int LAST_LVL = 5;
-    
+    public readonly static int TEST_VALUE = 6;
 
     //Scenes
     private int currentScene = FIRST_LVL; //<--- Set first Scene to load (should eventually be set by loading saved progress)
