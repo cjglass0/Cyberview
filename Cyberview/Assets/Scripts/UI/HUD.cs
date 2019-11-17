@@ -37,6 +37,10 @@ public class HUD : MonoBehaviour
                 BtnExitBMMenu();
             }
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Time.timeScale == 1) { BtnPause(); } else { BtnResume(); }
+        }
     }
 
     //----------------------------------------------------------- OnClick Methods -------------------------------------------------

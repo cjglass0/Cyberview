@@ -48,5 +48,5 @@ MonoBehaviour:
   bodyModType: 1
   microState: 0
   timePerTick: 1
-  energyCostPerTick: 0
+  energyCostPerTick: 1
   name: RegularLegs

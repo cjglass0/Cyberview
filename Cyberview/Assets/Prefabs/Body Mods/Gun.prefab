@@ -45,9 +45,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   macroState: 0
+  bodyModType: 0
   microState: 0
   timePerTick: 1
-  energyCostPerTick: 0
+  energyCostPerTick: 2
   name: Gun
   shootDelay: 0.5
   projectilePrefab: {fileID: 820217529861135154, guid: 6e9e679749306814c9ee19766f8434f3,

@@ -27,11 +27,15 @@ public class BM_Legs : AbstractBodyMod
         } else
         {
             //Jump
-            if (jump && playerManager.isGrounded)
+            if (jump && playerManager.isGrounded && !startingUp)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
                 owner.GetComponentInChildren<Animator>().SetBool("jump", true);
                 owner.GetPlayerSound().SoundJump();
+                owner.DecreaseHealth(energyCostPerTick);
+
+                //start delay coroutine to avoid multiple calls while still grounded
+                StartCoroutine(StartUpDelay());
             }
 
 

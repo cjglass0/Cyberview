@@ -346,7 +346,7 @@ public class PlayerManager : AbstractCharacter
     //------------------------------------------------------------- Get-Methods
     public List<GameObject> GetInteractables()
     {
-        //Debug.Log("PlayerManager -> Interactables n = " + interactables.Count);
+        Debug.Log("PlayerManager -> Interactables n = " + interactables.Count);
         for (int i = interactables.Count - 1; i >= 0; i--) { if (interactables[i] == null) interactables.Remove(interactables[i]);  }
         return interactables;
     }
@@ -430,5 +430,10 @@ public class PlayerManager : AbstractCharacter
 
         //save that the key has been collected
         PlayerPrefs.SetInt(newKey.objectID, 1);
+    }
+    public void DecreaseHealth(int healthDecrease)
+    {
+        health -= healthDecrease;
+        hud.SetHealth(health);
     }
 }

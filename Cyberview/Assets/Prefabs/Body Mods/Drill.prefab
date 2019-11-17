@@ -51,7 +51,7 @@ MonoBehaviour:
   bodyModType: 0
   microState: 0
   timePerTick: 1
-  energyCostPerTick: 0
+  energyCostPerTick: 2
   name: Drill
 --- !u!58 &484241171
 CircleCollider2D:

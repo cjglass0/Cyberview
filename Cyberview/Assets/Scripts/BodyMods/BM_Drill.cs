@@ -52,7 +52,7 @@ public class BM_Drill : AbstractBodyMod
                 }
             }
         }
-        if (hitBoulder)
+        if (hitBoulder && !startingUp)
         {
             GotoState(BodyModState.ACTIVE);
             if (!drillSound.isPlaying) drillSound.Play();
@@ -83,8 +83,9 @@ public class BM_Drill : AbstractBodyMod
     {
     }
 
-    public void StopDrillAudio()
+    public void BoulderDestroyed()
     {
+        owner.DecreaseHealth(energyCostPerTick);
         drillSound.Stop();
     }
 }

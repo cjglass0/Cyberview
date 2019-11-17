@@ -45,7 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   macroState: 0
+  bodyModType: 0
   microState: 0
-  timePerTick: 1
-  energyCostPerTick: 0
+  timePerTick: 5
+  energyCostPerTick: 1
   name: StrongArm
