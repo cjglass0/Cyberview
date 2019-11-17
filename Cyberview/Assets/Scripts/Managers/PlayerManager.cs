@@ -81,11 +81,11 @@ public class PlayerManager : AbstractCharacter
         //setup Body Mods   <----------- Set which Body Mods are loaded at game startup
         legsMod = bm_Legs;
        // armOneMod = bm_Drill;
-        armTwoMod = bm_Grapple;
+        //armTwoMod = bm_Grapple;
         unlockedBodyMods.Add(bm_Legs);
-        unlockedBodyMods.Add(bm_Grapple);
+        //unlockedBodyMods.Add(bm_Grapple);
         //unlockedBodyMods.Add(bm_Drill);
-        unlockedBodyMods.Add(bm_Gun);
+        //unlockedBodyMods.Add(bm_Gun);
 
         hud = GameObject.Find("_HUD").GetComponent<HUD>();
         hud.InitializeHUD();

@@ -22978,14 +22978,14 @@ PrefabInstance:
       value: 'What are waiting for, stupid robot?
 
 
-        Press CTRL to use your Left Arm''s body mod and press SHIFT to use your Right
-        Arm''s body mod. If you haven''t yet, press Tab to equip your Drill to one
-        of your arms.'
+        Press J to use your Left Arm''s body mod and press K to use your Right Arm''s
+        body mod. If you haven''t yet, press Tab to equip your Drill to one of your
+        arms.'
       objectReference: {fileID: 0}
     - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
       propertyPath: showDelay
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}

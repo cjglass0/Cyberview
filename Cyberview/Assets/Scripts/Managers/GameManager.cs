@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public readonly static int TEST_VALUE = 6;
 
     //Scenes
-    private int currentScene = TEST_VALUE; //<--- Set first Scene to load (should eventually be set by loading saved progress)
+    private int currentScene = FIRST_LVL; //<--- Set first Scene to load (should eventually be set by loading saved progress)
     private Scene curScene;
     private bool sceneCurrentlyLoading = false;
 
