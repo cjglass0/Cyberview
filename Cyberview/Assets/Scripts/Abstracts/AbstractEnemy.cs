@@ -6,6 +6,7 @@ public abstract class AbstractEnemy : AbstractCharacter
 {
     public int damageToPlayerPerHit;
     bool updateMovement = true;
+   
 
     public abstract void UpdateMovement();
 
