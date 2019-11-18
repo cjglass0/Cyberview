@@ -9,12 +9,14 @@ public class BM_Drill : AbstractBodyMod
 
     Collider2D myCollider;
     private static float offsetX = 5f;
+    private static AudioSource drillSound;
     bool checkingForBoulder = false;
 
 
     void Start()
     {
         myCollider = GetComponent<CircleCollider2D>();
+        drillSound = GetComponent<AudioSource>();
         myCollider.enabled = false;
     }
 
@@ -33,8 +35,6 @@ public class BM_Drill : AbstractBodyMod
 
     IEnumerator DelayedBoulderCheck()
     {
-        yield return new WaitForSeconds(.5f);
-
         //lower Arm if no boulder in range
         ContactFilter2D contactFilter = new ContactFilter2D();
         Collider2D[] colliderList = new Collider2D [10];
@@ -52,11 +52,15 @@ public class BM_Drill : AbstractBodyMod
                 }
             }
         }
-        if (hitBoulder)
+        if (hitBoulder && !startingUp)
         {
             GotoState(BodyModState.ACTIVE);
+            if (!drillSound.isPlaying) drillSound.Play();
+            yield return new WaitForSeconds(.5f);
         } else
         {
+            drillSound.Stop();
+            yield return new WaitForSeconds(.5f);
             //lower arm & delay again to let lower Arm animation finish
             animator.SetBool("raiseArm", false);
             yield return new WaitForSeconds(.3f);
@@ -77,5 +81,11 @@ public class BM_Drill : AbstractBodyMod
 
     public override void UnequipBodyMod()
     {
+    }
+
+    public void BoulderDestroyed()
+    {
+        owner.DecreaseHealth(energyCostPerTick);
+        drillSound.Stop();
     }
 }

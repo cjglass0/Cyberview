@@ -29,17 +29,19 @@ public class PlayerManager : AbstractCharacter
 
     public PhysicsMaterial2D myPhysicsMaterial;
 
+    [System.NonSerialized]
+    public int origHealth;
+
     ///// PRIVATE
     public Animator animator;
     private GameObject playerObject;
     private List<GameObject> interactables;
     private HUD hud;
+    private PlayerSound playerSound;
 
     private AbstractBodyMod armOneMod, armTwoMod, legsMod;
-    private List<AbstractBodyMod> unlockedBodyMods;
+    private List<AbstractBodyMod> unlockedBodyMods, allExistingBodyMods;
     private List<DoorKey> keyList;
-
-    private int origHealth;
 
     private float originalFriction = 1f;
 
@@ -51,34 +53,22 @@ public class PlayerManager : AbstractCharacter
     //Vectors
     private Vector3 originalScale;
 
-    //---------------------------------------------------------------- AWAKE -------------------------------------------
-    void Awake() {
-        base.Awake();
-        body2d = GetComponent<Rigidbody2D>();
-    }
-
     //---------------------------------------------------------------- START -------------------------------------------
     void Start()
     {
-        if (armOneMod != null) {
-            armOneMod.SetOwner(this);
-        }
-        if (armTwoMod != null) {
-            armTwoMod.SetOwner(this);
-        }
-        if (legsMod != null) {
-            legsMod.SetOwner(this);
-        }
         playerObject = gameObject;
         originalScale = gameObject.transform.localScale;
         animator = GetComponentInChildren<Animator>();
+        playerSound = GetComponentInChildren<PlayerSound>();
+        origHealth = health;
 
         //init lists
         interactables = new List<GameObject>();
+        allExistingBodyMods = new List<AbstractBodyMod>();
         unlockedBodyMods = new List<AbstractBodyMod>();
         keyList = new List<DoorKey>();
 
-        //setup Body Mods   <----------- Set which Body Mods are loaded at game startup
+        //setup Body Mods   <----------- Set which Body Mods are loaded at game startup (Depricated, use for Debug only)
         legsMod = bm_Legs;
        // armOneMod = bm_Drill;
         //armTwoMod = bm_Grapple;
@@ -87,11 +77,40 @@ public class PlayerManager : AbstractCharacter
         //unlockedBodyMods.Add(bm_Drill);
         //unlockedBodyMods.Add(bm_Gun);
 
+        //<------------------------- Make sure to add all Body Mods here
+        allExistingBodyMods.Add(bm_Gun); 
+        allExistingBodyMods.Add(bm_Legs); 
+        allExistingBodyMods.Add(bm_StrongArm);
+        allExistingBodyMods.Add(bm_Drill);
+
+        //Load unlocked body mods from saved state
+        foreach (AbstractBodyMod abm in allExistingBodyMods)
+        {
+            if (PlayerPrefs.HasKey(abm.name)) unlockedBodyMods.Add(abm);
+        }
+
+        //equip body mods last used
+        foreach (AbstractBodyMod abm in unlockedBodyMods)
+        {
+            if (PlayerPrefs.HasKey("armOneMod")) if (PlayerPrefs.GetString("armOneMod") == abm.name) armOneMod = abm;
+        }
+        foreach (AbstractBodyMod abm in unlockedBodyMods)
+        {
+            if (PlayerPrefs.HasKey("armTwoMod")) if (PlayerPrefs.GetString("armTwoMod") == abm.name) armTwoMod = abm;
+        }
+        foreach (AbstractBodyMod abm in unlockedBodyMods)
+        {
+            if (PlayerPrefs.HasKey("legsMod")) if (PlayerPrefs.GetString("legsMod") == abm.name) legsMod = abm;
+        }
+
+        myPhysicsMaterial.friction = 1f;
+
+        //load health & credit from saved state
+        if (PlayerPrefs.HasKey("PlayerHealth")) health = PlayerPrefs.GetInt("PlayerHealth");
+        if (PlayerPrefs.HasKey("PlayerCredit")) credit = PlayerPrefs.GetInt("PlayerCredit");
+
         hud = GameObject.Find("_HUD").GetComponent<HUD>();
         hud.InitializeHUD();
-
-        origHealth = health;
-        myPhysicsMaterial.friction = 1f;
     }
 
     //---------------------------------------------------------------- UPDATE -------------------------------------------
@@ -297,6 +316,8 @@ public class PlayerManager : AbstractCharacter
         {
             animator.SetBool("jump", false);
             myPhysicsMaterial.friction = originalFriction;
+            if (!leftPressed && !rightPressed) playerSound.SoundFootStep1();
+
         } else
         {
             myPhysicsMaterial.friction = 0f;
@@ -318,6 +339,7 @@ public class PlayerManager : AbstractCharacter
             }
             hud.SetHealth(health);
             hud.PlayerHitFX();
+            PlayerPrefs.SetInt("PlayerHealth", health);
 
             //bump away enemy
             if (!hitByBullet)
@@ -352,7 +374,7 @@ public class PlayerManager : AbstractCharacter
     //------------------------------------------------------------- Get-Methods
     public List<GameObject> GetInteractables()
     {
-        //Debug.Log("PlayerManager -> Interactables n = " + interactables.Count);
+        Debug.Log("PlayerManager -> Interactables n = " + interactables.Count);
         for (int i = interactables.Count - 1; i >= 0; i--) { if (interactables[i] == null) interactables.Remove(interactables[i]);  }
         return interactables;
     }
@@ -364,8 +386,12 @@ public class PlayerManager : AbstractCharacter
     public int GetHealth() { return health; }
     public bool HasKey(DoorKey newKey)
     {
-        return keyList.Contains(newKey);
+        bool hasKey = false;
+        //TODO: key saving system has not been tested yet
+        if (keyList.Contains(newKey) || PlayerPrefs.HasKey(newKey.objectID)) hasKey = true;
+        return hasKey;
     }
+    public PlayerSound GetPlayerSound() { return playerSound;  }
 
     //------------------------------------------------------------- Set-Methods
     public void RemoveInteractable(GameObject objectToRemove)
@@ -377,19 +403,44 @@ public class PlayerManager : AbstractCharacter
         if (!unlockedBodyMods.Contains(newMod))
         {
             unlockedBodyMods.Add(newMod);
+            
+            //save unlocked body mods
+            foreach (AbstractBodyMod abm in unlockedBodyMods)
+            {
+                if (!PlayerPrefs.HasKey(abm.name)) PlayerPrefs.SetInt(abm.name, 1);
+            }
+
             Debug.Log("PlayerManager -> Unlocked: " + newMod);
+            playerSound.SoundPickup();
+
+            if (newMod.bodyModType == BodyModType.UPPERBODY)
+            {
+                if (armOneMod == null) { armOneMod = newMod; hud.UpdateBodyModsDisplay(); }
+                else if (armTwoMod == null) { armTwoMod = newMod; hud.UpdateBodyModsDisplay(); }
+            }
         }
     }
     public void SetMod(int whichOne, AbstractBodyMod newMod)
     {
-        if (whichOne == 0) { armOneMod = newMod; if (newMod != null) Debug.Log("PlayerManager -> SetMod(): Arm One Mod, " + newMod.gameObject.name); }
-        if (whichOne == 1) { armTwoMod = newMod; if (newMod != null) Debug.Log("PlayerManager -> SetMod(): Arm Two Mod, " + newMod.gameObject.name); }
-        if (whichOne == 2) { legsMod = newMod; if (newMod != null) Debug.Log("PlayerManager -> SetMod(): Legs Mod, " + newMod.gameObject.name); }
+        if (whichOne == 0 && newMod != null) { 
+            armOneMod = newMod; Debug.Log("PlayerManager -> SetMod(): Arm One Mod, " + newMod.gameObject.name);
+            PlayerPrefs.SetString("armOneMod", newMod.name);
+        }
+        if (whichOne == 1 && newMod != null) { 
+            armTwoMod = newMod; Debug.Log("PlayerManager -> SetMod(): Arm Two Mod, " + newMod.gameObject.name);
+            PlayerPrefs.SetString("armTwoMod", newMod.name);
+        }
+        if (whichOne == 2 && newMod != null) { 
+            legsMod = newMod; Debug.Log("PlayerManager -> SetMod(): Legs Mod, " + newMod.gameObject.name);
+            PlayerPrefs.SetString("legsMod", newMod.name);
+        }
     }
     public void AddCredit(int addCredit)
     {
         credit += addCredit;
         hud.SetCredit(credit);
+        playerSound.SoundPickup();
+        PlayerPrefs.SetInt("PlayerCredit", credit);
     }
     public void Recharge(int recharge)
     {
@@ -397,9 +448,20 @@ public class PlayerManager : AbstractCharacter
         if (health > origHealth) health = origHealth;
         Debug.Log("PlayerManager -> recharge: " + recharge);
         hud.SetHealth(health);
+        playerSound.SoundPickup();
+        PlayerPrefs.SetInt("PlayerHealth", health);
     }
     public void AddKey(DoorKey newKey)
     {
         keyList.Add(newKey);
+        playerSound.SoundPickup();
+
+        //save that the key has been collected
+        PlayerPrefs.SetInt(newKey.objectID, 1);
+    }
+    public void DecreaseHealth(int healthDecrease)
+    {
+        health -= healthDecrease;
+        hud.SetHealth(health);
     }
 }

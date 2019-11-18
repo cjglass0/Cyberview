@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorKeyTimeChallenge: 0
+  rewardArray:
+  - {fileID: 2909489379241054507, guid: 2431c9b3e13d54a4b8d6d9b898419507, type: 3}
+  - {fileID: 2955587657726239984, guid: 76995f6b2fdc3d44faa3969a5b4db881, type: 3}

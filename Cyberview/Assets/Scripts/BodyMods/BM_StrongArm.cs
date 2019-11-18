@@ -59,7 +59,7 @@ public class BM_StrongArm : AbstractBodyMod
             //get closest HeavyBox
             if (boxes.Count > 1)
             {
-
+                //box detected
                 float closestDistance = 10f;
                 foreach (GameObject box in boxes)
                 {
@@ -67,10 +67,10 @@ public class BM_StrongArm : AbstractBodyMod
                     if (distance < closestDistance) heavyBox = box;
                 }
                 setUpBoxForTracking();
-
             }
             else if (boxes.Count == 1)
             {
+                //no box detected
                 heavyBox = boxes[0];
                 setUpBoxForTracking();
             }
@@ -89,6 +89,8 @@ public class BM_StrongArm : AbstractBodyMod
 
         GotoState(BodyModState.ACTIVE);
         holdingBox = true;
+
+        owner.DecreaseHealth(energyCostPerTick);
 
         owner.GetComponentInChildren<Animator>().SetBool("grab", true);
     }
@@ -120,6 +122,9 @@ public class BM_StrongArm : AbstractBodyMod
 
             //position box
             heavyBox.transform.position = (owner.transform.position + blockOffset);
+
+            //decrease health every tick
+            if (!tickDelay) StartCoroutine(DecreaseHealthAfterTick());
 
             //let go of box if stuck on ledge
             if (!owner.isGrounded && Mathf.Abs(owner.gameObject.GetComponent<Rigidbody2D>().velocity.y) < 1f)

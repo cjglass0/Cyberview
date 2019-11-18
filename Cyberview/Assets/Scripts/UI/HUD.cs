@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class HUD : MonoBehaviour
@@ -12,15 +13,18 @@ public class HUD : MonoBehaviour
     public PlayerManager playerManager;
     public GameManager gameManager;
     public CanvasGroup playerHUD, pauseMenu, playerHitCG, bmMenu;
+    public RawImage batteryBar;
     public GameObject blackout;
-    private float originalPlayerHitCGalpha;
+    private float originalPlayerHitCGalpha, origBatterySizeX;
     private bool bmMenuLoaded;
+    private AudioSource clickSound;
 
-
-    public void Start()
+    private void Awake()
     {
         originalPlayerHitCGalpha = playerHitCG.alpha;
+        origBatterySizeX = batteryBar.rectTransform.sizeDelta.x;
         playerHitCG.alpha = 0;
+        clickSound = GetComponent<AudioSource>();
     }
 
     public void Update()
@@ -33,12 +37,17 @@ public class HUD : MonoBehaviour
                 BtnExitBMMenu();
             }
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Time.timeScale == 1) { BtnPause(); } else { BtnResume(); }
+        }
     }
 
     //----------------------------------------------------------- OnClick Methods -------------------------------------------------
 
     public void BtnPause ()
     {
+        clickSound.Play();
         gameManager.paused = true;
         Debug.Log("HUD -> Pause");
         Time.timeScale = 0;
@@ -52,6 +61,7 @@ public class HUD : MonoBehaviour
 
     public void BtnResume()
     {
+        clickSound.Play();
         gameManager.paused = false;
         Debug.Log("HUD -> Resume");
         Time.timeScale = 1;
@@ -63,8 +73,16 @@ public class HUD : MonoBehaviour
         pauseMenu.gameObject.SetActive(false);
     }
 
+    public void BtnClearStorage()
+    {
+        clickSound.Play();
+        Debug.Log("HUD -> DEBUG: Cleared Storage");
+        PlayerPrefs.DeleteAll();
+    }
+
     public void BtnExitBMMenu()
     {
+        clickSound.Play();
         gameManager.paused = false;
         Debug.Log("HUD -> Exit BM MEnu");
         Time.timeScale = 1;
@@ -180,7 +198,7 @@ public class HUD : MonoBehaviour
     }
 
     //Update In-Game HUD Body Mod Display
-    private void UpdateBodyModsDisplay()
+    public void UpdateBodyModsDisplay()
     {
         if (playerManager.GetArmOneMod() != null)
         {
@@ -201,7 +219,7 @@ public class HUD : MonoBehaviour
     public void InitializeHUD()
     {
         UpdateBodyModsDisplay();
-        healthValue.text = playerManager.GetHealth().ToString();
+        SetHealth(playerManager.GetHealth());
         creditValue.text = playerManager.GetCredit().ToString();
     }
 
@@ -209,6 +227,7 @@ public class HUD : MonoBehaviour
     {
         if (!bmMenuLoaded)
         {
+            clickSound.Play();
             gameManager.paused = true;
             Debug.Log("HUD -> Body Mod Menu");
             Time.timeScale = 0;
@@ -227,7 +246,11 @@ public class HUD : MonoBehaviour
         }
     }
 
-    public void SetHealth(int health) { healthValue.text = health.ToString(); }
+    public void SetHealth(int health) { 
+        healthValue.text = health.ToString() + "%";
+        batteryBar.rectTransform.sizeDelta = new Vector2(mapNumber(health, 0, playerManager.origHealth, 0, origBatterySizeX), 51.85f);
+        batteryBar.color = new Color(mapNumber(health, 0, playerManager.origHealth, 1, 0), mapNumber(health, 0, playerManager.origHealth, 0, 1), 0);
+    }
 
     public void SetCredit(int credit) { creditValue.text = credit.ToString(); }
 
@@ -282,4 +305,8 @@ public class HUD : MonoBehaviour
         blackout.gameObject.SetActive(false);
     }
 
+    float mapNumber(float pX, float pA, float pB, float pM, float pN)
+    {
+        return (pX - pA) / (pB - pA) * (pN - pM) + pM;
+    }
 }

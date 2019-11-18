@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BodyModPickup : MonoBehaviour
+public class BodyModPickup : AbstractLvlItem
 {
     //Check if Player picks up Body Mod Collectible. If that is the case, call PlayerManager's UnlockBodyMod(). Also display Message.
 
@@ -19,7 +19,11 @@ public class BodyModPickup : MonoBehaviour
         if (collision.gameObject.name == "_Player")
         {
             collision.gameObject.GetComponent<PlayerManager>().UnlockBodyMod(bodyMod);
-            GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("New Body Mod unlocked: " + bodyMod.name + ". Press Tab to equip.");
+            GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("New Body Mod unlocked: " + bodyMod.name);
+
+            //save state
+            PlayerPrefs.SetInt(objectID, 1);
+
             Destroy(gameObject);
         }
     }

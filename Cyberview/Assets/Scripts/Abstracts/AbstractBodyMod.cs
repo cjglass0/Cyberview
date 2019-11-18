@@ -34,9 +34,11 @@ public abstract class AbstractBodyMod : MonoBehaviour
     //related timer
     protected float elapsedTime = 0f;
     //Quantity of energy lost
-    public int energyCostPerTick = 0;
+    public int energyCostPerTick = 2;
 
     protected Animator animator;
+    protected bool startingUp;
+    protected bool tickDelay;
 
     public string name;
 
@@ -55,13 +57,24 @@ public abstract class AbstractBodyMod : MonoBehaviour
         macroState = state;
     }
 
-    public void SetOwner(PlayerManager g){
-        owner = g;
-    }
-
     public void Awake()
     {
         animator = owner.animator;
+    }
+
+    protected IEnumerator StartUpDelay()
+    {
+        startingUp = true;
+        yield return new WaitForSeconds(0.1f);
+        startingUp = false;
+    }
+
+    protected IEnumerator DecreaseHealthAfterTick()
+    {
+        tickDelay = true;
+        yield return new WaitForSeconds(timePerTick);
+        owner.DecreaseHealth(energyCostPerTick);
+        tickDelay = false;
     }
 
 }

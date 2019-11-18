@@ -296,7 +296,7 @@ MonoBehaviour:
   isFacingRight: 1
   health: 3
   inputState: {fileID: 0}
-  damageToPlayerPerHit: 1
+  damageToPlayerPerHit: 5
   leftFloorDetector: {fileID: 7668599427850520423}
   rightFloorDetector: {fileID: 7668599428170414112}
   speed: 3

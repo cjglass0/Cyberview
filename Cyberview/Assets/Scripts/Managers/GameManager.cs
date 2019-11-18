@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public LvlManager lvlManager;
     private PlayerManager playerManager;
+    private string lastSceneName;
 
     //// BUILD INDEXES ////
     public readonly static int _BASE = 0;
@@ -27,7 +28,6 @@ public class GameManager : MonoBehaviour
 
     //booleans
     public bool paused;
-
 
 
     ///////////////////////////////////////////////////////////// AWAKE () //////////////////////////////////////////////////////////
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
             if (!player.activeInHierarchy) player.SetActive(true);
             playerManager.ResetPlayer();
             lvlManager = GameObject.Find("LevelManager").GetComponent<LvlManager>();
-            lvlManager.InitLevel(this);
+            lvlManager.InitLevel(this, lastSceneName);
         }
         else if (newSceneIdx == MENU || newSceneIdx == CREDITS) // -- Menu Screen Loaded --
         {
@@ -97,8 +97,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(newSceneToLoad, LoadSceneMode.Additive);
     }
 
+    //used by doors
     public void LoadScene(string newSceneToLoad)
     {
+        lastSceneName = SceneManager.GetSceneByBuildIndex(currentScene).name;
         SceneManager.UnloadSceneAsync(currentScene);
         SceneManager.LoadScene(newSceneToLoad, LoadSceneMode.Additive);
         //sceneToLoad = SceneManager.GetActiveScene().buildIndex;
@@ -109,4 +111,5 @@ public class GameManager : MonoBehaviour
         sceneCurrentlyLoading = true;
         SceneManager.UnloadSceneAsync(currentScene);
     }
+    
 }

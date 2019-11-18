@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class LvlManager : MonoBehaviour
 {
@@ -9,9 +10,10 @@ public class LvlManager : MonoBehaviour
     // setting up for a level should be done in InitLevel. Other functionality includes time challenge, spawning rewards (so we can possibly
     // limit type of rewards for certain levels if we want), setting up camera.
 
-    GameObject spawnPoint, player;
+    private GameObject defaultSpawnPoint; //used to spawn player if not coming form another level
+
+    GameObject player;
     GameManager gameManager;
-    int curSpawnPoint = 0;
     private HUD hud;
     PlayerManager playerManager;
 
@@ -19,28 +21,46 @@ public class LvlManager : MonoBehaviour
     float levelStartTime;
     public int doorKeyTimeChallenge;
     private DoorKey[] doorKeyArray;
+    private Door[] doorArray;
     int keysCollected = 0;
     public GameObject[] rewardArray;
 
-    void Start()
-    {
-        spawnPoint = GameObject.Find("SpawnPoint");
-        hud = GameObject.Find("_HUD").GetComponent<HUD>();
-        gameManager = GameObject.Find("_GameManager").GetComponent<GameManager>();
-        doorKeyArray = Object.FindObjectsOfType<DoorKey>();
-    }
-
-
-    public void InitLevel(GameManager gameManager)
+    public void InitLevel(GameManager gameManager, string lastSceneName)
     {
         this.gameManager = gameManager;
         player = gameManager.player;
         playerManager = player.GetComponent<PlayerManager>();
-        spawnPoint = GameObject.Find("SpawnPoint");
+
+        defaultSpawnPoint = GameObject.Find("SpawnPoint");
+        hud = GameObject.Find("_HUD").GetComponent<HUD>();
+        doorKeyArray = Object.FindObjectsOfType<DoorKey>();
+        doorArray = Object.FindObjectsOfType<Door>();
+
+        //TODO: Fix bug by replacing Scene as input with Scene name string as input
+
+        Debug.Log("DEBUG: LvlManager -> Came from Scene : " + lastSceneName);
+        if (lastSceneName == "") Debug.Log("WARNING: LvlManager -> lastScene is null");
+
+        //figure out which Spawn Point to use
+        if (lastSceneName != null)
+        {
+
+            //if coming from another level, override default spawn point with the door to that level
+            foreach (Door door in doorArray){
+                if (door.sceneToLoad == lastSceneName)
+                {
+                    defaultSpawnPoint = door.gameObject;
+                    door.setTmpLocked();
+                }
+            }
+        }
+
+        Debug.Log("DEBUG: LvlManager -> Using Spawn Point : " + defaultSpawnPoint.name);
+
         // set player pos
-        player.transform.position = spawnPoint.transform.position;
+        player.transform.position = defaultSpawnPoint.transform.position;
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-        playerManager.Recharge(50);
+        //playerManager.Recharge(50);
         playerManager.isFacingRight = true;
 
         //setup camera target
@@ -48,6 +68,8 @@ public class LvlManager : MonoBehaviour
         Debug.Log("LevelManager -> InitLevel");
 
         levelStartTime = Time.time;
+
+        //Set saved states
     }
 
     public void CollectedDoorKey()

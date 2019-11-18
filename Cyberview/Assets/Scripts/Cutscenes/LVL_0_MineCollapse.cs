@@ -9,6 +9,16 @@ public class LVL_0_MineCollapse : MonoBehaviour
     public GameObject theDudeThatRunsAway, rubble, bouldersToRemove;
     private bool collected;
 
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("MineAlreadyCollapsed")){
+            theDudeThatRunsAway.SetActive(false);
+            bouldersToRemove.SetActive(false);
+            rubble.SetActive(true);
+            collected = true;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "_Player" && !collected)
@@ -21,6 +31,7 @@ public class LVL_0_MineCollapse : MonoBehaviour
     IEnumerator MySequence()
     {
         HUD hud = GameObject.Find("_HUD").GetComponent<HUD>();
+        GameObject.Find("DoorToMainArea").GetComponent<Door>().isPermanentlyLocked = true;
 
         yield return new WaitForSeconds(1);
         GameObject.Find("DialogueHandler").GetComponent<DialogueHandler>().showDialogue(AvatarShown.MINEMAN, "Oh no! The mine is collapsing!! I better get out of here");
@@ -34,6 +45,7 @@ public class LVL_0_MineCollapse : MonoBehaviour
         bouldersToRemove.SetActive(false);
         rubble.SetActive(true);
         GameObject.Find("_Player").GetComponent<PlayerManager>().health = 10;
+        PlayerPrefs.SetInt("PlayerHealth", 10);
         hud.SetHealth(10);
         hud.ShowTmpMsg("ERROR. ERROR. ERROR.");
         hud.PlayerHitFX();
@@ -44,5 +56,7 @@ public class LVL_0_MineCollapse : MonoBehaviour
         yield return new WaitForSeconds(4.1f);
         GameObject.Find("DoorToMainArea").GetComponent<Door>().isPermanentlyLocked = false;
         hud.GetComponent<HUD>().ShowTmpMsg("Error: Critical System Damage. Go to Repair Shop immediately.");
+
+        PlayerPrefs.SetInt("MineAlreadyCollapsed", 1);
     }
 }
