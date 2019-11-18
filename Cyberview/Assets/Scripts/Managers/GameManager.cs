@@ -110,6 +110,7 @@ public class GameManager : MonoBehaviour
     {
         sceneCurrentlyLoading = true;
         SceneManager.UnloadSceneAsync(currentScene);
+        Debug.Log("GameManager -> Reload Level");
     }
     
 }

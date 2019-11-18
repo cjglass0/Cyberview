@@ -21,12 +21,21 @@ public class Door : MonoBehaviour
     public DoorKey doorKey;
     public bool isPermanentlyLocked;
     private bool loadingScene = false;
+    private bool justSpawned = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "_Player" && !isPermanentlyLocked)
+        if (collision.gameObject.name == "_Player" && !isPermanentlyLocked && !justSpawned)
         {
             GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("Press TAB to open");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "_Player" && !isPermanentlyLocked && justSpawned)
+        {
+            justSpawned = false;
         }
     }
 
@@ -44,6 +53,11 @@ public class Door : MonoBehaviour
                 playerManager.GetPlayerSound().SoundDoor();
             }
         }
+    }
+
+    public void SetJustSpawned()
+    {
+        justSpawned = true;
     }
 
 

@@ -36,10 +36,11 @@ public class LvlManager : MonoBehaviour
         doorKeyArray = Object.FindObjectsOfType<DoorKey>();
         doorArray = Object.FindObjectsOfType<Door>();
 
-        //TODO: Fix bug by replacing Scene as input with Scene name string as input
-
         Debug.Log("DEBUG: LvlManager -> Came from Scene : " + lastSceneName);
         if (lastSceneName == "") Debug.Log("WARNING: LvlManager -> lastScene is null");
+
+        //clear HUD
+        hud.HideTmpMsg();
 
         //figure out which Spawn Point to use
         if (lastSceneName != null)
@@ -50,6 +51,7 @@ public class LvlManager : MonoBehaviour
                 if (door.sceneToLoad == lastSceneName)
                 {
                     defaultSpawnPoint = door.gameObject;
+                    door.SetJustSpawned();
                 }
             }
         }

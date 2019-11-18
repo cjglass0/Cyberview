@@ -49,4 +49,4 @@ MonoBehaviour:
   microState: 0
   timePerTick: 1
   energyCostPerTick: 1
-  name: RegularLegs
+  name: Regular Legs

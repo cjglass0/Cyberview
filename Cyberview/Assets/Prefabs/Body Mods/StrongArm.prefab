@@ -49,4 +49,4 @@ MonoBehaviour:
   microState: 0
   timePerTick: 5
   energyCostPerTick: 1
-  name: StrongArm
+  name: Strong Arm

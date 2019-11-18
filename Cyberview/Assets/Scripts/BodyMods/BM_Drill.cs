@@ -23,6 +23,8 @@ public class BM_Drill : AbstractBodyMod
 
     public override void EnableBodyMod()
     {
+        if (myCollider == null) myCollider = GetComponent<CircleCollider2D>();
+
         myCollider.enabled = true;
         if (!checkingForBoulder)
         {

@@ -259,6 +259,11 @@ public class HUD : MonoBehaviour
         StartCoroutine(TmpMsgDelay());
     }
 
+    public void HideTmpMsg()
+    {
+        tmpMsg.gameObject.SetActive(false);
+    }
+
     IEnumerator TmpMsgDelay()
     {
         yield return new WaitForSeconds(3);

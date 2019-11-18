@@ -425,9 +425,17 @@ public class PlayerManager : AbstractCharacter
     public void AddInteractable(GameObject objectToAdd) { interactables.Add(objectToAdd); }
     public void UnlockBodyMod(AbstractBodyMod newMod)
     {
-        if (!unlockedBodyMods.Contains(newMod))
+        //figure out which body mod was unlocked using the name. Otherwise it's not the instance attached to the player that is equipped.
+        AbstractBodyMod myNewMod = null;
+
+        foreach (AbstractBodyMod abm in allExistingBodyMods)
         {
-            unlockedBodyMods.Add(newMod);
+            if (abm.name == newMod.name) myNewMod = abm;
+        }
+
+        if (!unlockedBodyMods.Contains(myNewMod))
+        {
+            unlockedBodyMods.Add(myNewMod);
             
             //save unlocked body mods
             foreach (AbstractBodyMod abm in unlockedBodyMods)
@@ -435,13 +443,20 @@ public class PlayerManager : AbstractCharacter
                 if (!PlayerPrefs.HasKey(abm.name)) PlayerPrefs.SetInt(abm.name, 1);
             }
 
-            Debug.Log("PlayerManager -> Unlocked: " + newMod);
+            Debug.Log("PlayerManager -> Unlocked: " + myNewMod);
             playerSound.SoundPickup();
 
-            if (newMod.bodyModType == BodyModType.UPPERBODY)
+            //equip automatically if there is an empty slot
+            if (myNewMod.bodyModType == BodyModType.UPPERBODY)
             {
-                if (armOneMod == null) { armOneMod = newMod; hud.UpdateBodyModsDisplay(); }
-                else if (armTwoMod == null) { armTwoMod = newMod; hud.UpdateBodyModsDisplay(); }
+                if (armOneMod == null) { 
+                    armOneMod = myNewMod; hud.UpdateBodyModsDisplay();
+                    PlayerPrefs.SetString("armOneMod", myNewMod.name);
+                }
+                else if (armTwoMod == null) { 
+                    armTwoMod = myNewMod; hud.UpdateBodyModsDisplay();
+                    PlayerPrefs.SetString("armTwoMod", myNewMod.name);
+                }
             }
         }
     }
