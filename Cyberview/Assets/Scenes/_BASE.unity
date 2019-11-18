@@ -3368,8 +3368,10 @@ MonoBehaviour:
   bm_Legs: {fileID: 1079752318}
   bm_StrongArm: {fileID: 773003355}
   bm_Drill: {fileID: 1572647692}
+  bm_Grapple: {fileID: 0}
   gameManager: {fileID: 1824120417}
   credit: 0
+  disableInputs: 0
   walkSpeed: 17
   friction: 0.9
   airSpeedAccel: 1
@@ -9706,10 +9708,10 @@ MonoBehaviour:
     SPACE
 
 
-    CTRL
+    J
 
 
-    SHIFT'
+    K'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
