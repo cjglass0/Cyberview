@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e693d22d9b81ce246a3a64da101d2e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abstractCharacter: {fileID: 0}
+  abstractCharacter: {fileID: 8033141799739535903}
   groundCheckIsSolid: 0
   isEnemyGroundCheck: 1
 --- !u!61 &1593323181873486042
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e693d22d9b81ce246a3a64da101d2e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abstractCharacter: {fileID: 0}
+  abstractCharacter: {fileID: 8033141799739535903}
   groundCheckIsSolid: 0
   isEnemyGroundCheck: 1
 --- !u!61 &5673358774373343272
@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e693d22d9b81ce246a3a64da101d2e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abstractCharacter: {fileID: 0}
+  abstractCharacter: {fileID: 8033141799739535903}
   groundCheckIsSolid: 0
   isEnemyGroundCheck: 1
 --- !u!61 &3277567724811173376
@@ -534,7 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e693d22d9b81ce246a3a64da101d2e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abstractCharacter: {fileID: 0}
+  abstractCharacter: {fileID: 8033141799739535903}
   groundCheckIsSolid: 0
   isEnemyGroundCheck: 1
 --- !u!61 &523297634760038959
@@ -643,6 +643,7 @@ MonoBehaviour:
   speed: 2
   checkRight: 1
   explosionDelay: 2
+  selfDestruct: 1
 --- !u!70 &753561020910341152
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -14,7 +14,9 @@ public class GroundCheck : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((collision.gameObject.layer == 8 || collision.gameObject.tag == "rangedEnemy") && groundCheckIsSolid) {
+        if ((collision.gameObject.layer == 8 || collision.gameObject.tag == "rangedEnemy" || 
+            collision.gameObject.tag == "DestroyableSceneObject") && groundCheckIsSolid) 
+        {
             abstractCharacter.SetIsGrounded(true, gameObject.name);
             //Debug.Log("GroundCheck -> grounded");
         }
@@ -23,7 +25,8 @@ public class GroundCheck : MonoBehaviour
 
     public void OnCollisionExit2D(Collision2D collision)
     {
-        if ((collision.gameObject.layer == 8 || collision.gameObject.tag == "rangedEnemy") && groundCheckIsSolid)
+        if ((collision.gameObject.layer == 8 || collision.gameObject.tag == "rangedEnemy" || 
+            collision.gameObject.tag == "DestroyableSceneObject") && groundCheckIsSolid)
         {
             abstractCharacter.SetIsGrounded(false, gameObject.name);
             //Debug.Log("GroundCheck -> not grounded");
