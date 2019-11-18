@@ -35,12 +35,15 @@ public class Projectile : MonoBehaviour
     {
         if (target.gameObject.layer == 12)
         {
-            //do something to the enemy
+            //Hit Enemy
             var script = target.gameObject.GetComponent<BasicEnemy>();
             if (script != null)
             {
                 script.HitBy(gameObject);
             }
+        } else if (target.gameObject.tag == "DestroyableSceneObject")
+        {
+            target.gameObject.GetComponent<DestroyableSceneObject>().Hit();
         }
         Destroy(gameObject);
     }
