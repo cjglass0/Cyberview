@@ -127,6 +127,8 @@ public class PlayerManager : AbstractCharacter
 
         if (health <= 0) {
             gameManager.ReloadLevel();
+            health = origHealth;
+            hud.SetHealth(health);
         }
     }
 

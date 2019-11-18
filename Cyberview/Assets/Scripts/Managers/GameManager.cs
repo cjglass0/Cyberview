@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     //booleans
     public bool paused;
+    private bool playerDied;
 
 
     ///////////////////////////////////////////////////////////// AWAKE () //////////////////////////////////////////////////////////
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
         //Set up stuff for Pausing
         Time.timeScale = 1;
         paused = false;
+        playerDied = true;
 
         //Set curScene to be active Scene (_Base)
         curScene = SceneManager.GetActiveScene();
@@ -69,12 +71,14 @@ public class GameManager : MonoBehaviour
             if (!player.activeInHierarchy) player.SetActive(true);
             playerManager.ResetPlayer();
             lvlManager = GameObject.Find("LevelManager").GetComponent<LvlManager>();
-            lvlManager.InitLevel(this, lastSceneName);
+            lvlManager.InitLevel(this, lastSceneName, playerDied);
         }
         else if (newSceneIdx == MENU || newSceneIdx == CREDITS) // -- Menu Screen Loaded --
         {
             if (player.activeInHierarchy) player.SetActive(false);
         }
+
+        playerDied = false;
     }
 
     /////////////////////////////////////////////////////////////// OnSceneFinishedUnloading () /////////////////////////////////////////
@@ -111,6 +115,7 @@ public class GameManager : MonoBehaviour
         sceneCurrentlyLoading = true;
         SceneManager.UnloadSceneAsync(currentScene);
         Debug.Log("GameManager -> Reload Level");
+        playerDied = true;
     }
     
 }

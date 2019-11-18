@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LVL_0_MineCollapse : MonoBehaviour
+public class LVL_0_MineCollapse : AbstractLvlItem
 {
     //Hardcoded sequence to handle the mine collapse stuff.
 

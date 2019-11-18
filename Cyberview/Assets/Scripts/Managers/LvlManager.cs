@@ -17,6 +17,8 @@ public class LvlManager : MonoBehaviour
     private HUD hud;
     PlayerManager playerManager;
 
+    private List<AbstractLvlItem> abstractLvlItems;
+
     //for time challenge
     float levelStartTime;
     public int doorKeyTimeChallenge;
@@ -25,7 +27,7 @@ public class LvlManager : MonoBehaviour
     int keysCollected = 0;
     public GameObject[] rewardArray;
 
-    public void InitLevel(GameManager gameManager, string lastSceneName)
+    public void InitLevel(GameManager gameManager, string lastSceneName, bool playerDied)
     {
         this.gameManager = gameManager;
         player = gameManager.player;
@@ -36,7 +38,27 @@ public class LvlManager : MonoBehaviour
         doorKeyArray = Object.FindObjectsOfType<DoorKey>();
         doorArray = Object.FindObjectsOfType<Door>();
 
-        Debug.Log("DEBUG: LvlManager -> Came from Scene : " + lastSceneName);
+        if (playerDied)
+        {
+            //Find All Abstract Level Items in order to reset level state
+            abstractLvlItems = new List<AbstractLvlItem>(Resources.FindObjectsOfTypeAll<AbstractLvlItem>());
+            for (int i = abstractLvlItems.Count - 1; i >= 0; i--)
+            {
+                AbstractLvlItem ali = abstractLvlItems[i];
+                ali.gameObject.SetActive(false);
+                if (ali.gameObject.scene.name != gameObject.scene.name) abstractLvlItems.Remove(ali);
+            }
+
+            //Re-Activate all Abstract Level Items
+            foreach (AbstractLvlItem ali in abstractLvlItems)
+            {
+                ali.gameObject.SetActive(true);
+            }
+
+            Debug.Log("LvlManager Abstract Level Items Count: " + abstractLvlItems.Count);
+        }
+
+        Debug.Log("LvlManager -> Came from Scene : " + lastSceneName);
         if (lastSceneName == "") Debug.Log("WARNING: LvlManager -> lastScene is null");
 
         //clear HUD
