@@ -50,7 +50,6 @@ public class LvlManager : MonoBehaviour
                 if (door.sceneToLoad == lastSceneName)
                 {
                     defaultSpawnPoint = door.gameObject;
-                    door.setTmpLocked();
                 }
             }
         }

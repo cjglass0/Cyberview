@@ -20,47 +20,32 @@ public class Door : MonoBehaviour
     public string sceneToLoad;
     public DoorKey doorKey;
     public bool isPermanentlyLocked;
-
-    // PRIVATE
-    //(for some reason there's a chance the code will execute twice before destroying, that's why there's the bool)
-    bool collected = false;
-    private bool tmpLocked = false;
-    private float tmpUnlockDelay = .5f;
+    private bool loadingScene = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "_Player" && !collected && !isPermanentlyLocked && !tmpLocked)
+        if (collision.gameObject.name == "_Player" && !isPermanentlyLocked)
         {
+            GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("Press TAB to open");
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "_Player" && Input.GetKeyDown(KeyCode.Tab) && !isPermanentlyLocked && !loadingScene)
+        {
+            loadingScene = true;
+
             PlayerManager playerManager = collision.gameObject.GetComponent<PlayerManager>();
             //load Door's scene if the door is not locked or has been unlocked by collecting the relevant key
             if (doorKey == null || playerManager.HasKey(doorKey))
             {
-                collected = true;
                 playerManager.gameManager.LoadScene(sceneToLoad);
                 playerManager.GetPlayerSound().SoundDoor();
             }
         }
     }
 
-    //unlock temporarily locked door when the player leaves the door trigger. Use a small delay.
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "_Player" && tmpLocked)
-        {
-            StartCoroutine(TmpUnlockDelay());
-        }
-    }
 
-    IEnumerator TmpUnlockDelay()
-    {
-        yield return new WaitForSeconds(tmpUnlockDelay);
-        tmpLocked = false;
-    }
-
-    //lock door temporarily if it is being used as a spawn point
-    public void setTmpLocked()
-    {
-        tmpLocked = true;
-    }
 
 }

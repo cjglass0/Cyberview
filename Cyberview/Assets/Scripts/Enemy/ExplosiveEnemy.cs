@@ -58,7 +58,7 @@ public class ExplosiveEnemy : AbstractEnemy
 
         //walk
         body2d.velocity = new Vector2(speed, body2d.velocity.y);
-        if (speed < 3 && speed > -3) Debug.Log("Basic Enemy -> speed = " + speed);
+        //if (speed < 3 && speed > -3) Debug.Log("Basic Enemy -> speed = " + speed);
     }
 
 

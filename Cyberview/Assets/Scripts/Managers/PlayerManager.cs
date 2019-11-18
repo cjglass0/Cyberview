@@ -123,6 +123,8 @@ public class PlayerManager : AbstractCharacter
 
         MovementUpdate();
 
+        BasicAttackUpdate();
+
         if (health <= 0) {
             gameManager.ReloadLevel();
         }
@@ -281,27 +283,48 @@ public class PlayerManager : AbstractCharacter
                 new Vector3(-originalScale.x, originalScale.y, originalScale.z); isFacingRight = false; }
     }
 
+    private void BasicAttackUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift)){
+            foreach (GameObject go in interactables)
+            {
+                if (go.layer == 12)
+                {
+                    animator.SetBool("punch", true);
+                    Debug.Log("punch");
+                    BasicEnemy basicEnemy = go.GetComponent<BasicEnemy>();
+                    basicEnemy.HitBy(gameObject);
+                    StartCoroutine(PunchDelay());
+                }
+            }
+        }
+    }
+
+    IEnumerator PunchDelay ()
+    {
+        yield return new WaitForSeconds(0.3f);
+        animator.SetBool("punch", false);
+    }
+
     //----------------------------------------------------------------- OTHER METHODS -------------------------------------------
 
     //------------------------------------------------------------------- Triggers ----------------------------------------------
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.layer == 12) {
-            HitByEnemy(other.gameObject);
-        }
-
-        interactables.Add(other.gameObject);
-    }
-
-    void OnTriggerStay2D(Collider2D other) {
-        if (other.gameObject.layer == 12) {
-            HitByEnemy(other.gameObject);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        interactables.Remove(other.gameObject);
+        if (collision.gameObject.layer == 12)
+        {
+            HitByEnemy(collision.gameObject);
+        }
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 12)
+        {
+            HitByEnemy(collision.gameObject);
+        }
+    }
+
 
     //----------------------------------------------------------------- Colliders -------------------------------------------
 
@@ -345,6 +368,7 @@ public class PlayerManager : AbstractCharacter
             if (!hitByBullet)
             {
                 enemy.GetComponent<AbstractEnemy>().PlayerCollision(gameObject);
+                
             }
             Debug.Log("PlayerManager -> HitByEnemy:" + enemy.name + ". New Player Health:" + health);
 
@@ -374,7 +398,7 @@ public class PlayerManager : AbstractCharacter
     //------------------------------------------------------------- Get-Methods
     public List<GameObject> GetInteractables()
     {
-        Debug.Log("PlayerManager -> Interactables n = " + interactables.Count);
+        //Debug.Log("PlayerManager -> Interactables n = " + interactables.Count);
         for (int i = interactables.Count - 1; i >= 0; i--) { if (interactables[i] == null) interactables.Remove(interactables[i]);  }
         return interactables;
     }
@@ -398,6 +422,7 @@ public class PlayerManager : AbstractCharacter
     {
         if (interactables.Contains(objectToRemove)) interactables.Remove(objectToRemove);
     }
+    public void AddInteractable(GameObject objectToAdd) { interactables.Add(objectToAdd); }
     public void UnlockBodyMod(AbstractBodyMod newMod)
     {
         if (!unlockedBodyMods.Contains(newMod))
