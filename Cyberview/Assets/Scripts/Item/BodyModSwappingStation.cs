@@ -4,24 +4,21 @@ using UnityEngine;
 
 public class BodyModSwappingStation : MonoBehaviour
 {
-    //(for some reason there's a chance the code will execute twice, that's why there's the bool)
-    bool collected = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "_Player" && !collected)
+        if (collision.gameObject.name == "_Player")
         {
-            HUD hud = GameObject.Find("_HUD").GetComponent<HUD>();
-            hud.LoadBodyModMenu();
-            collected = true;
+            GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("Press TAB to use Body Modding Station");
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "_Player" && collected)
+        if (collision.gameObject.name == "_Player" && Input.GetKeyDown(KeyCode.Tab))
         {
-            collected = false;
+            HUD hud = GameObject.Find("_HUD").GetComponent<HUD>();
+            hud.LoadBodyModMenu();
         }
     }
 }

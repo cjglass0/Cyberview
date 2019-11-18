@@ -16,8 +16,8 @@ public class HUD : MonoBehaviour
     public RawImage batteryBar;
     public GameObject blackout;
     private float originalPlayerHitCGalpha, origBatterySizeX;
-    private bool bmMenuLoaded;
     private AudioSource clickSound;
+    private bool bmMenuLoaded, bmFrameDelay;
 
     private void Awake()
     {
@@ -29,18 +29,15 @@ public class HUD : MonoBehaviour
 
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Tab))
-        {
-            if (!bmMenuLoaded) {
-                LoadBodyModMenu();
-            } else{
-                BtnExitBMMenu();
-            }
-        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (Time.timeScale == 1) { BtnPause(); } else { BtnResume(); }
         }
+        if (Input.GetKeyDown(KeyCode.Tab) && bmMenuLoaded && !bmFrameDelay)
+        {
+            BtnExitBMMenu();
+        }
+        if (Input.GetKeyDown(KeyCode.Tab) && bmMenuLoaded && bmFrameDelay) bmFrameDelay = false;
     }
 
     //----------------------------------------------------------- OnClick Methods -------------------------------------------------
@@ -99,6 +96,7 @@ public class HUD : MonoBehaviour
         playerManager.SetMod(2, GetDropdownBodyMod(legsDropdown));
 
         UpdateBodyModsDisplay();
+
         bmMenuLoaded = false;
     }
 
@@ -225,8 +223,7 @@ public class HUD : MonoBehaviour
 
     public void LoadBodyModMenu()
     {
-        if (!bmMenuLoaded)
-        {
+        if (!bmMenuLoaded) {
             clickSound.Play();
             gameManager.paused = true;
             Debug.Log("HUD -> Body Mod Menu");
@@ -243,7 +240,8 @@ public class HUD : MonoBehaviour
             UpdateBodyModsDropdownOptions(legsDropdown);
 
             bmMenuLoaded = true;
-        }
+            bmFrameDelay = true;
+        }   
     }
 
     public void SetHealth(int health) { 
@@ -263,7 +261,7 @@ public class HUD : MonoBehaviour
 
     IEnumerator TmpMsgDelay()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         tmpMsg.gameObject.SetActive(false);
     }
 
