@@ -34,7 +34,7 @@ public class Bullets : MonoBehaviour
     {
         Debug.Log("Bullet Collision: " + target.gameObject.name);
 
-        if (target.gameObject.tag == "Player")
+        if (target.gameObject.name == "_Player")
         {
             //damage the player
             var script = target.gameObject.GetComponent<PlayerManager>();

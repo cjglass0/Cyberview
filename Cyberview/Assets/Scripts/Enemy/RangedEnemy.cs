@@ -16,7 +16,7 @@ public class RangedEnemy : AbstractEnemy
     public bool checkRight = true;
     [SerializeField]
     GameObject rangedBullets;
-    public float shootDelay = 5f;
+    public int shootDelay = 1;
     public float bulletLifetime = 3f;
     public float bulletDamage = 1;
     public float bulletSpeed = 10f;
@@ -29,7 +29,7 @@ public class RangedEnemy : AbstractEnemy
 
     void Start()
     {
-    	player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>(); 
+    	player = GameObject.Find("_Player").GetComponent<Transform>(); 
         animator = GetComponent<Animator>();
         // bulletRate = 3f;
         // nextBullet = Time.time;
@@ -39,6 +39,7 @@ public class RangedEnemy : AbstractEnemy
     protected override void Update()
     {
         base.Update();
+
       //If the player is farther than 15 away and NOT farther than 30 away, follow the player. Else, don't.
         if (Vector2.Distance(transform.position, player.position) > 15 && Vector2.Distance(transform.position, player.position) < 30) {
         	animator.SetBool("walk", true);

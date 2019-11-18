@@ -20,6 +20,7 @@ public class Door : MonoBehaviour
     public string sceneToLoad;
     public DoorKey doorKey;
     public bool isPermanentlyLocked;
+    private bool loadingScene = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -31,8 +32,10 @@ public class Door : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "_Player" && Input.GetKeyDown(KeyCode.Tab) && !isPermanentlyLocked)
+        if (collision.gameObject.name == "_Player" && Input.GetKeyDown(KeyCode.Tab) && !isPermanentlyLocked && !loadingScene)
         {
+            loadingScene = true;
+
             PlayerManager playerManager = collision.gameObject.GetComponent<PlayerManager>();
             //load Door's scene if the door is not locked or has been unlocked by collecting the relevant key
             if (doorKey == null || playerManager.HasKey(doorKey))

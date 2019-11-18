@@ -36,7 +36,7 @@ public class Projectile : MonoBehaviour
         if (target.gameObject.layer == 12)
         {
             //Hit Enemy
-            var script = target.gameObject.GetComponent<BasicEnemy>();
+            var script = target.gameObject.GetComponent<AbstractEnemy>();
             if (script != null)
             {
                 script.HitBy(gameObject);

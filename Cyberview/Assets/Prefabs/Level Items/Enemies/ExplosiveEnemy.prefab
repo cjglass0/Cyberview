@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 899868360511266538}
   - component: {fileID: 8033141799739535903}
   - component: {fileID: 753561020910341152}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ExplosiveEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

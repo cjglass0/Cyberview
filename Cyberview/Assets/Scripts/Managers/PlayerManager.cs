@@ -123,6 +123,8 @@ public class PlayerManager : AbstractCharacter
 
         MovementUpdate();
 
+        BasicAttackUpdate();
+
         if (health <= 0) {
             gameManager.ReloadLevel();
         }
@@ -281,6 +283,23 @@ public class PlayerManager : AbstractCharacter
                 new Vector3(-originalScale.x, originalScale.y, originalScale.z); isFacingRight = false; }
     }
 
+    private void BasicAttackUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift)){
+            foreach (GameObject go in interactables)
+            {
+                if (go.layer == 12)
+                {
+                    //animator.SetBool("punch", true);
+                    Debug.Log("punch");
+                    BasicEnemy basicEnemy = go.GetComponent<BasicEnemy>();
+                    basicEnemy.HitBy(gameObject);
+                }
+            }
+            Debug.Log("LShift");
+        }
+    }
+
     //----------------------------------------------------------------- OTHER METHODS -------------------------------------------
 
     //------------------------------------------------------------------- Triggers ----------------------------------------------
@@ -345,6 +364,7 @@ public class PlayerManager : AbstractCharacter
             if (!hitByBullet)
             {
                 enemy.GetComponent<AbstractEnemy>().PlayerCollision(gameObject);
+                
             }
             Debug.Log("PlayerManager -> HitByEnemy:" + enemy.name + ". New Player Health:" + health);
 
