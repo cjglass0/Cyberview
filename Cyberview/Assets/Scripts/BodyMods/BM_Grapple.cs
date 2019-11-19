@@ -49,7 +49,7 @@ public class BM_Grapple : AbstractBodyMod
             projectile.SetupProjectile(projectileLifetime, projectileDamage, projectileSpeed, owner.isFacingRight);
             //delay to avoid shooting once per frame
         } else {
-            Debug.Log("BM_Gun -> Shoot() -> No Bullet fired because of a lack of space");
+            Debug.Log("BM_Gun -> Shoot() -> No Grapple Hook fired because of a lack of space");
         }
     }
 
