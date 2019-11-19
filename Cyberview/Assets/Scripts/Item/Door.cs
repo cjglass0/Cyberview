@@ -27,7 +27,16 @@ public class Door : MonoBehaviour
     {
         if (collision.gameObject.name == "_Player" && !isPermanentlyLocked && !justSpawned)
         {
-            GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("Press TAB to open");
+            PlayerManager playerManager = collision.gameObject.GetComponent<PlayerManager>();
+
+            if (doorKey == null || playerManager.HasKey(doorKey))
+            {
+                GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("Press TAB to open");
+            } else
+            {
+                GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("Door is locked. Find the Key.");
+            }
+            
         }
     }
 

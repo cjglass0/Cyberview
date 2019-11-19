@@ -102,6 +102,17 @@ public class HUD : MonoBehaviour
 
     public void BtnRestartLevel()
     {
+        clickSound.Play();
+        gameManager.paused = false;
+        Debug.Log("HUD -> Restart");
+        Time.timeScale = 1;
+        playerHUD.alpha = 1;
+        playerHUD.interactable = true;
+        playerHUD.gameObject.SetActive(true);
+        pauseMenu.alpha = 0;
+        pauseMenu.interactable = false;
+        pauseMenu.gameObject.SetActive(false);
+
         gameManager.ReloadLevel();
     }
 

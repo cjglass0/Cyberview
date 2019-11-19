@@ -82,6 +82,7 @@ public class PlayerManager : AbstractCharacter
         allExistingBodyMods.Add(bm_Legs); 
         allExistingBodyMods.Add(bm_StrongArm);
         allExistingBodyMods.Add(bm_Drill);
+        allExistingBodyMods.Add(bm_Grapple);
 
         //Load unlocked body mods from saved state
         foreach (AbstractBodyMod abm in allExistingBodyMods)
