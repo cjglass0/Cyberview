@@ -53,7 +53,8 @@ MonoBehaviour:
   shootDelay: 2
   projectilePrefab: {fileID: 2106117444063836877, guid: 75ea76809364dfc4dab9c6f9b57f4250,
     type: 3}
-  projectileLifetime: 10
+  projectileLifetime: 2.5
   projectileDamage: 1
   projectileSpeed: 25
   existingProjectile: {fileID: 0}
+  distanceFromPlayer: 1.6

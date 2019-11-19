@@ -258,7 +258,7 @@ public class HUD : MonoBehaviour
     public void SetHealth(int health) { 
         healthValue.text = health.ToString() + "%";
         batteryBar.rectTransform.sizeDelta = new Vector2(mapNumber(health, 0, playerManager.origHealth, 0, origBatterySizeX), 51.85f);
-        batteryBar.color = new Color(mapNumber(health, 0, playerManager.origHealth, 1, 0), mapNumber(health, 0, playerManager.origHealth, 0, 1), 0);
+        batteryBar.color = new Color(mapNumber(health, 0, playerManager.origHealth, 0.8f, 0.2f), mapNumber(health, 0, playerManager.origHealth, 0.2f, 0.8f), 0.2f);
     }
 
     public void SetCredit(int credit) { creditValue.text = credit.ToString(); }

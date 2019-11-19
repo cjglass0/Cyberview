@@ -8148,6 +8148,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grapple
       objectReference: {fileID: 0}
+    - target: {fileID: 8972388180567075028, guid: b5306545ae1ca9f4fb3225afce834bb7,
+        type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 717986515}
     - target: {fileID: 8972388180567075029, guid: b5306545ae1ca9f4fb3225afce834bb7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8203,11 +8208,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8972388180567075028, guid: b5306545ae1ca9f4fb3225afce834bb7,
-        type: 3}
-      propertyPath: owner
-      value: 
-      objectReference: {fileID: 717986515}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5306545ae1ca9f4fb3225afce834bb7, type: 3}
 --- !u!4 &1529570354 stripped

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GrappleProjectile : MonoBehaviour
 {
     private Rigidbody2D body2d;
-    private float lifetime = 10f;
+    private float lifetime = 10f; //overwritten by BM_Grapple in Setup
     public float damage = 0;
     private float speed = 7f;
     private bool right = true;
@@ -31,13 +31,15 @@ public class GrappleProjectile : MonoBehaviour
         lineRenderer.SetPosition (0, transform.localPosition);
         lineRenderer.SetPosition (1, owner.transform.localPosition);
         lifetime -= Time.deltaTime;
-        if(attachedTerrain == null){
+
+        if(attachedTerrain == null){            //Hook is flying
             body2d.velocity = new Vector2(speed*rightFactor, 0);
             if(lifetime < 0){
                 Destroy(gameObject);
             }
+            //Debug.Log(lifetime);
         }
-        else{
+        else{                                   //Hook has attached
             body2d.velocity = new Vector2(0,0);
             owner.GetComponent<Rigidbody2D>().velocity = playerVel;
 
@@ -50,6 +52,21 @@ public class GrappleProjectile : MonoBehaviour
 
             if(projectileDone){
                 owner.GetComponent<Rigidbody2D>().velocity = new Vector2(0,33);
+                Destroy(gameObject);
+
+                //HERE
+            }
+
+            int layerMask = 1 << 8;
+            Vector2 direction = transform.localPosition - owner.transform.localPosition;
+            float maxDistance = direction.magnitude - 2;
+            if (maxDistance < 0) maxDistance = 0;
+
+            Debug.Log("Attached");
+            if (Physics2D.Raycast(owner.transform.localPosition, direction, maxDistance, layerMask, -Mathf.Infinity, Mathf.Infinity))
+            {
+                Debug.Log("GrappleProjectile -> Path blocked. Detach.");
+                owner.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 33);
                 Destroy(gameObject);
             }
         }
