@@ -32,7 +32,13 @@ public class BM_Gun : AbstractBodyMod
         Vector2 size = new Vector2(.5f, .5f);
 
         //only spawn bullets if there's space
-        if(Physics2D.OverlapBoxAll(spawnPos, size, 0).Length == 0)
+        List<Collider2D> collidersAtSpawnLocation = new List<Collider2D>(Physics2D.OverlapBoxAll(spawnPos, size, 0));
+        for (int i = collidersAtSpawnLocation.Count - 1; i >= 0; i--)
+        {
+            if (collidersAtSpawnLocation[i].gameObject.layer != 8) collidersAtSpawnLocation.Remove(collidersAtSpawnLocation[i]);
+        }
+
+        if (collidersAtSpawnLocation.Count == 0)
         {
             //spawn bullet
             GameObject projectileObject = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
