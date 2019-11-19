@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         //Set up stuff for Pausing
         Time.timeScale = 1;
         paused = false;
-        playerDied = true;
+        //playerDied = true;
 
         //Set curScene to be active Scene (_Base)
         curScene = SceneManager.GetActiveScene();
