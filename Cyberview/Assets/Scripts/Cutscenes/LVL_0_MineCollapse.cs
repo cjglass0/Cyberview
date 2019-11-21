@@ -44,9 +44,9 @@ public class LVL_0_MineCollapse : AbstractLvlItem
         hud.BlackOutFX(5);
         bouldersToRemove.SetActive(false);
         rubble.SetActive(true);
-        GameObject.Find("_Player").GetComponent<PlayerManager>().health = 10;
-        PlayerPrefs.SetInt("PlayerHealth", 10);
-        hud.SetHealth(10);
+        GameObject.Find("_Player").GetComponent<PlayerManager>().health = 15;
+        PlayerPrefs.SetInt("PlayerHealth", 15);
+        hud.SetHealth(15);
         hud.ShowTmpMsg("ERROR. ERROR. ERROR.");
         hud.PlayerHitFX();
 

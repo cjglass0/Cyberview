@@ -200,9 +200,9 @@ public class HUD : MonoBehaviour
         AbstractBodyMod equippedBodyMod = null;
         if (dropdown.options[dropdown.value].text == "Drill") equippedBodyMod = playerManager.bm_Drill;
         if (dropdown.options[dropdown.value].text == "Gun") equippedBodyMod = playerManager.bm_Gun;
-        if (dropdown.options[dropdown.value].text == "StrongArm") equippedBodyMod = playerManager.bm_StrongArm;
-        if (dropdown.options[dropdown.value].text == "RegularLegs") equippedBodyMod = playerManager.bm_Legs;
-        if (dropdown.options[dropdown.value].text == "GrappleHook") equippedBodyMod = playerManager.bm_Grapple;
+        if (dropdown.options[dropdown.value].text == "Strong Arm") equippedBodyMod = playerManager.bm_StrongArm;
+        if (dropdown.options[dropdown.value].text == "Regular Legs") equippedBodyMod = playerManager.bm_Legs;
+        if (dropdown.options[dropdown.value].text == "Grapple Hook") equippedBodyMod = playerManager.bm_Grapple;
         return equippedBodyMod;
     }
 
@@ -211,15 +211,15 @@ public class HUD : MonoBehaviour
     {
         if (playerManager.GetArmOneMod() != null)
         {
-            armLValue.text = playerManager.GetArmOneMod().gameObject.name;
+            armLValue.text = playerManager.GetArmOneMod().GetComponent<AbstractBodyMod>().name;
         } else { armLValue.text = "-"; }
         if (playerManager.GetArmTwoMod() != null)
         {
-            armRValue.text = playerManager.GetArmTwoMod().gameObject.name;
+            armRValue.text = playerManager.GetArmTwoMod().GetComponent<AbstractBodyMod>().name;
         } else { armRValue.text = "-"; }
         if (playerManager.GetLegsMod() != null)
         {
-            legsValue.text = playerManager.GetLegsMod().gameObject.name;
+            legsValue.text = playerManager.GetLegsMod().GetComponent<AbstractBodyMod>().name;
         } else { legsValue.text = "-"; }
     }
 
