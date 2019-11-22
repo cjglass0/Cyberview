@@ -114,4 +114,5 @@ public class LvlManager : MonoBehaviour
         
         Instantiate(rewardArray[randomIdx], rewardSpawnPoint, Quaternion.identity);
     }
+
 }
