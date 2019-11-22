@@ -1,16 +1,33 @@
 fileFormatVersion: 2
 guid: e6aa7282e2cd6e349a2cd63bf7b9f916
 ScriptedImporter:
-  fileIDToRecycleName:
-    100000: rangedEnemyBullets_GO/rangedEnemyBullets_GO
-    100002: rangedEnemyBullets_GO/rangedEnemyBullets_GO/Layer 1
-    400000: rangedEnemyBullets_GO/rangedEnemyBullets_GO/Transform
-    400002: rangedEnemyBullets_GO/rangedEnemyBullets_GO/Layer 1/Transform
-    2800000: rangedEnemyBullets
-    21200000: rangedEnemyBullets_GO/rangedEnemyBullets_GO/Layer 1/SpriteRenderer
-    21300000: 94205f2689de4394db372ffe4d957313
-    100100000: rangedEnemyBullets_GO
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: rangedEnemyBullets_GO/rangedEnemyBullets_GO
+  - first:
+      1: 100002
+    second: rangedEnemyBullets_GO/rangedEnemyBullets_GO/Layer 1
+  - first:
+      4: 400000
+    second: rangedEnemyBullets_GO/rangedEnemyBullets_GO/Transform
+  - first:
+      4: 400002
+    second: rangedEnemyBullets_GO/rangedEnemyBullets_GO/Layer 1/Transform
+  - first:
+      28: 2800000
+    second: rangedEnemyBullets
+  - first:
+      212: 21200000
+    second: rangedEnemyBullets_GO/rangedEnemyBullets_GO/Layer 1/SpriteRenderer
+  - first:
+      213: 21300000
+    second: 94205f2689de4394db372ffe4d957313
+  - first:
+      1001: 100100000
+    second: rangedEnemyBullets_GO
   externalObjects: {}
+  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -81,6 +98,7 @@ ScriptedImporter:
       width: 0
       height: 0
     spriteID: 
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -104,6 +122,7 @@ ScriptedImporter:
       width: 1984
       height: 677
     spriteID: 94205f2689de4394db372ffe4d957313
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -121,6 +140,10 @@ ScriptedImporter:
   importedTextureWidth: 2048
   importedTextureHeight: 1024
   documentSize: {x: 2000, y: 693}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 0
+  spriteCategoryList:
+    categories: []
   textureActualWidth: 2048
   textureActualHeight: 1024
   spritePackingTag: 
@@ -139,7 +162,9 @@ ScriptedImporter:
     bones: []
     parts: []
     dimension: {x: 0, y: 0}
+    characterGroups: []
   boneGOs: []
   generateGOHierarchy: 0
   textureAssetName: rangedEnemyBullets
   prefabAssetName: rangedEnemyBullets_GO
+  spriteLibAssetName: bulletsArt Sprite Lib

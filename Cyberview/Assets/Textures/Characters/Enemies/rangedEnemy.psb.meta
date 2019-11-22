@@ -1,56 +1,153 @@
 fileFormatVersion: 2
 guid: 467d05ea003349245ac7d88b3b6ddf3d
 ScriptedImporter:
-  fileIDToRecycleName:
-    100000: ranged enemy draft_GO/ranged enemy draft_GO
-    100002: ranged enemy draft_GO/ranged enemy draft_GO/body
-    100004: ranged enemy draft_GO/ranged enemy draft_GO/eyes
-    100006: ranged enemy draft_GO/ranged enemy draft_GO/gun
-    100008: ranged enemy draft_GO/ranged enemy draft_GO/head
-    100010: ranged enemy draft_GO/ranged enemy draft_GO/left leg
-    100012: ranged enemy draft_GO/ranged enemy draft_GO/right leg
-    100014: ranged enemy draft_GO/ranged enemy draft_GO/bone_1
-    100016: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_2
-    100018: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_2/bone_3
-    100020: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_4
-    100022: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_4/bone_5
-    100024: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_6
-    100026: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_6/bone_7
-    400000: ranged enemy draft_GO/ranged enemy draft_GO/Transform
-    400002: ranged enemy draft_GO/ranged enemy draft_GO/body/Transform
-    400004: ranged enemy draft_GO/ranged enemy draft_GO/eyes/Transform
-    400006: ranged enemy draft_GO/ranged enemy draft_GO/gun/Transform
-    400008: ranged enemy draft_GO/ranged enemy draft_GO/head/Transform
-    400010: ranged enemy draft_GO/ranged enemy draft_GO/left leg/Transform
-    400012: ranged enemy draft_GO/ranged enemy draft_GO/right leg/Transform
-    400014: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/Transform
-    400016: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_2/Transform
-    400018: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_2/bone_3/Transform
-    400020: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_4/Transform
-    400022: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_4/bone_5/Transform
-    400024: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_6/Transform
-    400026: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_6/bone_7/Transform
-    2800000: ranged enemy draft
-    11400000: ranged enemy draft_GO/ranged enemy draft_GO/body/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400002: ranged enemy draft_GO/ranged enemy draft_GO/eyes/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400004: ranged enemy draft_GO/ranged enemy draft_GO/gun/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400006: ranged enemy draft_GO/ranged enemy draft_GO/head/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400008: ranged enemy draft_GO/ranged enemy draft_GO/left leg/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400010: ranged enemy draft_GO/ranged enemy draft_GO/right leg/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    21200000: ranged enemy draft_GO/ranged enemy draft_GO/body/SpriteRenderer
-    21200002: ranged enemy draft_GO/ranged enemy draft_GO/eyes/SpriteRenderer
-    21200004: ranged enemy draft_GO/ranged enemy draft_GO/gun/SpriteRenderer
-    21200006: ranged enemy draft_GO/ranged enemy draft_GO/head/SpriteRenderer
-    21200008: ranged enemy draft_GO/ranged enemy draft_GO/left leg/SpriteRenderer
-    21200010: ranged enemy draft_GO/ranged enemy draft_GO/right leg/SpriteRenderer
-    21300000: c45232310f862f240a515146712bc10f
-    21300002: e0a96726b08f40f41b89338c6be48dc5
-    21300004: 3bc58b5198298e14c8083642aad09da1
-    21300006: fed1c242f6ce1c549b69c67be8fbe3e4
-    21300008: 84e251a4883c38f48bf3c1da0c5d293d
-    21300010: b4d72cda7529b75499f8b5047fdc0053
-    100100000: ranged enemy draft_GO
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: ranged enemy draft_GO/ranged enemy draft_GO
+  - first:
+      1: 100002
+    second: ranged enemy draft_GO/ranged enemy draft_GO/body
+  - first:
+      1: 100004
+    second: ranged enemy draft_GO/ranged enemy draft_GO/eyes
+  - first:
+      1: 100006
+    second: ranged enemy draft_GO/ranged enemy draft_GO/gun
+  - first:
+      1: 100008
+    second: ranged enemy draft_GO/ranged enemy draft_GO/head
+  - first:
+      1: 100010
+    second: ranged enemy draft_GO/ranged enemy draft_GO/left leg
+  - first:
+      1: 100012
+    second: ranged enemy draft_GO/ranged enemy draft_GO/right leg
+  - first:
+      1: 100014
+    second: ranged enemy draft_GO/ranged enemy draft_GO/bone_1
+  - first:
+      1: 100016
+    second: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_2
+  - first:
+      1: 100018
+    second: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_2/bone_3
+  - first:
+      1: 100020
+    second: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_4
+  - first:
+      1: 100022
+    second: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_4/bone_5
+  - first:
+      1: 100024
+    second: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_6
+  - first:
+      1: 100026
+    second: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_6/bone_7
+  - first:
+      4: 400000
+    second: ranged enemy draft_GO/ranged enemy draft_GO/Transform
+  - first:
+      4: 400002
+    second: ranged enemy draft_GO/ranged enemy draft_GO/body/Transform
+  - first:
+      4: 400004
+    second: ranged enemy draft_GO/ranged enemy draft_GO/eyes/Transform
+  - first:
+      4: 400006
+    second: ranged enemy draft_GO/ranged enemy draft_GO/gun/Transform
+  - first:
+      4: 400008
+    second: ranged enemy draft_GO/ranged enemy draft_GO/head/Transform
+  - first:
+      4: 400010
+    second: ranged enemy draft_GO/ranged enemy draft_GO/left leg/Transform
+  - first:
+      4: 400012
+    second: ranged enemy draft_GO/ranged enemy draft_GO/right leg/Transform
+  - first:
+      4: 400014
+    second: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/Transform
+  - first:
+      4: 400016
+    second: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_2/Transform
+  - first:
+      4: 400018
+    second: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_2/bone_3/Transform
+  - first:
+      4: 400020
+    second: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_4/Transform
+  - first:
+      4: 400022
+    second: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_4/bone_5/Transform
+  - first:
+      4: 400024
+    second: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_6/Transform
+  - first:
+      4: 400026
+    second: ranged enemy draft_GO/ranged enemy draft_GO/bone_1/bone_6/bone_7/Transform
+  - first:
+      28: 2800000
+    second: ranged enemy draft
+  - first:
+      114: 11400000
+    second: ranged enemy draft_GO/ranged enemy draft_GO/body/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400002
+    second: ranged enemy draft_GO/ranged enemy draft_GO/eyes/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400004
+    second: ranged enemy draft_GO/ranged enemy draft_GO/gun/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400006
+    second: ranged enemy draft_GO/ranged enemy draft_GO/head/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400008
+    second: ranged enemy draft_GO/ranged enemy draft_GO/left leg/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400010
+    second: ranged enemy draft_GO/ranged enemy draft_GO/right leg/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      212: 21200000
+    second: ranged enemy draft_GO/ranged enemy draft_GO/body/SpriteRenderer
+  - first:
+      212: 21200002
+    second: ranged enemy draft_GO/ranged enemy draft_GO/eyes/SpriteRenderer
+  - first:
+      212: 21200004
+    second: ranged enemy draft_GO/ranged enemy draft_GO/gun/SpriteRenderer
+  - first:
+      212: 21200006
+    second: ranged enemy draft_GO/ranged enemy draft_GO/head/SpriteRenderer
+  - first:
+      212: 21200008
+    second: ranged enemy draft_GO/ranged enemy draft_GO/left leg/SpriteRenderer
+  - first:
+      212: 21200010
+    second: ranged enemy draft_GO/ranged enemy draft_GO/right leg/SpriteRenderer
+  - first:
+      213: 21300000
+    second: c45232310f862f240a515146712bc10f
+  - first:
+      213: 21300002
+    second: e0a96726b08f40f41b89338c6be48dc5
+  - first:
+      213: 21300004
+    second: 3bc58b5198298e14c8083642aad09da1
+  - first:
+      213: 21300006
+    second: fed1c242f6ce1c549b69c67be8fbe3e4
+  - first:
+      213: 21300008
+    second: 84e251a4883c38f48bf3c1da0c5d293d
+  - first:
+      213: 21300010
+    second: b4d72cda7529b75499f8b5047fdc0053
+  - first:
+      1001: 100100000
+    second: ranged enemy draft_GO
   externalObjects: {}
+  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -121,6 +218,7 @@ ScriptedImporter:
       width: 0
       height: 0
     spriteID: 
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,6 +242,7 @@ ScriptedImporter:
       width: 567
       height: 367
     spriteID: c45232310f862f240a515146712bc10f
+    internalID: 0
     spriteBone:
     - name: bone_7
       position: {x: 573.6526, y: 175.80225, z: 0}
@@ -638,6 +737,7 @@ ScriptedImporter:
       width: 1420
       height: 1007
     spriteID: e0a96726b08f40f41b89338c6be48dc5
+    internalID: 0
     spriteBone:
     - name: bone_6
       position: {x: 784.9027, y: 15.834961, z: 0}
@@ -1108,6 +1208,7 @@ ScriptedImporter:
       width: 923
       height: 672
     spriteID: 3bc58b5198298e14c8083642aad09da1
+    internalID: 0
     spriteBone:
     - name: bone_1
       position: {x: 915.0226, y: -94.5249, z: 0}
@@ -1636,6 +1737,7 @@ ScriptedImporter:
       width: 1965
       height: 1409
     spriteID: fed1c242f6ce1c549b69c67be8fbe3e4
+    internalID: 0
     spriteBone:
     - name: bone_1
       position: {x: 1008.0226, y: 38.475037, z: 0}
@@ -2099,6 +2201,7 @@ ScriptedImporter:
       width: 612
       height: 1006
     spriteID: 84e251a4883c38f48bf3c1da0c5d293d
+    internalID: 0
     spriteBone:
     - name: bone_3
       position: {x: 469.68082, y: -0.00042989035, z: 0}
@@ -2632,6 +2735,7 @@ ScriptedImporter:
       width: 524
       height: 1003
     spriteID: b4d72cda7529b75499f8b5047fdc0053
+    internalID: 0
     spriteBone:
     - name: bone_5
       position: {x: 440.50824, y: 0.00011738491, z: 0}
@@ -3158,6 +3262,10 @@ ScriptedImporter:
   importedTextureWidth: 1024
   importedTextureHeight: 2048
   documentSize: {x: 2521, y: 2333}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 0
+  spriteCategoryList:
+    categories: []
   textureActualWidth: 2048
   textureActualHeight: 4096
   spritePackingTag: 
@@ -3252,6 +3360,8 @@ ScriptedImporter:
         height: 367
       spriteId: c45232310f862f240a515146712bc10f
       bones: 06000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 934
         y: 1326
@@ -3259,6 +3369,8 @@ ScriptedImporter:
         height: 1007
       spriteId: e0a96726b08f40f41b89338c6be48dc5
       bones: 05000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 265
         y: 973
@@ -3266,6 +3378,8 @@ ScriptedImporter:
         height: 672
       spriteId: 3bc58b5198298e14c8083642aad09da1
       bones: 00000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 172
         y: 840
@@ -3273,6 +3387,8 @@ ScriptedImporter:
         height: 1409
       spriteId: fed1c242f6ce1c549b69c67be8fbe3e4
       bones: 00000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 1908
         y: 0
@@ -3280,6 +3396,8 @@ ScriptedImporter:
         height: 1006
       spriteId: 84e251a4883c38f48bf3c1da0c5d293d
       bones: 0200000001000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 0
         y: 0
@@ -3287,7 +3405,10 @@ ScriptedImporter:
         height: 1003
       spriteId: b4d72cda7529b75499f8b5047fdc0053
       bones: 0400000003000000
+      parentGroup: 0
+      order: 0
     dimension: {x: 0, y: 0}
+    characterGroups: []
   boneGOs:
   - go: {fileID: 100014, guid: 467d05ea003349245ac7d88b3b6ddf3d, type: 3}
     index: 0
@@ -3306,3 +3427,4 @@ ScriptedImporter:
   generateGOHierarchy: 0
   textureAssetName: ranged enemy draft
   prefabAssetName: ranged enemy draft_GO
+  spriteLibAssetName: rangedEnemy Sprite Lib

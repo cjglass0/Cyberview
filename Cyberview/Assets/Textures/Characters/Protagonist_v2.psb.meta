@@ -1,89 +1,252 @@
 fileFormatVersion: 2
 guid: 559ef9b732dc98d44b00b0eaae55acc5
 ScriptedImporter:
-  fileIDToRecycleName:
-    100000: Protagonist_v2_GO/Protagonist_v2_GO
-    100002: Protagonist_v2_GO/Protagonist_v2_GO/Arm L
-    100004: Protagonist_v2_GO/Protagonist_v2_GO/ArmR
-    100006: Protagonist_v2_GO/Protagonist_v2_GO/Body
-    100008: Protagonist_v2_GO/Protagonist_v2_GO/Eye L
-    100010: Protagonist_v2_GO/Protagonist_v2_GO/Eye R
-    100012: Protagonist_v2_GO/Protagonist_v2_GO/Foot L
-    100014: Protagonist_v2_GO/Protagonist_v2_GO/Foot R
-    100016: Protagonist_v2_GO/Protagonist_v2_GO/Hand R
-    100018: Protagonist_v2_GO/Protagonist_v2_GO/Head
-    100020: Protagonist_v2_GO/Protagonist_v2_GO/Leg L
-    100022: Protagonist_v2_GO/Protagonist_v2_GO/Leg R
-    100024: Protagonist_v2_GO/Protagonist_v2_GO/bone_1
-    100026: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_2
-    100028: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_2/bone_10
-    100030: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_2/bone_11
-    100032: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_3
-    100034: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_3/bone_4
-    100036: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_5
-    100038: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_6
-    100040: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_6/bone_7
-    100042: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_8
-    100044: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_8/bone_9
-    400000: Protagonist_v2_GO/Protagonist_v2_GO/Transform
-    400002: Protagonist_v2_GO/Protagonist_v2_GO/Arm L/Transform
-    400004: Protagonist_v2_GO/Protagonist_v2_GO/ArmR/Transform
-    400006: Protagonist_v2_GO/Protagonist_v2_GO/Body/Transform
-    400008: Protagonist_v2_GO/Protagonist_v2_GO/Eye L/Transform
-    400010: Protagonist_v2_GO/Protagonist_v2_GO/Eye R/Transform
-    400012: Protagonist_v2_GO/Protagonist_v2_GO/Foot L/Transform
-    400014: Protagonist_v2_GO/Protagonist_v2_GO/Foot R/Transform
-    400016: Protagonist_v2_GO/Protagonist_v2_GO/Hand R/Transform
-    400018: Protagonist_v2_GO/Protagonist_v2_GO/Head/Transform
-    400020: Protagonist_v2_GO/Protagonist_v2_GO/Leg L/Transform
-    400022: Protagonist_v2_GO/Protagonist_v2_GO/Leg R/Transform
-    400024: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/Transform
-    400026: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_2/Transform
-    400028: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_2/bone_10/Transform
-    400030: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_2/bone_11/Transform
-    400032: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_3/Transform
-    400034: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_3/bone_4/Transform
-    400036: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_5/Transform
-    400038: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_6/Transform
-    400040: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_6/bone_7/Transform
-    400042: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_8/Transform
-    400044: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_8/bone_9/Transform
-    2800000: Protagonist_v2
-    11400000: Protagonist_v2_GO/Protagonist_v2_GO/Arm L/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400002: Protagonist_v2_GO/Protagonist_v2_GO/ArmR/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400004: Protagonist_v2_GO/Protagonist_v2_GO/Body/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400006: Protagonist_v2_GO/Protagonist_v2_GO/Eye L/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400008: Protagonist_v2_GO/Protagonist_v2_GO/Eye R/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400010: Protagonist_v2_GO/Protagonist_v2_GO/Foot L/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400012: Protagonist_v2_GO/Protagonist_v2_GO/Foot R/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400014: Protagonist_v2_GO/Protagonist_v2_GO/Hand R/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400016: Protagonist_v2_GO/Protagonist_v2_GO/Head/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400018: Protagonist_v2_GO/Protagonist_v2_GO/Leg L/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400020: Protagonist_v2_GO/Protagonist_v2_GO/Leg R/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    21200000: Protagonist_v2_GO/Protagonist_v2_GO/Arm L/SpriteRenderer
-    21200002: Protagonist_v2_GO/Protagonist_v2_GO/ArmR/SpriteRenderer
-    21200004: Protagonist_v2_GO/Protagonist_v2_GO/Body/SpriteRenderer
-    21200006: Protagonist_v2_GO/Protagonist_v2_GO/Eye L/SpriteRenderer
-    21200008: Protagonist_v2_GO/Protagonist_v2_GO/Eye R/SpriteRenderer
-    21200010: Protagonist_v2_GO/Protagonist_v2_GO/Foot L/SpriteRenderer
-    21200012: Protagonist_v2_GO/Protagonist_v2_GO/Foot R/SpriteRenderer
-    21200014: Protagonist_v2_GO/Protagonist_v2_GO/Hand R/SpriteRenderer
-    21200016: Protagonist_v2_GO/Protagonist_v2_GO/Head/SpriteRenderer
-    21200018: Protagonist_v2_GO/Protagonist_v2_GO/Leg L/SpriteRenderer
-    21200020: Protagonist_v2_GO/Protagonist_v2_GO/Leg R/SpriteRenderer
-    21300000: deee24e0ef30e9a4ab347566b95246da
-    21300002: cca08db4bcc0f7a438a6cbaa2b5f9d2e
-    21300004: 47b152ed734648f48a788e9a059730ec
-    21300006: 024f62813a8d03540a7a0cfca200a801
-    21300008: efa9740cee350ab41aee202a95d13832
-    21300010: 82428d53ccc3e5042a25e270d8c1c455
-    21300012: db35ca379662a7f49a82bc1d3b5a9a88
-    21300014: ce255ace4077d914cb4afadbaa6d6808
-    21300016: fefd488f6c5bcc04ca2da845d3fe265f
-    21300018: ae7640fa0e19e084a876900bfe93eb3e
-    21300020: 45301efeec29c074787dc1661366cf72
-    100100000: Protagonist_v2_GO
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Protagonist_v2_GO/Protagonist_v2_GO
+  - first:
+      1: 100002
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Arm L
+  - first:
+      1: 100004
+    second: Protagonist_v2_GO/Protagonist_v2_GO/ArmR
+  - first:
+      1: 100006
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Body
+  - first:
+      1: 100008
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Eye L
+  - first:
+      1: 100010
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Eye R
+  - first:
+      1: 100012
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Foot L
+  - first:
+      1: 100014
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Foot R
+  - first:
+      1: 100016
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Hand R
+  - first:
+      1: 100018
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Head
+  - first:
+      1: 100020
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Leg L
+  - first:
+      1: 100022
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Leg R
+  - first:
+      1: 100024
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1
+  - first:
+      1: 100026
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_2
+  - first:
+      1: 100028
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_2/bone_10
+  - first:
+      1: 100030
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_2/bone_11
+  - first:
+      1: 100032
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_3
+  - first:
+      1: 100034
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_3/bone_4
+  - first:
+      1: 100036
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_5
+  - first:
+      1: 100038
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_6
+  - first:
+      1: 100040
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_6/bone_7
+  - first:
+      1: 100042
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_8
+  - first:
+      1: 100044
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_8/bone_9
+  - first:
+      4: 400000
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Transform
+  - first:
+      4: 400002
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Arm L/Transform
+  - first:
+      4: 400004
+    second: Protagonist_v2_GO/Protagonist_v2_GO/ArmR/Transform
+  - first:
+      4: 400006
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Body/Transform
+  - first:
+      4: 400008
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Eye L/Transform
+  - first:
+      4: 400010
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Eye R/Transform
+  - first:
+      4: 400012
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Foot L/Transform
+  - first:
+      4: 400014
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Foot R/Transform
+  - first:
+      4: 400016
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Hand R/Transform
+  - first:
+      4: 400018
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Head/Transform
+  - first:
+      4: 400020
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Leg L/Transform
+  - first:
+      4: 400022
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Leg R/Transform
+  - first:
+      4: 400024
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/Transform
+  - first:
+      4: 400026
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_2/Transform
+  - first:
+      4: 400028
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_2/bone_10/Transform
+  - first:
+      4: 400030
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_2/bone_11/Transform
+  - first:
+      4: 400032
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_3/Transform
+  - first:
+      4: 400034
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_3/bone_4/Transform
+  - first:
+      4: 400036
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_5/Transform
+  - first:
+      4: 400038
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_6/Transform
+  - first:
+      4: 400040
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_6/bone_7/Transform
+  - first:
+      4: 400042
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_8/Transform
+  - first:
+      4: 400044
+    second: Protagonist_v2_GO/Protagonist_v2_GO/bone_1/bone_8/bone_9/Transform
+  - first:
+      28: 2800000
+    second: Protagonist_v2
+  - first:
+      114: 11400000
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Arm L/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400002
+    second: Protagonist_v2_GO/Protagonist_v2_GO/ArmR/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400004
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Body/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400006
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Eye L/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400008
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Eye R/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400010
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Foot L/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400012
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Foot R/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400014
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Hand R/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400016
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Head/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400018
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Leg L/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400020
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Leg R/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      212: 21200000
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Arm L/SpriteRenderer
+  - first:
+      212: 21200002
+    second: Protagonist_v2_GO/Protagonist_v2_GO/ArmR/SpriteRenderer
+  - first:
+      212: 21200004
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Body/SpriteRenderer
+  - first:
+      212: 21200006
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Eye L/SpriteRenderer
+  - first:
+      212: 21200008
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Eye R/SpriteRenderer
+  - first:
+      212: 21200010
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Foot L/SpriteRenderer
+  - first:
+      212: 21200012
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Foot R/SpriteRenderer
+  - first:
+      212: 21200014
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Hand R/SpriteRenderer
+  - first:
+      212: 21200016
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Head/SpriteRenderer
+  - first:
+      212: 21200018
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Leg L/SpriteRenderer
+  - first:
+      212: 21200020
+    second: Protagonist_v2_GO/Protagonist_v2_GO/Leg R/SpriteRenderer
+  - first:
+      213: 21300000
+    second: deee24e0ef30e9a4ab347566b95246da
+  - first:
+      213: 21300002
+    second: cca08db4bcc0f7a438a6cbaa2b5f9d2e
+  - first:
+      213: 21300004
+    second: 47b152ed734648f48a788e9a059730ec
+  - first:
+      213: 21300006
+    second: 024f62813a8d03540a7a0cfca200a801
+  - first:
+      213: 21300008
+    second: efa9740cee350ab41aee202a95d13832
+  - first:
+      213: 21300010
+    second: 82428d53ccc3e5042a25e270d8c1c455
+  - first:
+      213: 21300012
+    second: db35ca379662a7f49a82bc1d3b5a9a88
+  - first:
+      213: 21300014
+    second: ce255ace4077d914cb4afadbaa6d6808
+  - first:
+      213: 21300016
+    second: fefd488f6c5bcc04ca2da845d3fe265f
+  - first:
+      213: 21300018
+    second: ae7640fa0e19e084a876900bfe93eb3e
+  - first:
+      213: 21300020
+    second: 45301efeec29c074787dc1661366cf72
+  - first:
+      1001: 100100000
+    second: Protagonist_v2_GO
   externalObjects: {}
+  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -154,6 +317,7 @@ ScriptedImporter:
       width: 0
       height: 0
     spriteID: 
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -177,6 +341,7 @@ ScriptedImporter:
       width: 105
       height: 165
     spriteID: deee24e0ef30e9a4ab347566b95246da
+    internalID: 0
     spriteBone:
     - name: bone_10
       position: {x: 47.31482, y: 22.795532, z: 0}
@@ -604,6 +769,7 @@ ScriptedImporter:
       width: 110
       height: 201
     spriteID: cca08db4bcc0f7a438a6cbaa2b5f9d2e
+    internalID: 0
     spriteBone:
     - name: bone_11
       position: {x: 57.03882, y: 16.130005, z: 0}
@@ -1050,6 +1216,7 @@ ScriptedImporter:
       width: 904
       height: 538
     spriteID: 47b152ed734648f48a788e9a059730ec
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 404.53247, y: 11.009888, z: 0}
@@ -1542,6 +1709,7 @@ ScriptedImporter:
       width: 209
       height: 622
     spriteID: 024f62813a8d03540a7a0cfca200a801
+    internalID: 0
     spriteBone:
     - name: bone_3
       position: {x: 104.69473, y: 603.1494, z: 0}
@@ -2100,6 +2268,7 @@ ScriptedImporter:
       width: 256
       height: 408
     spriteID: efa9740cee350ab41aee202a95d13832
+    internalID: 0
     spriteBone:
     - name: bone_4
       position: {x: 31.493286, y: 377.58752, z: 0}
@@ -2547,6 +2716,7 @@ ScriptedImporter:
       width: 240
       height: 626
     spriteID: 82428d53ccc3e5042a25e270d8c1c455
+    internalID: 0
     spriteBone:
     - name: bone_6
       position: {x: 87.548645, y: 587.11694, z: 0}
@@ -3015,6 +3185,7 @@ ScriptedImporter:
       width: 349
       height: 82
     spriteID: db35ca379662a7f49a82bc1d3b5a9a88
+    internalID: 0
     spriteBone:
     - name: bone_7
       position: {x: 137.81165, y: 60.156067, z: 0}
@@ -3531,6 +3702,7 @@ ScriptedImporter:
       width: 810
       height: 679
     spriteID: ce255ace4077d914cb4afadbaa6d6808
+    internalID: 0
     spriteBone:
     - name: bone_1
       position: {x: 406.53235, y: 28.318298, z: 0}
@@ -4094,6 +4266,7 @@ ScriptedImporter:
       width: 240
       height: 626
     spriteID: fefd488f6c5bcc04ca2da845d3fe265f
+    internalID: 0
     spriteBone:
     - name: bone_8
       position: {x: 94.990234, y: 576.9839, z: 0}
@@ -4594,6 +4767,7 @@ ScriptedImporter:
       width: 349
       height: 83
     spriteID: ae7640fa0e19e084a876900bfe93eb3e
+    internalID: 0
     spriteBone:
     - name: bone_9
       position: {x: 120.12012, y: 71.82135, z: 0}
@@ -5087,6 +5261,7 @@ ScriptedImporter:
       width: 186
       height: 555
     spriteID: 45301efeec29c074787dc1661366cf72
+    internalID: 0
     spriteBone:
     - name: bone_5
       position: {x: 81.305176, y: 520.2826, z: 0}
@@ -5560,6 +5735,10 @@ ScriptedImporter:
   importedTextureWidth: 2048
   importedTextureHeight: 2048
   documentSize: {x: 1024, y: 1737}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 0
+  spriteCategoryList:
+    categories: []
   textureActualWidth: 2048
   textureActualHeight: 2048
   spritePackingTag: 
@@ -5709,6 +5888,8 @@ ScriptedImporter:
         height: 165
       spriteId: deee24e0ef30e9a4ab347566b95246da
       bones: 09000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 856
         y: 1385
@@ -5716,6 +5897,8 @@ ScriptedImporter:
         height: 201
       spriteId: cca08db4bcc0f7a438a6cbaa2b5f9d2e
       bones: 0a000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 120
         y: 1199
@@ -5723,6 +5906,8 @@ ScriptedImporter:
         height: 538
       spriteId: 47b152ed734648f48a788e9a059730ec
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 0
         y: 516
@@ -5730,6 +5915,8 @@ ScriptedImporter:
         height: 622
       spriteId: 024f62813a8d03540a7a0cfca200a801
       bones: 02000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 92
         y: 187
@@ -5737,6 +5924,8 @@ ScriptedImporter:
         height: 408
       spriteId: efa9740cee350ab41aee202a95d13832
       bones: 03000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 202
         y: 37
@@ -5744,6 +5933,8 @@ ScriptedImporter:
         height: 626
       spriteId: 82428d53ccc3e5042a25e270d8c1c455
       bones: 05000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 205
         y: 0
@@ -5751,6 +5942,8 @@ ScriptedImporter:
         height: 82
       spriteId: db35ca379662a7f49a82bc1d3b5a9a88
       bones: 06000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 118
         y: 577
@@ -5758,6 +5951,8 @@ ScriptedImporter:
         height: 679
       spriteId: ce255ace4077d914cb4afadbaa6d6808
       bones: 00000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 558
         y: 44
@@ -5765,6 +5960,8 @@ ScriptedImporter:
         height: 626
       spriteId: fefd488f6c5bcc04ca2da845d3fe265f
       bones: 07000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 583
         y: 4
@@ -5772,6 +5969,8 @@ ScriptedImporter:
         height: 83
       spriteId: ae7640fa0e19e084a876900bfe93eb3e
       bones: 08000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 838
         y: 602
@@ -5779,7 +5978,10 @@ ScriptedImporter:
         height: 555
       spriteId: 45301efeec29c074787dc1661366cf72
       bones: 04000000
+      parentGroup: 0
+      order: 0
     dimension: {x: 0, y: 0}
+    characterGroups: []
   boneGOs:
   - go: {fileID: 100024, guid: 559ef9b732dc98d44b00b0eaae55acc5, type: 3}
     index: 0
@@ -5806,3 +6008,4 @@ ScriptedImporter:
   generateGOHierarchy: 0
   textureAssetName: Protagonist_v2
   prefabAssetName: Protagonist_v2_GO
+  spriteLibAssetName: Protagonist_v2 Sprite Lib
