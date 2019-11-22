@@ -32,6 +32,7 @@ public class BM_StrongArm : AbstractBodyMod
             GotoState(BodyModState.INACTIVE);
             holdingBox = false;
             //reset colliders
+            heavyBox.transform.parent = null;
             blockColliderHelper.SetActive(false);
             //heavyBox.GetComponent<BoxCollider2D>().enabled = true;
             heavyBox.GetComponent<Rigidbody2D>().simulated = true;
@@ -93,6 +94,8 @@ public class BM_StrongArm : AbstractBodyMod
         owner.DecreaseHealth(energyCostPerTick);
 
         owner.GetComponentInChildren<Animator>().SetBool("grab", true);
+
+        heavyBox.transform.SetParent(owner.gameObject.transform);
     }
 
 
