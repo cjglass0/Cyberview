@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Experimental.U2D.Animation;
 
 public class PlayerManager : AbstractCharacter
 {
@@ -54,7 +55,11 @@ public class PlayerManager : AbstractCharacter
     //Vectors
     private Vector3 originalScale;
 
-    //---------------------------------------------------------------- START -------------------------------------------
+    //######## EXPERIMENTAL: For sprite swapping at runtime
+    public SpriteResolver lArmSpriteResolver, rArmSpriteResolver;
+
+
+    //===================================================================================== START ==============================================
     void Start()
     {
         playerObject = gameObject;
@@ -113,11 +118,13 @@ public class PlayerManager : AbstractCharacter
         if (PlayerPrefs.HasKey("PlayerHealth")) health = PlayerPrefs.GetInt("PlayerHealth");
         if (PlayerPrefs.HasKey("PlayerCredit")) credit = PlayerPrefs.GetInt("PlayerCredit");
 
+        UpdateModSprites();
+
         hud = GameObject.Find("_HUD").GetComponent<HUD>();
         hud.InitializeHUD();
     }
 
-    //---------------------------------------------------------------- UPDATE -------------------------------------------
+    //===================================================================================== UPDATE ==============================================
     void Update()
     {
         //Get all inputs
@@ -136,7 +143,7 @@ public class PlayerManager : AbstractCharacter
         }
     }
 
-    //---------------------------------------------------------------- UPDATE METHODS -------------------------------------------
+    //===================================================================================== UPDATE METHODS ========================================
 
     private void InputsUpdate()
     {
@@ -312,9 +319,10 @@ public class PlayerManager : AbstractCharacter
         animator.SetBool("punch", false);
     }
 
-    //----------------------------------------------------------------- OTHER METHODS -------------------------------------------
 
-    //------------------------------------------------------------------- Triggers ----------------------------------------------
+
+    //===================================================================================== TRIGGERS =======================================
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 12)
@@ -332,12 +340,14 @@ public class PlayerManager : AbstractCharacter
     }
 
 
-    //----------------------------------------------------------------- Colliders -------------------------------------------
 
 
-    //------------------------------------------------------------- PUBLIC INTERFACE ----------------------------------------
 
-    //------------------------------------------------------------- Behaviors
+
+
+    //================================================================================ PUBLIC INTERFACE =======================================
+
+    //================================================================================================================= Behaviors
     public override void SetIsGrounded(bool newGroundedState, string colliderObjectName)
     {
         base.SetIsGrounded(newGroundedState, colliderObjectName);
@@ -401,7 +411,11 @@ public class PlayerManager : AbstractCharacter
         interactables.Clear();
     }
 
-    //------------------------------------------------------------- Get-Methods
+
+
+
+
+    //================================================================================================================= Get-Methods
     public List<GameObject> GetInteractables()
     {
         //Debug.Log("PlayerManager -> Interactables n = " + interactables.Count);
@@ -423,12 +437,19 @@ public class PlayerManager : AbstractCharacter
     }
     public PlayerSound GetPlayerSound() { return playerSound;  }
 
-    //------------------------------------------------------------- Set-Methods
+
+
+
+
+    //================================================================================================================= Set-Methods
     public void RemoveInteractable(GameObject objectToRemove)
     {
         if (interactables.Contains(objectToRemove)) interactables.Remove(objectToRemove);
     }
     public void AddInteractable(GameObject objectToAdd) { interactables.Add(objectToAdd); }
+
+
+    //-------------------------------------------------------- UnlockBodyMod()
     public void UnlockBodyMod(AbstractBodyMod newMod)
     {
         //figure out which body mod was unlocked using the name. Otherwise it's not the instance attached to the player that is equipped.
@@ -466,6 +487,9 @@ public class PlayerManager : AbstractCharacter
             }
         }
     }
+
+
+    //-------------------------------------------------------- SetMod()
     public void SetMod(int whichOne, AbstractBodyMod newMod)
     {
         if (whichOne == 0 && newMod != null) {
@@ -486,7 +510,25 @@ public class PlayerManager : AbstractCharacter
             legsMod.EquipBodyMod();
             PlayerPrefs.SetString("legsMod", newMod.name);
         }
+
+        UpdateModSprites();
     }
+
+    private void UpdateModSprites()
+    {
+        //Swap Arm Sprites
+        if (armTwoMod == bm_StrongArm || armOneMod == bm_StrongArm)
+        {
+            lArmSpriteResolver.SetCategoryAndLabel("L_arm", "StrongArmL");
+            rArmSpriteResolver.SetCategoryAndLabel("R_arm", "StrongArmR");
+        }
+        else
+        {
+            lArmSpriteResolver.SetCategoryAndLabel("L_arm", "Arm L");
+            rArmSpriteResolver.SetCategoryAndLabel("R_arm", "ArmR");
+        }
+    }
+
     public void AddCredit(int addCredit)
     {
         credit += addCredit;
