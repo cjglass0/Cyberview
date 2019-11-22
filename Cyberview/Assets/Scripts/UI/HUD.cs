@@ -198,11 +198,12 @@ public class HUD : MonoBehaviour
     {
         //check which option is selected in the dropdown menu and return the corresponding reference within the player
         AbstractBodyMod equippedBodyMod = null;
-        if (dropdown.options[dropdown.value].text == "Drill") equippedBodyMod = playerManager.bm_Drill;
-        if (dropdown.options[dropdown.value].text == "Gun") equippedBodyMod = playerManager.bm_Gun;
-        if (dropdown.options[dropdown.value].text == "Strong Arm") equippedBodyMod = playerManager.bm_StrongArm;
-        if (dropdown.options[dropdown.value].text == "Regular Legs") equippedBodyMod = playerManager.bm_Legs;
-        if (dropdown.options[dropdown.value].text == "Grapple Hook") equippedBodyMod = playerManager.bm_Grapple;
+        if (dropdown.options[dropdown.value].text == playerManager.bm_Drill.name) equippedBodyMod = playerManager.bm_Drill;
+        if (dropdown.options[dropdown.value].text == playerManager.bm_Gun.name) equippedBodyMod = playerManager.bm_Gun;
+        if (dropdown.options[dropdown.value].text == playerManager.bm_StrongArm.name) equippedBodyMod = playerManager.bm_StrongArm;
+        if (dropdown.options[dropdown.value].text == playerManager.bm_Legs.name) equippedBodyMod = playerManager.bm_Legs;
+        if (dropdown.options[dropdown.value].text == playerManager.bm_SuperLegs.name) equippedBodyMod = playerManager.bm_SuperLegs;
+        if (dropdown.options[dropdown.value].text == playerManager.bm_Grapple.name) equippedBodyMod = playerManager.bm_Grapple;
         return equippedBodyMod;
     }
 

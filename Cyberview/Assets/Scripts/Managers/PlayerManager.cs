@@ -8,6 +8,7 @@ public class PlayerManager : AbstractCharacter
     ///// PUBLIC
     public BM_Gun bm_Gun;
     public BM_Legs bm_Legs;
+    public BM_SuperLegs bm_SuperLegs;
     public BM_StrongArm bm_StrongArm;
     public BM_Drill bm_Drill;
     public BM_Grapple bm_Grapple;
@@ -68,21 +69,20 @@ public class PlayerManager : AbstractCharacter
         unlockedBodyMods = new List<AbstractBodyMod>();
         keyList = new List<DoorKey>();
 
-        //setup Body Mods   <----------- Set which Body Mods are loaded at game startup (Depricated, use for Debug only)
-        legsMod = bm_Legs;
-       // armOneMod = bm_Drill;
-        //armTwoMod = bm_Grapple;
-        unlockedBodyMods.Add(bm_Legs);
-        //unlockedBodyMods.Add(bm_Grapple);
-        //unlockedBodyMods.Add(bm_Drill);
-        //unlockedBodyMods.Add(bm_Gun);
-
         //<------------------------- Make sure to add all Body Mods here
         allExistingBodyMods.Add(bm_Gun); 
         allExistingBodyMods.Add(bm_Legs); 
         allExistingBodyMods.Add(bm_StrongArm);
         allExistingBodyMods.Add(bm_Drill);
         allExistingBodyMods.Add(bm_Grapple);
+        allExistingBodyMods.Add(bm_SuperLegs);
+
+        //equip leg mod by default
+        if (!PlayerPrefs.HasKey(bm_Legs.name))
+        {
+            PlayerPrefs.SetInt(bm_Legs.name, 1);
+            PlayerPrefs.SetString("legsMod", bm_Legs.name);
+        }
 
         //Load unlocked body mods from saved state
         foreach (AbstractBodyMod abm in allExistingBodyMods)
@@ -90,18 +90,21 @@ public class PlayerManager : AbstractCharacter
             if (PlayerPrefs.HasKey(abm.name)) unlockedBodyMods.Add(abm);
         }
 
+        //add legs if nothing has been collected yet
+        if (unlockedBodyMods.Count == 0) { legsMod = bm_Legs; unlockedBodyMods.Add(bm_Legs); legsMod.EquipBodyMod(); }
+
         //equip body mods last used
         foreach (AbstractBodyMod abm in unlockedBodyMods)
         {
-            if (PlayerPrefs.HasKey("armOneMod")) if (PlayerPrefs.GetString("armOneMod") == abm.name) armOneMod = abm;
+            if (PlayerPrefs.HasKey("armOneMod")) if (PlayerPrefs.GetString("armOneMod") == abm.name) { armOneMod = abm; armOneMod.EquipBodyMod(); }
         }
         foreach (AbstractBodyMod abm in unlockedBodyMods)
         {
-            if (PlayerPrefs.HasKey("armTwoMod")) if (PlayerPrefs.GetString("armTwoMod") == abm.name) armTwoMod = abm;
+            if (PlayerPrefs.HasKey("armTwoMod")) if (PlayerPrefs.GetString("armTwoMod") == abm.name) { armTwoMod = abm; armTwoMod.EquipBodyMod(); }
         }
         foreach (AbstractBodyMod abm in unlockedBodyMods)
         {
-            if (PlayerPrefs.HasKey("legsMod")) if (PlayerPrefs.GetString("legsMod") == abm.name) legsMod = abm;
+            if (PlayerPrefs.HasKey("legsMod")) if (PlayerPrefs.GetString("legsMod") == abm.name) { legsMod = abm; legsMod.EquipBodyMod(); }
         }
 
         myPhysicsMaterial.friction = 1f;
@@ -465,16 +468,22 @@ public class PlayerManager : AbstractCharacter
     }
     public void SetMod(int whichOne, AbstractBodyMod newMod)
     {
-        if (whichOne == 0 && newMod != null) { 
+        if (whichOne == 0 && newMod != null) {
+            armOneMod.UnequipBodyMod();
             armOneMod = newMod; Debug.Log("PlayerManager -> SetMod(): Arm One Mod, " + newMod.gameObject.name);
+            armOneMod.EquipBodyMod();
             PlayerPrefs.SetString("armOneMod", newMod.name);
         }
-        if (whichOne == 1 && newMod != null) { 
+        if (whichOne == 1 && newMod != null) {
+            armTwoMod.UnequipBodyMod();
             armTwoMod = newMod; Debug.Log("PlayerManager -> SetMod(): Arm Two Mod, " + newMod.gameObject.name);
+            armTwoMod.EquipBodyMod();
             PlayerPrefs.SetString("armTwoMod", newMod.name);
         }
-        if (whichOne == 2 && newMod != null) { 
+        if (whichOne == 2 && newMod != null) {
+            legsMod.UnequipBodyMod();
             legsMod = newMod; Debug.Log("PlayerManager -> SetMod(): Legs Mod, " + newMod.gameObject.name);
+            legsMod.EquipBodyMod();
             PlayerPrefs.SetString("legsMod", newMod.name);
         }
     }

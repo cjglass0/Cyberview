@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BM_Legs : AbstractBodyMod
+public class BM_SuperLegs : AbstractBodyMod
 {
 
     //Handles jumping. Perhaps we can create a Legs abstract class and a number of subclasses for each type of leg in the feature, so that
@@ -12,7 +12,7 @@ public class BM_Legs : AbstractBodyMod
     private Rigidbody2D rb;
     private PlayerManager playerManager;
 
-    private float jumpSpeed = 34f;
+    private float jumpSpeed = 45f;
     private float fallMultiplier = 2.5f; //sets factor of speed at which player falls back down
     private float lowJumpMultiplier = 1.5f; //sets factor of how hard low jumps break while going up (should be >1)(1 = low and high jumps are same)
 
@@ -52,7 +52,8 @@ public class BM_Legs : AbstractBodyMod
                     rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
                 }
             }
-        } 
+        }
+        
     }
 
     public override void DisableBodyMod()
