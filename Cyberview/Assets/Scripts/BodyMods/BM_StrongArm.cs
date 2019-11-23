@@ -14,7 +14,13 @@ public class BM_StrongArm : AbstractBodyMod
     GameObject blockColliderHelper;
     private static float offsetX = 4.3f;
     Vector3 blockOffset = new Vector3(offsetX, 0, 0);
+    float originalBodyBoneYPos;
     int framesStuckOnLedge;
+
+    void Start()
+    {
+        originalBodyBoneYPos = owner.bodyBone.transform.position.y;
+    }
 
     //------------------------------------------------------ Released Hold Box Button
     public override void DisableBodyMod()
@@ -95,7 +101,7 @@ public class BM_StrongArm : AbstractBodyMod
 
         owner.GetComponentInChildren<Animator>().SetBool("grab", true);
 
-        heavyBox.transform.SetParent(owner.gameObject.transform);
+        heavyBox.transform.SetParent(owner.bodyBone.gameObject.transform);
     }
 
 
@@ -120,11 +126,11 @@ public class BM_StrongArm : AbstractBodyMod
         if (macroState == BodyModState.ACTIVE && heavyBox != null)
         {
             //flip if necessary
-            if (owner.transform.localScale.x > 0) blockOffset = new Vector3(offsetX, 0, 0);
-            else if (owner.transform.localScale.x < 0) blockOffset = new Vector3(-offsetX, 0, 0);
+            if (owner.transform.localScale.x > 0) blockOffset = new Vector3(offsetX, 1, 0);
+            else if (owner.transform.localScale.x < 0) blockOffset = new Vector3(-offsetX, 1, 0);
 
             //position box
-            heavyBox.transform.position = (owner.transform.position + blockOffset);
+            heavyBox.transform.position = (owner.bodyBone.transform.position + blockOffset);//(owner.transform.position + blockOffset);
 
             //decrease health every tick
             if (!tickDelay) StartCoroutine(DecreaseHealthAfterTick());

@@ -58,6 +58,8 @@ public class PlayerManager : AbstractCharacter
     //######## EXPERIMENTAL: For sprite swapping at runtime
     public SpriteResolver lArmSR, rArmSR, lLegSR, rLegSR, lFootSR, rFootSR;
     public GameObject LdrillVisual, RdrillVisual, LgunVisual, RgunVisual, LhookVisual, RhookVisual;
+    [System.NonSerialized]
+    public GameObject bodyBone;
 
 
     //===================================================================================== START ==============================================
@@ -68,6 +70,7 @@ public class PlayerManager : AbstractCharacter
         animator = GetComponentInChildren<Animator>();
         playerSound = GetComponentInChildren<PlayerSound>();
         origHealth = health;
+        bodyBone = GameObject.Find("bone_1");
 
         //init lists
         interactables = new List<GameObject>();
