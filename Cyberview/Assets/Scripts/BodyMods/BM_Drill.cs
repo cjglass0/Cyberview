@@ -87,7 +87,7 @@ public class BM_Drill : AbstractBodyMod
 
     public void BoulderDestroyed()
     {
-        owner.DecreaseHealth(energyCostPerTick);
+        owner.DecreaseHealth(energyCostPerTick, false);
         drillSound.Stop();
     }
 }

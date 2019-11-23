@@ -47,7 +47,7 @@ public class BM_Gun : AbstractBodyMod
             //setup bullet properties
             projectile.SetupProjectile(projectileLifetime, projectileDamage, projectileSpeed, owner.isFacingRight);
 
-            owner.DecreaseHealth(energyCostPerTick);
+            owner.DecreaseHealth(energyCostPerTick, false);
 
             //delay to avoid shooting once per frame
             StartCoroutine(ShootDelay());

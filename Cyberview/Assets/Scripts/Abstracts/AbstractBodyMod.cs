@@ -73,7 +73,7 @@ public abstract class AbstractBodyMod : MonoBehaviour
     {
         tickDelay = true;
         yield return new WaitForSeconds(timePerTick);
-        owner.DecreaseHealth(energyCostPerTick);
+        owner.DecreaseHealth(energyCostPerTick, false);
         tickDelay = false;
     }
 

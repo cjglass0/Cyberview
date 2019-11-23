@@ -14,10 +14,11 @@ public class HUD : MonoBehaviour
     public GameManager gameManager;
     public CanvasGroup playerHUD, pauseMenu, playerHitCG, bmMenu;
     public RawImage batteryBar;
+    public RectTransform batteryParent;
     public GameObject blackout;
     private float originalPlayerHitCGalpha, origBatterySizeX;
     private AudioSource clickSound;
-    private bool bmMenuLoaded, bmFrameDelay;
+    private bool bmMenuLoaded, bmFrameDelay, pulsing;
 
     private void Awake()
     {
@@ -38,6 +39,39 @@ public class HUD : MonoBehaviour
             BtnExitBMMenu();
         }
         if (Input.GetKeyDown(KeyCode.Tab) && bmMenuLoaded && bmFrameDelay) bmFrameDelay = false;
+
+        if (playerManager.health <= 20)
+        {
+            if (!pulsing) StartCoroutine(BatteryPulse());
+            healthValue.color = new Color(0.8f, 0.2f, 0.2f);
+        } else
+        {
+            healthValue.color = new Color(1, 1,1);
+        }
+    }
+
+    IEnumerator BatteryPulse()
+    {
+        pulsing = true;
+
+        for (float t = 0.0f; t < 1.5f; t += Time.deltaTime / 1.5f)
+        {
+            float xScale, yScale;
+            if (t < 0.75f)
+            {
+                xScale = mapNumber(t, 0, 0.75f, 1, 1.05f);
+                yScale = mapNumber(t, 0, 0.75f, 1, 1.1f);
+            }
+            else
+            {
+                xScale = mapNumber(t, 0.75f, 1.5f, 1.05f, 1);
+                yScale = mapNumber(t, 0.75f, 1.5f, 1.1f, 1);
+            }
+            batteryParent.localScale = new Vector2(xScale, yScale);
+            yield return null;
+        }
+
+        pulsing = false;
     }
 
     //----------------------------------------------------------- OnClick Methods -------------------------------------------------

@@ -97,7 +97,7 @@ public class BM_StrongArm : AbstractBodyMod
         GotoState(BodyModState.ACTIVE);
         holdingBox = true;
 
-        owner.DecreaseHealth(energyCostPerTick);
+        owner.DecreaseHealth(energyCostPerTick, false);
 
         owner.GetComponentInChildren<Animator>().SetBool("grab", true);
 

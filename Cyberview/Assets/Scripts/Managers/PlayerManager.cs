@@ -610,9 +610,10 @@ public class PlayerManager : AbstractCharacter
         //save that the key has been collected
         PlayerPrefs.SetInt(newKey.objectID, 1);
     }
-    public void DecreaseHealth(int healthDecrease)
+    public void DecreaseHealth(int healthDecrease, bool hitVFX)
     {
         health -= healthDecrease;
         hud.SetHealth(health);
+        if (hitVFX) hud.PlayerHitFX();
     }
 }

@@ -16,7 +16,7 @@ public class Laser : MonoBehaviour
             PlayerManager playerManager = collision.gameObject.GetComponent<PlayerManager>();
             if (playerManager != null && laserActive)
             {
-                playerManager.DecreaseHealth(damageToPlayer);
+                playerManager.DecreaseHealth(damageToPlayer, true);
                 StartCoroutine(DelayLaser());
             }
         }
