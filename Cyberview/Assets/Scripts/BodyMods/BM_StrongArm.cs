@@ -12,7 +12,7 @@ public class BM_StrongArm : AbstractBodyMod
     bool droppingBox;
     GameObject heavyBox;
     GameObject blockColliderHelper;
-    private static float offsetX = 5f;
+    private static float offsetX = 4.3f;
     Vector3 blockOffset = new Vector3(offsetX, 0, 0);
     int framesStuckOnLedge;
 
