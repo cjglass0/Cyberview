@@ -6238,7 +6238,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Arm L:'
+  m_text: 'Arm J:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09e182723774dc54c918ca08107cfa42, type: 2}
   m_sharedMaterial: {fileID: 21461845423454558, guid: 09e182723774dc54c918ca08107cfa42,
@@ -11536,7 +11536,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Arm R:'
+  m_text: 'Arm K:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09e182723774dc54c918ca08107cfa42, type: 2}
   m_sharedMaterial: {fileID: 21461845423454558, guid: 09e182723774dc54c918ca08107cfa42,
