@@ -394,6 +394,8 @@ public class PlayerManager : AbstractCharacter
 
             //bump player
             StartCoroutine(PlayerHitThrowback(enemy));
+
+            animator.SetBool("hurt", true);
         }
     }
 
@@ -615,5 +617,6 @@ public class PlayerManager : AbstractCharacter
         health -= healthDecrease;
         hud.SetHealth(health);
         if (hitVFX) hud.PlayerHitFX();
+        if (hitVFX) animator.SetBool("hurt", true);
     }
 }

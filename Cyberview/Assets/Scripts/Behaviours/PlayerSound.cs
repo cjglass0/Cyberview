@@ -41,4 +41,9 @@ public class PlayerSound : MonoBehaviour
         door.Stop();
         door.Play();
     }
+
+    public void EyesHurt()
+    {
+        GetComponent<Animator>().SetBool("hurt", false);
+    }
 }
