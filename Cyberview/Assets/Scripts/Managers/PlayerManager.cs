@@ -56,7 +56,7 @@ public class PlayerManager : AbstractCharacter
     private Vector3 originalScale;
 
     //######## EXPERIMENTAL: For sprite swapping at runtime
-    public SpriteResolver lArmSpriteResolver, rArmSpriteResolver;
+    public SpriteResolver lArmSR, rArmSR, lLegSR, rLegSR, lFootSR, rFootSR;
 
 
     //===================================================================================== START ==============================================
@@ -519,14 +519,38 @@ public class PlayerManager : AbstractCharacter
         //Swap Arm Sprites
         if (armTwoMod == bm_StrongArm || armOneMod == bm_StrongArm)
         {
-            lArmSpriteResolver.SetCategoryAndLabel("L_arm", "StrongArmL");
-            rArmSpriteResolver.SetCategoryAndLabel("R_arm", "StrongArmR");
+            lArmSR.SetCategoryAndLabel("L_arm", "StrongArm L");
+            rArmSR.SetCategoryAndLabel("R_arm", "StrongArm R");
         }
         else
         {
-            lArmSpriteResolver.SetCategoryAndLabel("L_arm", "Arm L");
-            rArmSpriteResolver.SetCategoryAndLabel("R_arm", "ArmR");
+            lArmSR.SetCategoryAndLabel("L_arm", "Arm L");
+            rArmSR.SetCategoryAndLabel("R_arm", "Arm R");
         }
+
+        //Swap Leg Sprites
+        if (legsMod == bm_Legs)
+        {
+            lLegSR.SetCategoryAndLabel("L_leg", "Leg L");
+            rLegSR.SetCategoryAndLabel("R_leg", "Leg R");
+            lFootSR.SetCategoryAndLabel("L_foot", "Foot L");
+            rFootSR.SetCategoryAndLabel("R_foot", "Foot R");
+        }
+        else if (legsMod == bm_SuperLegs)
+        {
+            lLegSR.SetCategoryAndLabel("L_leg", "SuperLeg L");
+            rLegSR.SetCategoryAndLabel("R_leg", "SuperLeg R");
+            lFootSR.SetCategoryAndLabel("L_foot", "Foot L");
+            rFootSR.SetCategoryAndLabel("R_foot", "Foot R");
+        }
+        /*
+        else if (legsMod == bm_HoverLegs)
+        {
+            lLegSR.SetCategoryAndLabel("L_leg", "HoverLeg L");
+            rLegSR.SetCategoryAndLabel("R_leg", "HoverLeg R");
+            lFootSR.SetCategoryAndLabel("L_foot", "HoverFoot L");
+            rFootSR.SetCategoryAndLabel("R_foot", "HoverFoot R");
+        }*/
     }
 
     public void AddCredit(int addCredit)
