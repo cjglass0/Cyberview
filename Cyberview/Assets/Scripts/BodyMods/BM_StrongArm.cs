@@ -44,6 +44,7 @@ public class BM_StrongArm : AbstractBodyMod
             heavyBox.GetComponent<Rigidbody2D>().simulated = true;
             heavyBox = null;
             owner.GetComponentInChildren<Animator>().SetBool("grab", false);
+            owner.strongArmsInUse = false;
 
         } else if (!heavyBox && !droppingBox)
         {
@@ -100,6 +101,7 @@ public class BM_StrongArm : AbstractBodyMod
         owner.DecreaseHealth(energyCostPerTick, false);
 
         owner.GetComponentInChildren<Animator>().SetBool("grab", true);
+        owner.strongArmsInUse = true;
 
         heavyBox.transform.SetParent(owner.bodyBone.gameObject.transform);
     }

@@ -65,13 +65,13 @@ public class BM_Gun : AbstractBodyMod
 
     public override void DisableBodyMod()
     {
-        animator.SetBool("raiseArm", false);
+        if (armSide == ArmSide.ARMTWO) { animator.SetBool("raiseArmL", false); } else { animator.SetBool("raiseArmR", false); }
     }
 
     public override void EnableBodyMod()
     {
-        if (canShoot) Shoot();
-        animator.SetBool("raiseArm", true);
+        if (canShoot && !owner.strongArmsInUse) Shoot();
+        if (armSide == ArmSide.ARMTWO) { animator.SetBool("raiseArmL", true); } else { animator.SetBool("raiseArmR", true); }
     }
 
     public override void EquipBodyMod()

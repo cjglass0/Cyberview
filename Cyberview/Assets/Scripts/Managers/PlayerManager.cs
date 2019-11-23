@@ -33,6 +33,8 @@ public class PlayerManager : AbstractCharacter
 
     [System.NonSerialized]
     public int origHealth;
+    [System.NonSerialized]
+    public bool strongArmsInUse;
 
     ///// PRIVATE
     public Animator animator;
@@ -105,11 +107,11 @@ public class PlayerManager : AbstractCharacter
         //equip body mods last used
         foreach (AbstractBodyMod abm in unlockedBodyMods)
         {
-            if (PlayerPrefs.HasKey("armOneMod")) if (PlayerPrefs.GetString("armOneMod") == abm.name) { armOneMod = abm; armOneMod.EquipBodyMod(); }
+            if (PlayerPrefs.HasKey("armOneMod")) if (PlayerPrefs.GetString("armOneMod") == abm.name) { armOneMod = abm; armOneMod.EquipBodyMod(); armOneMod.armSide = ArmSide.ARMONE; }
         }
         foreach (AbstractBodyMod abm in unlockedBodyMods)
         {
-            if (PlayerPrefs.HasKey("armTwoMod")) if (PlayerPrefs.GetString("armTwoMod") == abm.name) { armTwoMod = abm; armTwoMod.EquipBodyMod(); }
+            if (PlayerPrefs.HasKey("armTwoMod")) if (PlayerPrefs.GetString("armTwoMod") == abm.name) { armTwoMod = abm; armTwoMod.EquipBodyMod(); armTwoMod.armSide = ArmSide.ARMTWO; }
         }
         foreach (AbstractBodyMod abm in unlockedBodyMods)
         {
@@ -502,12 +504,14 @@ public class PlayerManager : AbstractCharacter
             armOneMod.UnequipBodyMod();
             armOneMod = newMod; Debug.Log("PlayerManager -> SetMod(): Arm One Mod, " + newMod.gameObject.name);
             armOneMod.EquipBodyMod();
+            armOneMod.armSide = ArmSide.ARMONE;
             PlayerPrefs.SetString("armOneMod", newMod.name);
         }
         if (whichOne == 1 && newMod != null) {
             armTwoMod.UnequipBodyMod();
             armTwoMod = newMod; Debug.Log("PlayerManager -> SetMod(): Arm Two Mod, " + newMod.gameObject.name);
             armTwoMod.EquipBodyMod();
+            armTwoMod.armSide = ArmSide.ARMTWO;
             PlayerPrefs.SetString("armTwoMod", newMod.name);
         }
         if (whichOne == 2 && newMod != null) {
@@ -579,13 +583,13 @@ public class PlayerManager : AbstractCharacter
         LgunVisual.SetActive(false); RgunVisual.SetActive(false);
         LhookVisual.SetActive(false); RhookVisual.SetActive(false);
 
-        if (armOneMod == bm_Drill) { LdrillVisual.SetActive(true); }
-        else if (armOneMod == bm_Gun) { LgunVisual.SetActive(true); }
-        else if (armOneMod == bm_Grapple) { LhookVisual.SetActive(true); }
+        if (armOneMod == bm_Drill) { RdrillVisual.SetActive(true); }
+        else if (armOneMod == bm_Gun) { RgunVisual.SetActive(true); }
+        else if (armOneMod == bm_Grapple) { RhookVisual.SetActive(true); }
 
-        if (armTwoMod == bm_Drill) { RdrillVisual.SetActive(true); }
-        else if (armTwoMod == bm_Gun) { RgunVisual.SetActive(true); }
-        else if (armTwoMod == bm_Grapple) { RhookVisual.SetActive(true); }
+        if (armTwoMod == bm_Drill) { LdrillVisual.SetActive(true); }
+        else if (armTwoMod == bm_Gun) { LgunVisual.SetActive(true); }
+        else if (armTwoMod == bm_Grapple) { LhookVisual.SetActive(true); }
     }
 
     public void AddCredit(int addCredit)

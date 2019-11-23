@@ -43,7 +43,7 @@ public class HUD : MonoBehaviour
         if (playerManager.health <= 20)
         {
             if (!pulsing) StartCoroutine(BatteryPulse());
-            healthValue.color = new Color(0.8f, 0.2f, 0.2f);
+            healthValue.color = new Color(0.9f, 0.2f, 0.2f);
         } else
         {
             healthValue.color = new Color(1, 1,1);

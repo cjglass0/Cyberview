@@ -20,12 +20,21 @@ public enum BodyModType {
     LOWERBODY
 }
 
+public enum ArmSide
+{
+    ARMONE,
+    ARMTWO,
+    NEITHER
+}
+
 public abstract class AbstractBodyMod : MonoBehaviour
 {
     //A reference to the owning gameobject's character controller
     public PlayerManager owner;
     public BodyModState macroState = BodyModState.INACTIVE;
     public BodyModType bodyModType;
+    [System.NonSerialized]
+    public ArmSide armSide;
     //used to provide finer control within the macro state
     //  for example, ACTIVE might have mini-states that this can keep track of
     public int microState = 0;

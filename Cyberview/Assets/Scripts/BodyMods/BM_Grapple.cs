@@ -62,7 +62,7 @@ public class BM_Grapple : AbstractBodyMod
 
     public override void DisableBodyMod()
     {
-        animator.SetBool("raiseArm", false);
+        if (armSide == ArmSide.ARMTWO) { animator.SetBool("raiseArmL", false); } else { animator.SetBool("raiseArmR", false); }
     }
 
     public override void EnableBodyMod()
@@ -72,10 +72,10 @@ public class BM_Grapple : AbstractBodyMod
             StartCoroutine(ShootDelay());
         }
         else if (canShoot){
-             Shoot();
+             if (!owner.strongArmsInUse) Shoot();
         }
-        
-        animator.SetBool("raiseArm", true);
+
+        if (armSide == ArmSide.ARMTWO) { animator.SetBool("raiseArmL", true); } else { animator.SetBool("raiseArmR", true); }
     }
 
     public override void EquipBodyMod()

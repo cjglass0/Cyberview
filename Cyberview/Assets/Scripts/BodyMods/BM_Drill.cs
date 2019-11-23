@@ -23,16 +23,19 @@ public class BM_Drill : AbstractBodyMod
 
     public override void EnableBodyMod()
     {
-        if (myCollider == null) myCollider = GetComponent<CircleCollider2D>();
-
-        myCollider.enabled = true;
-        if (!checkingForBoulder)
+        if (!owner.strongArmsInUse)
         {
-            //raise Arm & begin checking if it should be lowered again
-            animator.SetBool("raiseArm", true);
-            StartCoroutine(DelayedBoulderCheck());
+            if (myCollider == null) myCollider = GetComponent<CircleCollider2D>();
+
+            myCollider.enabled = true;
+            if (!checkingForBoulder)
+            {
+                //raise Arm & begin checking if it should be lowered again
+                if (armSide == ArmSide.ARMTWO) { animator.SetBool("raiseArmL", true); } else { animator.SetBool("raiseArmR", true); }
+                StartCoroutine(DelayedBoulderCheck());
+            }
+            checkingForBoulder = true;
         }
-        checkingForBoulder = true;
     }
 
     IEnumerator DelayedBoulderCheck()
@@ -64,7 +67,7 @@ public class BM_Drill : AbstractBodyMod
             drillSound.Stop();
             yield return new WaitForSeconds(.5f);
             //lower arm & delay again to let lower Arm animation finish
-            animator.SetBool("raiseArm", false);
+            if (armSide == ArmSide.ARMTWO) { animator.SetBool("raiseArmL", false); } else { animator.SetBool("raiseArmR", false); }
             yield return new WaitForSeconds(.3f);
         }
         checkingForBoulder = false;
@@ -73,7 +76,7 @@ public class BM_Drill : AbstractBodyMod
     public override void DisableBodyMod()
     {
         myCollider.enabled = false;
-        animator.SetBool("raiseArm", false);
+        if (armSide == ArmSide.ARMTWO) { animator.SetBool("raiseArmL", false); } else { animator.SetBool("raiseArmR", false); }
         GotoState(BodyModState.INACTIVE);
     }
 
