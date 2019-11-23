@@ -57,6 +57,7 @@ public class PlayerManager : AbstractCharacter
 
     //######## EXPERIMENTAL: For sprite swapping at runtime
     public SpriteResolver lArmSR, rArmSR, lLegSR, rLegSR, lFootSR, rFootSR;
+    public GameObject LdrillVisual, RdrillVisual, LgunVisual, RgunVisual, LhookVisual, RhookVisual;
 
 
     //===================================================================================== START ==============================================
@@ -521,11 +522,27 @@ public class PlayerManager : AbstractCharacter
         {
             lArmSR.SetCategoryAndLabel("L_arm", "StrongArm L");
             rArmSR.SetCategoryAndLabel("R_arm", "StrongArm R");
+
+            //position hands
+            Vector2 LsaPos = GameObject.Find("LSAPos").transform.position;
+            Vector2 RsaPos = GameObject.Find("RSAPos").transform.position;
+
+            LdrillVisual.transform.position = LsaPos; RdrillVisual.transform.position = RsaPos;
+            LgunVisual.transform.position = LsaPos; RgunVisual.transform.position = RsaPos;
+            LhookVisual.transform.position = LsaPos; RhookVisual.transform.position = RsaPos;
         }
         else
         {
             lArmSR.SetCategoryAndLabel("L_arm", "Arm L");
             rArmSR.SetCategoryAndLabel("R_arm", "Arm R");
+
+            //position hands
+            Vector2 LdefPos = GameObject.Find("LOrigPos").transform.position;
+            Vector2 RdefPos = GameObject.Find("ROrigPos").transform.position;
+
+            LdrillVisual.transform.position = LdefPos; RdrillVisual.transform.position = RdefPos;
+            LgunVisual.transform.position = LdefPos; RgunVisual.transform.position = RdefPos;
+            LhookVisual.transform.position = LdefPos; RhookVisual.transform.position = RdefPos;
         }
 
         //Swap Leg Sprites
@@ -551,6 +568,19 @@ public class PlayerManager : AbstractCharacter
             lFootSR.SetCategoryAndLabel("L_foot", "HoverFoot L");
             rFootSR.SetCategoryAndLabel("R_foot", "HoverFoot R");
         }*/
+
+        //Hands
+        LdrillVisual.SetActive(false); RdrillVisual.SetActive(false);
+        LgunVisual.SetActive(false); RgunVisual.SetActive(false);
+        LhookVisual.SetActive(false); RhookVisual.SetActive(false);
+
+        if (armOneMod == bm_Drill) { LdrillVisual.SetActive(true); }
+        else if (armOneMod == bm_Gun) { LgunVisual.SetActive(true); }
+        else if (armOneMod == bm_Grapple) { LhookVisual.SetActive(true); }
+
+        if (armTwoMod == bm_Drill) { RdrillVisual.SetActive(true); }
+        else if (armTwoMod == bm_Gun) { RgunVisual.SetActive(true); }
+        else if (armTwoMod == bm_Grapple) { RhookVisual.SetActive(true); }
     }
 
     public void AddCredit(int addCredit)
