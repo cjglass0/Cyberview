@@ -6,6 +6,7 @@ public class Button : MonoBehaviour
 {
     public MonoBehaviour target;
     public bool pressed = false;
+    private int pressCount = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,23 +21,25 @@ public class Button : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 9 && 
+        if ((collision.gameObject.layer == 9 || collision.gameObject.tag == "HeavyBlock") && 
             collision.gameObject.GetComponent<Rigidbody2D>().velocity.y <= 0.1 &&
             collision.gameObject.transform.position.y > transform.position.y + 2) 
         {
-            if(target is ActivatedBySwitchInterface a){
-            a.switchTurnedOn();
-            pressed = true;
+            if(target is ActivatedBySwitchInterface a && pressCount == 0){
+                a.switchTurnedOn();
+                pressed = true;
             }
+            pressCount += 1;
         }   
     }
 
     public void OnCollisionExit2D(Collision2D collision){
-        if (collision.gameObject.layer == 9 && pressed) 
+        if ((collision.gameObject.layer == 9 || collision.gameObject.tag == "HeavyBlock") && pressed) 
         {
-            if(target is ActivatedBySwitchInterface a){
-            a.switchTurnedOff();
+            if(pressCount == 1 && target is ActivatedBySwitchInterface a){
+                a.switchTurnedOff();
             }
+            pressCount -= 1;
         } 
     }
 }
