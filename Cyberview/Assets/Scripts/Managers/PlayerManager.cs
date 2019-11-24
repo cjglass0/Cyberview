@@ -52,7 +52,7 @@ public class PlayerManager : AbstractCharacter
     //Booleans
     private bool rightPressed, leftPressed, armOnePressed, armTwoPressed, legsPressed, actionPressed, crouchPressed, pausePressed,
         armOneReleased, armTwoReleased, legsReleased;
-    private bool pushback, invincible;
+    private bool pushback, invincible, deathSequence;
 
     //Vectors
     private Vector3 originalScale;
@@ -142,11 +142,24 @@ public class PlayerManager : AbstractCharacter
 
         BasicAttackUpdate();
 
-        if (health <= 0) {
-            gameManager.ReloadLevel();
-            health = origHealth;
-            hud.SetHealth(health);
+        if (health <= 0 && !deathSequence) {
+            //gameManager.ReloadLevel();
+            if (health < 0) health = 0;
+            StartCoroutine(DeathSequence());
         }
+    }
+
+    IEnumerator DeathSequence()
+    {
+        deathSequence = true;
+        animator.SetBool("dead", true);
+        disableInputs = true;
+        yield return new WaitForSeconds(1.5f);
+        disableInputs = false;
+        hud.PlayerDied();
+        health = origHealth;
+        hud.SetHealth(health);
+        deathSequence = false;
     }
 
     //===================================================================================== UPDATE METHODS ========================================
@@ -417,6 +430,7 @@ public class PlayerManager : AbstractCharacter
     public void ResetPlayer()
     {
         interactables.Clear();
+        animator.SetBool("dead", false);
     }
 
 

@@ -12,13 +12,13 @@ public class HUD : MonoBehaviour
     public TMP_Dropdown armLDropdown, armRDropdown, legsDropdown;
     public PlayerManager playerManager;
     public GameManager gameManager;
-    public CanvasGroup playerHUD, pauseMenu, playerHitCG, bmMenu;
-    public RawImage batteryBar;
+    public CanvasGroup playerHUD, pauseMenu, deathMenu, playerHitCG, bmMenu;
+    public RawImage batteryBar, batteryBarOutline;
     public RectTransform batteryParent;
     public GameObject blackout;
     private float originalPlayerHitCGalpha, origBatterySizeX;
     private AudioSource clickSound;
-    private bool bmMenuLoaded, bmFrameDelay, pulsing;
+    private bool bmMenuLoaded, bmFrameDelay, pulsing, goScreen;
 
     private void Awake()
     {
@@ -40,13 +40,16 @@ public class HUD : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Tab) && bmMenuLoaded && bmFrameDelay) bmFrameDelay = false;
 
-        if (playerManager.health <= 20)
+        int health = playerManager.health;
+        if (health <= 20)
         {
             if (!pulsing) StartCoroutine(BatteryPulse());
-            healthValue.color = new Color(1f, 0.1f, 0.1f);
+            healthValue.color = new Color(mapNumber(health, 0, playerManager.origHealth, 1f, 0.2f), mapNumber(health, 0, playerManager.origHealth, 0.2f, 0.8f), 0.2f);
+            batteryBarOutline.color = new Color(mapNumber(health, 0, playerManager.origHealth, 1f, 0.2f), mapNumber(health, 0, playerManager.origHealth, 0.2f, 0.8f), 0.2f);
         } else
         {
             healthValue.color = new Color(1, 1,1);
+            batteryBarOutline.color = new Color(0,0,0);
         }
     }
 
@@ -146,6 +149,16 @@ public class HUD : MonoBehaviour
         pauseMenu.alpha = 0;
         pauseMenu.interactable = false;
         pauseMenu.gameObject.SetActive(false);
+
+        //if restarting from gameover screen
+        if (goScreen)
+        {
+            deathMenu.alpha = 0;
+            deathMenu.interactable = false;
+            deathMenu.gameObject.SetActive(false);
+            goScreen = false;
+        }
+        
 
         gameManager.ReloadLevel();
     }
@@ -290,7 +303,25 @@ public class HUD : MonoBehaviour
         }   
     }
 
-    public void SetHealth(int health) { 
+    public void PlayerDied()
+    {
+        if (!goScreen)
+        {
+            gameManager.paused = true;
+            Debug.Log("HUD -> PlayerDied()");
+            Time.timeScale = 0;
+            playerHUD.alpha = 0;
+            playerHUD.interactable = false;
+            playerHUD.gameObject.SetActive(false);
+            deathMenu.alpha = 1;
+            deathMenu.interactable = true;
+            deathMenu.gameObject.SetActive(true);
+
+            goScreen = true;
+        }
+    }
+
+    public void SetHealth(int health) {
         healthValue.text = health.ToString() + "%";
         batteryBar.rectTransform.sizeDelta = new Vector2(mapNumber(health, 0, playerManager.origHealth, 0, origBatterySizeX), 51.85f);
         batteryBar.color = new Color(mapNumber(health, 0, playerManager.origHealth, 1f, 0.2f), mapNumber(health, 0, playerManager.origHealth, 0.2f, 0.8f), 0.2f);
@@ -357,5 +388,5 @@ public class HUD : MonoBehaviour
     float mapNumber(float pX, float pA, float pB, float pM, float pN)
     {
         return (pX - pA) / (pB - pA) * (pN - pM) + pM;
-    }
+    } 
 }
