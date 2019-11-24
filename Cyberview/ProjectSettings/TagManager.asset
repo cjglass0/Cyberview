@@ -24,7 +24,7 @@ TagManager:
   - Boulder
   - Enemy
   - PostProcessing
-  - 
+  - CanMoveIntoSolid
   - 
   - 
   - 
