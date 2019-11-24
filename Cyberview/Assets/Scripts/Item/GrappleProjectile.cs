@@ -7,7 +7,7 @@ public class GrappleProjectile : MonoBehaviour
     private Rigidbody2D body2d;
     private float lifetime = 10f; //overwritten by BM_Grapple in Setup
     public float damage = 0;
-    private float speed = 7f;
+    private float speed = 50f;
     private bool right = true;
     private int rightFactor;
     public bool projectileDone = false;
@@ -15,26 +15,41 @@ public class GrappleProjectile : MonoBehaviour
 
     public GameObject attachedTerrain;
     public PlayerManager owner;
+    private BM_Grapple bm_Grapple;
     public Vector2 playerVel;
+    private Vector3 armOneAttach, armTwoAttach;
     public bool grappling = false;
 
     private void Awake()
     {
         body2d = GetComponent<Rigidbody2D>();
+        owner = GameObject.Find("_Player").GetComponent<PlayerManager>();
+        bm_Grapple = owner.bm_Grapple;
     }
 
     // Update is called once per frame
     void Update()
     {
+        int xPosFactor;
+        if (owner.isFacingRight) { xPosFactor = 1; } else { xPosFactor = -1; }
+        armOneAttach = new Vector3(1 * xPosFactor, 0.7f);
+        armTwoAttach = new Vector3(3 * xPosFactor, 0.9f);
+
         LineRenderer lineRenderer = GetComponent<LineRenderer> ();
  
         lineRenderer.SetPosition (0, transform.localPosition);
-        lineRenderer.SetPosition (1, owner.transform.localPosition);
+        if (bm_Grapple.armSide == ArmSide.ARMONE)
+        {
+            lineRenderer.SetPosition(1, owner.transform.localPosition + armOneAttach);
+        } else {
+            lineRenderer.SetPosition(1, owner.transform.localPosition + armTwoAttach);
+        }
         lifetime -= Time.deltaTime;
 
         if(attachedTerrain == null){            //Hook is flying
             body2d.velocity = new Vector2(speed*rightFactor, 0);
             if(lifetime < 0){
+                bm_Grapple.GrappleDead();
                 Destroy(gameObject);
             }
             //Debug.Log(lifetime);
@@ -52,9 +67,9 @@ public class GrappleProjectile : MonoBehaviour
 
             if(projectileDone){
                 owner.GetComponent<Rigidbody2D>().velocity = new Vector2(0,33);
-                Destroy(gameObject);
 
-                //HERE
+                bm_Grapple.GrappleDead();
+                Destroy(gameObject);
             }
 
             int layerMask = 1 << 8;
@@ -67,6 +82,7 @@ public class GrappleProjectile : MonoBehaviour
             {
                 Debug.Log("GrappleProjectile -> Path blocked. Detach.");
                 owner.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 33);
+                bm_Grapple.GrappleDead();
                 Destroy(gameObject);
             }
         }

@@ -43,7 +43,7 @@ public class HUD : MonoBehaviour
         if (playerManager.health <= 20)
         {
             if (!pulsing) StartCoroutine(BatteryPulse());
-            healthValue.color = new Color(0.9f, 0.2f, 0.2f);
+            healthValue.color = new Color(1f, 0.1f, 0.1f);
         } else
         {
             healthValue.color = new Color(1, 1,1);
@@ -293,7 +293,7 @@ public class HUD : MonoBehaviour
     public void SetHealth(int health) { 
         healthValue.text = health.ToString() + "%";
         batteryBar.rectTransform.sizeDelta = new Vector2(mapNumber(health, 0, playerManager.origHealth, 0, origBatterySizeX), 51.85f);
-        batteryBar.color = new Color(mapNumber(health, 0, playerManager.origHealth, 0.8f, 0.2f), mapNumber(health, 0, playerManager.origHealth, 0.2f, 0.8f), 0.2f);
+        batteryBar.color = new Color(mapNumber(health, 0, playerManager.origHealth, 1f, 0.2f), mapNumber(health, 0, playerManager.origHealth, 0.2f, 0.8f), 0.2f);
     }
 
     public void SetCredit(int credit) { creditValue.text = credit.ToString(); }

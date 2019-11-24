@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerSound : MonoBehaviour
 {
     public AudioSource footstep1, footstep2, pickup, jump, boulder, door;
+    public PlayerManager owner;
 
     public void SoundFootStep1()
     {
@@ -46,4 +47,16 @@ public class PlayerSound : MonoBehaviour
     {
         GetComponent<Animator>().SetBool("hurt", false);
     }
+
+    public void ArmRaised()
+    {
+        owner.bm_Gun.ArmRaised();
+    }
+
+    public void ArmLowered()
+    {
+        owner.bm_Gun.ArmLowered();
+    }
+
+
 }

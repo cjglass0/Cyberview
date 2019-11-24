@@ -13,7 +13,11 @@ public class BM_Gun : AbstractBodyMod
     public float projectileSpeed = 10f;
 
     private bool canShoot = true;
-    private float distanceFromPlayer = 3.2f;
+    private bool armRaised = false;
+    private float XdistanceFromPlayerOne = 3.2f;
+    private float XdistanceFromPlayerTwo = 4.5f;
+    private float YdistanceFromPlayerOne = 0.7f;
+    private float YdistanceFromPlayerTwo = 0.9f;
 
     // Update is called once per frame
     void Update()
@@ -28,7 +32,13 @@ public class BM_Gun : AbstractBodyMod
         //account for direction the player is facing
         int xPosFactor;
         if (owner.isFacingRight) { xPosFactor = 1; } else { xPosFactor = -1; }
-        Vector2 spawnPos = new Vector2(playerPos.x + (distanceFromPlayer * xPosFactor), playerPos.y);
+
+        Vector2 spawnPos;
+        if (armSide == ArmSide.ARMONE) {
+            spawnPos = new Vector2(playerPos.x + (XdistanceFromPlayerOne * xPosFactor), playerPos.y + YdistanceFromPlayerOne);
+        } else {
+            spawnPos = new Vector2(playerPos.x + (XdistanceFromPlayerTwo * xPosFactor), playerPos.y + YdistanceFromPlayerTwo);
+        }
         Vector2 size = new Vector2(.5f, .5f);
 
         //only spawn bullets if there's space
@@ -70,7 +80,7 @@ public class BM_Gun : AbstractBodyMod
 
     public override void EnableBodyMod()
     {
-        if (canShoot && !owner.strongArmsInUse) Shoot();
+        if (canShoot && !owner.strongArmsInUse && armRaised) Shoot();
         if (armSide == ArmSide.ARMTWO) { animator.SetBool("raiseArmL", true); } else { animator.SetBool("raiseArmR", true); }
     }
 
@@ -80,5 +90,15 @@ public class BM_Gun : AbstractBodyMod
 
     public override void UnequipBodyMod()
     {
+    }
+
+    public void ArmRaised()
+    {
+        armRaised = true;
+    }
+
+    public void ArmLowered()
+    {
+        armRaised = false;
     }
 }

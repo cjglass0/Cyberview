@@ -10,8 +10,11 @@ public class BM_Grapple : AbstractBodyMod
     public GameObject projectilePrefab;
     public float projectileLifetime = 10f;
     public float projectileDamage = 0;
-    public float projectileSpeed = 8f;
+    public float projectileSpeed = 15f;
     public GameObject existingProjectile;
+    public GameObject hookVisualOne, hookVisualTwo;
+
+    //public GameObject hookOneVisual, hookTwoVisual;
 
     private bool canShoot = true;
     public float distanceFromPlayer = 1.6f;
@@ -37,7 +40,7 @@ public class BM_Grapple : AbstractBodyMod
         Vector2 spawnPos = new Vector2(playerPos.x + (distanceFromPlayer * xPosFactor), playerPos.y);
         Vector2 size = new Vector2(.5f, .5f);
 
-        if(existingProjectile == null)
+        if(existingProjectile == null)  // FIRE HOOK
         {
             //spawn bullet
             GameObject projectileObject = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
@@ -48,8 +51,15 @@ public class BM_Grapple : AbstractBodyMod
             //setup bullet properties
             projectile.SetupProjectile(projectileLifetime, projectileDamage, projectileSpeed, owner.isFacingRight);
             //delay to avoid shooting once per frame
+
+            if (armSide == ArmSide.ARMONE) {
+                hookVisualOne.SetActive(false);
+            } else
+            {
+                hookVisualTwo.SetActive(false);
+            }
         } else {
-            Debug.Log("BM_Gun -> Shoot() -> No Grapple Hook fired because of a lack of space");
+            Debug.Log("BM_Grapple -> Shoot() -> No Grapple Hook fired because of a lack of space");
         }
     }
 
@@ -62,7 +72,10 @@ public class BM_Grapple : AbstractBodyMod
 
     public override void DisableBodyMod()
     {
-        if (armSide == ArmSide.ARMTWO) { animator.SetBool("raiseArmL", false); } else { animator.SetBool("raiseArmR", false); }
+        if (existingProjectile == null)
+        {
+            if (armSide == ArmSide.ARMTWO) { animator.SetBool("raiseArmL", false); } else { animator.SetBool("raiseArmR", false); }
+        } 
     }
 
     public override void EnableBodyMod()
@@ -84,5 +97,18 @@ public class BM_Grapple : AbstractBodyMod
 
     public override void UnequipBodyMod()
     {
+    }
+
+    public void GrappleDead()
+    {
+        if (armSide == ArmSide.ARMTWO) { animator.SetBool("raiseArmL", false); } else { animator.SetBool("raiseArmR", false); }
+        if (armSide == ArmSide.ARMONE)
+        {
+            hookVisualOne.SetActive(true);
+        }
+        else
+        {
+            hookVisualTwo.SetActive(true);
+        }
     }
 }
