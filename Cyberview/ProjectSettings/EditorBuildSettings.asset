@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LVL_TEST.unity
     guid: 0aa62e527608c874aa4666870be243b4
+  - enabled: 1
+    path: Assets/Scenes/BOSS.unity
+    guid: 0e0adbfefb16bc040961d4d7f76543b0
   m_configObjects: {}

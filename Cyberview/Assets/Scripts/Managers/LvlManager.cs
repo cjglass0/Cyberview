@@ -19,13 +19,15 @@ public class LvlManager : MonoBehaviour
 
     private List<AbstractLvlItem> abstractLvlItems;
 
-    //for time challenge
     float levelStartTime;
     public int doorKeyTimeChallenge;
     private DoorKey[] doorKeyArray;
     private Door[] doorArray;
     int keysCollected = 0;
     public GameObject[] rewardArray;
+
+    [System.NonSerialized]
+    public int enemyCasualties;
 
     public void InitLevel(GameManager gameManager, string lastSceneName, bool playerDied)
     {
@@ -37,6 +39,8 @@ public class LvlManager : MonoBehaviour
         hud = GameObject.Find("_HUD").GetComponent<HUD>();
         doorKeyArray = Object.FindObjectsOfType<DoorKey>();
         doorArray = Object.FindObjectsOfType<Door>();
+
+        enemyCasualties = 0;
 
         if (playerDied)
         {
@@ -113,6 +117,11 @@ public class LvlManager : MonoBehaviour
         if (randomIdx == rewardArray.Length) randomIdx = rewardArray.Length - 1;
         
         Instantiate(rewardArray[randomIdx], rewardSpawnPoint, Quaternion.identity);
+    }
+
+    public void EnemyKilled()
+    {
+        enemyCasualties++;
     }
 
 }

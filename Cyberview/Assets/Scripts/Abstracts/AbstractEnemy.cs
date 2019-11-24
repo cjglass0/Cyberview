@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class AbstractEnemy : AbstractCharacter
 {
     public int damageToPlayerPerHit;
-    bool updateMovement = true;
+    protected bool updateMovement = true;
    
 
     [System.NonSerialized]
@@ -66,14 +66,17 @@ public abstract class AbstractEnemy : AbstractCharacter
     public void EnemyDeathEnd()
     {
         int coinflip = (int)(Random.Range(0, 2));
+        LvlManager lvlManager = GameObject.Find("LevelManager").GetComponent<LvlManager>();
+
         //Spawn Reward
         if (coinflip < 1)
         {
-            GameObject.Find("LevelManager").GetComponent<LvlManager>().SpawnRandomReward(gameObject.transform.position);
+            lvlManager.SpawnRandomReward(gameObject.transform.position);
         }
 
         //save state
         PlayerPrefs.SetInt(objectID, 1);
+        lvlManager.EnemyKilled();
 
         Destroy(gameObject);
 

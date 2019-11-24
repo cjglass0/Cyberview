@@ -8,7 +8,7 @@ public class HUD : MonoBehaviour
 {
     // Handle all HUD stuff
 
-    public TextMeshProUGUI armLValue, armRValue, legsValue, healthValue, creditValue, tmpMsg;
+    public TextMeshProUGUI armLValue, armRValue, legsValue, healthValue, creditValue, tmpMsg, enemyCasualties;
     public TMP_Dropdown armLDropdown, armRDropdown, legsDropdown;
     public PlayerManager playerManager;
     public GameManager gameManager;
@@ -409,6 +409,7 @@ public class HUD : MonoBehaviour
 
         floorEndScreen.interactable = true;
         floorEndScreen.gameObject.SetActive(true);
+        enemyCasualties.text = GameObject.Find("LevelManager").GetComponent<LvlManager>().enemyCasualties.ToString();
 
         playerManager.disableInputs = true;
 

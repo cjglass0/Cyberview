@@ -387,6 +387,9 @@ public class PlayerManager : AbstractCharacter
         if (!invincible)
         {
             bool hitByBullet = false;
+            bool hitByBoss = false;
+
+            if (enemy.GetComponent<FinalBoss>() != null || enemy.GetComponent<BossShovelHelper>() != null) hitByBoss = true;
 
             //decrease player health based on enemy's set damage
             if (enemy.GetComponent<AbstractEnemy>() != null) health -= enemy.GetComponent<AbstractEnemy>().damageToPlayerPerHit;
@@ -400,10 +403,14 @@ public class PlayerManager : AbstractCharacter
             PlayerPrefs.SetInt("PlayerHealth", health);
 
             //bump away enemy
-            if (!hitByBullet)
+            if (!hitByBullet && !hitByBoss)
             {
                 enemy.GetComponent<AbstractEnemy>().PlayerCollision(gameObject);
                 
+            } else if (hitByBoss)
+            {
+                if (enemy.GetComponent<FinalBoss>() != null) health -= enemy.GetComponent<FinalBoss>().damageToPlayerPerHit;
+                else if (enemy.GetComponent<BossShovelHelper>() != null) health -= enemy.GetComponent<BossShovelHelper>().damageToPlayerPerHit;
             }
             Debug.Log("PlayerManager -> HitByEnemy:" + enemy.name + ". New Player Health:" + health);
 
@@ -508,6 +515,8 @@ public class PlayerManager : AbstractCharacter
                 }
             }
         }
+
+        UpdateModSprites();
     }
 
 
