@@ -13,6 +13,7 @@ public class PlayerManager : AbstractCharacter
     public BM_StrongArm bm_StrongArm;
     public BM_Drill bm_Drill;
     public BM_Grapple bm_Grapple;
+    public BM_RocketLegs bm_RocketLegs;
     public GameManager gameManager;
 
     public int credit;
@@ -82,6 +83,7 @@ public class PlayerManager : AbstractCharacter
         allExistingBodyMods.Add(bm_Drill);
         allExistingBodyMods.Add(bm_Grapple);
         allExistingBodyMods.Add(bm_SuperLegs);
+        allExistingBodyMods.Add(bm_RocketLegs);
 
         //equip leg mod by default
         if (!PlayerPrefs.HasKey(bm_Legs.name))
@@ -560,14 +562,14 @@ public class PlayerManager : AbstractCharacter
             lFootSR.SetCategoryAndLabel("L_foot", "Foot L");
             rFootSR.SetCategoryAndLabel("R_foot", "Foot R");
         }
-        /*
-        else if (legsMod == bm_HoverLegs)
+        
+        else if (legsMod == bm_RocketLegs)
         {
             lLegSR.SetCategoryAndLabel("L_leg", "HoverLeg L");
             rLegSR.SetCategoryAndLabel("R_leg", "HoverLeg R");
             lFootSR.SetCategoryAndLabel("L_foot", "HoverFoot L");
             rFootSR.SetCategoryAndLabel("R_foot", "HoverFoot R");
-        }*/
+        }
 
         //Hands
         LdrillVisual.SetActive(false); RdrillVisual.SetActive(false);

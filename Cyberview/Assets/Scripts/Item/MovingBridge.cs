@@ -21,7 +21,9 @@ public class MovingBridge : MonoBehaviour, ActivatedBySwitchInterface
         if(activated){
             if(actionTimer > 0){
                 //do something
+                //body2d.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
                 body2d.velocity = new Vector2(xSpeed, ySpeed);
+                //body2d.constraints = RigidbodyConstraints2D.FreezeAll;
                 actionTimer -= Time.deltaTime;
             }
             else{

@@ -6,7 +6,7 @@ public class Button : MonoBehaviour
 {
     public MonoBehaviour target;
     public bool pressed = false;
-    private int pressCount = 0;
+    public int pressCount = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +40,9 @@ public class Button : MonoBehaviour
                 a.switchTurnedOff();
             }
             pressCount -= 1;
+            if(pressCount <= 0){
+                pressed = false;
+            }
         } 
     }
 }
