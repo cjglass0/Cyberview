@@ -20,8 +20,10 @@ public class Door : MonoBehaviour
     public string sceneToLoad;
     public DoorKey doorKey;
     public bool isPermanentlyLocked;
+    public bool isDoorToNextFloor;
     private bool loadingScene = false;
     private bool justSpawned = false;
+    private PlayerManager playerManager;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -54,14 +56,22 @@ public class Door : MonoBehaviour
         {
             loadingScene = true;
 
-            PlayerManager playerManager = collision.gameObject.GetComponent<PlayerManager>();
+            playerManager = collision.gameObject.GetComponent<PlayerManager>();
             //load Door's scene if the door is not locked or has been unlocked by collecting the relevant key
             if (doorKey == null || playerManager.HasKey(doorKey))
             {
-                playerManager.gameManager.LoadScene(sceneToLoad);
                 playerManager.GetPlayerSound().SoundDoor();
+
+                if (isDoorToNextFloor) { StartCoroutine(FloorEndDelay()); } else { playerManager.gameManager.LoadScene(sceneToLoad); }
             }
         }
+    }
+
+    IEnumerator FloorEndDelay()
+    {
+        GameObject.Find("_HUD").GetComponent<HUD>().FinishedFloor();
+        yield return new WaitForSeconds(6);
+        playerManager.gameManager.LoadScene(sceneToLoad);
     }
 
     public void SetJustSpawned()

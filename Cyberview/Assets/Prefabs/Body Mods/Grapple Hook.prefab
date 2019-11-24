@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8972388180567075029}
   - component: {fileID: 8972388180567075028}
   m_Layer: 9
-  m_Name: Grapple
+  m_Name: Grapple Hook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,8 +53,10 @@ MonoBehaviour:
   shootDelay: 2
   projectilePrefab: {fileID: 2106117444063836877, guid: 75ea76809364dfc4dab9c6f9b57f4250,
     type: 3}
-  projectileLifetime: 2.5
+  projectileLifetime: 1.5
   projectileDamage: 1
-  projectileSpeed: 25
+  projectileSpeed: 40
   existingProjectile: {fileID: 0}
+  hookVisualOne: {fileID: 0}
+  hookVisualTwo: {fileID: 0}
   distanceFromPlayer: 1.6

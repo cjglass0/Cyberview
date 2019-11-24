@@ -12,7 +12,7 @@ public class HUD : MonoBehaviour
     public TMP_Dropdown armLDropdown, armRDropdown, legsDropdown;
     public PlayerManager playerManager;
     public GameManager gameManager;
-    public CanvasGroup playerHUD, pauseMenu, deathMenu, playerHitCG, bmMenu;
+    public CanvasGroup playerHUD, pauseMenu, deathMenu, floorEndScreen, playerHitCG, bmMenu;
     public RawImage batteryBar, batteryBarOutline;
     public RectTransform batteryParent;
     public GameObject blackout;
@@ -349,10 +349,10 @@ public class HUD : MonoBehaviour
 
     public void PlayerHitFX()
     {
-        StartCoroutine(FadeCanvasGroup(playerHitCG, originalPlayerHitCGalpha, 0, 1.5f));
+        StartCoroutine(FadeCanvasGroup(playerHitCG, originalPlayerHitCGalpha, 0, 1.5f, false));
     }
 
-    private IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 1)
+    private IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime, bool floorEnd)
     {
         float _timeStartedLerping = Time.time;
         float timeSinceStarted = Time.time - _timeStartedLerping;
@@ -367,7 +367,18 @@ public class HUD : MonoBehaviour
 
             cg.alpha = currentValue;
 
-            if (percentageComplete >= 1) break;
+            if (percentageComplete >= 1)
+            {
+                if (floorEnd)
+                {
+                    if (end == 1) { StartCoroutine(FloorEndScreenDelay()); 
+                    } else {
+                        floorEndScreen.interactable = false;
+                        floorEndScreen.gameObject.SetActive(false);
+                    }
+                }
+                break;
+            }
 
             yield return new WaitForFixedUpdate();
         }
@@ -389,4 +400,30 @@ public class HUD : MonoBehaviour
     {
         return (pX - pA) / (pB - pA) * (pN - pM) + pM;
     } 
+
+    public void FinishedFloor()
+    {
+        playerHUD.alpha = 0;
+        playerHUD.interactable = false;
+        playerHUD.gameObject.SetActive(false);
+
+        floorEndScreen.interactable = true;
+        floorEndScreen.gameObject.SetActive(true);
+
+        playerManager.disableInputs = true;
+
+        StartCoroutine(FadeCanvasGroup(floorEndScreen, 0, 1f, 1f, true));
+    }
+
+    IEnumerator FloorEndScreenDelay()
+    {
+        yield return new WaitForSeconds(5f);
+        StartCoroutine(FadeCanvasGroup(floorEndScreen, 1f, 0f, 1f, true));
+
+        playerHUD.alpha = 1;
+        playerHUD.interactable = true;
+        playerHUD.gameObject.SetActive(true);
+
+        playerManager.disableInputs = false;
+    }
 }
