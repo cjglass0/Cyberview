@@ -17,7 +17,8 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (collision.gameObject.name == "_Player" && !collected && (!displayOnlyOnce || !displayed))
         {
-            GameObject.Find("DialogueHandler").GetComponent<DialogueHandler>().showDialogue(avatar, message);
+            GameObject handler = GameObject.Find("DialogueHandler");
+            if (handler != null) handler.GetComponent<DialogueHandler>().showDialogue(avatar, message);
             collected = true;
             displayed = true;
         }
@@ -27,7 +28,8 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (collision.gameObject.name == "_Player")
         {
-            GameObject.Find("DialogueHandler").GetComponent<DialogueHandler>().hideDialogue();
+            GameObject handler = GameObject.Find("DialogueHandler");
+            if (handler != null) handler.GetComponent<DialogueHandler>().hideDialogue();
             collected = false;
         }
     }

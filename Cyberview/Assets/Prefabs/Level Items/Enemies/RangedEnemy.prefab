@@ -203,6 +203,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -245,6 +246,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 1.0400048, y: 0.13553137, z: 0}
     m_Extent: {x: 1.5559083, y: 1.1262704, z: 0}
+  m_UseBatching: 1
 --- !u!1 &3541667119627751330
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +337,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -376,6 +379,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 1.2167145, y: 0.21863198, z: 0}
     m_Extent: {x: 1.6280913, y: 2.2552946, z: 0}
+  m_UseBatching: 1
 --- !u!1 &3541667119627751334
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,6 +437,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -475,6 +480,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 1.0051095, y: 0.24898991, z: 0}
     m_Extent: {x: 1.5676727, y: 0.821692, z: 0}
+  m_UseBatching: 1
 --- !u!1 &3541667119627751336
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,6 +538,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -573,6 +580,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 0.72302186, y: -0.08823964, z: 0}
     m_Extent: {x: 0.9103726, y: 0.5914045, z: 0}
+  m_UseBatching: 1
 --- !u!1 &3541667119627751338
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,6 +638,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -671,6 +680,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 1.0237104, y: 1.1567394, z: 0}
     m_Extent: {x: 1.0519367, y: 1.4520156, z: 0}
+  m_UseBatching: 1
 --- !u!1 &3541667119627751340
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,15 +761,15 @@ MonoBehaviour:
   health: 5
   inputState: {fileID: 0}
   damageToPlayerPerHit: 0
+  speed: 2
   leftFloorDetector: {fileID: 8670537472260271902}
   rightFloorDetector: {fileID: 6974237774653061913}
-  speed: 2
   checkRight: 1
   rangedBullets: {fileID: 7183765294997109306, guid: a73d5f2bf03c6f4438a08283e7ee0dfe,
     type: 3}
-  shootDelay: 0
+  shootDelay: 1.3
   bulletLifetime: 10
-  bulletDamage: 1
+  bulletDamage: 2
   bulletSpeed: 10
 --- !u!95 &7760883444634951628
 Animator:
@@ -853,6 +863,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -894,6 +905,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 1.6594973, y: 0.10662866, z: 0}
     m_Extent: {x: 2.2673714, y: 3.1198053, z: 0}
+  m_UseBatching: 1
 --- !u!1 &3541667119627751348
 GameObject:
   m_ObjectHideFlags: 0

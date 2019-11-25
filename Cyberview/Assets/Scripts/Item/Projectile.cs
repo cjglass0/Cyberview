@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D target)
     {
-        if (target.gameObject.layer == 12)
+        if (target.gameObject.layer == 12 || target.gameObject.tag=="rangedEnemy")
         {
             //Hit Enemy
             var script = target.gameObject.GetComponent<AbstractEnemy>();
