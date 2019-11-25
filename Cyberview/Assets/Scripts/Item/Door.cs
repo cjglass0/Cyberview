@@ -21,9 +21,16 @@ public class Door : MonoBehaviour
     public DoorKey doorKey;
     public bool isPermanentlyLocked;
     public bool isDoorToNextFloor;
+    public int originFloor;
+    public int destinationFloor;
     private bool loadingScene = false;
     private bool justSpawned = false;
     private PlayerManager playerManager;
+
+    private void Start()
+    {
+        if (isPermanentlyLocked) GetComponent<SpriteRenderer>().color = new Color(0.5472611f, 0.9061968f, 0.979f);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -69,7 +76,7 @@ public class Door : MonoBehaviour
 
     IEnumerator FloorEndDelay()
     {
-        GameObject.Find("_HUD").GetComponent<HUD>().FinishedFloor();
+        GameObject.Find("_HUD").GetComponent<HUD>().FinishedFloor(originFloor, destinationFloor);
         yield return new WaitForSeconds(6);
         playerManager.gameManager.LoadScene(sceneToLoad);
     }
@@ -78,7 +85,5 @@ public class Door : MonoBehaviour
     {
         justSpawned = true;
     }
-
-
 
 }

@@ -14,11 +14,12 @@ public class HUD : MonoBehaviour
     public GameManager gameManager;
     public CanvasGroup playerHUD, pauseMenu, deathMenu, floorEndScreen, floorEndOverlay, playerHitCG, bmMenu;
     public RawImage batteryBar, batteryBarOutline;
-    public RectTransform batteryParent;
+    public RectTransform batteryParent, floorAvatar;
     public GameObject blackout;
     private float originalPlayerHitCGalpha, origBatterySizeX;
     private AudioSource clickSound;
     private bool bmMenuLoaded, bmFrameDelay, pulsing, goScreen;
+    private int originFloor, destinationFloor;
 
     private void Awake()
     {
@@ -403,8 +404,11 @@ public class HUD : MonoBehaviour
         return (pX - pA) / (pB - pA) * (pN - pM) + pM;
     } 
 
-    public void FinishedFloor()
+    public void FinishedFloor(int originFloor, int destinationFloor)
     {
+        this.originFloor = originFloor;
+        this.destinationFloor = destinationFloor;
+
         playerHUD.alpha = 0;
         playerHUD.interactable = false;
         playerHUD.gameObject.SetActive(false);
@@ -428,7 +432,9 @@ public class HUD : MonoBehaviour
         floorEndScreen.gameObject.SetActive(true);
 
         StartCoroutine(FadeCanvasGroup(floorEndScreen, 0f, 1f, 1f, false));
-        yield return new WaitForSeconds(4.1f);
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(MovePlayerAvatar());
+        yield return new WaitForSeconds(3.6f);
         StartCoroutine(FadeCanvasGroup(floorEndScreen, 1f, 0f, 1f, false));
         yield return new WaitForSeconds(1f);
         StartCoroutine(FadeCanvasGroup(floorEndOverlay, 1f, 0f, 1f, true));
@@ -438,5 +444,25 @@ public class HUD : MonoBehaviour
         playerHUD.gameObject.SetActive(true);
 
         playerManager.disableInputs = false;
+    }
+
+    IEnumerator MovePlayerAvatar()
+    {
+        yield return new WaitForSeconds(1);
+        string originGameObjectName = "AvatarP_" + originFloor.ToString();
+        string destinationGameObjectName = "AvatarP_" + destinationFloor.ToString();
+        Vector3 vecA = GameObject.Find(originGameObjectName).GetComponent<RectTransform>().position;
+        Vector3 vecB = GameObject.Find(destinationGameObjectName).GetComponent<RectTransform>().position;
+
+        //floorAvatar.position 
+        float step = (35 / (vecA - vecB).magnitude) * Time.fixedDeltaTime;
+        float t = 0;
+        while (t <= 1.0f)
+        {
+            t += step; // Goes from 0 to 1, incrementing by step each time
+            floorAvatar.position = Vector3.Lerp(vecA, vecB, t); // Move objectToMove closer to b
+            yield return new WaitForFixedUpdate();         // Leave the routine and return here in the next frame
+        }
+        floorAvatar.position = vecB;
     }
 }
