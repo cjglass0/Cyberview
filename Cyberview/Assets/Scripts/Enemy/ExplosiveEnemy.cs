@@ -8,48 +8,65 @@ public class ExplosiveEnemy : AbstractEnemy
 {
     public BoxCollider2D leftFloorDetector;
     public BoxCollider2D rightFloorDetector;
-   
+    public GameObject explosion;
+
     private Transform player; //holds the enemies target
-    public float speed;
     public bool checkRight = true;
-    public float explosionDelay = 2f;
+    public float explosionDelay = 1f;
     public bool selfDestruct = true;
-    
+    private float playerInRangeSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
-    	player = GameObject.Find("_Player").GetComponent<Transform>(); 
-        
+    	player = GameObject.Find("_Player").GetComponent<Transform>();
+        playerInRangeSpeed = speed*2;
     }
 
     // Update is called once per frame
      protected override void Update()
     {
 		base.Update();
-    //If the player is farther than 15 away and NOT farther than 30 away, follow the player. Else, don't.
-        if (Vector2.Distance(transform.position, player.position) > 5 && Vector2.Distance(transform.position, player.position) < 30) {
-       
-        	transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        //If the player is farther than 7 away and NOT farther than 30 away, follow the player. Else, don't.
+        if (Vector2.Distance(transform.position, player.position) > 7 && Vector2.Distance(transform.position, player.position) < 30) {
+        	transform.position = Vector2.MoveTowards(transform.position, new Vector2(player.position.x, transform.position.y), playerInRangeSpeed * Time.deltaTime);
+            updateMovement = false;
 
-		if(player.position.x > transform.position.x && !checkRight) //if the target is to the right of enemy and the enemy is not facing right
-		        lookAtPlayer(); //enemy is now facing correctly
+            Debug.Log("origin pos: " + transform.position);
+            Debug.Log("player pos: " + player.position);
+            Debug.Log("go to player: 1: " + Vector2.MoveTowards(transform.position, new Vector2(player.position.x, transform.position.y), playerInRangeSpeed * Time.deltaTime));
+
+            if (player.position.x > transform.position.x && !checkRight) //if the target is to the right of enemy and the enemy is not facing right
+		            lookAtPlayer(); //enemy is now facing correctly
                
-		if(player.position.x < transform.position.x && checkRight) //if the target is to the left of enemy and the enemy is not facing left
-		        lookAtPlayer();//enemy is now facing correctly
+		    if(player.position.x < transform.position.x && checkRight) //if the target is to the left of enemy and the enemy is not facing left
+		            lookAtPlayer();//enemy is now facing correctly
           
-		}
-		if (Vector2.Distance(transform.position, player.position) <= 5) {
-
-			StartCoroutine(ExplosionDelay());
-		} 
+		} else
+        {
+            updateMovement = true;
+        }
+		if (Vector2.Distance(transform.position, player.position) <= 7) {
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(player.position.x, transform.position.y), speed * Time.deltaTime);
+            updateMovement = false;
+            // Blow up
+            if (selfDestruct) StartCoroutine(ExplosionDelay());
+        } 
 
     }
 
 	IEnumerator ExplosionDelay(){
-        yield return new WaitForSeconds(explosionDelay);
-        selfDestruct = true;
-        Destroy(gameObject);
         selfDestruct = false;
+        Component[] sprites = GetComponentsInChildren<SpriteRenderer>();
+        foreach(SpriteRenderer sr in sprites)
+        {
+            sr.color = new Color(1, .5f, .5f);
+        }
+
+        yield return new WaitForSeconds(explosionDelay);
+        Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
+        if (Vector2.Distance(transform.position, player.position) <= 14) player.GetComponent<PlayerManager>().HitByEnemy(gameObject);
+        Destroy(gameObject);
 	}
  
 
@@ -58,7 +75,7 @@ public class ExplosiveEnemy : AbstractEnemy
 
         //walk
         body2d.velocity = new Vector2(speed, body2d.velocity.y);
-        //if (speed < 3 && speed > -3) Debug.Log("Basic Enemy -> speed = " + speed);
+        if (speed < 3 && speed > -3) Debug.Log("Basic Enemy -> speed = " + speed);
     }
 
 
@@ -69,7 +86,7 @@ public class ExplosiveEnemy : AbstractEnemy
       checkRight = !checkRight;
     }
 
-
+    /*
     public override void SetIsGrounded(bool newGroundedState, string colliderObjectName)
     {
         base.SetIsGrounded(newGroundedState, colliderObjectName);
@@ -93,6 +110,6 @@ public class ExplosiveEnemy : AbstractEnemy
                 script.HitByEnemy(gameObject);
             }
         }
-    }
+    }*/
 
 }

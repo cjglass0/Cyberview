@@ -129,6 +129,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -208,6 +209,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -433,6 +435,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -574,7 +577,7 @@ GameObject:
   - component: {fileID: 7157731219778313658}
   - component: {fileID: 899868360511266538}
   - component: {fileID: 8033141799739535903}
-  - component: {fileID: 753561020910341152}
+  - component: {fileID: 1929737314551601672}
   m_Layer: 12
   m_Name: ExplosiveEnemy
   m_TagString: Untagged
@@ -618,7 +621,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &8033141799739535903
@@ -638,14 +641,16 @@ MonoBehaviour:
   health: 5
   inputState: {fileID: 0}
   damageToPlayerPerHit: 1
+  speed: 2
   leftFloorDetector: {fileID: 0}
   rightFloorDetector: {fileID: 0}
-  speed: 2
+  explosion: {fileID: 942015034889641297, guid: 33c93217c0afea94aabe1f9f6dff4e8f,
+    type: 3}
   checkRight: 1
-  explosionDelay: 2
+  explosionDelay: 1
   selfDestruct: 1
---- !u!70 &753561020910341152
-CapsuleCollider2D:
+--- !u!58 &1929737314551601672
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -657,6 +662,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2}
-  m_Size: {x: 3, y: 4}
-  m_Direction: 0
+  m_Offset: {x: 0, y: 1.5}
+  serializedVersion: 2
+  m_Radius: 1.49

@@ -7,7 +7,6 @@ public class BasicEnemy : AbstractEnemy
     public BoxCollider2D leftFloorDetector;
     public BoxCollider2D rightFloorDetector;
     
-    public float speed;
     private bool groundCheckDelay = false;
 
     // Update is called once per frame
@@ -23,6 +22,7 @@ public class BasicEnemy : AbstractEnemy
         if (speed < 3 && speed > -3) Debug.Log("Basic Enemy -> speed = " + speed);
     }
 
+    /*
     public override void SetIsGrounded(bool newGroundedState, string colliderObjectName)
     {
         if (colliderObjectName == "Left Floor Box" || colliderObjectName == "Right Floor Box")
@@ -46,7 +46,8 @@ public class BasicEnemy : AbstractEnemy
                 if (collidersAtCheckLocation.Count == 0) speed = -speed;
                 //
             }
-        } else if (!groundCheckDelay)
+        }
+        else if (!groundCheckDelay)
         {
             groundCheckDelay = true;
             StartCoroutine(GroundCheckDelay(newGroundedState));
@@ -60,5 +61,5 @@ public class BasicEnemy : AbstractEnemy
         if (newGroundedState) speed = -speed;
         yield return new WaitForSeconds(5f);
         groundCheckDelay = false;
-    }
+    }*/
 }

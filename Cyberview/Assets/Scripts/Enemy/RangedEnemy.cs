@@ -12,7 +12,6 @@ public class RangedEnemy : AbstractEnemy
     public BoxCollider2D rightFloorDetector;
     private Animator animator;
     private Transform player; //holds the enemies target
-    public float speed;
     public bool checkRight = true;
     [SerializeField]
     GameObject rangedBullets;
