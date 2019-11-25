@@ -35,7 +35,7 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 8 && !groundCheckIsSolid)
+        if ((collision.gameObject.layer == 8 || collision.gameObject.tag == "DestroyableSceneObject") && !groundCheckIsSolid)
         {
             abstractCharacter.SetIsGrounded(true, gameObject.name);
         }
@@ -49,7 +49,7 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 8 && !groundCheckIsSolid)
+        if ((collision.gameObject.layer == 8 || collision.gameObject.tag == "DestroyableSceneObject") && !groundCheckIsSolid)
         {
             abstractCharacter.SetIsGrounded(false, gameObject.name);
         }
@@ -58,6 +58,20 @@ public class GroundCheck : MonoBehaviour
             abstractCharacter.SetIsGrounded(false, gameObject.name);
             //collision.gameObject.GetComponent<AbstractEnemy>().SetIsGrounded(false, gameObject.name);
             reversing = false;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if ((collision.gameObject.layer == 8 || collision.gameObject.tag == "DestroyableSceneObject") && !groundCheckIsSolid)
+        {
+            abstractCharacter.SetIsGrounded(true, gameObject.name);
+        }
+        if (isEnemyGroundCheck && collision.gameObject.layer == 12) //(collided with another enemy)
+        {
+            abstractCharacter.SetIsGrounded(true, gameObject.name);
+            //collision.gameObject.GetComponent<AbstractEnemy>().SetIsGrounded(true, gameObject.name);
+            reversing = true;
         }
     }
 }
