@@ -154,4 +154,6 @@ public class BM_StrongArm : AbstractBodyMod
     public override void UnequipBodyMod()
     {
     }
+
+    public GameObject GetBox() { return heavyBox; }
 }

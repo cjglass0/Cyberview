@@ -10,6 +10,7 @@ public class BossAnimationHelper : MonoBehaviour
     public void GrabBox(GameObject boxToGrab)
     {
         box = boxToGrab;
+        box.tag = "Untagged";
     }
 
     public void ShovelDown()

@@ -10,10 +10,12 @@ public class FinalBoss : AbstractEnemy
     private int speedXOffset = 1;
     private Vector3 origScale;
     public Animator animator;
+    private ParticleSystem particles;
 
     private void Start()
     {
         origScale = gameObject.transform.localScale;
+        particles = GetComponent<ParticleSystem>();
     }
 
     /*
@@ -97,6 +99,8 @@ public class FinalBoss : AbstractEnemy
     {
         health--;
         animator.SetBool("damage", true);
+        particles.Clear();
+        particles.Play();
         StartCoroutine(DamageAnimationDelay());
     }
 
@@ -104,6 +108,19 @@ public class FinalBoss : AbstractEnemy
     {
         yield return new WaitForSeconds(.5f);
         animator.SetBool("damage", false);
+    }
+
+    public override void EnemyDeathStart()
+    {
+        StartCoroutine(DeathAnimation());
+    }
+
+    IEnumerator DeathAnimation()
+    {
+        updateMovement = false;
+        animator.SetBool("death", true);
+        yield return new WaitForSeconds(3);
+        EnemyDeathEnd();
     }
 
 }
