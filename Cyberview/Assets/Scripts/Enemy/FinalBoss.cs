@@ -16,10 +16,11 @@ public class FinalBoss : AbstractEnemy
         origScale = gameObject.transform.localScale;
     }
 
+    /*
     protected override void Update()
     {
         if (updateMovement) UpdateMovement();
-    }
+    }*/
 
     public override void UpdateMovement()
     {

@@ -12,7 +12,7 @@ public class HUD : MonoBehaviour
     public TMP_Dropdown armLDropdown, armRDropdown, legsDropdown;
     public PlayerManager playerManager;
     public GameManager gameManager;
-    public CanvasGroup playerHUD, pauseMenu, deathMenu, floorEndScreen, playerHitCG, bmMenu;
+    public CanvasGroup playerHUD, pauseMenu, deathMenu, floorEndScreen, floorEndOverlay, playerHitCG, bmMenu;
     public RawImage batteryBar, batteryBarOutline;
     public RectTransform batteryParent;
     public GameObject blackout;
@@ -375,6 +375,8 @@ public class HUD : MonoBehaviour
                     } else {
                         floorEndScreen.interactable = false;
                         floorEndScreen.gameObject.SetActive(false);
+                        floorEndOverlay.gameObject.SetActive(false);
+                        floorEndOverlay.alpha = 0;
                     }
                 }
                 break;
@@ -407,19 +409,29 @@ public class HUD : MonoBehaviour
         playerHUD.interactable = false;
         playerHUD.gameObject.SetActive(false);
 
-        floorEndScreen.interactable = true;
-        floorEndScreen.gameObject.SetActive(true);
+        floorEndOverlay.alpha = 0;
+        floorEndOverlay.gameObject.SetActive(true);
+
         enemyCasualties.text = GameObject.Find("LevelManager").GetComponent<LvlManager>().enemyCasualties.ToString();
 
         playerManager.disableInputs = true;
 
-        StartCoroutine(FadeCanvasGroup(floorEndScreen, 0, 1f, 1f, true));
+        StartCoroutine(FadeCanvasGroup(floorEndOverlay, 0, 1f, 1f, true));
     }
+
+    //TODO: floorEndOverlay
 
     IEnumerator FloorEndScreenDelay()
     {
-        yield return new WaitForSeconds(5f);
-        StartCoroutine(FadeCanvasGroup(floorEndScreen, 1f, 0f, 1f, true));
+        floorEndScreen.interactable = true;
+        floorEndScreen.alpha = 0;
+        floorEndScreen.gameObject.SetActive(true);
+
+        StartCoroutine(FadeCanvasGroup(floorEndScreen, 0f, 1f, 1f, false));
+        yield return new WaitForSeconds(4.1f);
+        StartCoroutine(FadeCanvasGroup(floorEndScreen, 1f, 0f, 1f, false));
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(FadeCanvasGroup(floorEndOverlay, 1f, 0f, 1f, true));
 
         playerHUD.alpha = 1;
         playerHUD.interactable = true;
