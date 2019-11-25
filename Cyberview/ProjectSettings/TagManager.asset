@@ -9,6 +9,8 @@ TagManager:
   - Boulder
   - Pickup
   - DestroyableSceneObject
+  - rangedBullet
+  - rangedEnemy
   layers:
   - Default
   - TransparentFX
@@ -43,6 +45,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: backgroundScene
+    uniqueID: 2095939829
+    locked: 0
   - name: behindTiles
     uniqueID: 2601413293
     locked: 0
