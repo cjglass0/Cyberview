@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -191,13 +191,13 @@ MonoBehaviour:
     value: 100
   lift:
     overrideState: 1
-    value: {x: 0.8451716, y: 0.8807333, z: 1, w: 0}
+    value: {x: 0.8451716, y: 0.8807333, z: 1, w: -1}
   gamma:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    overrideState: 1
+    value: {x: 1, y: 1, z: 1, w: -1}
   gain:
     overrideState: 1
-    value: {x: 1, y: 0.9305185, z: 0.8359202, w: 0}
+    value: {x: 1, y: 0.9305185, z: 0.8359202, w: -1}
   masterCurve:
     overrideState: 0
     value:
@@ -1410,19 +1410,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
   intensity:
     overrideState: 1
-    value: 201.55
+    value: 182.43
   threshold:
     overrideState: 1
-    value: 0
+    value: 1.43
   softKnee:
     overrideState: 1
-    value: 1
+    value: 0.899
   clamp:
     overrideState: 0
     value: 65472

@@ -338,19 +338,19 @@ MonoBehaviour:
   m_LookaheadSmoothing: 15
   m_LookaheadIgnoreY: 1
   m_XDamping: 2
-  m_YDamping: 0.9
+  m_YDamping: 2
   m_ZDamping: 0.8
   m_ScreenX: 0.5
-  m_ScreenY: 0.47999996
+  m_ScreenY: 0.58
   m_CameraDistance: 10
   m_DeadZoneWidth: 0.06
-  m_DeadZoneHeight: 0.29
+  m_DeadZoneHeight: 0.15
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.7
   m_SoftZoneHeight: 0.7
   m_BiasX: 0
-  m_BiasY: 0
+  m_BiasY: 0.00000065023255
   m_CenterOnActivate: 1
   m_GroupFramingMode: 2
   m_AdjustmentMode: 2
