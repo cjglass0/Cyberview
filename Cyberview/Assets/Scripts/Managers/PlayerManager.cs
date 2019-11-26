@@ -38,7 +38,7 @@ public class PlayerManager : AbstractCharacter
 
     ///// PRIVATE
     public Animator animator;
-    private GameObject playerObject;
+    private GameObject playerObject, eyeL, eyeR;
     private List<GameObject> interactables;
     private HUD hud;
     private PlayerSound playerSound;
@@ -60,7 +60,6 @@ public class PlayerManager : AbstractCharacter
     //######## EXPERIMENTAL: For sprite swapping at runtime
     public SpriteResolver lArmSR, rArmSR, lLegSR, rLegSR, lFootSR, rFootSR;
     public GameObject LdrillVisual, RdrillVisual, LgunVisual, RgunVisual, LhookVisual, RhookVisual;
-    [System.NonSerialized]
     public GameObject bodyBone;
 
 
@@ -72,7 +71,6 @@ public class PlayerManager : AbstractCharacter
         animator = GetComponentInChildren<Animator>();
         playerSound = GetComponentInChildren<PlayerSound>();
         origHealth = health;
-        bodyBone = GameObject.Find("bone_1");
 
         //init lists
         interactables = new List<GameObject>();
@@ -128,6 +126,18 @@ public class PlayerManager : AbstractCharacter
 
         hud = GameObject.Find("_HUD").GetComponent<HUD>();
         hud.InitializeHUD();
+
+        //Set color
+        eyeL = GameObject.Find("Eye L");
+        eyeR = GameObject.Find("Eye R");
+        if (!PlayerPrefs.HasKey("eyesChanged"))
+        {
+            eyeL.GetComponent<SpriteRenderer>().color = new Color(1, 1, 0);  eyeR.GetComponent<SpriteRenderer>().color = new Color(1, 1, 0);
+        } else
+        {
+            eyeL.GetComponent<SpriteRenderer>().color = new Color(0, 0.75f, 1);  eyeR.GetComponent<SpriteRenderer>().color = new Color(0, 0.75f, 1);
+        }
+            
     }
 
     //===================================================================================== UPDATE ==============================================
@@ -645,5 +655,22 @@ public class PlayerManager : AbstractCharacter
         hud.SetHealth(health);
         if (hitVFX) hud.PlayerHitFX();
         if (hitVFX) animator.SetBool("hurt", true);
+    }
+
+    public void ChangeEyes()
+    {
+        eyeL.GetComponent<SpriteRenderer>().color = new Color(0, 0.75f, 1);
+        eyeR.GetComponent<SpriteRenderer>().color = new Color(0, 0.75f, 1);
+        PlayerPrefs.SetInt("eyesChanged", 1);
+        animator.SetBool("comeToLive", true);
+        StartCoroutine(ComeToLiveRoutine());
+    }
+
+    IEnumerator ComeToLiveRoutine()
+    {
+        disableInputs = true;
+        yield return new WaitForSeconds(5.5f);
+        animator.SetBool("comeToLive", false);
+        disableInputs = false;
     }
 }

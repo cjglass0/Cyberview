@@ -7,7 +7,7 @@ public class Boulder : AbstractLvlItem
     SpriteRenderer spriteRenderer;
     public Sprite solid, translucent;
     private int ticsToBreak = 3;
-    private float ticLength = .7f;
+    private float ticLength = .5f;
     private bool delaying = false;
 
     void Start ()

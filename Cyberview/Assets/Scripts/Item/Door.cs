@@ -29,23 +29,23 @@ public class Door : MonoBehaviour
 
     private void Start()
     {
-        if (isPermanentlyLocked) GetComponent<SpriteRenderer>().color = new Color(0.5472611f, 0.9061968f, 0.979f);
+        if (isPermanentlyLocked) GetComponent<SpriteRenderer>().color = new Color(0.6889412f, 0.910423f, 0.9568627f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "_Player" && !isPermanentlyLocked && !justSpawned)
+        if (collision.gameObject.name == "_Player" && !justSpawned && !isPermanentlyLocked)
         {
             PlayerManager playerManager = collision.gameObject.GetComponent<PlayerManager>();
 
             if (doorKey == null || playerManager.HasKey(doorKey))
             {
                 GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("Press TAB to open");
-            } else
+            }
+            else
             {
                 GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("Door is locked. Find the Key.");
             }
-            
         }
     }
 

@@ -20,6 +20,8 @@ public class HUD : MonoBehaviour
     private AudioSource clickSound;
     private bool bmMenuLoaded, bmFrameDelay, pulsing, goScreen;
     private int originFloor, destinationFloor;
+    public Button rechargeBtn;
+    private BodyModSwappingStation bmStn;
 
     private void Awake()
     {
@@ -164,6 +166,13 @@ public class HUD : MonoBehaviour
         gameManager.ReloadLevel();
     }
 
+    public void BtnRecharge()
+    {
+        playerManager.Recharge(100);
+        rechargeBtn.interactable = false;
+        bmStn.ChargeUsed();
+    }
+
     //----------------------------------------------------------- Dropdown Logic -------------------------------------------------
 
     private void UpdateBodyModsDropdownOptions(TMP_Dropdown dropdown)
@@ -281,8 +290,10 @@ public class HUD : MonoBehaviour
         creditValue.text = playerManager.GetCredit().ToString();
     }
 
-    public void LoadBodyModMenu()
+    public void LoadBodyModMenu(bool chargeUsed, BodyModSwappingStation bmStn)
     {
+        this.bmStn = bmStn;
+
         if (!bmMenuLoaded) {
             clickSound.Play();
             gameManager.paused = true;
@@ -294,6 +305,7 @@ public class HUD : MonoBehaviour
             bmMenu.alpha = 1;
             bmMenu.interactable = true;
             bmMenu.gameObject.SetActive(true);
+            if (!chargeUsed) { rechargeBtn.interactable = true; } else { rechargeBtn.interactable = false; }
 
             UpdateBodyModsDropdownOptions(armLDropdown);
             UpdateBodyModsDropdownOptions(armRDropdown);

@@ -44,7 +44,8 @@ public class LVL_0_MineCollapse : AbstractLvlItem
         hud.BlackOutFX(5);
         bouldersToRemove.SetActive(false);
         rubble.SetActive(true);
-        GameObject.Find("_Player").GetComponent<PlayerManager>().health = 15;
+        PlayerManager playerManager = GameObject.Find("_Player").GetComponent<PlayerManager>();
+        playerManager.health = 15;
         PlayerPrefs.SetInt("PlayerHealth", 15);
         hud.SetHealth(15);
         hud.ShowTmpMsg("ERROR. ERROR. ERROR.");
@@ -53,7 +54,8 @@ public class LVL_0_MineCollapse : AbstractLvlItem
         yield return new WaitForSeconds(1);
         hud.GetComponent<HUD>().PlayerHitFX();
 
-        yield return new WaitForSeconds(4.1f);
+        yield return new WaitForSeconds(4f);
+        playerManager.ChangeEyes();
         GameObject.Find("DoorToMainArea").GetComponent<Door>().isPermanentlyLocked = false;
         hud.GetComponent<HUD>().ShowTmpMsg("Error: Critical System Damage. Go to Repair Shop immediately.");
 
