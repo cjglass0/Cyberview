@@ -335,6 +335,7 @@ public class HUD : MonoBehaviour
     }
 
     public void SetHealth(int health) {
+        if (health < 0) health = 0;
         healthValue.text = health.ToString() + "%";
         batteryBar.rectTransform.sizeDelta = new Vector2(mapNumber(health, 0, playerManager.origHealth, 0, origBatterySizeX), 51.85f);
         batteryBar.color = new Color(mapNumber(health, 0, playerManager.origHealth, 1f, 0.2f), mapNumber(health, 0, playerManager.origHealth, 0.2f, 0.8f), 0.2f);
