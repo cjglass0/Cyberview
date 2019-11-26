@@ -261,6 +261,8 @@ public class HUD : MonoBehaviour
         if (dropdown.options[dropdown.value].text == playerManager.bm_Legs.name) equippedBodyMod = playerManager.bm_Legs;
         if (dropdown.options[dropdown.value].text == playerManager.bm_SuperLegs.name) equippedBodyMod = playerManager.bm_SuperLegs;
         if (dropdown.options[dropdown.value].text == playerManager.bm_Grapple.name) equippedBodyMod = playerManager.bm_Grapple;
+        if (dropdown.options[dropdown.value].text == playerManager.bm_RocketLegs.name) equippedBodyMod = playerManager.bm_RocketLegs;
+        
         return equippedBodyMod;
     }
 
