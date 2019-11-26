@@ -65,7 +65,11 @@ public class ExplosiveEnemy : AbstractEnemy
 
         yield return new WaitForSeconds(explosionDelay);
         Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
-        if (Vector2.Distance(transform.position, player.position) <= 14) player.GetComponent<PlayerManager>().HitByEnemy(gameObject);
+        if (Vector2.Distance(transform.position, player.position) <= 14)
+        {
+            player.GetComponent<PlayerManager>().HitByEnemy(gameObject);
+            player.GetComponent<PlayerManager>().DecreaseHealth(damageToPlayerPerHit*5, true);
+        }
         Destroy(gameObject);
 	}
  

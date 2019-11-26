@@ -134,8 +134,11 @@ MonoBehaviour:
   isFacingRight: 1
   health: 3
   inputState: {fileID: 0}
-  damageToPlayerPerHit: 3
+  damageToPlayerPerHit: 8
+  speed: 3
   animator: {fileID: 4628095361704148461}
+  explosion: {fileID: 942015034889641297, guid: 33c93217c0afea94aabe1f9f6dff4e8f,
+    type: 3}
 --- !u!198 &1192797757801396405
 ParticleSystem:
   m_ObjectHideFlags: 0

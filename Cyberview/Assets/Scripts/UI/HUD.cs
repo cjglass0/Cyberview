@@ -455,7 +455,7 @@ public class HUD : MonoBehaviour
         Vector3 vecB = GameObject.Find(destinationGameObjectName).GetComponent<RectTransform>().position;
 
         //floorAvatar.position 
-        float step = (35 / (vecA - vecB).magnitude) * Time.fixedDeltaTime;
+        float step = (60 / (vecA - vecB).magnitude) * Time.fixedDeltaTime;
         float t = 0;
         while (t <= 1.0f)
         {

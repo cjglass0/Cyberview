@@ -6,11 +6,11 @@ public class FinalBoss : AbstractEnemy
 {
     GameObject playerGO;
     private bool playerInRange;
-    private float speed = 3;
     private int speedXOffset = 1;
     private Vector3 origScale;
     public Animator animator;
     private ParticleSystem particles;
+    public GameObject explosion;
 
     private void Start()
     {
@@ -120,6 +120,7 @@ public class FinalBoss : AbstractEnemy
         updateMovement = false;
         animator.SetBool("death", true);
         yield return new WaitForSeconds(3);
+        Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
         EnemyDeathEnd();
     }
 
