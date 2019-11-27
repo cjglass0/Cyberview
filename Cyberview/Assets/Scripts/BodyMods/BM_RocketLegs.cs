@@ -46,7 +46,7 @@ public class BM_RocketLegs : AbstractBodyMod
                     //owner.GetPlayerSound().SoundJump();
                     energyUsageCounter++;
                     if(energyUsageCounter >= framesBeforeLosingEnergy){
-                        owner.DecreaseHealth(energyCostPerTick);
+                        owner.DecreaseHealth(energyCostPerTick, false);
                         energyUsageCounter = 0;
                     }
 

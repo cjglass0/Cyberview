@@ -123,6 +123,7 @@ public class PlayerManager : AbstractCharacter
         //load health & credit from saved state
         if (PlayerPrefs.HasKey("PlayerHealth")) health = PlayerPrefs.GetInt("PlayerHealth");
         if (PlayerPrefs.HasKey("PlayerCredit")) credit = PlayerPrefs.GetInt("PlayerCredit");
+        if (health == 0) health = 100;
 
         UpdateModSprites();
 
@@ -671,8 +672,9 @@ public class PlayerManager : AbstractCharacter
     IEnumerator ComeToLiveRoutine()
     {
         disableInputs = true;
-        yield return new WaitForSeconds(5.5f);
+        yield return new WaitForSeconds(7.5f);
         animator.SetBool("comeToLive", false);
+        yield return new WaitForSeconds(1f);
         disableInputs = false;
     }
 }
