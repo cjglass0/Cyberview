@@ -15,9 +15,8 @@ public class GameManager : MonoBehaviour
 
     //// BUILD INDEXES ////
     public readonly static int _BASE = 0;
-    public readonly static int MENU = 1;
-    public readonly static int CREDITS = 2;
-    public readonly static int FIRST_LVL = 3;
+    public readonly static int CREDITS = 1;
+    public readonly static int FIRST_LVL = 2;
     public readonly static int LAST_LVL = 5;
     public readonly static int TEST_VALUE = 6;
 
@@ -65,7 +64,7 @@ public class GameManager : MonoBehaviour
         currentScene = newSceneIdx;
         Debug.Log("Scene Loaded: idx=" + newSceneIdx + ", name=" + scene.name + ", loadMode=" + mode);
 
-        if (newSceneIdx < MENU  || newSceneIdx > _BASE) // -- Level Loaded --
+        if ( newSceneIdx > CREDITS) // -- Level Loaded --
         {
             //prepare GameObjects in _Base for Gameplay. Ex: Activate player.
             if (!player.activeInHierarchy) player.SetActive(true);
@@ -73,7 +72,7 @@ public class GameManager : MonoBehaviour
             lvlManager = GameObject.Find("LevelManager").GetComponent<LvlManager>();
             lvlManager.InitLevel(this, lastSceneName, playerDied);
         }
-        else if (newSceneIdx == MENU || newSceneIdx == CREDITS) // -- Menu Screen Loaded --
+        else if (newSceneIdx == CREDITS) // -- Menu Screen Loaded --
         {
             if (player.activeInHierarchy) player.SetActive(false);
         }
