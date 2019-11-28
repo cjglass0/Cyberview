@@ -109,18 +109,15 @@ public abstract class AbstractEnemy : AbstractCharacter
             if (!newGroundedState)
             {
                 //
-                float xPosCheck;
-                float yPosCheck = -3.4f;
-                if (colliderObjectName == "Left Floor Box") { xPosCheck = groundCheckL.transform.position.x; } else { xPosCheck = groundCheckR.transform.position.x; }
-                Vector2 checkPos = new Vector2(gameObject.transform.position.x + xPosCheck, gameObject.transform.position.y + yPosCheck);
-                Vector2 size = new Vector2(1f, 1f);
+                Vector3 checkPos;
+                if (colliderObjectName == "Left Floor Box") { checkPos = groundCheckL.transform.position; } else { checkPos = groundCheckR.transform.position; }
+                Vector2 size = new Vector2(.5f, .5f);
 
                 List<Collider2D> collidersAtCheckLocation = new List<Collider2D>(Physics2D.OverlapBoxAll(checkPos, size, 0));
                 for (int i = collidersAtCheckLocation.Count - 1; i >= 0; i--)
                 {
                     if (collidersAtCheckLocation[i].gameObject.layer != 8) collidersAtCheckLocation.Remove(collidersAtCheckLocation[i]);
                 }
-
                 if (collidersAtCheckLocation.Count == 0) speed = -speed;
                 //
             }
@@ -128,13 +125,13 @@ public abstract class AbstractEnemy : AbstractCharacter
         else if (!groundCheckDelay)
         {
             groundCheckDelay = true;
-            StartCoroutine(GroundCheckDelay(newGroundedState));
+            StartCoroutine(WallCheck(newGroundedState));
         }
 
         //turn around if hitting wall or about to drop off a ledge
     }
 
-    IEnumerator GroundCheckDelay(bool newGroundedState)
+    IEnumerator WallCheck(bool newGroundedState)
     {
         if (newGroundedState) speed = -speed;
         yield return new WaitForSeconds(5f);
