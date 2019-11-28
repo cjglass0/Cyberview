@@ -45,7 +45,7 @@ public class LvlManager : MonoBehaviour
         if (playerDied)
         {
             //Find All Abstract Level Items in order to reset level state
-            abstractLvlItems = new List<AbstractLvlItem>(Resources.FindObjectsOfTypeAll<AbstractLvlItem>());
+            abstractLvlItems = new List<AbstractLvlItem>(FindObjectsOfType<AbstractLvlItem>());
             for (int i = abstractLvlItems.Count - 1; i >= 0; i--)
             {
                 AbstractLvlItem ali = abstractLvlItems[i];
