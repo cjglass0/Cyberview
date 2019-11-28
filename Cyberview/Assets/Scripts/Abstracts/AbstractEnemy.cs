@@ -6,7 +6,8 @@ public abstract class AbstractEnemy : AbstractCharacter
 {
     public int damageToPlayerPerHit;
     protected bool updateMovement = true;
-   
+    public GameObject groundCheckL, groundCheckR;
+    public GameObject enemyRewardSP;
 
     [System.NonSerialized]
     public string objectID;
@@ -21,7 +22,17 @@ public abstract class AbstractEnemy : AbstractCharacter
         base.Awake();
 
         objectID = gameObject.scene.name + ", x=" + gameObject.transform.position.x + ", y=" + gameObject.transform.position.y;
+    }
+
+    public void DisableEnemyIfDead()
+    {
         if (PlayerPrefs.HasKey(objectID)) gameObject.SetActive(false);
+    }
+
+    public virtual void ReenableEnemy()
+    {
+        gameObject.SetActive(true);
+        if (PlayerPrefs.HasKey(objectID)) PlayerPrefs.DeleteKey(objectID);
     }
 
     protected virtual void Update()
@@ -100,7 +111,7 @@ public abstract class AbstractEnemy : AbstractCharacter
                 //
                 float xPosCheck;
                 float yPosCheck = -3.4f;
-                if (colliderObjectName == "Left Floor Box") { xPosCheck = -2.4f; } else { xPosCheck = 2.4f; }
+                if (colliderObjectName == "Left Floor Box") { xPosCheck = groundCheckL.transform.position.x; } else { xPosCheck = groundCheckR.transform.position.x; }
                 Vector2 checkPos = new Vector2(gameObject.transform.position.x + xPosCheck, gameObject.transform.position.y + yPosCheck);
                 Vector2 size = new Vector2(1f, 1f);
 

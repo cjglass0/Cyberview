@@ -641,6 +641,8 @@ MonoBehaviour:
   health: 5
   inputState: {fileID: 0}
   damageToPlayerPerHit: 1
+  groundCheckL: {fileID: 5491766698793899827}
+  groundCheckR: {fileID: 7310232151726724989}
   speed: 2
   leftFloorDetector: {fileID: 0}
   rightFloorDetector: {fileID: 0}

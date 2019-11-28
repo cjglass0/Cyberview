@@ -27,4 +27,19 @@ public class BodyModPickup : AbstractLvlItem
             Destroy(gameObject);
         }
     }
+
+    public override void ReenableItem()
+    {
+        List<AbstractBodyMod> unlockedBodyMods = GameObject.Find("_Player").GetComponent<PlayerManager>().GetUnlockedBodyMods();
+        bool containsMod = false;
+        foreach(AbstractBodyMod abm in unlockedBodyMods)
+        {
+            if (abm.name == bodyModPrefab.GetComponent<AbstractBodyMod>().name) containsMod = true;
+        }
+        if (!containsMod)
+        {
+            gameObject.SetActive(true);
+            if (PlayerPrefs.HasKey(objectID)) PlayerPrefs.DeleteKey(objectID);
+        }
+    }
 }

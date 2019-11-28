@@ -37,4 +37,10 @@ public class BodyModSwappingStation : MonoBehaviour
         chargeUsed = true;
         PlayerPrefs.SetInt(objectID, 1);
     }
+
+    public void LevelReset()
+    {
+        chargeUsed = false;
+        if (PlayerPrefs.HasKey(objectID)) PlayerPrefs.DeleteKey(objectID);
+    }
 }

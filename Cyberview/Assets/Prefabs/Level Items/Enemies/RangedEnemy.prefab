@@ -761,9 +761,9 @@ MonoBehaviour:
   health: 5
   inputState: {fileID: 0}
   damageToPlayerPerHit: 0
+  groundCheckL: {fileID: 2828009625068148971}
+  groundCheckR: {fileID: 802566541778932130}
   speed: 2
-  leftFloorDetector: {fileID: 8670537472260271902}
-  rightFloorDetector: {fileID: 6974237774653061913}
   checkRight: 1
   rangedBullets: {fileID: 7183765294997109306, guid: a73d5f2bf03c6f4438a08283e7ee0dfe,
     type: 3}

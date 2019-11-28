@@ -8,8 +8,8 @@ public class RangedEnemy : AbstractEnemy
     //is the player able to do damage to this enemy?
     //wont stop firing bullets
     //bullets wont get destroyed
-   public BoxCollider2D leftFloorDetector;
-    public BoxCollider2D rightFloorDetector;
+   //public BoxCollider2D leftFloorDetector;
+    //public BoxCollider2D rightFloorDetector;
     private Animator animator;
     private Transform player; //holds the enemies target
     public bool checkRight = true;

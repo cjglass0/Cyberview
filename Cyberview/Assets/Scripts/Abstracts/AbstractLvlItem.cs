@@ -12,6 +12,16 @@ public class AbstractLvlItem : MonoBehaviour
     private void Awake()
     {
         objectID = gameObject.scene.name + ", x=" + gameObject.transform.position.x + ", y=" + gameObject.transform.position.y;
-        if (PlayerPrefs.HasKey(objectID)) Destroy(gameObject);
+    }
+
+    public void DisableItemIfCollected()
+    {
+        if (PlayerPrefs.HasKey(objectID)) gameObject.SetActive(false);
+    }
+
+    public virtual void ReenableItem()
+    {
+        gameObject.SetActive(true);
+        if (PlayerPrefs.HasKey(objectID)) PlayerPrefs.DeleteKey(objectID);
     }
 }

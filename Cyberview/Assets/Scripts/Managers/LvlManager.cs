@@ -18,6 +18,7 @@ public class LvlManager : MonoBehaviour
     PlayerManager playerManager;
 
     private List<AbstractLvlItem> abstractLvlItems;
+    private List<AbstractEnemy> abstractEnemy;
 
     float levelStartTime;
     public int doorKeyTimeChallenge;
@@ -41,26 +42,60 @@ public class LvlManager : MonoBehaviour
         doorArray = Object.FindObjectsOfType<Door>();
 
         enemyCasualties = 0;
+        
+        //Find All Abstract Level Items & Enemies in order to reset level state
+        abstractLvlItems = new List<AbstractLvlItem>(FindObjectsOfType<AbstractLvlItem>());
+        abstractEnemy = new List<AbstractEnemy>(FindObjectsOfType<AbstractEnemy>());
 
+        //filter to only items in level & disable if collected
+        for (int i = abstractLvlItems.Count - 1; i >= 0; i--)
+        {
+            AbstractLvlItem ali = abstractLvlItems[i];
+            if (ali.gameObject.scene.name != gameObject.scene.name)
+            {
+                abstractLvlItems.Remove(ali);
+            } else
+            {
+                ali.DisableItemIfCollected();
+            }
+        }
+        //filter to only enemies in level & disable if killed
+        for (int i = abstractEnemy.Count - 1; i >= 0; i--)
+        {
+            AbstractEnemy aenemy = abstractEnemy[i];
+            if (aenemy.gameObject.scene.name != gameObject.scene.name)
+            {
+                abstractEnemy.Remove(aenemy);
+            }
+            else
+            {
+                aenemy.DisableEnemyIfDead();
+            }
+        }
         if (playerDied)
         {
-            //Find All Abstract Level Items in order to reset level state
-            abstractLvlItems = new List<AbstractLvlItem>(FindObjectsOfType<AbstractLvlItem>());
-            for (int i = abstractLvlItems.Count - 1; i >= 0; i--)
-            {
-                AbstractLvlItem ali = abstractLvlItems[i];
-                ali.gameObject.SetActive(false);
-                if (ali.gameObject.scene.name != gameObject.scene.name) abstractLvlItems.Remove(ali);
-            }
-
-            //Re-Activate all Abstract Level Items
+            //Re-Activate all Abstract Level Items in the scene
             foreach (AbstractLvlItem ali in abstractLvlItems)
             {
-                ali.gameObject.SetActive(true);
+                ali.ReenableItem();
+            }
+            //Re-Activate all Abstract Level Items in the scene
+            foreach (AbstractEnemy aenemy in abstractEnemy)
+            {
+                aenemy.ReenableEnemy();
+            }
+
+            //Recharge all body mod stations
+            List<BodyModSwappingStation> bodyModStations = new List<BodyModSwappingStation>(FindObjectsOfType<BodyModSwappingStation>());
+            foreach (BodyModSwappingStation bmstn in bodyModStations)
+            {
+                bmstn.LevelReset();
             }
 
             Debug.Log("LvlManager Abstract Level Items Count: " + abstractLvlItems.Count);
         }
+
+
 
         Debug.Log("LvlManager -> Came from Scene : " + lastSceneName);
         if (lastSceneName == "") Debug.Log("WARNING: LvlManager -> lastScene is null");

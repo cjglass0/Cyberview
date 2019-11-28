@@ -7,7 +7,7 @@ public class BasicEnemy : AbstractEnemy
     public BoxCollider2D leftFloorDetector;
     public BoxCollider2D rightFloorDetector;
     
-    private bool groundCheckDelay = false;
+    //private bool groundCheckDelay = false;
 
     // Update is called once per frame
     protected override void Update()

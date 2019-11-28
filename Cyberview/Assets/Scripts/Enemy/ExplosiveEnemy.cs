@@ -6,8 +6,8 @@ public class ExplosiveEnemy : AbstractEnemy
 //issue here: how can I do damage to player?
 //is the player able to do damage to this enemy?
 {
-    public BoxCollider2D leftFloorDetector;
-    public BoxCollider2D rightFloorDetector;
+    //public BoxCollider2D leftFloorDetector;
+    //public BoxCollider2D rightFloorDetector;
     public GameObject explosion;
 
     private Transform player; //holds the enemies target
