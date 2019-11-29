@@ -24,6 +24,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Floor_-3.unity
     guid: fe9bd40649da53640bb87c509ddc4d6a
   - enabled: 1
+    path: Assets/Scenes/Floor_2.unity
+    guid: 4e82da18bb6f46c4faf0d7fbb30b33b8
+  - enabled: 1
+    path: Assets/Scenes/Floor_3.unity
+    guid: 9c282840408ce7c4c95e4fcc9647feb1
+  - enabled: 1
     path: Assets/Scenes/Floor_4.unity
     guid: aef79d1685eda354d94b6c027703c95f
   m_configObjects: {}
