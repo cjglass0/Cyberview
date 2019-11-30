@@ -59,7 +59,7 @@ public class LVL_0_MineCollapse : AbstractLvlItem
         playerManager.ChangeEyes();
         yield return new WaitForSeconds(0.5f);
         GameObject.Find("DoorToMainArea").GetComponent<Door>().isPermanentlyLocked = false;
-        hud.GetComponent<HUD>().ShowTmpMsg("Error: Critical System Damage. Go to Repair Shop immediately.");
+        hud.GetComponent<HUD>().ShowTmpMsg("Error: Critical System Damage. Go to repair floor immediately.");
 
         PlayerPrefs.SetInt("MineAlreadyCollapsed", 1);
     }

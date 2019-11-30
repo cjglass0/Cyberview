@@ -22812,7 +22812,7 @@ PrefabInstance:
       value: 'What are you waiting for?
 
 
-        Press J to use your Left Arm''s body mod and press K to use your Right Arm''s
+        Press J to use your left arm''s body mod and press K to use your right arm''s
         body mod. Get drilling already!'
       objectReference: {fileID: 0}
     - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,

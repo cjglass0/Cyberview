@@ -12,13 +12,17 @@ public class DialogueTrigger : MonoBehaviour
     public AvatarShown avatar;
     public bool displayOnlyOnce;
     private bool displayed;
+    public bool showAfterCollapseOnly;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "_Player" && !collected && (!displayOnlyOnce || !displayed))
         {
             GameObject handler = GameObject.Find("DialogueHandler");
-            if (handler != null) handler.GetComponent<DialogueHandler>().showDialogue(avatar, message);
+            if (handler != null)
+            {
+                if (!showAfterCollapseOnly || collision.gameObject.GetComponent<PlayerManager>().health < 50) handler.GetComponent<DialogueHandler>().showDialogue(avatar, message);
+            }
             collected = true;
             displayed = true;
         }
@@ -29,7 +33,10 @@ public class DialogueTrigger : MonoBehaviour
         if (collision.gameObject.name == "_Player")
         {
             GameObject handler = GameObject.Find("DialogueHandler");
-            if (handler != null) handler.GetComponent<DialogueHandler>().hideDialogue();
+            if (handler != null)
+            {
+                if (handler.GetComponent<DialogueHandler>().GetCurrentMessage() == message) handler.GetComponent<DialogueHandler>().hideDialogue();
+            }
             collected = false;
         }
     }

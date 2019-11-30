@@ -464,13 +464,15 @@ public class HUD : MonoBehaviour
     IEnumerator MovePlayerAvatar()
     {
         yield return new WaitForSeconds(1);
-        string originGameObjectName = "AvatarP_" + originFloor.ToString();
-        string destinationGameObjectName = "AvatarP_" + destinationFloor.ToString();
+        string originGameObjectName = "AvatarP_A_" + originFloor.ToString();
+        string destinationGameObjectName = "AvatarP_B_" + destinationFloor.ToString();
         Vector3 vecA = GameObject.Find(originGameObjectName).GetComponent<RectTransform>().position;
         Vector3 vecB = GameObject.Find(destinationGameObjectName).GetComponent<RectTransform>().position;
 
+        int speedFactor = (int) (Vector3.Magnitude(vecA - vecB));
+
         //floorAvatar.position 
-        float step = (60 / (vecA - vecB).magnitude) * Time.fixedDeltaTime;
+        float step = (1 * speedFactor / (vecA - vecB).magnitude) * Time.fixedDeltaTime;
         float t = 0;
         while (t <= 1.0f)
         {
