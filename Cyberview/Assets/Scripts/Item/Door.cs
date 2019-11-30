@@ -88,6 +88,7 @@ public class Door : MonoBehaviour
     {
         GameObject.Find("_HUD").GetComponent<HUD>().FinishedFloor(originFloor, destinationFloor);
         yield return new WaitForSeconds(6);
+        if (isDoorToNextFloor) { playerManager.gameManager.newFloor = true; } else { playerManager.gameManager.newFloor = false; }
         playerManager.gameManager.LoadScene(sceneToLoad);
     }
 

@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     private bool sceneCurrentlyLoading = false;
 
     //booleans
-    public bool paused;
+    public bool paused, newFloor;
     private bool playerDied;
 
 
@@ -68,7 +68,9 @@ public class GameManager : MonoBehaviour
         {
             //prepare GameObjects in _Base for Gameplay. Ex: Activate player.
             if (!player.activeInHierarchy) player.SetActive(true);
-            playerManager.ResetPlayer();
+            bool clearBoxes = false;
+            if (playerDied || newFloor) clearBoxes = true;
+            playerManager.ResetPlayer(clearBoxes);
             lvlManager = GameObject.Find("LevelManager").GetComponent<LvlManager>();
             lvlManager.InitLevel(this, lastSceneName, playerDied);
         }

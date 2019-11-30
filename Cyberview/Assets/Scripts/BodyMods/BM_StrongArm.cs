@@ -156,4 +156,20 @@ public class BM_StrongArm : AbstractBodyMod
     }
 
     public GameObject GetBox() { return heavyBox; }
+
+    public void ResetArm()
+    {
+        if (blockColliderHelper == null) blockColliderHelper = FindObject(owner.gameObject, "BlockColliderHelper");
+
+        GotoState(BodyModState.INACTIVE);
+        holdingBox = false;
+        //reset colliders
+        if (heavyBox!=null) heavyBox.transform.parent = null;
+        blockColliderHelper.SetActive(false);
+        //heavyBox.GetComponent<BoxCollider2D>().enabled = true;
+        if (heavyBox != null) heavyBox.GetComponent<Rigidbody2D>().simulated = true;
+        heavyBox = null;
+        owner.GetComponentInChildren<Animator>().SetBool("grab", false);
+        owner.strongArmsInUse = false;
+    }
 }

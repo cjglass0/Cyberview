@@ -449,10 +449,19 @@ public class PlayerManager : AbstractCharacter
         invincible = false;
     }
 
-    public void ResetPlayer()
+    public void ResetPlayer(bool clearAllBoxes)
     {
         interactables.Clear();
         animator.SetBool("dead", false);
+
+        if (clearAllBoxes) { if (armOneMod == bm_StrongArm || armTwoMod == bm_StrongArm) { bm_StrongArm.ResetArm(); } }
+
+        List<GameObject> boxesList = new List<GameObject>(GameObject.FindGameObjectsWithTag("HeavyBlock"));
+        Debug.Log("boxList Count 1 = " + boxesList.Count);
+        for (int i = boxesList.Count - 1; i >= 0; i--) { if (boxesList[i].scene.name != gameObject.scene.name || boxesList[i].name == "BlockColliderHelper") { boxesList.Remove(boxesList[i]); } }
+        Debug.Log("boxList Count 2 = " + boxesList.Count);
+        for (int i = boxesList.Count - 1; i >= 0; i--) { if (boxesList[i].transform.parent != bodyBone.gameObject.transform || clearAllBoxes) { Destroy(boxesList[i]); }}
+        Debug.Log("boxList Count 3 = " + boxesList.Count);
     }
 
 
