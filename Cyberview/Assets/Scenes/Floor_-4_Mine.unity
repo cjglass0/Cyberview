@@ -258,7 +258,7 @@ Transform:
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1184057548}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &67580670
 PrefabInstance:
@@ -1093,7 +1093,7 @@ PrefabInstance:
     - target: {fileID: 3809820164273493151, guid: c5bc667300cee3448bfc35c757b2f760,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3809820164273493151, guid: c5bc667300cee3448bfc35c757b2f760,
         type: 3}
@@ -1118,7 +1118,7 @@ PrefabInstance:
     - target: {fileID: 3809820164273493149, guid: c5bc667300cee3448bfc35c757b2f760,
         type: 3}
       propertyPath: sceneToLoad
-      value: LVL_0
+      value: Floor_-4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5bc667300cee3448bfc35c757b2f760, type: 3}
@@ -5358,6 +5358,8 @@ MonoBehaviour:
   theDudeThatRunsAway: {fileID: 60473674}
   rubble: {fileID: 1295883683}
   bouldersToRemove: {fileID: 1919869839}
+  dialogue1: {fileID: 3692658371477135426}
+  dialogue2: {fileID: 1103174789}
 --- !u!61 &931093115
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5396,7 +5398,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1184057548}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &933462025
 GameObject:
@@ -5806,87 +5808,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4996250513570429299, guid: 07ed6bcab566192489b12de88933545c,
     type: 3}
   m_PrefabInstance: {fileID: 987948775}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &988652720
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1184057548}
-    m_Modifications:
-    - target: {fileID: 8385917985862284436, guid: 79849c710598bec47b5c81ce3fa0b01e,
-        type: 3}
-      propertyPath: m_Name
-      value: SpawnPoint
-      objectReference: {fileID: 0}
-    - target: {fileID: 8385917985862284436, guid: 79849c710598bec47b5c81ce3fa0b01e,
-        type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000,
-        type: 0}
-    - target: {fileID: 8385917985862284437, guid: 79849c710598bec47b5c81ce3fa0b01e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -145.92169
-      objectReference: {fileID: 0}
-    - target: {fileID: 8385917985862284437, guid: 79849c710598bec47b5c81ce3fa0b01e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -74.60022
-      objectReference: {fileID: 0}
-    - target: {fileID: 8385917985862284437, guid: 79849c710598bec47b5c81ce3fa0b01e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8385917985862284437, guid: 79849c710598bec47b5c81ce3fa0b01e,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8385917985862284437, guid: 79849c710598bec47b5c81ce3fa0b01e,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8385917985862284437, guid: 79849c710598bec47b5c81ce3fa0b01e,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8385917985862284437, guid: 79849c710598bec47b5c81ce3fa0b01e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8385917985862284437, guid: 79849c710598bec47b5c81ce3fa0b01e,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8385917985862284437, guid: 79849c710598bec47b5c81ce3fa0b01e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8385917985862284437, guid: 79849c710598bec47b5c81ce3fa0b01e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8385917985862284437, guid: 79849c710598bec47b5c81ce3fa0b01e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 79849c710598bec47b5c81ce3fa0b01e, type: 3}
---- !u!4 &988652721 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8385917985862284437, guid: 79849c710598bec47b5c81ce3fa0b01e,
-    type: 3}
-  m_PrefabInstance: {fileID: 988652720}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1000799367
 PrefabInstance:
@@ -6698,7 +6619,7 @@ PrefabInstance:
     - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
@@ -6718,8 +6639,7 @@ PrefabInstance:
     - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
       propertyPath: message
-      value: Ah, Unit 241. Press SPACE to jump up. Now get in there and get started
-        drilling already.
+      value: Ah, Unit 241. Press SPACE to jump up.
       objectReference: {fileID: 0}
     - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
@@ -6734,13 +6654,19 @@ PrefabInstance:
     - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
       propertyPath: hideDelay
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca7df5e1bc902f3419be5d08287fc9de, type: 3}
 --- !u!4 &1103174788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
+    type: 3}
+  m_PrefabInstance: {fileID: 1103174787}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1103174789 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1461359710426423547, guid: ca7df5e1bc902f3419be5d08287fc9de,
     type: 3}
   m_PrefabInstance: {fileID: 1103174787}
   m_PrefabAsset: {fileID: 0}
@@ -7283,7 +7209,6 @@ Transform:
   - {fileID: 2015504447}
   - {fileID: 924629766}
   - {fileID: 1305128504}
-  - {fileID: 988652721}
   - {fileID: 1103174788}
   - {fileID: 2077911593}
   - {fileID: 169761365}
@@ -7833,7 +7758,7 @@ Transform:
   m_LocalScale: {x: 1.8966401, y: 1.8966401, z: 1.8966401}
   m_Children: []
   m_Father: {fileID: 1184057548}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1295883686
 BoxCollider2D:
@@ -22469,7 +22394,7 @@ PrefabInstance:
     - target: {fileID: 4996250513570429299, guid: 07ed6bcab566192489b12de88933545c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4996250513570429299, guid: 07ed6bcab566192489b12de88933545c,
         type: 3}
@@ -22824,7 +22749,7 @@ PrefabInstance:
     - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -111.52
+      value: -109.68
       objectReference: {fileID: 0}
     - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
@@ -22859,7 +22784,7 @@ PrefabInstance:
     - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
@@ -22884,7 +22809,7 @@ PrefabInstance:
     - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
       propertyPath: message
-      value: 'What are waiting for, stupid robot?
+      value: 'What are you waiting for?
 
 
         Press J to use your Left Arm''s body mod and press K to use your Right Arm''s
@@ -22893,18 +22818,24 @@ PrefabInstance:
     - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
       propertyPath: showDelay
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
       propertyPath: hideDelay
-      value: 9
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca7df5e1bc902f3419be5d08287fc9de, type: 3}
 --- !u!4 &3692658371477135425 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
+    type: 3}
+  m_PrefabInstance: {fileID: 3692658371477135424}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3692658371477135426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1461359710426423547, guid: ca7df5e1bc902f3419be5d08287fc9de,
     type: 3}
   m_PrefabInstance: {fileID: 3692658371477135424}
   m_PrefabAsset: {fileID: 0}

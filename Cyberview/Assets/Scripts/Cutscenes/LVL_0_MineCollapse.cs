@@ -6,7 +6,7 @@ public class LVL_0_MineCollapse : AbstractLvlItem
 {
     //Hardcoded sequence to handle the mine collapse stuff.
 
-    public GameObject theDudeThatRunsAway, rubble, bouldersToRemove;
+    public GameObject theDudeThatRunsAway, rubble, bouldersToRemove, dialogue1, dialogue2;
     private bool collected;
 
     private void Start()
@@ -14,6 +14,8 @@ public class LVL_0_MineCollapse : AbstractLvlItem
         if (PlayerPrefs.HasKey("MineAlreadyCollapsed")){
             theDudeThatRunsAway.SetActive(false);
             bouldersToRemove.SetActive(false);
+            dialogue1.SetActive(false);
+            dialogue2.SetActive(false);
             rubble.SetActive(true);
             collected = true;
         }
@@ -30,10 +32,9 @@ public class LVL_0_MineCollapse : AbstractLvlItem
 
     IEnumerator MySequence()
     {
+        PlayerManager playerManager = GameObject.Find("_Player").GetComponent<PlayerManager>();
         HUD hud = GameObject.Find("_HUD").GetComponent<HUD>();
         GameObject.Find("DoorToMainArea").GetComponent<Door>().isPermanentlyLocked = true;
-
-        yield return new WaitForSeconds(1);
         GameObject.Find("DialogueHandler").GetComponent<DialogueHandler>().showDialogue(AvatarShown.MINEMAN, "Oh no! The mine is collapsing!! I better get out of here");
         theDudeThatRunsAway.SetActive(false);
 
@@ -41,10 +42,10 @@ public class LVL_0_MineCollapse : AbstractLvlItem
         GameObject.Find("DialogueHandler").GetComponent<DialogueHandler>().hideDialogue();
 
         yield return new WaitForSeconds(1);
-        hud.BlackOutFX(5);
+        hud.BlackOutFX(4.5f);
+        playerManager.disableInputs = true;
         bouldersToRemove.SetActive(false);
         rubble.SetActive(true);
-        PlayerManager playerManager = GameObject.Find("_Player").GetComponent<PlayerManager>();
         playerManager.health = 15;
         PlayerPrefs.SetInt("PlayerHealth", 15);
         hud.SetHealth(15);
@@ -54,8 +55,9 @@ public class LVL_0_MineCollapse : AbstractLvlItem
         yield return new WaitForSeconds(1);
         hud.GetComponent<HUD>().PlayerHitFX();
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3.0f);
         playerManager.ChangeEyes();
+        yield return new WaitForSeconds(0.5f);
         GameObject.Find("DoorToMainArea").GetComponent<Door>().isPermanentlyLocked = false;
         hud.GetComponent<HUD>().ShowTmpMsg("Error: Critical System Damage. Go to Repair Shop immediately.");
 

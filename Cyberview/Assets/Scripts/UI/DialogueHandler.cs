@@ -48,4 +48,9 @@ public class DialogueHandler : MonoBehaviour
     {
         panel.SetActive(false);
     }
+
+    public string GetCurrentMessage()
+    {
+        return text.text;
+    }
 }

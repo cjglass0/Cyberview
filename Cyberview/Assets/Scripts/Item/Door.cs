@@ -26,10 +26,18 @@ public class Door : MonoBehaviour
     private bool loadingScene = false;
     private bool justSpawned = false;
     private PlayerManager playerManager;
+    private DialogueHandler dialogueHandler;
 
     private void Start()
     {
         if (isPermanentlyLocked) GetComponent<SpriteRenderer>().color = new Color(0.6889412f, 0.910423f, 0.9568627f);
+        StartCoroutine(DelayedGrabDialogueHandlerRoutine());
+    }
+
+    IEnumerator DelayedGrabDialogueHandlerRoutine()
+    {
+        yield return new WaitForSeconds(.2f);
+        dialogueHandler = GameObject.Find("DialogueHandler").GetComponent<DialogueHandler>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -68,7 +76,7 @@ public class Door : MonoBehaviour
             if (doorKey == null || playerManager.HasKey(doorKey))
             {
                 playerManager.GetPlayerSound().SoundDoor();
-
+                dialogueHandler.hideDialogue();
                 if (isDoorToNextFloor) { StartCoroutine(FloorEndDelay()); } else { playerManager.gameManager.LoadScene(sceneToLoad); }
             }
         }

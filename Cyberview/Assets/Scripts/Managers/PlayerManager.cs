@@ -671,10 +671,16 @@ public class PlayerManager : AbstractCharacter
 
     IEnumerator ComeToLiveRoutine()
     {
-        disableInputs = true;
-        yield return new WaitForSeconds(7.5f);
+        DialogueHandler dialogueHandler = GameObject.Find("DialogueHandler").GetComponent<DialogueHandler>();
+        yield return new WaitForSeconds(2.9f);
+        dialogueHandler.showDialogue(AvatarShown.PROGAGONIST, "Ouch, what just happened?");
+        yield return new WaitForSeconds(3f);
+        dialogueHandler.showDialogue(AvatarShown.PROGAGONIST, "I feel so weird... What is my task?");
         animator.SetBool("comeToLive", false);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(4f);
         disableInputs = false;
+        dialogueHandler.showDialogue(AvatarShown.PROGAGONIST, "I should probably report to the repair floor.");
+        yield return new WaitForSeconds(3f);
+        dialogueHandler.hideDialogue();
     }
 }

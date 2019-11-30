@@ -402,12 +402,12 @@ public class HUD : MonoBehaviour
         }
     }
 
-    public void BlackOutFX(int delay)
+    public void BlackOutFX(float delay)
     {
         StartCoroutine(BlackoutDelay(delay));
     }
 
-    IEnumerator BlackoutDelay(int delay)
+    IEnumerator BlackoutDelay(float delay)
     {
         blackout.gameObject.SetActive(true);
         yield return new WaitForSeconds(delay);
