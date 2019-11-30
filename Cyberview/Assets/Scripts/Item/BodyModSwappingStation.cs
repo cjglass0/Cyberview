@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BodyModSwappingStation : MonoBehaviour
 {
-    private bool chargeUsed = false;
+    [System.NonSerialized]
+    public bool chargeUsed = false;
 
     [System.NonSerialized]
     public string objectID;

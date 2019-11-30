@@ -30,6 +30,8 @@ public class LvlManager : MonoBehaviour
     [System.NonSerialized]
     public int enemyCasualties;
 
+    public bool repairRoom;
+
     public void InitLevel(GameManager gameManager, string lastSceneName, bool playerDied)
     {
         this.gameManager = gameManager;

@@ -446,9 +446,9 @@ public class HUD : MonoBehaviour
         floorEndScreen.alpha = 0;
         floorEndScreen.gameObject.SetActive(true);
 
+        StartCoroutine(MovePlayerAvatar());
         StartCoroutine(FadeCanvasGroup(floorEndScreen, 0f, 1f, 1f, false));
         yield return new WaitForSeconds(0.5f);
-        StartCoroutine(MovePlayerAvatar());
         yield return new WaitForSeconds(3.6f);
         StartCoroutine(FadeCanvasGroup(floorEndScreen, 1f, 0f, 1f, false));
         yield return new WaitForSeconds(1f);
@@ -463,12 +463,14 @@ public class HUD : MonoBehaviour
 
     IEnumerator MovePlayerAvatar()
     {
-        yield return new WaitForSeconds(1);
         string originGameObjectName = "AvatarP_A_" + originFloor.ToString();
         string destinationGameObjectName = "AvatarP_B_" + destinationFloor.ToString();
         Vector3 vecA = GameObject.Find(originGameObjectName).GetComponent<RectTransform>().position;
         Vector3 vecB = GameObject.Find(destinationGameObjectName).GetComponent<RectTransform>().position;
+        floorAvatar.position = vecA;
 
+        yield return new WaitForSeconds(1.5f);
+        
         int speedFactor = (int) (Vector3.Magnitude(vecA - vecB));
 
         //floorAvatar.position 

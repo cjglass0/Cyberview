@@ -18,7 +18,8 @@ public class DoorKey : AbstractLvlItem
             //save state
             PlayerPrefs.SetInt(objectID, 1);
 
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

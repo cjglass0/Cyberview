@@ -9,6 +9,7 @@ public class RepairRoomCutscene : MonoBehaviour
     private bool delayedHealthCheck = true;
     public GameObject human, humanDialogue, findGunDialogue;
     private bool collected = false;
+    public BodyModSwappingStation bmStn;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,7 @@ public class RepairRoomCutscene : MonoBehaviour
     {
         delayedHealthCheck = false;
         yield return new WaitForSeconds(.5f);
-        if (playerManager.health == 100)
+        if (bmStn.chargeUsed)
         {
             StartCoroutine(Cutscene());
         } else
@@ -47,7 +48,7 @@ public class RepairRoomCutscene : MonoBehaviour
         humanDialogue.SetActive(false);
 
         playerManager.disableInputs = true;
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(.1f);
         dialogueHandler.showDialogue(AvatarShown.MINEMAN, "Unit 241, now that you are repaired, you are to report back to the mining floor.");
         yield return new WaitForSeconds(3.5f);
         dialogueHandler.showDialogue(AvatarShown.PROGAGONIST, "But... I almost just died down there! I'm scared to go back.");

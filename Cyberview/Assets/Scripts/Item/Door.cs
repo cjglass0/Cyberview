@@ -79,6 +79,8 @@ public class Door : MonoBehaviour
                 dialogueHandler.hideDialogue();
                 if (isDoorToNextFloor) { StartCoroutine(FloorEndDelay()); } else { playerManager.gameManager.LoadScene(sceneToLoad); }
             }
+
+            if (doorKey != null) Debug.Log("Door Debug: -- PlayerHasKey:" + playerManager.HasKey(doorKey) + ", -- doorKey = " + doorKey);
         }
     }
 

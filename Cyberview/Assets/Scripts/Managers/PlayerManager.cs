@@ -171,6 +171,8 @@ public class PlayerManager : AbstractCharacter
         disableInputs = false;
         hud.PlayerDied();
         health = origHealth;
+        LvlManager lvlMngr = GameObject.Find("LevelManager").GetComponent<LvlManager>();
+        if (lvlMngr != null) {  if (lvlMngr.repairRoom) { health = 15; } }
         hud.SetHealth(health);
         deathSequence = false;
     }
