@@ -124,4 +124,24 @@ public class FinalBoss : AbstractEnemy
         EnemyDeathEnd();
     }
 
+    public override void EnemyDeathEnd()
+    {
+        LvlManager lvlManager = GameObject.Find("LevelManager").GetComponent<LvlManager>();
+
+        //Spawn Reward
+        lvlManager.SpawnRandomReward(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y-5.8f, gameObject.transform.position.z));
+        lvlManager.SpawnRandomReward(new Vector3(gameObject.transform.position.x-2.5f, gameObject.transform.position.y - 5.8f, gameObject.transform.position.z));
+        lvlManager.SpawnRandomReward(new Vector3(gameObject.transform.position.x+2.5f, gameObject.transform.position.y - 5.8f, gameObject.transform.position.z));
+        lvlManager.SpawnRandomReward(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 4f, gameObject.transform.position.z));
+        lvlManager.SpawnRandomReward(new Vector3(gameObject.transform.position.x - 2.5f, gameObject.transform.position.y - 4f, gameObject.transform.position.z));
+        lvlManager.SpawnRandomReward(new Vector3(gameObject.transform.position.x + 2.5f, gameObject.transform.position.y - 4f, gameObject.transform.position.z));
+
+        //save state
+        PlayerPrefs.SetInt(objectID, 1);
+        lvlManager.EnemyKilled();
+
+        Destroy(gameObject);
+
+    }
+
 }

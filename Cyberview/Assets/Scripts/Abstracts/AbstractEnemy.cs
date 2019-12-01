@@ -77,7 +77,7 @@ public abstract class AbstractEnemy : AbstractCharacter
         EnemyDeathEnd();
     }
 
-    public void EnemyDeathEnd()
+    public virtual void EnemyDeathEnd()
     {
         int coinflip = (int)(Random.Range(0, 2));
         LvlManager lvlManager = GameObject.Find("LevelManager").GetComponent<LvlManager>();

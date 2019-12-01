@@ -15,7 +15,7 @@ public class HUD : MonoBehaviour
     public CanvasGroup playerHUD, pauseMenu, deathMenu, floorEndScreen, floorEndOverlay, playerHitCG, bmMenu;
     public RawImage batteryBar, batteryBarOutline;
     public RectTransform batteryParent, floorAvatar;
-    public GameObject blackout;
+    public GameObject blackout, enemyKillCount;
     private float originalPlayerHitCGalpha, origBatterySizeX;
     private AudioSource clickSound;
     private bool bmMenuLoaded, bmFrameDelay, pulsing, goScreen;
@@ -465,6 +465,8 @@ public class HUD : MonoBehaviour
 
     IEnumerator MovePlayerAvatar()
     {
+        if (originFloor > 0) { enemyKillCount.SetActive(true); } else { enemyKillCount.SetActive(false); }
+
         string originGameObjectName = "AvatarP_A_" + originFloor.ToString();
         string destinationGameObjectName = "AvatarP_B_" + destinationFloor.ToString();
 
