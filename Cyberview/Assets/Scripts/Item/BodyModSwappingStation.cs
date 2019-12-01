@@ -9,10 +9,17 @@ public class BodyModSwappingStation : MonoBehaviour
 
     [System.NonSerialized]
     public string objectID;
+
+    public SpriteRenderer glow;
+
     private void Awake()
     {
         objectID = gameObject.scene.name + ", x=" + gameObject.transform.position.x + ", y=" + gameObject.transform.position.y;
-        if (PlayerPrefs.HasKey(objectID)) chargeUsed = true;
+        if (PlayerPrefs.HasKey(objectID))
+        {
+            chargeUsed = true;
+            glow.color = new Color(1f, 0f, 0.6313726f);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,6 +44,7 @@ public class BodyModSwappingStation : MonoBehaviour
     {
         chargeUsed = true;
         PlayerPrefs.SetInt(objectID, 1);
+        glow.color = new Color(1f, 0f, 0.6313726f);
     }
 
     public void LevelReset()

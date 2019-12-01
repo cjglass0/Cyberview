@@ -44,7 +44,7 @@ public class Bullets : MonoBehaviour
             }
             Destroy(gameObject);
         }
-        else if (target.gameObject.tag != "rangedBullet" && (target.gameObject.layer == 8))
+        else if (target.gameObject.tag != "rangedBullet" && target.gameObject.layer != 12 && target.gameObject.tag != "rangedEnemy")
         {
             Destroy(gameObject);
         }

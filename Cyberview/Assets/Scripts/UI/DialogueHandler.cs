@@ -8,7 +8,8 @@ public enum AvatarShown
 {
     PROGAGONIST,
     HELPERBOT,
-    MINEMAN
+    MINEMAN,
+    PROGAGONIST_Y
 }
 
 
@@ -16,7 +17,7 @@ public enum AvatarShown
 
 public class DialogueHandler : MonoBehaviour
 {
-    public Texture protagonistAvatar, helperBotAvatar, mineManAvatar;
+    public Texture protagonistAvatar, protagonist_yAvatar, helperBotAvatar, mineManAvatar;
     public GameObject panel;
     public TextMeshProUGUI text;
     public RawImage avatarRenderer;
@@ -34,6 +35,9 @@ public class DialogueHandler : MonoBehaviour
         {
             case AvatarShown.PROGAGONIST:
                 avatarRenderer.texture = protagonistAvatar;
+                break;
+            case AvatarShown.PROGAGONIST_Y:
+                avatarRenderer.texture = protagonist_yAvatar;
                 break;
             case AvatarShown.HELPERBOT:
                 avatarRenderer.texture = helperBotAvatar;

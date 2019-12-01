@@ -22,6 +22,8 @@ public class HUD : MonoBehaviour
     private int originFloor, destinationFloor;
     public Button rechargeBtn;
     private BodyModSwappingStation bmStn;
+    private Color floorTextDark = new Color(0.07843138f, 0.07843138f, 0.07843138f);
+    private Color floorTextBright = new Color(1f, 0.56488f, 0.112f);
 
     private void Awake()
     {
@@ -142,6 +144,8 @@ public class HUD : MonoBehaviour
 
     public void BtnRestartLevel()
     {
+        LvlManager lvlManager = GameObject.Find("LevelManager").GetComponent<LvlManager>();
+
         clickSound.Play();
         gameManager.paused = false;
         Debug.Log("HUD -> Restart");
@@ -161,7 +165,6 @@ public class HUD : MonoBehaviour
             deathMenu.gameObject.SetActive(false);
             goScreen = false;
         }
-        
 
         gameManager.ReloadLevel();
     }
@@ -448,8 +451,7 @@ public class HUD : MonoBehaviour
 
         StartCoroutine(MovePlayerAvatar());
         StartCoroutine(FadeCanvasGroup(floorEndScreen, 0f, 1f, 1f, false));
-        yield return new WaitForSeconds(0.5f);
-        yield return new WaitForSeconds(3.6f);
+        yield return new WaitForSeconds(4.1f);
         StartCoroutine(FadeCanvasGroup(floorEndScreen, 1f, 0f, 1f, false));
         yield return new WaitForSeconds(1f);
         StartCoroutine(FadeCanvasGroup(floorEndOverlay, 1f, 0f, 1f, true));
@@ -465,6 +467,18 @@ public class HUD : MonoBehaviour
     {
         string originGameObjectName = "AvatarP_A_" + originFloor.ToString();
         string destinationGameObjectName = "AvatarP_B_" + destinationFloor.ToString();
+
+        TextMeshProUGUI originText = GameObject.Find("Floor_Label_" + originFloor.ToString()).GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI destinationText = GameObject.Find("Floor_Label_" + destinationFloor.ToString()).GetComponent<TextMeshProUGUI>();
+
+        for (int i=4; i>=(-4); i--)
+        {
+            if (i != 0) GameObject.Find("Floor_Label_" + i.ToString()).GetComponent<TextMeshProUGUI>().color = floorTextDark;
+        }
+
+        originText.color = floorTextBright;
+        StartCoroutine(SwitchFloorTextColor(originText, destinationText));
+
         Vector3 vecA = GameObject.Find(originGameObjectName).GetComponent<RectTransform>().position;
         Vector3 vecB = GameObject.Find(destinationGameObjectName).GetComponent<RectTransform>().position;
         floorAvatar.position = vecA;
@@ -483,5 +497,12 @@ public class HUD : MonoBehaviour
             yield return new WaitForFixedUpdate();         // Leave the routine and return here in the next frame
         }
         floorAvatar.position = vecB;
+    }
+
+    IEnumerator SwitchFloorTextColor(TextMeshProUGUI originText, TextMeshProUGUI destinationText)
+    {
+        yield return new WaitForSeconds(2f);
+        destinationText.color = floorTextBright;
+        originText.color = floorTextDark;
     }
 }

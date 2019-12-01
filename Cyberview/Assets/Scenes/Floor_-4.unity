@@ -1586,6 +1586,11 @@ PrefabInstance:
       propertyPath: avatar3
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: avatar2
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca7df5e1bc902f3419be5d08287fc9de, type: 3}
 --- !u!4 &1005698773 stripped
@@ -1664,7 +1669,7 @@ PrefabInstance:
     - target: {fileID: 7150120205216498134, guid: bf9773c4c9f531c48b6529038607af39,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf9773c4c9f531c48b6529038607af39, type: 3}
@@ -1984,6 +1989,11 @@ PrefabInstance:
         type: 3}
       propertyPath: reenableMovement2
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: avatar
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca7df5e1bc902f3419be5d08287fc9de, type: 3}
