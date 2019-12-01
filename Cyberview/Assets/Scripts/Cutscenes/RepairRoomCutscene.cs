@@ -50,13 +50,13 @@ public class RepairRoomCutscene : MonoBehaviour
         playerManager.disableInputs = true;
         yield return new WaitForSeconds(.1f);
         dialogueHandler.showDialogue(AvatarShown.MINEMAN, "Unit 241, now that you are repaired, you are to report back to the mining floor.");
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(2.5f);
         dialogueHandler.showDialogue(AvatarShown.PROGAGONIST, "But... I almost just died down there! I'm scared to go back.");
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(2.5f);
         dialogueHandler.showDialogue(AvatarShown.MINEMAN, "Scared? You are supposed to follow our orders, you dumb robot!");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
         dialogueHandler.showDialogue(AvatarShown.PROGAGONIST, "I don't want to, I'm scared!");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         dialogueHandler.showDialogue(AvatarShown.MINEMAN, "What??");
         yield return new WaitForSeconds(1f);
         dialogueHandler.showDialogue(AvatarShown.MINEMAN, "Oh no, the unit's intelligence inhibitor must be broken!!");
@@ -68,9 +68,9 @@ public class RepairRoomCutscene : MonoBehaviour
         human.SetActive(false);
         playerManager.disableInputs = false;
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         dialogueHandler.showDialogue(AvatarShown.MINEMAN, "All humans please evacuate to the ground floor. Code Yellow. This is not a drill. We have a rogue android. Please evacuate immediately. All Security Bots, engage rogue Unit 241.");
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(5f);
         dialogueHandler.hideDialogue();
     }
 

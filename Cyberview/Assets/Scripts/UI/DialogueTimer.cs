@@ -11,7 +11,7 @@ public class DialogueTimer : AbstractLvlItem
 
     [TextArea]
     public string message;
-    public int showDelay, hideDelay;
+    public float showDelay, hideDelay;
     public AvatarShown avatar;
 
     
@@ -19,14 +19,14 @@ public class DialogueTimer : AbstractLvlItem
     [TextArea]
     public string message2;
     public AvatarShown avatar2;
-    public int hideDelay2;
+    public float hideDelay2;
 
     
     public bool reenableMovement3;
     [TextArea]
     public string message3;
     public AvatarShown avatar3;
-    public int hideDelay3;
+    public float hideDelay3;
 
     private int iteration = 0;
     private string currentMessage;
@@ -57,7 +57,7 @@ public class DialogueTimer : AbstractLvlItem
         }
     }
 
-    IEnumerator MyDelay(AvatarShown inputAvatar, string inputMessage, int inputShowDelay, int inputHideDelay)
+    IEnumerator MyDelay(AvatarShown inputAvatar, string inputMessage, float inputShowDelay, float inputHideDelay)
     {
         if (dialogueHandler == null) dialogueHandler = GameObject.Find("DialogueHandler").GetComponent<DialogueHandler>();
         yield return new WaitForSeconds(inputShowDelay);
