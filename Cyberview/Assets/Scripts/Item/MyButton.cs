@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MyButton : MonoBehaviour
 {
-    public MonoBehaviour target;
+    public MonoBehaviour target, target2;
     public bool pressed = false;
     public int pressCount = 0;
     // Start is called before the first frame update
@@ -29,6 +29,11 @@ public class MyButton : MonoBehaviour
                 a.switchTurnedOn();
                 pressed = true;
             }
+            if (target2 is ActivatedBySwitchInterface a2 && pressCount == 0)
+            {
+                a2.switchTurnedOn();
+                pressed = true;
+            }
             pressCount += 1;
         }   
     }
@@ -38,6 +43,10 @@ public class MyButton : MonoBehaviour
         {
             if(pressCount == 1 && target is ActivatedBySwitchInterface a){
                 a.switchTurnedOff();
+            }
+            if (pressCount == 1 && target2 is ActivatedBySwitchInterface a2)
+            {
+                a2.switchTurnedOff();
             }
             pressCount -= 1;
             if(pressCount <= 0){

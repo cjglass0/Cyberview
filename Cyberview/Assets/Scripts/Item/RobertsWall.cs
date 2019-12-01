@@ -12,17 +12,19 @@ public class RobertsWall : MonoBehaviour, ActivatedBySwitchInterface
     {
         myTransform = GetComponent<Transform>();
         origPos = myTransform.position;
-        raisedPos = new Vector3(origPos.x, origPos.y+15, origPos.z);
+        raisedPos = new Vector3(origPos.x, origPos.y+25, origPos.z);
     }
 
     public void switchTurnedOff()
     {
         activated = false;
+        Debug.Log("lower");
     }
 
     public void switchTurnedOn()
     {
         activated = true;
+        Debug.Log("raise");
     }
 
     // Update is called once per frame
@@ -45,7 +47,7 @@ public class RobertsWall : MonoBehaviour, ActivatedBySwitchInterface
         Vector3 vecB = goToPos;
 
         //floorAvatar.position 
-        float step = (20 / (vecA - vecB).magnitude) * Time.fixedDeltaTime;
+        float step = (30 / (vecA - vecB).magnitude) * Time.fixedDeltaTime;
         float t = 0;
         while (t <= 1.0f)
         {
