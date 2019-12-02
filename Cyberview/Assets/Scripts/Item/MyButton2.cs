@@ -43,7 +43,7 @@ public class MyButton2 : MonoBehaviour
             {
                 a.switchTurnedOff();
                 pressed = false;
-                Debug.Log("lower call1");
+                //Debug.Log("lower call1");
             }
             if (target2 != null)
             {
@@ -54,7 +54,7 @@ public class MyButton2 : MonoBehaviour
             }
             
         }
-        Debug.Log("collidersAtCheckLocation.Count" + collidersAtCheckLocation.Count);
+        //Debug.Log("collidersAtCheckLocation.Count" + collidersAtCheckLocation.Count);
         yield return new WaitForSeconds(.5f);
         if (collidersAtCheckLocation.Count != 0) checkForExit = true;
     }

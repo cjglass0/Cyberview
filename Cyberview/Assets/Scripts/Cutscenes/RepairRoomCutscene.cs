@@ -50,13 +50,13 @@ public class RepairRoomCutscene : MonoBehaviour
         playerManager.disableInputs = true;
         yield return new WaitForSeconds(.1f);
         dialogueHandler.showDialogue(AvatarShown.MINEMAN, "Unit 241, now that you are repaired, you are to report back to the mining floor.");
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2.7f);
         dialogueHandler.showDialogue(AvatarShown.PROGAGONIST, "But... I almost just died down there! I'm scared to go back.");
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2.7f);
         dialogueHandler.showDialogue(AvatarShown.MINEMAN, "Scared? You are supposed to follow our orders, you dumb robot!");
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2.7f);
         dialogueHandler.showDialogue(AvatarShown.PROGAGONIST, "I don't want to, I'm scared!");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.7f);
         dialogueHandler.showDialogue(AvatarShown.MINEMAN, "What??");
         yield return new WaitForSeconds(1f);
         dialogueHandler.showDialogue(AvatarShown.MINEMAN, "Oh no, the unit's intelligence inhibitor must be broken!!");

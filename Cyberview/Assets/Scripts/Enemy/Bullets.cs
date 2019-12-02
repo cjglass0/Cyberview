@@ -32,7 +32,7 @@ public class Bullets : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D target)
     {
-        Debug.Log("Bullet Collision: " + target.gameObject.name);
+        //Debug.Log("Bullet Collision: " + target.gameObject.name);
 
         if (target.gameObject.name == "_Player")
         {
@@ -44,7 +44,15 @@ public class Bullets : MonoBehaviour
             }
             Destroy(gameObject);
         }
-        else if (target.gameObject.tag != "rangedBullet" && target.gameObject.layer != 12 && target.gameObject.tag != "rangedEnemy")
+        else if (target.gameObject.tag != "rangedBullet" && target.gameObject.layer == 8)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D target)
+    {
+        if (target.gameObject.tag == "HeavyBlock" || target.gameObject.tag == "DestroyableSceneObject")
         {
             Destroy(gameObject);
         }

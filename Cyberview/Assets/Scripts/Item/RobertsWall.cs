@@ -18,13 +18,13 @@ public class RobertsWall : MonoBehaviour, ActivatedBySwitchInterface
     public void switchTurnedOff()
     {
         activated = false;
-        Debug.Log("lower");
+        //Debug.Log("lower");
     }
 
     public void switchTurnedOn()
     {
         activated = true;
-        Debug.Log("raise");
+        //Debug.Log("raise");
     }
 
     // Update is called once per frame
