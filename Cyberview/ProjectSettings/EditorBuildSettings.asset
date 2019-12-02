@@ -30,11 +30,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Floor_-2_Room2.unity
     guid: 41a285352ab8a504ab1ba34ff1a1edef
   - enabled: 1
-    path: Assets/Scenes/Floor_-1.unity
-    guid: 914c7bdc4d898a44d8c707f7fa2b7543
+    path: Assets/Scenes/Floor_-1-1.unity
+    guid: 916a6580abd3dbc428bbd3cace0416a1
+  - enabled: 1
+    path: Assets/Scenes/Floor_-1-2.unity
+    guid: 44b79b904061e294288e539d97d0e8da
   - enabled: 1
     path: Assets/Scenes/Floor_4.unity
     guid: aef79d1685eda354d94b6c027703c95f
+  - enabled: 1
+    path: Assets/Scenes/Floor_4-2.unity
+    guid: b16c3da74daf37f44860f1751b2c08ef
+  - enabled: 1
+    path: Assets/Scenes/Floor_4-3.unity
+    guid: 08ba393ac31fc014b9e892a11827ba0d
   - enabled: 1
     path: Assets/Scenes/Floor_3.unity
     guid: 9c282840408ce7c4c95e4fcc9647feb1
@@ -50,4 +59,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Floor_2-Rm2.unity
     guid: 571a77f1139791647acfb6d222a412be
+  - enabled: 1
+    path: Assets/Scenes/Floor_1_Boss.unity
+    guid: 3e5a7032abfc4c043ad9546f7ee69cfb
   m_configObjects: {}
