@@ -8850,17 +8850,17 @@ PrefabInstance:
     - target: {fileID: 3809820164273493149, guid: c5bc667300cee3448bfc35c757b2f760,
         type: 3}
       propertyPath: isDoorToNextFloor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3809820164273493149, guid: c5bc667300cee3448bfc35c757b2f760,
         type: 3}
       propertyPath: originFloor
-      value: 0
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 3809820164273493149, guid: c5bc667300cee3448bfc35c757b2f760,
         type: 3}
       propertyPath: destinationFloor
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5bc667300cee3448bfc35c757b2f760, type: 3}
