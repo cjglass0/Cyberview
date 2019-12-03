@@ -104,6 +104,8 @@ public class BM_StrongArm : AbstractBodyMod
         owner.strongArmsInUse = true;
 
         heavyBox.transform.SetParent(owner.bodyBone.gameObject.transform);
+
+        if (heavyBox.gameObject.tag == "Orb") GameObject.Find("FinalBossCutscene").GetComponent<FinalBossCutscene>().PickedUpOrb();
     }
 
 

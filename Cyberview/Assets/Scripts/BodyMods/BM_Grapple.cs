@@ -52,6 +52,8 @@ public class BM_Grapple : AbstractBodyMod
             projectile.SetupProjectile(projectileLifetime, projectileDamage, projectileSpeed, owner.isFacingRight);
             //delay to avoid shooting once per frame
 
+            owner.DecreaseHealth(energyCostPerTick, false);
+
             if (armSide == ArmSide.ARMONE) {
                 hookVisualOne.SetActive(false);
             } else

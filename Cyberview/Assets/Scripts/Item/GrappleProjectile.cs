@@ -19,6 +19,7 @@ public class GrappleProjectile : MonoBehaviour
     public Vector2 playerVel;
     private Vector3 armOneAttach, armTwoAttach;
     public bool grappling = false;
+    private bool delayedReleaseCheck;
 
     private void Awake()
     {
@@ -80,12 +81,23 @@ public class GrappleProjectile : MonoBehaviour
             Debug.Log("Attached");
             if (Physics2D.Raycast(owner.transform.localPosition, direction, maxDistance, layerMask, -Mathf.Infinity, Mathf.Infinity))
             {
-                Debug.Log("GrappleProjectile -> Path blocked. Detach.");
-                owner.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 33);
-                bm_Grapple.GrappleDead();
-                Destroy(gameObject);
+                if (!delayedReleaseCheck) StartCoroutine(DelayedReleaseCheck(direction, maxDistance, layerMask));
             }
         }
+    }
+
+    IEnumerator DelayedReleaseCheck(Vector2 direction, float maxDistance, int layerMask)
+    {
+        delayedReleaseCheck = true;
+        yield return new WaitForSeconds(1);
+        if (Physics2D.Raycast(owner.transform.localPosition, direction, maxDistance, layerMask, -Mathf.Infinity, Mathf.Infinity))
+        {
+            Debug.Log("GrappleProjectile -> Path blocked. Detach.");
+            owner.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 33);
+            bm_Grapple.GrappleDead();
+            Destroy(gameObject);
+        }
+        delayedReleaseCheck = false;
     }
 
     public void SetupProjectile(float pLifetime, float pDamage, float pSpeed, bool pRight)
@@ -112,7 +124,8 @@ public class GrappleProjectile : MonoBehaviour
             }
             hitEnemyFlag = true;
         }
-        else if(target.gameObject.layer == 8){
+        else if(target.gameObject.layer == 8 || target.gameObject.tag == "HeavyBlock" || target.gameObject.tag == "Orb" || target.gameObject.tag == "Boulder")
+        {
             attachedTerrain = target.gameObject;
             float angle = Mathf.Atan2(transform.position.y-owner.transform.position.y, transform.position.x-owner.transform.position.x);
             playerVel = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));

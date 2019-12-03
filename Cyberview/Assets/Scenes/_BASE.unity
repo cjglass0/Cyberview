@@ -9016,6 +9016,11 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 789145236}
+    - target: {fileID: 545633299884686913, guid: 2f17f2eebe8865d48b224e7612db4b61,
+        type: 3}
+      propertyPath: energyCostPerTick
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f17f2eebe8865d48b224e7612db4b61, type: 3}
 --- !u!4 &1206880632 stripped
@@ -13788,6 +13793,11 @@ PrefabInstance:
         type: 3}
       propertyPath: projectileLifetime
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8972388180567075028, guid: b5306545ae1ca9f4fb3225afce834bb7,
+        type: 3}
+      propertyPath: energyCostPerTick
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5306545ae1ca9f4fb3225afce834bb7, type: 3}

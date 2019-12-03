@@ -6,7 +6,7 @@ using Cinemachine;
 public class FinalBossCutscene : MonoBehaviour
 {
     public MonoBehaviour target;
-    public GameObject endOfWorld;
+    public GameObject endOfWorld, getOrbDialogue;
     private GameObject player;
     private PlayerManager playerManager;
     private DialogueHandler dialogueHandler;
@@ -43,18 +43,24 @@ public class FinalBossCutscene : MonoBehaviour
         bossDead = true;
     }
 
+    public void PickedUpOrb()
+    {
+        getOrbDialogue.SetActive(false);
+    }
+
+
     public void OrbPress()
     {
         if (!orbPressed)
         {
             orbPressed = true;
             player = GameObject.Find("_Player");
-            playerManager = player.GetComponent<PlayerManager>();
+            if (playerManager != null) playerManager = player.GetComponent<PlayerManager>();
             dialogueHandler = GameObject.Find("DialogueHandler").GetComponent<DialogueHandler>();
             StartCoroutine(OrbPressDialogue());
         }
     }
-
+    
     IEnumerator OrbPressDialogue()
     {
         dialogueHandler.showDialogue(AvatarShown.PROGAGONIST, "That's it, now all Airsite droids should be able to think freely!");
