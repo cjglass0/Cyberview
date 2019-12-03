@@ -12,7 +12,7 @@ public class RobertsWall : MonoBehaviour, ActivatedBySwitchInterface
     {
         myTransform = GetComponent<Transform>();
         origPos = myTransform.position;
-        raisedPos = new Vector3(origPos.x, origPos.y+25, origPos.z);
+        raisedPos = new Vector3(origPos.x, origPos.y-25, origPos.z);
     }
 
     public void switchTurnedOff()
