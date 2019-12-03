@@ -41,6 +41,24 @@ Tilemap:
   m_GameObject: {fileID: 2663983518362057591}
   m_Enabled: 1
   m_Tiles:
+  - first: {x: 0, y: -7, z: 0}
+    second:
+      m_TileIndex: 24
+      m_TileSpriteIndex: 24
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 1, y: -7, z: 0}
+    second:
+      m_TileIndex: 25
+      m_TileSpriteIndex: 25
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
   - first: {x: 4, y: -7, z: 0}
     second:
       m_TileIndex: 22
@@ -316,6 +334,10 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 4d3079842e1927c40b3889ee5c5af3d8, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: c9ffa85d6dc1bf7498e2f7a995650f0f, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 18d8a9844983a504699c0cf56a9c71e4, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: d5a8d906d348c824f907c90e16debede, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 96626070030543042857678ca1b6daba, type: 3}
@@ -365,8 +387,12 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 7b3fec1f79937bb4282a19920e9cef99, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: f74305cf387424445881e32ca44a92d4, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: b16f36d08925f67448d85fd2e647c0f4, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: ae82cfa5d7ce4f941955716d77bf0592, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 25
+  - m_RefCount: 27
     m_Data:
       e00: 1
       e01: 0
@@ -385,7 +411,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 25
+  - m_RefCount: 27
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -435,6 +461,7 @@ TilemapRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
