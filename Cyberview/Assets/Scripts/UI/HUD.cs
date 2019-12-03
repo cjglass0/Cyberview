@@ -348,11 +348,11 @@ public class HUD : MonoBehaviour
 
     public void SetCredit(int credit) { creditValue.text = credit.ToString(); }
 
-    public void ShowTmpMsg (string msg)
+    public void ShowTmpMsg (string msg, float messageDur)
     {
         tmpMsg.text = msg;
         tmpMsg.gameObject.SetActive(true);
-        StartCoroutine(TmpMsgDelay());
+        StartCoroutine(TmpMsgDelay(messageDur));
     }
 
     public void HideTmpMsg()
@@ -360,9 +360,9 @@ public class HUD : MonoBehaviour
         tmpMsg.gameObject.SetActive(false);
     }
 
-    IEnumerator TmpMsgDelay()
+    IEnumerator TmpMsgDelay(float messageDur)
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(messageDur);
         tmpMsg.gameObject.SetActive(false);
     }
 

@@ -142,7 +142,7 @@ public class LvlManager : MonoBehaviour
         if (keysCollected == doorKeyArray.Length && Time.time - levelStartTime < doorKeyTimeChallenge)
         {
             SpawnRandomReward(GameObject.Find("TimeChallengeRewardSP").transform.position);
-            hud.ShowTmpMsg("Congratulations, you won the time Challenge!");
+            hud.ShowTmpMsg("Congratulations, you won the time Challenge!", 4f);
         }
             
     }

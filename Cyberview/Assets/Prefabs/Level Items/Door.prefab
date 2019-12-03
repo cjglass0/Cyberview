@@ -58,6 +58,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -96,6 +97,9 @@ MonoBehaviour:
   sceneToLoad: 0
   doorKey: {fileID: 0}
   isPermanentlyLocked: 0
+  isDoorToNextFloor: 0
+  originFloor: 0
+  destinationFloor: 0
 --- !u!61 &3809820164273493150
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -120,5 +124,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 2.56}
+  m_Size: {x: 0.6, y: 2.56}
   m_EdgeRadius: 0

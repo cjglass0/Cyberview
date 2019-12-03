@@ -26,7 +26,7 @@ public class BodyModSwappingStation : MonoBehaviour
     {
         if (collision.gameObject.name == "_Player")
         {
-            GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("Press TAB to use Body Modding Station");
+            GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("Press TAB to use Body Modding Station", 3f);
             //collision.gameObject.GetComponent<PlayerManager>().Recharge(100);
         }
     }

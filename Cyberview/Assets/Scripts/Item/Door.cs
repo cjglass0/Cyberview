@@ -48,11 +48,11 @@ public class Door : MonoBehaviour
 
             if (doorKey == null || playerManager.HasKey(doorKey))
             {
-                GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("Press TAB to open");
+                GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("Press TAB to open", 3);
             }
             else
             {
-                GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("Door is locked. Find the Key.");
+                GameObject.Find("_HUD").GetComponent<HUD>().ShowTmpMsg("Door is locked. Find the Key.", 3.5f);
             }
         }
     }

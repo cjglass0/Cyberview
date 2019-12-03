@@ -49,7 +49,7 @@ public class LVL_0_MineCollapse : AbstractLvlItem
         playerManager.health = 15;
         PlayerPrefs.SetInt("PlayerHealth", 15);
         hud.SetHealth(15);
-        hud.ShowTmpMsg("ERROR. ERROR. ERROR.");
+        hud.ShowTmpMsg("ERROR. ERROR. ERROR.", 4f);
         hud.PlayerHitFX();
 
         yield return new WaitForSeconds(1);
@@ -59,7 +59,7 @@ public class LVL_0_MineCollapse : AbstractLvlItem
         playerManager.ChangeEyes();
         yield return new WaitForSeconds(0.5f);
         GameObject.Find("DoorToMainArea").GetComponent<Door>().isPermanentlyLocked = false;
-        hud.GetComponent<HUD>().ShowTmpMsg("Error: Critical System Damage. Go to repair floor immediately.");
+        hud.GetComponent<HUD>().ShowTmpMsg("Error: Critical System Damage. Go to repair floor immediately.", 4f);
 
         PlayerPrefs.SetInt("MineAlreadyCollapsed", 1);
     }
