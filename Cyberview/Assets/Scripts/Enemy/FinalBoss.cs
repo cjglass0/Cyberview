@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class FinalBoss : AbstractEnemy
 {
+    public FinalBossCutscene finalBossCutscene;
     GameObject playerGO;
     private bool playerInRange;
     private int speedXOffset = 1;
     private Vector3 origScale;
     public Animator animator;
     private ParticleSystem particles;
-    public GameObject explosion;
+    public GameObject explosion, orb;
 
     private void Start()
     {
@@ -135,6 +136,12 @@ public class FinalBoss : AbstractEnemy
         lvlManager.SpawnRandomReward(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 4f, gameObject.transform.position.z));
         lvlManager.SpawnRandomReward(new Vector3(gameObject.transform.position.x - 2.5f, gameObject.transform.position.y - 4f, gameObject.transform.position.z));
         lvlManager.SpawnRandomReward(new Vector3(gameObject.transform.position.x + 2.5f, gameObject.transform.position.y - 4f, gameObject.transform.position.z));
+
+        //Spawn Orb
+        Instantiate(orb, gameObject.transform.position, Quaternion.identity);
+
+        //cutscene stuff
+        finalBossCutscene.BossDied();
 
         //save state
         PlayerPrefs.SetInt(objectID, 1);

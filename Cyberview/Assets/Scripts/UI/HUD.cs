@@ -93,7 +93,7 @@ public class HUD : MonoBehaviour
 
     public void BtnPause ()
     {
-        debugBtn.SetActive(false); debug2Btn.SetActive(true);
+        debugBtn.SetActive(false); debug2Btn.SetActive(false);
         clickSound.Play();
         gameManager.paused = true;
         Debug.Log("HUD -> Pause");

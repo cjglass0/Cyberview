@@ -8704,7 +8704,7 @@ PrefabInstance:
     - target: {fileID: 738646783946943611, guid: 4062feb18b802d84f8d35eeabc224002,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 738646783946943610, guid: 4062feb18b802d84f8d35eeabc224002,
         type: 3}
@@ -8845,7 +8845,7 @@ PrefabInstance:
     - target: {fileID: 3809820164273493149, guid: c5bc667300cee3448bfc35c757b2f760,
         type: 3}
       propertyPath: sceneToLoad
-      value: Floor_4
+      value: Floor_1_Boss
       objectReference: {fileID: 0}
     - target: {fileID: 3809820164273493149, guid: c5bc667300cee3448bfc35c757b2f760,
         type: 3}
@@ -8879,7 +8879,7 @@ PrefabInstance:
     - target: {fileID: 738646783946943611, guid: 4062feb18b802d84f8d35eeabc224002,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 738646783946943610, guid: 4062feb18b802d84f8d35eeabc224002,
         type: 3}

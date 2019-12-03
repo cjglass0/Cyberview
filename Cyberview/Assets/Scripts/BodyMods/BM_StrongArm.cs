@@ -61,7 +61,7 @@ public class BM_StrongArm : AbstractBodyMod
             //sort out HeavyBoxes
             foreach (GameObject go in interactables)
             {
-                if (go.tag == "HeavyBlock") boxes.Add(go);
+                if (go.tag == "HeavyBlock" || go.tag == "Orb") boxes.Add(go);
             }
 
             //get closest HeavyBox

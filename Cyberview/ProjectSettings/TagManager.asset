@@ -11,6 +11,7 @@ TagManager:
   - DestroyableSceneObject
   - rangedBullet
   - rangedEnemy
+  - Orb
   layers:
   - Default
   - TransparentFX
