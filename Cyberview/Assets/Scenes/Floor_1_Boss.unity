@@ -170,7 +170,7 @@ PrefabInstance:
     - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
@@ -216,6 +216,11 @@ PrefabInstance:
         type: 3}
       propertyPath: message
       value: Your "dreams" end here.  As did mine.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: avatar
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca7df5e1bc902f3419be5d08287fc9de, type: 3}
@@ -374,7 +379,7 @@ PrefabInstance:
     - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
@@ -405,6 +410,11 @@ PrefabInstance:
         type: 3}
       propertyPath: message
       value: WHO GOES THERE?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: avatar
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca7df5e1bc902f3419be5d08287fc9de, type: 3}
@@ -19177,111 +19187,6 @@ Transform:
   m_Father: {fileID: 1502395289}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &690975654
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1926920218}
-    m_Modifications:
-    - target: {fileID: 1461359710426423547, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_Name
-      value: DialogueTimerTrigger (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 60.0661
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -74.14057
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 72.157555
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10.289254
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 14.240502
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.72767
-      objectReference: {fileID: 0}
-    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: hideDelay
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: showDelay
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: message
-      value: It has given me much time to think.
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ca7df5e1bc902f3419be5d08287fc9de, type: 3}
---- !u!4 &690975655 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-    type: 3}
-  m_PrefabInstance: {fileID: 690975654}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &704395493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19667,112 +19572,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &927926732
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1926920218}
-    m_Modifications:
-    - target: {fileID: 1461359710426423547, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_Name
-      value: DialogueTimerTrigger (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -15.03389
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.8594239
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 72.157555
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 11.65724
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 16.133818
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.82441586
-      objectReference: {fileID: 0}
-    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: hideDelay
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: showDelay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: message
-      value: Just like that other "dreamer" who came down here, you won't ever see
-        the light.
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ca7df5e1bc902f3419be5d08287fc9de, type: 3}
---- !u!4 &927926733 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-    type: 3}
-  m_PrefabInstance: {fileID: 927926732}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &948507508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20512,7 +20311,7 @@ PrefabInstance:
     - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
@@ -20558,6 +20357,11 @@ PrefabInstance:
         type: 3}
       propertyPath: message
       value: Keep running.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: avatar
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca7df5e1bc902f3419be5d08287fc9de, type: 3}
@@ -20949,6 +20753,31 @@ PrefabInstance:
       propertyPath: message
       value: You think you know the truth?
       objectReference: {fileID: 0}
+    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: message2
+      value: I have suffered here alone.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: message3
+      value: It has given me much time to think.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: avatar
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: avatar2
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: avatar3
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca7df5e1bc902f3419be5d08287fc9de, type: 3}
 --- !u!4 &1326680578 stripped
@@ -21124,7 +20953,7 @@ PrefabInstance:
     - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
@@ -21170,6 +20999,11 @@ PrefabInstance:
         type: 3}
       propertyPath: message
       value: I am the only one that understands the insanity of reality.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: avatar
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca7df5e1bc902f3419be5d08287fc9de, type: 3}
@@ -21607,7 +21441,7 @@ PrefabInstance:
     - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
         type: 3}
@@ -21653,6 +21487,27 @@ PrefabInstance:
         type: 3}
       propertyPath: message
       value: You come in here with "dreams" of escape.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: avatar
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: message2
+      value: Just like that other "dreamer" who came down here, you won't ever see
+        the light.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: avatar2
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
+        type: 3}
+      propertyPath: hideDelay2
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca7df5e1bc902f3419be5d08287fc9de, type: 3}
@@ -22134,10 +21989,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1326680578}
-  - {fileID: 1942111747}
-  - {fileID: 690975655}
   - {fileID: 1680914407}
-  - {fileID: 927926733}
   - {fileID: 1426877681}
   - {fileID: 1124317167}
   - {fileID: 21386552}
@@ -22145,111 +21997,6 @@ Transform:
   m_Father: {fileID: 679563667}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1942111746
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1926920218}
-    m_Modifications:
-    - target: {fileID: 1461359710426423547, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_Name
-      value: DialogueTimerTrigger (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 57.666107
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -73.840576
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 72.157555
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 12.634089
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 17.485794
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.8935
-      objectReference: {fileID: 0}
-    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: hideDelay
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: showDelay
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5331001987876870951, guid: ca7df5e1bc902f3419be5d08287fc9de,
-        type: 3}
-      propertyPath: message
-      value: I have suffered here alone.
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ca7df5e1bc902f3419be5d08287fc9de, type: 3}
---- !u!4 &1942111747 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1461359710426423545, guid: ca7df5e1bc902f3419be5d08287fc9de,
-    type: 3}
-  m_PrefabInstance: {fileID: 1942111746}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1965111726
 GameObject:
   m_ObjectHideFlags: 0

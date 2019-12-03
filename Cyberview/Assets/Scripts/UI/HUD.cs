@@ -15,7 +15,7 @@ public class HUD : MonoBehaviour
     public CanvasGroup playerHUD, pauseMenu, deathMenu, floorEndScreen, floorEndOverlay, playerHitCG, bmMenu;
     public RawImage batteryBar, batteryBarOutline;
     public RectTransform batteryParent, floorAvatar;
-    public GameObject blackout, enemyKillCount;
+    public GameObject blackout, enemyKillCount, debugBtn, debug2Btn;
     private float originalPlayerHitCGalpha, origBatterySizeX;
     private AudioSource clickSound;
     private bool bmMenuLoaded, bmFrameDelay, pulsing, goScreen;
@@ -56,6 +56,13 @@ public class HUD : MonoBehaviour
             healthValue.color = new Color(1, 1,1);
             batteryBarOutline.color = new Color(0,0,0);
         }
+        if (Time.timeScale == 0)
+        {
+            if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && Input.GetKeyDown(KeyCode.H))
+            {
+                debugBtn.SetActive(true); debug2Btn.SetActive(true);
+            }
+        }
     }
 
     IEnumerator BatteryPulse()
@@ -86,6 +93,7 @@ public class HUD : MonoBehaviour
 
     public void BtnPause ()
     {
+        debugBtn.SetActive(false); debug2Btn.SetActive(true);
         clickSound.Play();
         gameManager.paused = true;
         Debug.Log("HUD -> Pause");
@@ -117,6 +125,17 @@ public class HUD : MonoBehaviour
         clickSound.Play();
         Debug.Log("HUD -> DEBUG: Cleared Storage");
         PlayerPrefs.DeleteAll();
+    }
+
+    public void BtnUnlockAllDoors()
+    {
+        clickSound.Play();
+        Debug.Log("HUD -> DEBUG: Unlocked all doors");
+        List<Door> doors = new List<Door>(FindObjectsOfType<Door>());
+        foreach(Door d in doors)
+        {
+            d.doorKey = null;
+        }
     }
 
     public void BtnExitBMMenu()

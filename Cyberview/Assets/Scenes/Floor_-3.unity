@@ -26550,7 +26550,7 @@ PrefabInstance:
     - target: {fileID: 3642793909692000066, guid: 26b62b6ac49b78a4cb0d1b2c6aab0846,
         type: 3}
       propertyPath: doorKeyTimeChallenge
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26b62b6ac49b78a4cb0d1b2c6aab0846, type: 3}

@@ -21,7 +21,6 @@ public class LvlManager : MonoBehaviour
     private List<AbstractEnemy> abstractEnemy;
 
     float levelStartTime;
-    public int doorKeyTimeChallenge;
     private DoorKey[] doorKeyArray;
     private Door[] doorArray;
     int keysCollected = 0;
@@ -139,12 +138,6 @@ public class LvlManager : MonoBehaviour
     public void CollectedDoorKey()
     {
         keysCollected++;
-        if (keysCollected == doorKeyArray.Length && Time.time - levelStartTime < doorKeyTimeChallenge)
-        {
-            SpawnRandomReward(GameObject.Find("TimeChallengeRewardSP").transform.position);
-            hud.ShowTmpMsg("Congratulations, you won the time Challenge!", 4f);
-        }
-            
     }
 
     public void SpawnRandomReward(Vector2 rewardSpawnPoint)
