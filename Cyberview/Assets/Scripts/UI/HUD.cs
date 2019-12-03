@@ -8,7 +8,7 @@ public class HUD : MonoBehaviour
 {
     // Handle all HUD stuff
 
-    public TextMeshProUGUI armLValue, armRValue, legsValue, healthValue, creditValue, tmpMsg, enemyCasualties;
+    public TextMeshProUGUI armLValue, armRValue, legsValue, healthValue, creditValue, tmpMsg, enemyCasualties, coinsCollected, rechargeBtnLabel;
     public TMP_Dropdown armLDropdown, armRDropdown, legsDropdown;
     public PlayerManager playerManager;
     public GameManager gameManager;
@@ -18,7 +18,7 @@ public class HUD : MonoBehaviour
     public GameObject blackout, enemyKillCount, debugBtn, debug2Btn;
     private float originalPlayerHitCGalpha, origBatterySizeX;
     private AudioSource clickSound;
-    private bool bmMenuLoaded, bmFrameDelay, pulsing, goScreen;
+    private bool bmMenuLoaded, bmFrameDelay, pulsing, goScreen, chargeUsed;
     private int originFloor, destinationFloor;
     public Button rechargeBtn;
     private BodyModSwappingStation bmStn;
@@ -191,8 +191,11 @@ public class HUD : MonoBehaviour
     public void BtnRecharge()
     {
         playerManager.Recharge(100);
-        rechargeBtn.interactable = false;
         bmStn.ChargeUsed();
+        rechargeBtn.interactable = false;
+        rechargeBtnLabel.text = "Additional Recharge: \n 25 Credits";
+        rechargeBtnLabel.fontSize = 25;
+        if (chargeUsed) playerManager.RechargeCoinsCharge();
     }
 
     //----------------------------------------------------------- Dropdown Logic -------------------------------------------------
@@ -317,6 +320,7 @@ public class HUD : MonoBehaviour
     public void LoadBodyModMenu(bool chargeUsed, BodyModSwappingStation bmStn)
     {
         this.bmStn = bmStn;
+        this.chargeUsed = chargeUsed;
 
         if (!bmMenuLoaded) {
             clickSound.Play();
@@ -329,7 +333,20 @@ public class HUD : MonoBehaviour
             bmMenu.alpha = 1;
             bmMenu.interactable = true;
             bmMenu.gameObject.SetActive(true);
-            if (!chargeUsed) { rechargeBtn.interactable = true; } else { rechargeBtn.interactable = false; }
+            if (!chargeUsed) { 
+                rechargeBtn.interactable = true;
+                rechargeBtnLabel.text = "Recharge";
+                rechargeBtnLabel.fontSize = 40;
+            } else {
+                if (playerManager.credit >= 25) {
+                    rechargeBtn.interactable = true;
+                } else
+                {
+                    rechargeBtn.interactable = false;
+                }
+                rechargeBtnLabel.text = "Additional Recharge: \n 25 Credits";
+                rechargeBtnLabel.fontSize = 25;
+            }
 
             UpdateBodyModsDropdownOptions(armLDropdown);
             UpdateBodyModsDropdownOptions(armRDropdown);
@@ -453,7 +470,10 @@ public class HUD : MonoBehaviour
         floorEndOverlay.alpha = 0;
         floorEndOverlay.gameObject.SetActive(true);
 
-        enemyCasualties.text = GameObject.Find("LevelManager").GetComponent<LvlManager>().enemyCasualties.ToString();
+        int casualties = GameObject.Find("LevelManager").GetComponent<LvlManager>().enemyCasualties;
+        enemyCasualties.text = casualties.ToString();
+        if (casualties > 1) { enemyCasualties.color = new Color(.9f,.1f,.1f); } else { enemyCasualties.color = new Color(1f, 1f, 1f); }
+        coinsCollected.text = GameObject.Find("LevelManager").GetComponent<LvlManager>().coinsCollected.ToString();
 
         playerManager.disableInputs = true;
 

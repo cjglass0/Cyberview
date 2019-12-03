@@ -27,7 +27,7 @@ public class LvlManager : MonoBehaviour
     public GameObject[] rewardArray;
 
     [System.NonSerialized]
-    public int enemyCasualties;
+    public int enemyCasualties, coinsCollected;
 
     public bool repairRoom;
 
@@ -43,7 +43,8 @@ public class LvlManager : MonoBehaviour
         doorArray = Object.FindObjectsOfType<Door>();
 
         enemyCasualties = 0;
-        
+        coinsCollected = 0;
+
         //Find All Abstract Level Items & Enemies in order to reset level state
         abstractLvlItems = new List<AbstractLvlItem>(FindObjectsOfType<AbstractLvlItem>());
         abstractEnemy = new List<AbstractEnemy>(FindObjectsOfType<AbstractEnemy>());
@@ -152,6 +153,11 @@ public class LvlManager : MonoBehaviour
     public void EnemyKilled()
     {
         enemyCasualties++;
+    }
+
+    public void CoinCollected()
+    {
+        coinsCollected++;
     }
 
 }

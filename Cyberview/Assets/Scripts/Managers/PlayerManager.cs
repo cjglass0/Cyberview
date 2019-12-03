@@ -694,4 +694,11 @@ public class PlayerManager : AbstractCharacter
         yield return new WaitForSeconds(3f);
         dialogueHandler.hideDialogue();
     }
+
+    public void RechargeCoinsCharge()
+    {
+        credit -= 25;
+        hud.SetCredit(credit);
+        PlayerPrefs.SetInt("PlayerCredit", credit);
+    }
 }

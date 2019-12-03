@@ -12,13 +12,16 @@ public class CreditPickup : AbstractLvlItem
     {
         if (collision.gameObject.name == "_Player" && !collected)
         {
+            collected = true;
             collision.gameObject.GetComponent<PlayerManager>().AddCredit(creditValue);
 
             //save state
             PlayerPrefs.SetInt(objectID, 1);
 
+            GameObject.Find("LevelManager").GetComponent<LvlManager>().CoinCollected();
+
             Destroy(gameObject);
-            collected = true;
+            
         }
     }
 }

@@ -19,6 +19,10 @@ public class BodyModSwappingStation : MonoBehaviour
         {
             chargeUsed = true;
             glow.color = new Color(1f, 0f, 0.6313726f);
+        } else
+        {
+            chargeUsed = false;
+            glow.color = new Color(0f, 1f, 0f);
         }
     }
 
@@ -37,6 +41,7 @@ public class BodyModSwappingStation : MonoBehaviour
         {
             HUD hud = GameObject.Find("_HUD").GetComponent<HUD>();
             hud.LoadBodyModMenu(chargeUsed, this);
+            Debug.Log("charge used:" + chargeUsed);
         }
     }
 
@@ -51,5 +56,6 @@ public class BodyModSwappingStation : MonoBehaviour
     {
         chargeUsed = false;
         if (PlayerPrefs.HasKey(objectID)) PlayerPrefs.DeleteKey(objectID);
+        glow.color = new Color(0f, 1f, 0f);
     }
 }
